@@ -36,13 +36,15 @@ public class WB {
 
 	Dimension dim;
 
-	Button bt_Execute, bt_Quit;
+	Button bt_Execute, bt_Quit, bt_Clear;
 
 	//test
 	
 	Canvas cv_1;
 	
 	int count = 0;
+
+	boolean f_Executing = false;
 	
 	////////////////////////////////
 
@@ -120,52 +122,12 @@ public class WB {
 				
 				lbl_1.setText("x = " + shell.getSize().x + "\n" + "y = " + shell.getSize().y);
 		
-//		Group group = new Group(shell, SWT.NONE);
-//		group.setBounds(49, 477, 135, 153);
-//		
-//		bt_Execute = new Button(group, SWT.NONE);
-//		bt_Execute.setBounds(10, 10, 115, 37);
-//		bt_Execute.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseDown(MouseEvent e) {
-//				
-//				lbl_1.setText("clicked => " + count);
-//				
-//				count ++;
-//				
-//			}
-//		});
-//		bt_Execute.setText("Execute");
-//		
-//		Button btnNewButton = new Button(group, SWT.NONE);
-//		btnNewButton.addSelectionListener(new SelectionAdapter() {
-//			@Override
-//			public void widgetSelected(SelectionEvent e) {
-//			}
-//		});
-//		btnNewButton.setBounds(10, 53, 115, 37);
-//		btnNewButton.setText("New Button");
-//		
-//		bt_Quit = new Button(group, SWT.NONE);
-//		
-//		bt_Quit.setBounds(10, 96, 115, 37);
-//		bt_Quit.setText("Quit");
-		
 	}//createContents
 
 	private void 
 	_init_Set_Listeners
 	(Shell shell) {
 		// TODO Auto-generated method stub
-
-//		bt_Quit.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseDown(MouseEvent e) {
-//				
-//				System.exit(0);
-//				
-//			}
-//		});
 
 		bt_Quit.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -188,6 +150,12 @@ public class WB {
 				GC gc = new GC(cv_1);
 //                if(lp != null) {
 //                    gc.setXORMode(true);
+				
+				gc.setForeground(display.getSystemColor(SWT.COLOR_BLUE)); 
+				
+				//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
+				gc.setLineWidth(10);
+				
                     gc.drawLine(0,0, 100, 100);
 
 //                    lp = new Point(e.x, e.y);
@@ -197,6 +165,61 @@ public class WB {
 //                }
 
                 gc.dispose();
+                
+                // label
+                WB.this.f_Executing = true;
+                
+//				while (f_Executing) {
+
+					WB.this.lbl_1.setText("executing... " + count);
+					
+					
+//        					lbl_1.setText("clicked => " + count);
+					
+					count ++;
+					
+//				}
+
+			}
+		});
+
+		////////////////////////////////
+
+		// message
+
+		////////////////////////////////
+		bt_Clear.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				WB.this.f_Executing = false;
+//				f_Executing = false;
+				
+//				WB.this.lbl_1.setText("Cleared");
+				
+				// clear canvas
+				GC gc = new GC(cv_1);
+//              if(lp != null) {
+//                  gc.setXORMode(true);
+				
+//				gc.setForeground(display.getSystemColor(SWT.COLOR_BLUE)); 
+				
+				//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
+//				gc.setLineWidth(10);
+//				
+//				gc.drawLine(0,0, 100, 100);
+
+//                  lp = new Point(e.x, e.y);
+//                  gc.drawLine(fp.x, fp.y, lp.x, lp.y);
+//              }else {
+//                  lp = new Point(e.x, e.y);
+//              }
+
+				WB.this.cv_1.drawBackground(gc, 0, 0, WB.this.cv_1.getSize().x, WB.this.cv_1.getSize().y);
+
+				gc.dispose();
+				
+				
 			}
 		});
 
@@ -216,26 +239,12 @@ public class WB {
 		
 		bt_Execute = new Button(group, SWT.NONE);
 		bt_Execute.setBounds(10, 10, 115, 37);
-		bt_Execute.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseDown(MouseEvent e) {
-				
-				lbl_1.setText("clicked => " + count);
-				
-				count ++;
-				
-			}
-		});
+		
 		bt_Execute.setText("Execute");
 		
-		Button btnNewButton = new Button(group, SWT.NONE);
-		btnNewButton.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-			}
-		});
-		btnNewButton.setBounds(10, 53, 115, 37);
-		btnNewButton.setText("New Button");
+		bt_Clear = new Button(group, SWT.NONE);
+		bt_Clear.setBounds(10, 53, 115, 37);
+		bt_Clear.setText("Clear");
 		
 		
 		
@@ -255,6 +264,8 @@ public class WB {
 		// menu
 
 		////////////////////////////////
+		//REF http://zetcode.com/gui/javaswt/menustoolbars/
+		
 		Menu menu = new Menu(shell, SWT.BAR);
 		shell.setMenuBar(menu);
 		
