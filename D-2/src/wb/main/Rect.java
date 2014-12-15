@@ -19,12 +19,15 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Group;
 //import org.eclipse.wb.swt.SWTResourceManager;
 
+
 import wb.utils.CONS;
+
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.FormData;
@@ -50,6 +53,9 @@ public class Rect {
 	//test
 	
 	Canvas cv_1;
+
+	// colors
+	Color red, blue;
 	
 	int count = 0;
 
@@ -91,11 +97,27 @@ public class Rect {
 		createContents();
 		shell.open();
 		shell.layout();
+		
+		////////////////////////////////
+
+		// draw: initial
+
+		////////////////////////////////
+		draw_Initial();
+		
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
 		}
+	}
+
+	private void 
+	draw_Initial() {
+		// TODO Auto-generated method stub
+		
+		this.draw_Rect__Main();
+		
 	}
 
 	/**
@@ -118,21 +140,93 @@ public class Rect {
 		shell.setLocation(shell_Loc_W, shell_Loc_H);
 		
 		////////////////////////////////
+
+		// setup: colors
+
+		////////////////////////////////
+		_init_Colors();
+		
+		////////////////////////////////
 		
 		// group
 		
 		////////////////////////////////
 		_init_Views__Groups(shell);
+
+		////////////////////////////////
+
+		// menu
+
+		////////////////////////////////
+		this._init_Views__Menues(shell);
 		
 		_init_Views__Buttons(shell);
 		
-		_init_Views(shell, gr_ops);
+		_init_Views__Canvas(shell, gr_ops);
 
 		this._init_Views__Labels(shell, gr_ops);
 		
 		_init_Set_Listeners(shell);
 		
+		////////////////////////////////
+
+		// draw: rect
+
+		////////////////////////////////
+		draw_Rect__Main();
+		
 	}//createContents
+
+	private void 
+	_init_Colors() {
+		// TODO Auto-generated method stub
+		
+		Device device = Display.getCurrent ();
+		red = new Color (device, 255, 0, 0);
+		
+		blue = new Color (device, 0, 0, 255);
+		
+	}//_init_Colors
+
+	private void 
+	draw_Rect__Main() {
+		// TODO Auto-generated method stub
+
+		//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
+		GC gc = new GC(cv_1);
+//        if(lp != null) {
+//            gc.setXORMode(true);
+		
+		gc.setForeground(display.getSystemColor(SWT.COLOR_CYAN)); 
+		
+		//REF http://stackoverflow.com/questions/50064/setting-colors-in-swt answered Sep 8 '08 at 16:49
+//		Device device = Display.getCurrent ();
+//		Color red = new Color (device, 255, 0, 0);
+		
+		gc.setBackground(red); 
+		
+		//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
+		gc.setLineWidth(CONS.Views.lineWidth_Rect);
+		
+//        gc.drawLine(0,0, 100, 100);
+		gc.fillRectangle(
+				cv_1.getSize().x / 2 - CONS.Views.rect_Main_W / 2, 
+				cv_1.getSize().y / 2 - CONS.Views.rect_Main_H, 
+				CONS.Views.rect_Main_W, 
+				CONS.Views.rect_Main_H);
+//		gc.fillRectangle(
+//				dim.getSize().width / 2, 
+//				dim.getSize().height / 2, 
+//				CONS.Views.rect_Main_W, 
+//				CONS.Views.rect_Main_H);
+//		gc.fillRectangle(100, 100, 200, 100);
+//		gc.drawRectangle(100, 100, 100, 100);
+//		gc.fillRectangle(0, 0, 100, 100);
+
+        gc.dispose();
+		
+	}//draw_Rect
+	
 
 	private void 
 	_init_Views__Groups
@@ -190,8 +284,10 @@ public class Rect {
 				
 				//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
 				gc.setLineWidth(10);
-				
-                    gc.drawLine(0,0, 100, 100);
+		
+				gc.drawRectangle(0, 0, 100, 100);
+//				gc.fillRectangle(0, 0, 100, 100);
+//                    gc.drawLine(0,0, 100, 100);
 
 //                    lp = new Point(e.x, e.y);
 //                    gc.drawLine(fp.x, fp.y, lp.x, lp.y);
@@ -343,22 +439,43 @@ public class Rect {
 	}//_init_Views__Labels
 	
 	private void 
-	_init_Views
+	_init_Views__Canvas
 	(Shell shell, Group group) {
 		shell.setLayout(new FormLayout());
 
-//		Button bt_Back = new Button(group, SWT.NONE);
-//		bt_Back.setText("<-");
-//		
-//		Button bt_Forward = new Button(group, SWT.NONE);
-//		bt_Forward.setText("->");
-		
-
-		
 		////////////////////////////////
 
-		// menu
+		// canvas
 
+		////////////////////////////////
+		cv_1 = new Canvas(shell, SWT.NONE);
+		FormData fd_cv_1 = new FormData();
+		fd_cv_1.bottom = new FormAttachment(0, 651);
+		fd_cv_1.right = new FormAttachment(0, 760);
+		fd_cv_1.top = new FormAttachment(0, 31);
+		fd_cv_1.left = new FormAttachment(0, 49);
+		cv_1.setLayoutData(fd_cv_1);
+		
+		Color col = display.getSystemColor(SWT.COLOR_BLUE);
+		
+		//REF http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Freference%2Fapi%2Forg%2Feclipse%2Fswt%2Fgraphics%2FColor.html
+		Color col2 = new Color(display, 210, 210, 210);
+		
+//		cv_1.setBackground(display.getSystemColor(new Color(200, 0, 0).get));;
+		cv_1.setBackground(col2);;
+//		cv_1.setBackground(display.getSystemColor(SWT.COLOR_BLUE));;
+
+	}//_init_Views
+
+	private void 
+	_init_Views__Menues
+	(Shell shell) {
+		shell.setLayout(new FormLayout());
+		
+		////////////////////////////////
+		
+		// menu
+		
 		////////////////////////////////
 		//REF http://zetcode.com/gui/javaswt/menustoolbars/
 		
@@ -394,29 +511,7 @@ public class Rect {
 		});
 		
 		mntmQuit.setText("&Quit");
-
-		////////////////////////////////
-
-		// canvas
-
-		////////////////////////////////
-		cv_1 = new Canvas(shell, SWT.NONE);
-		FormData fd_cv_1 = new FormData();
-		fd_cv_1.bottom = new FormAttachment(0, 651);
-		fd_cv_1.right = new FormAttachment(0, 760);
-		fd_cv_1.top = new FormAttachment(0, 31);
-		fd_cv_1.left = new FormAttachment(0, 49);
-		cv_1.setLayoutData(fd_cv_1);
 		
-		Color col = display.getSystemColor(SWT.COLOR_BLUE);
-		
-		//REF http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Freference%2Fapi%2Forg%2Feclipse%2Fswt%2Fgraphics%2FColor.html
-		Color col2 = new Color(display, 200, 200, 200);
-		
-//		cv_1.setBackground(display.getSystemColor(new Color(200, 0, 0).get));;
-		cv_1.setBackground(col2);;
-//		cv_1.setBackground(display.getSystemColor(SWT.COLOR_BLUE));;
-
-
-	}//_init_Views
+	}//_init_Views__Menues
+	
 }
