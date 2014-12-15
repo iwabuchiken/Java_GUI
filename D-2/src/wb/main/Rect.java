@@ -29,6 +29,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class Rect {
 
@@ -42,8 +43,10 @@ public class Rect {
 
 	Dimension dim;
 
-	Button bt_Execute, bt_Quit, bt_Clear;
+	Button bt_Execute, bt_Quit, bt_Clear, bt_Back, bt_Forward;
 
+	Label lbl_Status, lbl_In;
+	
 	//test
 	
 	Canvas cv_1;
@@ -51,7 +54,8 @@ public class Rect {
 	int count = 0;
 
 	boolean f_Executing = false;
-	private Group group_1;
+	private Group gr_navigate, gr_ops;
+//	private Group group_2;
 	
 	////////////////////////////////
 
@@ -113,60 +117,47 @@ public class Rect {
 		
 		shell.setLocation(shell_Loc_W, shell_Loc_H);
 		
-		_init_Views(shell);
+		////////////////////////////////
+		
+		// group
+		
+		////////////////////////////////
+		_init_Views__Groups(shell);
+		
+		_init_Views__Buttons(shell);
+		
+		_init_Views(shell, gr_ops);
+
+		this._init_Views__Labels(shell, gr_ops);
 		
 		_init_Set_Listeners(shell);
-		// TODO Auto-generated method stub
-		
-		////////////////////////////////
-
-		// labels
-
-		////////////////////////////////
-		lbl_1 = new Label(shell, SWT.NONE);
-		FormData fd_lbl_1 = new FormData();
-		fd_lbl_1.bottom = new FormAttachment(cv_1, 0, SWT.BOTTOM);
-		fd_lbl_1.right = new FormAttachment(100, -63);
-		fd_lbl_1.top = new FormAttachment(0, 585);
-		fd_lbl_1.left = new FormAttachment(0, 854);
-		lbl_1.setLayoutData(fd_lbl_1);
-		//		lbl_1.setText("Thanks");
-				
-				lbl_1.setText("x = " + shell.getSize().x + "\n" + "y = " + shell.getSize().y);
-				
-				Group group = new Group(shell, SWT.NONE);
-				FormData fd_group = new FormData();
-				fd_group.top = new FormAttachment(group_1, 19);
-				fd_group.right = new FormAttachment(100, -39);
-				fd_group.bottom = new FormAttachment(0, 297);
-				fd_group.left = new FormAttachment(0, 824);
-				group.setLayoutData(fd_group);
-				group.setLayout(new FillLayout(SWT.HORIZONTAL));
-				
-				Button bt_Back = new Button(group, SWT.NONE);
-				bt_Back.setText("<-");
-				
-				Button bt_Forward = new Button(group, SWT.NONE);
-				bt_Forward.setText("->");
-				
-				Label lbl_Status = new Label(shell, SWT.NONE);
-				FormData fd_lbl_Status = new FormData();
-				fd_lbl_Status.bottom = new FormAttachment(group, 143, SWT.BOTTOM);
-				fd_lbl_Status.right = new FormAttachment(cv_1, 170, SWT.RIGHT);
-				fd_lbl_Status.top = new FormAttachment(group, 31);
-				fd_lbl_Status.left = new FormAttachment(cv_1, 46);
-				lbl_Status.setLayoutData(fd_lbl_Status);
-				lbl_Status.setText("Status = ");
-				
-				Label lbl_In = new Label(shell, SWT.NONE);
-				FormData fd_lbl_In = new FormData();
-				fd_lbl_In.top = new FormAttachment(group, 45);
-				fd_lbl_In.left = new FormAttachment(lbl_Status, 48);
-				fd_lbl_In.right = new FormAttachment(100, -10);
-				lbl_In.setLayoutData(fd_lbl_In);
-				lbl_In.setText("In");
 		
 	}//createContents
+
+	private void 
+	_init_Views__Groups
+	(Shell shell) {
+		// TODO Auto-generated method stub
+	
+		gr_navigate = new Group(shell, SWT.NONE);
+		FormData fd_gr_navigate = new FormData();
+		fd_gr_navigate.bottom = new FormAttachment(0, 184);
+		fd_gr_navigate.right = new FormAttachment(0, 1002);
+		fd_gr_navigate.top = new FormAttachment(0, 31);
+		fd_gr_navigate.left = new FormAttachment(0, 867);
+		gr_navigate.setLayoutData(fd_gr_navigate);
+		
+		gr_ops = new Group(shell, SWT.NONE);
+		FormData fd_gr_ops = new FormData();
+		fd_gr_ops.top = new FormAttachment(gr_navigate, 19);
+		fd_gr_ops.right = new FormAttachment(100, -39);
+		fd_gr_ops.bottom = new FormAttachment(0, 297);
+		fd_gr_ops.left = new FormAttachment(0, 824);
+		gr_ops.setLayoutData(fd_gr_ops);
+		gr_ops.setLayout(new FillLayout(SWT.HORIZONTAL));
+
+	}
+	
 
 	private void 
 	_init_Set_Listeners
@@ -270,44 +261,99 @@ public class Rect {
 	}//_init_Set_Listeners
 
 	private void 
-	_init_Views
+	_init_Views__Buttons
 	(Shell shell) {
-		shell.setLayout(new FormLayout());
-		
-		////////////////////////////////
 
-		// buttons
-
-		////////////////////////////////
-		group_1 = new Group(shell, SWT.NONE);
-		FormData fd_group_1 = new FormData();
-		fd_group_1.bottom = new FormAttachment(0, 184);
-		fd_group_1.right = new FormAttachment(0, 1002);
-		fd_group_1.top = new FormAttachment(0, 31);
-		fd_group_1.left = new FormAttachment(0, 867);
-		group_1.setLayoutData(fd_group_1);
-		
-		bt_Execute = new Button(group_1, SWT.NONE);
+		bt_Execute = new Button(gr_navigate, SWT.NONE);
 		bt_Execute.setBounds(10, 10, 115, 37);
 		
 		bt_Execute.setText("Execute");
 		
-		bt_Clear = new Button(group_1, SWT.NONE);
+		bt_Clear = new Button(gr_navigate, SWT.NONE);
 		bt_Clear.setBounds(10, 53, 115, 37);
 		bt_Clear.setText("Clear");
 		
 		
 		
-		bt_Quit = new Button(group_1, SWT.NONE);
-//		bt_Quit.setFont(SWTResourceManager.getFont("メイリオ", 9, SWT.ITALIC));
-//		bt_Quit.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
-		
-		bt_Quit.setBounds(10, 96, 115, 37);
-		bt_Quit.setText("Quit");
+		bt_Quit = new Button(gr_navigate, SWT.NONE);
+		//		bt_Quit.setFont(SWTResourceManager.getFont("メイリオ", 9, SWT.ITALIC));
+		//		bt_Quit.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
+				
+				bt_Quit.setBounds(10, 96, 115, 37);
+				bt_Quit.setText("Quit");
 
-//		Color col_Bt_Quit = new Color(display, 200, 200, 200);
+		bt_Back = new Button(this.gr_ops, SWT.NONE);
+		bt_Back.setText("<-");
 		
-//		bt_Quit.setBackground(col_Bt_Quit);
+		bt_Forward = new Button(this.gr_ops, SWT.NONE);
+		bt_Forward.setText("->");
+		
+	}//_init_Views__Buttons
+	
+	private void 
+	_init_Views__Labels
+	(Shell shell, Group group) {
+
+		////////////////////////////////
+
+		// status
+
+		////////////////////////////////
+		lbl_Status = new Label(shell, SWT.NONE);
+		lbl_Status.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
+		FormData fd_lbl_Status = new FormData();
+		fd_lbl_Status.top = new FormAttachment(gr_ops, 136);
+		fd_lbl_Status.right = new FormAttachment(cv_1, 168, SWT.RIGHT);
+		fd_lbl_Status.left = new FormAttachment(cv_1, 44);
+		lbl_Status.setLayoutData(fd_lbl_Status);
+		lbl_Status.setText("Status = ");
+
+		////////////////////////////////
+
+		// in
+
+		////////////////////////////////
+		lbl_In = new Label(shell, SWT.NONE);
+		lbl_In.setBackground(SWTResourceManager.getColor(SWT.COLOR_GRAY));
+		FormData fd_lbl_In = new FormData();
+		fd_lbl_In.left = new FormAttachment(cv_1, 218);
+		fd_lbl_In.right = new FormAttachment(100, -10);
+		lbl_In.setLayoutData(fd_lbl_In);
+		lbl_In.setText("In");
+
+		////////////////////////////////
+
+		// canvas size
+
+		////////////////////////////////
+		lbl_1 = new Label(shell, SWT.NONE);
+		fd_lbl_In.bottom = new FormAttachment(lbl_1, -112);
+		fd_lbl_Status.bottom = new FormAttachment(lbl_1, -40);
+		FormData fd_lbl_1 = new FormData();
+		fd_lbl_1.bottom = new FormAttachment(cv_1, 0, SWT.BOTTOM);
+		fd_lbl_1.right = new FormAttachment(100, -63);
+		fd_lbl_1.top = new FormAttachment(0, 585);
+		fd_lbl_1.left = new FormAttachment(0, 854);
+		lbl_1.setLayoutData(fd_lbl_1);
+		//		lbl_1.setText("Thanks");
+				
+				lbl_1.setText("x = " + shell.getSize().x + "\n" + "y = " + shell.getSize().y);
+				
+
+	}//_init_Views__Labels
+	
+	private void 
+	_init_Views
+	(Shell shell, Group group) {
+		shell.setLayout(new FormLayout());
+
+//		Button bt_Back = new Button(group, SWT.NONE);
+//		bt_Back.setText("<-");
+//		
+//		Button bt_Forward = new Button(group, SWT.NONE);
+//		bt_Forward.setText("->");
+		
+
 		
 		////////////////////////////////
 
@@ -370,6 +416,7 @@ public class Rect {
 //		cv_1.setBackground(display.getSystemColor(new Color(200, 0, 0).get));;
 		cv_1.setBackground(col2);;
 //		cv_1.setBackground(display.getSystemColor(SWT.COLOR_BLUE));;
+
 
 	}//_init_Views
 }
