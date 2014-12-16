@@ -506,6 +506,16 @@ public class Rect {
 				bt_Quit.setText("Quit");
 
 		bt_Back = new Button(this.gr_ops, SWT.NONE);
+		
+		bt_Back.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				Rect.this._move_Rect_B_left();
+				
+			}
+		});
+		
 		bt_Back.setText("<-");
 		
 		bt_Forward = new Button(this.gr_ops, SWT.NONE);
@@ -525,6 +535,69 @@ public class Rect {
 	}//_init_Views__Buttons
 	
 	protected void 
+	_move_Rect_B_left() {
+		// TODO Auto-generated method stub
+
+		switch(CONS.Admin.status) {
+		
+		case 2:
+			
+			_move_Rect_B__Case_1();
+			
+			break;
+		
+		}//switch(CONS.Admin.status)
+
+	}//_move_Rect_B_left
+
+	private void 
+	_move_Rect_B__Case_1() {
+		// TODO Auto-generated method stub
+
+		////////////////////////////////
+
+		// update: params
+
+		////////////////////////////////
+		// X
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+		
+		// Y
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_H_orig;
+		
+		// W
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+		
+		// H
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+		
+		////////////////////////////////
+
+		// draw
+
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+
+		////////////////////////////////
+		
+		// update: status value
+		
+		////////////////////////////////
+		CONS.Admin.status = 1;
+		
+		////////////////////////////////
+
+		// update: status label
+
+		////////////////////////////////
+		update_Status_Label();
+
+	}
+
+	protected void 
 	_move_Rect_B_right() {
 		// TODO Auto-generated method stub
 	
@@ -534,7 +607,7 @@ public class Rect {
 		
 		case 1:
 			
-			_move_Rect_B__Case_1();
+			_move_Rect_B__Case_2();
 //			// X
 //			CONS.Views.rect_B_X = CONS.Views.rect_A_X;
 //			
@@ -562,7 +635,7 @@ public class Rect {
 	}
 
 	private void 
-	_move_Rect_B__Case_1() {
+	_move_Rect_B__Case_2() {
 		// TODO Auto-generated method stub
 		
 		////////////////////////////////
@@ -597,7 +670,8 @@ public class Rect {
 		// update: status value
 		
 		////////////////////////////////
-		CONS.Admin.status += 1;
+		CONS.Admin.status = 2;
+//		CONS.Admin.status += 1;
 		
 		////////////////////////////////
 
