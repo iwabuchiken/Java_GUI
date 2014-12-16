@@ -1,0 +1,7 @@
+[2014/12/16 15:35:25.724] [Rect.java : 82] open()
+[2014/12/16 15:36:19.954] [Rect.java : 82] open()
+[2014/12/16 15:38:23.707] [Rect.java : 89] window => opening...
+[2014/12/16 15:38:23.755] [Rect.java : 95] open()
+[2014/12/16 15:38:58.995] [Rect.java : 89] window => opening...
+[2014/12/16 15:38:59.062] [Rect.java : 95] open()
+[2014/12/16 15:39:05.388] [Rect.java : 103] window => opened

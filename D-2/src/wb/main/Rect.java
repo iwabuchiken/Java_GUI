@@ -26,7 +26,9 @@ import org.eclipse.swt.widgets.Group;
 //import org.eclipse.wb.swt.SWTResourceManager;
 
 
+
 import wb.utils.CONS;
+import wb.utils.Methods;
 
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormLayout;
@@ -77,7 +79,33 @@ public class Rect {
 	main(String[] args) {
 		try {
 			Rect window = new Rect();
+			
+//			//log
+//			String text = "window => opening...";
+//
+//			String fname = Thread.currentThread().getStackTrace()[1]
+//					.getFileName();
+//
+//			int line_Num = Thread.currentThread().getStackTrace()[1]
+//					.getLineNumber();
+//
+//			Methods.write_Log(text, fname, line_Num);
+			
+			
 			window.open();
+			
+//			//log
+//			text = "window => opened";
+//
+//			fname = Thread.currentThread().getStackTrace()[1]
+//					.getFileName();
+//
+//			line_Num = Thread.currentThread().getStackTrace()[1]
+//					.getLineNumber();
+//
+//			Methods.write_Log(text, fname, line_Num);
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -88,6 +116,17 @@ public class Rect {
 	 */
 	public void 
 	open() {
+		
+//		String text = "open()";
+//
+//		String fname = Thread.currentThread().getStackTrace()[2].getFileName();
+//
+//		int line_Num = Thread.currentThread().getStackTrace()[2]
+//				.getLineNumber();
+//
+//		Methods.write_Log(text, fname, line_Num);
+		
+		
 		display = Display.getDefault();
 //		Display display = Display.getDefault();
 		
@@ -103,6 +142,8 @@ public class Rect {
 		// draw: initial
 
 		////////////////////////////////
+		this.init_Size_Rect_A();
+		
 		draw_Initial();
 		
 		while (!shell.isDisposed()) {
@@ -173,9 +214,20 @@ public class Rect {
 		// draw: rect
 
 		////////////////////////////////
-		draw_Rect__Main();
+//		init_Size_Rect_A();
+		
+//		draw_Rect__Main();
 		
 	}//createContents
+
+	private void 
+	init_Size_Rect_A() {
+		// TODO Auto-generated method stub
+		
+		CONS.Views.rect_Main_X = cv_1.getSize().x / 2 - CONS.Views.rect_Main_W / 2; 
+		CONS.Views.rect_Main_Y = cv_1.getSize().y / 2 - CONS.Views.rect_Main_H;
+		
+	}//init_Size_Rect_A
 
 	private void 
 	_init_Colors() {
@@ -192,6 +244,9 @@ public class Rect {
 	draw_Rect__Main() {
 		// TODO Auto-generated method stub
 
+		//debug
+		this.lbl_1.setText("rect A: x = " + CONS.Views.rect_Main_X);
+		
 		//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
 		GC gc = new GC(cv_1);
 //        if(lp != null) {
@@ -208,10 +263,14 @@ public class Rect {
 		//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
 		gc.setLineWidth(CONS.Views.lineWidth_Rect);
 		
+		
+		
 //        gc.drawLine(0,0, 100, 100);
 		gc.fillRectangle(
-				cv_1.getSize().x / 2 - CONS.Views.rect_Main_W / 2, 
-				cv_1.getSize().y / 2 - CONS.Views.rect_Main_H, 
+				CONS.Views.rect_Main_X, 
+				CONS.Views.rect_Main_Y, 
+//				cv_1.getSize().x / 2 - CONS.Views.rect_Main_W / 2, 
+//				cv_1.getSize().y / 2 - CONS.Views.rect_Main_H, 
 				CONS.Views.rect_Main_W, 
 				CONS.Views.rect_Main_H);
 //		gc.fillRectangle(
