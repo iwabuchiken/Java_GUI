@@ -2,7 +2,7 @@ package wb.utils;
 
 public class CONS {
 
-	public class Admin {
+	public static class Admin {
 	
 		public static final String str_MainWindow_Title = "Rectangles";
 		
@@ -17,6 +17,10 @@ public class CONS {
 		public static final long logFile_MaxSize = 40000;
 
 		public static final String format_Date = "yyyy/MM/dd HH:mm:ss.SSS";
+
+		public static int status;
+		
+		public final static String str_Status = "Status = ";
 		
 	}
 	

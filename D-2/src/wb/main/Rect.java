@@ -117,15 +117,12 @@ public class Rect {
 	public void 
 	open() {
 		
-//		String text = "open()";
-//
-//		String fname = Thread.currentThread().getStackTrace()[2].getFileName();
-//
-//		int line_Num = Thread.currentThread().getStackTrace()[2]
-//				.getLineNumber();
-//
-//		Methods.write_Log(text, fname, line_Num);
-		
+		////////////////////////////////
+
+		// init: vars
+
+		////////////////////////////////
+		init_Vars();
 		
 		display = Display.getDefault();
 //		Display display = Display.getDefault();
@@ -154,12 +151,22 @@ public class Rect {
 	}
 
 	private void 
+	init_Vars() {
+		// TODO Auto-generated method stub
+		
+		CONS.Admin.status = 1;
+		
+	}
+
+	private void 
 	draw_Initial() {
 		// TODO Auto-generated method stub
 		
 		this.draw_Rect__A();
 		
 		this.draw_Rect__B();
+		
+		this.update_Status_Label();
 		
 	}
 
@@ -440,33 +447,35 @@ public class Rect {
 		bt_Clear.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+
+				Rect.this.clear_Canvas();
 				
-				Rect.this.f_Executing = false;
-//				f_Executing = false;
-				
-//				WB.this.lbl_1.setText("Cleared");
-				
-				// clear canvas
-				GC gc = new GC(cv_1);
-//              if(lp != null) {
-//                  gc.setXORMode(true);
-				
-//				gc.setForeground(display.getSystemColor(SWT.COLOR_BLUE)); 
-				
-				//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
-//				gc.setLineWidth(10);
+//				Rect.this.f_Executing = false;
+////				f_Executing = false;
 //				
-//				gc.drawLine(0,0, 100, 100);
-
-//                  lp = new Point(e.x, e.y);
-//                  gc.drawLine(fp.x, fp.y, lp.x, lp.y);
-//              }else {
-//                  lp = new Point(e.x, e.y);
-//              }
-
-				Rect.this.cv_1.drawBackground(gc, 0, 0, Rect.this.cv_1.getSize().x, Rect.this.cv_1.getSize().y);
-
-				gc.dispose();
+////				WB.this.lbl_1.setText("Cleared");
+//				
+//				// clear canvas
+//				GC gc = new GC(cv_1);
+////              if(lp != null) {
+////                  gc.setXORMode(true);
+//				
+////				gc.setForeground(display.getSystemColor(SWT.COLOR_BLUE)); 
+//				
+//				//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
+////				gc.setLineWidth(10);
+////				
+////				gc.drawLine(0,0, 100, 100);
+//
+////                  lp = new Point(e.x, e.y);
+////                  gc.drawLine(fp.x, fp.y, lp.x, lp.y);
+////              }else {
+////                  lp = new Point(e.x, e.y);
+////              }
+//
+//				Rect.this.cv_1.drawBackground(gc, 0, 0, Rect.this.cv_1.getSize().x, Rect.this.cv_1.getSize().y);
+//
+//				gc.dispose();
 				
 				
 			}
@@ -500,10 +509,114 @@ public class Rect {
 		bt_Back.setText("<-");
 		
 		bt_Forward = new Button(this.gr_ops, SWT.NONE);
+		
+		bt_Forward.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				Rect.this._move_Rect_B_right();
+				
+			}
+
+		});
+		
 		bt_Forward.setText("->");
 		
 	}//_init_Views__Buttons
 	
+	protected void 
+	_move_Rect_B_right() {
+		// TODO Auto-generated method stub
+	
+//		CONS.Admin.status = 1;
+		
+		switch(CONS.Admin.status) {
+		
+		case 1:
+			
+			_move_Rect_B__Case_1();
+//			// X
+//			CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+//			
+//			// Y
+//			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_W_orig;
+//			
+//			// W
+//			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+//			
+//			// H
+//			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+//			
+//			
+//			this.clear_Canvas();
+//			
+//			this.draw_Rect__A();
+//			this.draw_Rect__B();
+//			
+//			CONS.Admin.status += 1;
+			
+			break;
+		
+		}
+		
+	}
+
+	private void 
+	_move_Rect_B__Case_1() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// update: params
+
+		////////////////////////////////
+		// X
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+		
+		// Y
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_W_orig;
+		
+		// W
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+		
+		// H
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+		
+		////////////////////////////////
+
+		// draw
+
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+
+		////////////////////////////////
+		
+		// update: status value
+		
+		////////////////////////////////
+		CONS.Admin.status += 1;
+		
+		////////////////////////////////
+
+		// update: status label
+
+		////////////////////////////////
+		update_Status_Label();
+		
+		
+	}//_move_Rect_B__Case_1
+
+	private void 
+	update_Status_Label() {
+		// TODO Auto-generated method stub
+		
+		this.lbl_Status.setText(CONS.Admin.str_Status + CONS.Admin.status);
+		
+	}
+
 	private void 
 	_init_Views__Labels
 	(Shell shell, Group group) {
@@ -559,7 +672,7 @@ public class Rect {
 	private void 
 	_init_Views__Canvas
 	(Shell shell, Group group) {
-		shell.setLayout(new FormLayout());
+//		shell.setLayout(new FormLayout());
 
 		////////////////////////////////
 
@@ -631,5 +744,36 @@ public class Rect {
 		mntmQuit.setText("&Quit");
 		
 	}//_init_Views__Menues
-	
+
+	public void clear_Canvas() {
+		
+		this.f_Executing = false;
+//		f_Executing = false;
+		
+//		WB.this.lbl_1.setText("Cleared");
+		
+		// clear canvas
+		GC gc = new GC(cv_1);
+//      if(lp != null) {
+//          gc.setXORMode(true);
+		
+//		gc.setForeground(display.getSystemColor(SWT.COLOR_BLUE)); 
+		
+		//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
+//		gc.setLineWidth(10);
+//		
+//		gc.drawLine(0,0, 100, 100);
+
+//          lp = new Point(e.x, e.y);
+//          gc.drawLine(fp.x, fp.y, lp.x, lp.y);
+//      }else {
+//          lp = new Point(e.x, e.y);
+//      }
+
+		this.cv_1.drawBackground(gc, 0, 0, Rect.this.cv_1.getSize().x, Rect.this.cv_1.getSize().y);
+
+		gc.dispose();
+		
+
+	}
 }
