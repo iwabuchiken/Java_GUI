@@ -142,7 +142,7 @@ public class Rect {
 		// draw: initial
 
 		////////////////////////////////
-		this.init_Size_Rect_A();
+		this.init_Sizes();
 		
 		draw_Initial();
 		
@@ -157,7 +157,9 @@ public class Rect {
 	draw_Initial() {
 		// TODO Auto-generated method stub
 		
-		this.draw_Rect__Main();
+		this.draw_Rect__A();
+		
+		this.draw_Rect__B();
 		
 	}
 
@@ -221,11 +223,27 @@ public class Rect {
 	}//createContents
 
 	private void 
-	init_Size_Rect_A() {
+	init_Sizes() {
 		// TODO Auto-generated method stub
+	
+		////////////////////////////////
+
+		// rect: A
+
+		////////////////////////////////
+		CONS.Views.rect_A_X = cv_1.getSize().x / 2 - CONS.Views.rect_A_W / 2; 
+		CONS.Views.rect_A_Y = cv_1.getSize().y / 2 - CONS.Views.rect_A_H;
 		
-		CONS.Views.rect_Main_X = cv_1.getSize().x / 2 - CONS.Views.rect_Main_W / 2; 
-		CONS.Views.rect_Main_Y = cv_1.getSize().y / 2 - CONS.Views.rect_Main_H;
+		////////////////////////////////
+		
+		// rect: B
+		
+		////////////////////////////////
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+		
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X; 
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_H_cur;
 		
 	}//init_Size_Rect_A
 
@@ -241,11 +259,11 @@ public class Rect {
 	}//_init_Colors
 
 	private void 
-	draw_Rect__Main() {
+	draw_Rect__A() {
 		// TODO Auto-generated method stub
 
 		//debug
-		this.lbl_1.setText("rect A: x = " + CONS.Views.rect_Main_X);
+		this.lbl_1.setText("rect A: x = " + CONS.Views.rect_A_X);
 		
 		//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
 		GC gc = new GC(cv_1);
@@ -267,12 +285,12 @@ public class Rect {
 		
 //        gc.drawLine(0,0, 100, 100);
 		gc.fillRectangle(
-				CONS.Views.rect_Main_X, 
-				CONS.Views.rect_Main_Y, 
+				CONS.Views.rect_A_X, 
+				CONS.Views.rect_A_Y, 
 //				cv_1.getSize().x / 2 - CONS.Views.rect_Main_W / 2, 
 //				cv_1.getSize().y / 2 - CONS.Views.rect_Main_H, 
-				CONS.Views.rect_Main_W, 
-				CONS.Views.rect_Main_H);
+				CONS.Views.rect_A_W, 
+				CONS.Views.rect_A_H);
 //		gc.fillRectangle(
 //				dim.getSize().width / 2, 
 //				dim.getSize().height / 2, 
@@ -283,6 +301,47 @@ public class Rect {
 //		gc.fillRectangle(0, 0, 100, 100);
 
         gc.dispose();
+		
+	}//draw_Rect
+	
+	private void 
+	draw_Rect__B() {
+		// TODO Auto-generated method stub
+		
+		//debug
+//		this.lbl_1.setText("rect A: x = " + CONS.Views.rect_A_X);
+		
+		//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
+		GC gc = new GC(cv_1);
+		
+		gc.setForeground(display.getSystemColor(SWT.COLOR_CYAN)); 
+		
+		//REF http://stackoverflow.com/questions/50064/setting-colors-in-swt answered Sep 8 '08 at 16:49
+//		Device device = Display.getCurrent ();
+//		Color red = new Color (device, 255, 0, 0);
+		
+		gc.setBackground(blue); 
+		
+		//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
+		gc.setLineWidth(CONS.Views.lineWidth_Rect);
+		
+		gc.fillRectangle(
+				CONS.Views.rect_B_X, 
+				CONS.Views.rect_B_Y, 
+//				cv_1.getSize().x / 2 - CONS.Views.rect_Main_W / 2, 
+//				cv_1.getSize().y / 2 - CONS.Views.rect_Main_H, 
+				CONS.Views.rect_B_W_cur, 
+				CONS.Views.rect_B_H_cur);
+//		gc.fillRectangle(
+//				dim.getSize().width / 2, 
+//				dim.getSize().height / 2, 
+//				CONS.Views.rect_Main_W, 
+//				CONS.Views.rect_Main_H);
+//		gc.fillRectangle(100, 100, 200, 100);
+//		gc.drawRectangle(100, 100, 100, 100);
+//		gc.fillRectangle(0, 0, 100, 100);
+		
+		gc.dispose();
 		
 	}//draw_Rect
 	

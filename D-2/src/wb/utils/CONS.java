@@ -35,16 +35,35 @@ public class CONS {
 		
 		////////////////////////////////
 
-		// rect: main
+		// rect: A
 
 		////////////////////////////////
-		public static final int rect_Main_W = 200;
+		public static final int rect_A_W = 200;
 		
-		public static final int rect_Main_H = rect_Main_W / 2;
+		public static final int rect_A_H = rect_A_W / 2;
 		
-		public static int rect_Main_X;
+		public static int rect_A_X;
 		
-		public static int rect_Main_Y;
+		public static int rect_A_Y;
+		
+		////////////////////////////////
+		
+		// rect: B
+		
+		////////////////////////////////
+		public static final int rect_B_W_orig = 50;
+		
+		public static final int rect_B_H_orig = 150;
+//		public static final int rect_B_H_orig = rect_B_W_orig * 2;
+		
+		public static int rect_B_W_cur;
+		
+		public static int rect_B_H_cur;
+		
+		public static int rect_B_X;
+		
+		public static int rect_B_Y;
+		
 		
 	}
 }
