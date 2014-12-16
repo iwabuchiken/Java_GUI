@@ -70,4 +70,13 @@ public class CONS {
 		
 		
 	}
+	
+	public static class Strings {
+		
+		public static final String title_Confirm = "Confirm";
+		
+		public static final String msg_QuitApp = "Quit the app?";
+		
+	}
+	
 }

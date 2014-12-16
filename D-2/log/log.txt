@@ -5,3 +5,8 @@
 [2014/12/16 15:38:58.995] [Rect.java : 89] window => opening...
 [2014/12/16 15:38:59.062] [Rect.java : 95] open()
 [2014/12/16 15:39:05.388] [Rect.java : 103] window => opened
+[2014/12/16 16:41:17.281] [TypedListener.java : 248] return code => 32
+[2014/12/16 16:41:34.353] [TypedListener.java : 248] return code => 256
+[2014/12/16 16:41:41.527] [TypedListener.java : 248] return code => 32
+[2014/12/16 16:41:59.362] [Rect.java : 97] while => ended
+[2014/12/16 16:43:48.452] [TypedListener.java : 248] return code => 32

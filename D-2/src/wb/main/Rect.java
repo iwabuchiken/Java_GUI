@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.awt.event.PaintEvent;
 
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
@@ -24,6 +25,7 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Group;
 //import org.eclipse.wb.swt.SWTResourceManager;
+
 
 
 
@@ -148,6 +150,17 @@ public class Rect {
 				display.sleep();
 			}
 		}
+		
+		//log
+		String text = "while => ended";
+
+		String fname = Thread.currentThread().getStackTrace()[2].getFileName();
+
+		int line_Num = Thread.currentThread().getStackTrace()[2]
+				.getLineNumber();
+
+		Methods.write_Log(text, fname, line_Num);
+		
 	}
 
 	private void 
@@ -386,8 +399,41 @@ public class Rect {
 		bt_Quit.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+
+				////////////////////////////////
+
+				// dialog
+
+				////////////////////////////////
+				//REF http://www.vogella.com/tutorials/EclipseDialogs/article.html
+				MessageBox dialog = 
+						  new MessageBox(Rect.this.shell, SWT.ICON_QUESTION | SWT.OK| SWT.CANCEL);
+									dialog.setText(CONS.Strings.title_Confirm);
+									dialog.setMessage(CONS.Strings.msg_QuitApp);
+
+//						# open dialog and await user selection
+				int returnCode = dialog.open();
+
+
+				//REF return code http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Freference%2Fapi%2Forg%2Feclipse%2Fswt%2Fwidgets%2FMessageBox.html
+				if (returnCode == SWT.OK) {
+					
+					System.exit(0);
+					
+				}
 				
-				System.exit(0);
+//				//log
+//				String text = "return code => " + returnCode;
+//
+//				String fname = Thread.currentThread().getStackTrace()[2]
+//						.getFileName();
+//
+//				int line_Num = Thread.currentThread().getStackTrace()[2]
+//						.getLineNumber();
+//
+//				Methods.write_Log(text, fname, line_Num);
+
+//				System.exit(0);
 			}
 		});
 
@@ -398,7 +444,8 @@ public class Rect {
 		////////////////////////////////
 		bt_Execute.addSelectionListener(new SelectionAdapter() {
 			@Override
-			public void widgetSelected(SelectionEvent e) {
+			public void 
+			widgetSelected(SelectionEvent e) {
 
 				//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
 				GC gc = new GC(cv_1);
@@ -420,11 +467,11 @@ public class Rect {
 //                    lp = new Point(e.x, e.y);
 //                }
 
-                gc.dispose();
-                
-                // label
-                Rect.this.f_Executing = true;
-                
+				gc.dispose();
+				
+				// label
+				Rect.this.f_Executing = true;
+				
 //				while (f_Executing) {
 
 					Rect.this.lbl_1.setText("executing... " + count);
@@ -436,7 +483,35 @@ public class Rect {
 					
 //				}
 
-			}
+//				////////////////////////////////
+//
+//				// dialog
+//
+//				////////////////////////////////
+//				//REF http://www.vogella.com/tutorials/EclipseDialogs/article.html
+//				MessageBox dialog = 
+//						  new MessageBox(Rect.this.shell, SWT.ICON_QUESTION | SWT.OK| SWT.CANCEL);
+//									dialog.setText("My info");
+//									dialog.setMessage("Do you really want to do this?");
+//
+////						# open dialog and await user selection
+//				int returnCode = dialog.open();
+//
+//				
+//				
+//				//log
+//				String text = "return code => " + returnCode;
+//
+//				String fname = Thread.currentThread().getStackTrace()[2]
+//						.getFileName();
+//
+//				int line_Num = Thread.currentThread().getStackTrace()[2]
+//						.getLineNumber();
+//
+//				Methods.write_Log(text, fname, line_Num);
+				
+			}//widgetSelected
+			
 		});
 
 		////////////////////////////////
@@ -446,7 +521,8 @@ public class Rect {
 		////////////////////////////////
 		bt_Clear.addSelectionListener(new SelectionAdapter() {
 			@Override
-			public void widgetSelected(SelectionEvent e) {
+			public void 
+			widgetSelected(SelectionEvent e) {
 
 				Rect.this.clear_Canvas();
 				
@@ -479,7 +555,8 @@ public class Rect {
 				
 				
 			}
-		});
+			
+		});//bt_Clear.addSelectionListener
 
 	}//_init_Set_Listeners
 
@@ -545,6 +622,14 @@ public class Rect {
 			_move_Rect_B__Case_1();
 			
 			break;
+			
+//		case 2:
+//			
+//			_move_Rect_B__Case_1();
+//			
+//			break;
+			
+			
 		
 		}//switch(CONS.Admin.status)
 
