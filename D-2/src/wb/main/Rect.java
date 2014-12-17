@@ -1074,7 +1074,7 @@ public class Rect {
 	}//_move_Rect_B__Case_9
 	
 	
-	private void 
+	public void 
 	_move_Rect_B__Case_9() {
 		// TODO Auto-generated method stub
 		
@@ -1468,7 +1468,13 @@ public class Rect {
 		
 		////////////////////////////////
 		update_Status_Label();
-		
+
+//		////////////////////////////////
+//
+//		// thread	=> from: ThreadExample.java
+//
+//		////////////////////////////////
+//		Thread thread1 =  new Thread(new XThread(this),"thread1");		
 		
 	}//_move_Rect_B__Case_1
 	
@@ -1639,4 +1645,66 @@ public class Rect {
 		
 
 	}
+
+	class XThread extends Thread{
+	
+		private Rect rect;
+	
+		XThread(){
+			
+		}
+		
+		XThread(String threadName){
+			super(threadName);                       // Initialize thread.
+			System.out.println(this);
+		    start();
+		}
+		
+		public XThread(Rect rect) {
+			// TODO Auto-generated constructor stub
+			
+			this.rect = rect;
+			
+		}
+	
+		public void run(){
+			//Display info about this particular thread
+//			System.out.println(Thread.currentThread().getName());
+			
+			rect._move_Rect_B__Case_9();
+			
+		}
+	}
+	
+	
 }
+
+//class XThread extends Thread{
+//
+//	private Rect rect;
+//
+//	XThread(){
+//		
+//	}
+//	
+//	XThread(String threadName){
+//		super(threadName);                       // Initialize thread.
+//		System.out.println(this);
+//	    start();
+//	}
+//	
+//	public XThread(Rect rect) {
+//		// TODO Auto-generated constructor stub
+//		
+//		this.rect = rect;
+//		
+//	}
+//
+//	public void run(){
+//		//Display info about this particular thread
+////		System.out.println(Thread.currentThread().getName());
+//		
+//		rect._move_Rect_B__Case_9();
+//		
+//	}
+//}
