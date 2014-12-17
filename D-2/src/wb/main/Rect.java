@@ -617,19 +617,27 @@ public class Rect {
 
 		switch(CONS.Admin.status) {
 		
-		case 2:
-			
-			_move_Rect_B__Case_1();
-			
-			break;
-			
-		case 3:
-			
-			_move_Rect_B__Case_2();
-			
-			break;
-			
-			
+		case 1: _move_Rect_B__Case_16(); break;
+		
+		case 2: _move_Rect_B__Case_1(); break;
+		case 3: _move_Rect_B__Case_2(); break;
+		case 4: _move_Rect_B__Case_3(); break;
+
+		case 5: _move_Rect_B__Case_4(); break;
+		case 6: _move_Rect_B__Case_5(); break;
+		case 7: _move_Rect_B__Case_6(); break;
+		
+		case 8: _move_Rect_B__Case_7(); break;
+		case 9: _move_Rect_B__Case_8(); break;
+		case 10: _move_Rect_B__Case_9(); break;
+		
+		case 11: _move_Rect_B__Case_10(); break;
+		case 12: _move_Rect_B__Case_11(); break;
+		case 13: _move_Rect_B__Case_12(); break;
+		
+		case 14: _move_Rect_B__Case_13(); break;
+		case 15: _move_Rect_B__Case_14(); break;
+		case 16: _move_Rect_B__Case_15(); break;
 		
 		}//switch(CONS.Admin.status)
 
@@ -690,24 +698,34 @@ public class Rect {
 		
 		switch(CONS.Admin.status) {
 		
-		case 1:
+		case 1: _move_Rect_B__Case_2(); break;
+		case 2: _move_Rect_B__Case_3(); break;
+		case 3: _move_Rect_B__Case_4(); break;
 			
-			_move_Rect_B__Case_2();
+		case 4: _move_Rect_B__Case_5(); break;
+		case 5: _move_Rect_B__Case_6(); break;
+		case 6: _move_Rect_B__Case_7(); break;
 			
-			break;
+		case 7: _move_Rect_B__Case_8(); break;
+		case 8: _move_Rect_B__Case_9(); break;
+		case 9: _move_Rect_B__Case_10(); break;
+
+		case 10: _move_Rect_B__Case_11(); break;
+		case 11: _move_Rect_B__Case_12(); break;
+		case 12: _move_Rect_B__Case_13(); break;
 		
-		case 2:
-			
-			_move_Rect_B__Case_3();
-			
-			break;
-			
-		}
+		case 13: _move_Rect_B__Case_14(); break;
+		case 14: _move_Rect_B__Case_15(); break;
+		case 15: _move_Rect_B__Case_16(); break;
 		
-	}
+		case 16: _move_Rect_B__Case_1(); break;
+		
+		}//switch(CONS.Admin.status)
+		
+	}//_move_Rect_B_right
 
 	private void 
-	_move_Rect_B__Case_3() {
+	_move_Rect_B__Case_16() {
 		// TODO Auto-generated method stub
 		
 		////////////////////////////////
@@ -716,10 +734,10 @@ public class Rect {
 
 		////////////////////////////////
 		// X
-		CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W - CONS.Views.rect_B_W_orig;
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_W_orig;
 		
 		// Y
-		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_H_orig;
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
 		
 		// W
 		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
@@ -742,7 +760,7 @@ public class Rect {
 		// update: status value
 		
 		////////////////////////////////
-		CONS.Admin.status = 3;
+		CONS.Admin.status = 16;
 //		CONS.Admin.status += 1;
 		
 		////////////////////////////////
@@ -753,8 +771,658 @@ public class Rect {
 		update_Status_Label();
 		
 		
-	}//_move_Rect_B__Case_3
+	}//_move_Rect_B__Case_9
 
+	
+	private void 
+	_move_Rect_B__Case_15() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// update: params
+		
+		////////////////////////////////
+		// X
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_H_orig;
+		
+		// Y
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
+		
+		// W
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+		
+		// H
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		
+		////////////////////////////////
+		
+		// update: status value
+		
+		////////////////////////////////
+		CONS.Admin.status = 15;
+//		CONS.Admin.status += 1;
+		
+		////////////////////////////////
+		
+		// update: status label
+		
+		////////////////////////////////
+		update_Status_Label();
+		
+		
+	}//_move_Rect_B__Case_9
+	
+	
+	private void 
+	_move_Rect_B__Case_14() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// update: params
+		
+		////////////////////////////////
+		// X
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_W_orig;
+		
+		// Y
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H - CONS.Views.rect_B_H_orig;
+		
+		// W
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+		
+		// H
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		
+		////////////////////////////////
+		
+		// update: status value
+		
+		////////////////////////////////
+		CONS.Admin.status = 14;
+//		CONS.Admin.status += 1;
+		
+		////////////////////////////////
+		
+		// update: status label
+		
+		////////////////////////////////
+		update_Status_Label();
+		
+		
+	}//_move_Rect_B__Case_9
+	
+	
+	private void 
+	_move_Rect_B__Case_13() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// update: params
+		
+		////////////////////////////////
+		// X
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_H_orig;
+		
+		// Y
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H - CONS.Views.rect_B_W_orig;
+		
+		// W
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+		
+		// H
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		
+		////////////////////////////////
+		
+		// update: status value
+		
+		////////////////////////////////
+		CONS.Admin.status = 13;
+//		CONS.Admin.status += 1;
+		
+		////////////////////////////////
+		
+		// update: status label
+		
+		////////////////////////////////
+		update_Status_Label();
+		
+		
+	}//_move_Rect_B__Case_9
+	
+	
+	private void 
+	_move_Rect_B__Case_12() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// update: params
+		
+		////////////////////////////////
+		// X
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+		
+		// Y
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H;
+		
+		// W
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+		
+		// H
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		
+		////////////////////////////////
+		
+		// update: status value
+		
+		////////////////////////////////
+		CONS.Admin.status = 12;
+//		CONS.Admin.status += 1;
+		
+		////////////////////////////////
+		
+		// update: status label
+		
+		////////////////////////////////
+		update_Status_Label();
+		
+		
+	}//_move_Rect_B__Case_9
+	
+	
+	private void 
+	_move_Rect_B__Case_11() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// update: params
+		
+		////////////////////////////////
+		// X
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+		
+		// Y
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H;
+		
+		// W
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+		
+		// H
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		
+		////////////////////////////////
+		
+		// update: status value
+		
+		////////////////////////////////
+		CONS.Admin.status = 11;
+//		CONS.Admin.status += 1;
+		
+		////////////////////////////////
+		
+		// update: status label
+		
+		////////////////////////////////
+		update_Status_Label();
+		
+		
+	}//_move_Rect_B__Case_9
+	
+	
+	private void 
+	_move_Rect_B__Case_10() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// update: params
+		
+		////////////////////////////////
+		// X
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W - CONS.Views.rect_B_H_orig;
+		
+		// Y
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H;
+		
+		// W
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+		
+		// H
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		
+		////////////////////////////////
+		
+		// update: status value
+		
+		////////////////////////////////
+		CONS.Admin.status = 10;
+//		CONS.Admin.status += 1;
+		
+		////////////////////////////////
+		
+		// update: status label
+		
+		////////////////////////////////
+		update_Status_Label();
+		
+		
+	}//_move_Rect_B__Case_9
+	
+	
+	private void 
+	_move_Rect_B__Case_9() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// update: params
+		
+		////////////////////////////////
+		// X
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W - CONS.Views.rect_B_W_orig;
+		
+		// Y
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H;
+		
+		// W
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+		
+		// H
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		
+		////////////////////////////////
+		
+		// update: status value
+		
+		////////////////////////////////
+		CONS.Admin.status = 9;
+//		CONS.Admin.status += 1;
+		
+		////////////////////////////////
+		
+		// update: status label
+		
+		////////////////////////////////
+		update_Status_Label();
+		
+		
+	}//_move_Rect_B__Case_9
+	
+	
+	private void 
+	_move_Rect_B__Case_8() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// update: params
+		
+		////////////////////////////////
+		// X
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W;
+		
+		// Y
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H - CONS.Views.rect_B_H_orig;
+		
+		// W
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+		
+		// H
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		
+		////////////////////////////////
+		
+		// update: status value
+		
+		////////////////////////////////
+		CONS.Admin.status = 8;
+//		CONS.Admin.status += 1;
+		
+		////////////////////////////////
+		
+		// update: status label
+		
+		////////////////////////////////
+		update_Status_Label();
+		
+		
+	}//_move_Rect_B__Case_8
+	
+	
+	private void 
+	_move_Rect_B__Case_7() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// update: params
+		
+		////////////////////////////////
+		// X
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W;
+		
+		// Y
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H - CONS.Views.rect_B_W_orig;
+		
+		// W
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+		
+		// H
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		
+		////////////////////////////////
+		
+		// update: status value
+		
+		////////////////////////////////
+		CONS.Admin.status = 7;
+//		CONS.Admin.status += 1;
+		
+		////////////////////////////////
+		
+		// update: status label
+		
+		////////////////////////////////
+		update_Status_Label();
+		
+		
+	}//_move_Rect_B__Case_7
+	
+	
+	private void 
+	_move_Rect_B__Case_6() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// update: params
+		
+		////////////////////////////////
+		// X
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W;
+		
+		// Y
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
+		
+		// W
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+		
+		// H
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		
+		////////////////////////////////
+		
+		// update: status value
+		
+		////////////////////////////////
+		CONS.Admin.status = 6;
+//		CONS.Admin.status += 1;
+		
+		////////////////////////////////
+		
+		// update: status label
+		
+		////////////////////////////////
+		update_Status_Label();
+		
+		
+	}//_move_Rect_B__Case_6
+	
+	
+	private void 
+	_move_Rect_B__Case_5() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// update: params
+		
+		////////////////////////////////
+		// X
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W;
+		
+		// Y
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
+		
+		// W
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+		
+		// H
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		
+		////////////////////////////////
+		
+		// update: status value
+		
+		////////////////////////////////
+		CONS.Admin.status = 5;
+//		CONS.Admin.status += 1;
+		
+		////////////////////////////////
+		
+		// update: status label
+		
+		////////////////////////////////
+		update_Status_Label();
+		
+		
+	}//_move_Rect_B__Case_5
+	
+	
+	private void 
+	_move_Rect_B__Case_4() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// update: params
+		
+		////////////////////////////////
+		// X
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W - CONS.Views.rect_B_H_orig;
+		
+		// Y
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_W_orig;
+		
+		// W
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+		
+		// H
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		
+		////////////////////////////////
+		
+		// update: status value
+		
+		////////////////////////////////
+		CONS.Admin.status = 4;
+//		CONS.Admin.status += 1;
+		
+		////////////////////////////////
+		
+		// update: status label
+		
+		////////////////////////////////
+		update_Status_Label();
+		
+		
+	}//_move_Rect_B__Case_4
+	
+	
+	private void 
+	_move_Rect_B__Case_3() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// update: params
+		
+		////////////////////////////////
+		// X
+		CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W - CONS.Views.rect_B_W_orig;
+		
+		// Y
+		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_H_orig;
+		
+		// W
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+		
+		// H
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		
+		////////////////////////////////
+		
+		// update: status value
+		
+		////////////////////////////////
+		CONS.Admin.status = 3;
+//		CONS.Admin.status += 1;
+		
+		////////////////////////////////
+		
+		// update: status label
+		
+		////////////////////////////////
+		update_Status_Label();
+		
+		
+	}//_move_Rect_B__Case_3
+	
 	void
 	_move_Rect_B__Case_2() {
 		// TODO Auto-generated method stub
