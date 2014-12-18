@@ -187,4 +187,16 @@ public class Methods {
 		
 	}//public static String get_TimeLabel(long millSec)
 
+	public static int larger_INT(int a, int b) {
+	
+		return (a >= b) ? a : b;
+		
+	}
+	
+	public static int smaller_INT(int a, int b) {
+		
+		return (a < b) ? a : b;
+		
+	}
+	
 }

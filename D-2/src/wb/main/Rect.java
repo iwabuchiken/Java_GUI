@@ -59,7 +59,7 @@ public class Rect {
 	Canvas cv_1;
 
 	// colors
-	Color red, blue;
+	Color red, blue, blue_light;
 	
 	int count = 0;
 
@@ -179,6 +179,8 @@ public class Rect {
 		
 		this.draw_Rect__B();
 		
+		this.draw_Periphery();
+		
 		this.update_Status_Label();
 		
 	}
@@ -276,6 +278,8 @@ public class Rect {
 		
 		blue = new Color (device, 0, 0, 255);
 		
+		blue_light = new Color (device, 255, 0, 255);
+		
 	}//_init_Colors
 
 	private void 
@@ -364,7 +368,222 @@ public class Rect {
 		gc.dispose();
 		
 	}//draw_Rect
-	
+
+	void
+	draw_Periphery() {
+		
+		int x = -1, y = -1, w = -1, h = -1;
+		
+		boolean set = true;
+		
+		switch(CONS.Admin.status) {
+		
+		case 1:
+			
+			x = CONS.Views.rect_B_X;
+			y = CONS.Views.rect_B_Y;
+			w = CONS.Views.rect_A_W;
+			h = CONS.Views.rect_A_H + CONS.Views.rect_B_H_orig;
+			
+			break;
+		
+		case 2:
+			
+			x = CONS.Views.rect_B_X;
+			y = CONS.Views.rect_B_Y;
+			w = CONS.Views.rect_A_W;
+			h = CONS.Views.rect_A_H + CONS.Views.rect_B_W_orig;
+			
+			break;
+			
+		case 3:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_B_Y;
+			w = CONS.Views.rect_A_W;
+			h = CONS.Views.rect_A_H + CONS.Views.rect_B_H_orig;
+			
+			break;
+			
+		case 4:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_B_Y;
+			w = CONS.Views.rect_A_W;
+			h = CONS.Views.rect_A_H + CONS.Views.rect_B_W_orig;
+			
+			break;
+			
+		case 5:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_A_Y;
+			w = CONS.Views.rect_A_W + CONS.Views.rect_B_H_orig;
+			h = CONS.Views.rect_A_H; 
+			
+			break;
+			
+		case 6:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_B_Y;
+			w = CONS.Views.rect_A_W + CONS.Views.rect_B_W_orig;
+			h = (CONS.Views.rect_A_H >= CONS.Views.rect_B_H_orig) 
+				? CONS.Views.rect_A_H
+					: CONS.Views.rect_B_H_orig;
+			
+			break;
+			
+		case 7:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_A_Y;
+			w = CONS.Views.rect_A_W + CONS.Views.rect_B_H_orig;
+			h = (CONS.Views.rect_A_H >= CONS.Views.rect_B_W_orig) 
+					? CONS.Views.rect_A_H
+							: CONS.Views.rect_B_W_orig;
+			
+			break;
+			
+		case 8:
+			
+			x = CONS.Views.rect_A_X;
+			y = (CONS.Views.rect_A_Y < CONS.Views.rect_B_Y) 
+					? CONS.Views.rect_A_Y
+							: CONS.Views.rect_B_Y;
+			
+			w = CONS.Views.rect_A_W + CONS.Views.rect_B_W_orig;
+			h = (CONS.Views.rect_A_H >= CONS.Views.rect_B_H_orig) 
+					? CONS.Views.rect_A_H
+							: CONS.Views.rect_B_H_orig;
+			
+			break;
+			
+		case 9:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_A_Y;
+			
+			w = CONS.Views.rect_A_W;
+			h = CONS.Views.rect_A_H + CONS.Views.rect_B_H_orig;
+			
+			break;
+			
+		case 10:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_A_Y;
+			
+			w = Methods.larger_INT(CONS.Views.rect_A_W, CONS.Views.rect_B_H_orig);
+			h = CONS.Views.rect_A_H + CONS.Views.rect_B_W_orig;
+			
+			break;
+			
+		case 11:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_A_Y;
+			
+			w = CONS.Views.rect_A_W;
+			h = CONS.Views.rect_A_H + CONS.Views.rect_B_H_orig;
+			
+			break;
+			
+		case 12:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_A_Y;
+			
+			w = Methods.larger_INT(CONS.Views.rect_A_W, CONS.Views.rect_B_H_orig);
+			h = CONS.Views.rect_A_H + CONS.Views.rect_B_W_orig;
+			
+			break;
+			
+		case 13:
+			
+			x = CONS.Views.rect_B_X;
+			y = CONS.Views.rect_A_Y;
+			
+			w = CONS.Views.rect_A_W + CONS.Views.rect_B_H_orig;
+			h = CONS.Views.rect_A_H;
+			
+			break;
+			
+		case 14:
+			
+			x = CONS.Views.rect_B_X;
+			y = Methods.smaller_INT(CONS.Views.rect_A_Y, CONS.Views.rect_B_Y);
+			
+			w = CONS.Views.rect_A_W + CONS.Views.rect_B_W_orig;
+			h = Methods.larger_INT(CONS.Views.rect_A_H, CONS.Views.rect_B_H_orig);
+			
+			break;
+			
+		case 15:
+			
+			x = CONS.Views.rect_B_X;
+			y = CONS.Views.rect_B_Y;
+			
+			w = CONS.Views.rect_A_W + CONS.Views.rect_B_H_orig;
+			h = Methods.larger_INT(CONS.Views.rect_A_H, CONS.Views.rect_B_W_orig);
+			
+			break;
+			
+		case 16:
+			
+			x = CONS.Views.rect_B_X;
+			y = CONS.Views.rect_B_Y;
+			
+			w = CONS.Views.rect_A_W + CONS.Views.rect_B_W_orig;
+			h = Methods.larger_INT(CONS.Views.rect_A_H, CONS.Views.rect_B_H_orig);
+			
+			break;
+			
+//		case 9:
+//			
+//			x = CONS.Views.rect_A_X;
+//			y = CONS.Views.rect_A_Y;
+//			
+//			w = CONS.Views.rect_A_W;
+//			h = CONS.Views.rect_A_H + CONS.Views.rect_B_H_orig;
+//			
+//			break;
+			
+		default: set = false; break;
+		
+		}//switch(CONS.Admin.status)
+		
+		if (set == false) {
+			
+			return;
+			
+		}
+		
+		////////////////////////////////
+
+		// draw
+
+		////////////////////////////////
+		//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
+		GC gc = new GC(cv_1);
+		
+//		gc.setForeground(display.getSystemColor(SWT.COLOR_CYAN)); 
+		
+		//REF http://stackoverflow.com/questions/50064/setting-colors-in-swt answered Sep 8 '08 at 16:49
+//		Device device = Display.getCurrent ();
+//		Color red = new Color (device, 255, 0, 0);
+		
+		gc.setBackground(blue_light); 
+		
+		//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
+		gc.setLineWidth(CONS.Views.lineWidth_Rect);
+		
+//		gc.fillRectangle(x, y, w, h);
+		gc.drawRectangle(x, y, w, h);
+		
+		gc.dispose();
+		
+	}//draw_Periphery
 
 	private void 
 	_init_Views__Groups
@@ -641,6 +860,13 @@ public class Rect {
 		
 		}//switch(CONS.Admin.status)
 
+		////////////////////////////////
+
+		// draw: periphery
+
+		////////////////////////////////
+		this.draw_Periphery();
+		
 	}//_move_Rect_B_left
 
 	private void 
@@ -721,7 +947,14 @@ public class Rect {
 		case 16: _move_Rect_B__Case_1(); break;
 		
 		}//switch(CONS.Admin.status)
-		
+
+		////////////////////////////////
+
+		// draw: periphery
+
+		////////////////////////////////
+		this.draw_Periphery();
+
 	}//_move_Rect_B_right
 
 	private void 
