@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.PaintEvent;
+import java.util.Locale;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
@@ -29,6 +30,7 @@ import org.eclipse.swt.widgets.Group;
 
 
 
+
 import wb.utils.CONS;
 import wb.utils.Methods;
 
@@ -46,7 +48,7 @@ public class Rect {
 	
 	Display display;
 	
-	Label lbl_1;
+	Label lbl_AreaData;
 
 	Dimension dim;
 
@@ -59,7 +61,7 @@ public class Rect {
 	Canvas cv_1;
 
 	// colors
-	Color red, blue, blue_light;
+	Color red, blue, blue_light, burlywood2;
 	
 	int count = 0;
 
@@ -280,6 +282,8 @@ public class Rect {
 		
 		blue_light = new Color (device, 255, 0, 255);
 		
+		burlywood2 = new Color (device, 238, 197, 145);
+		
 	}//_init_Colors
 
 	private void 
@@ -287,7 +291,7 @@ public class Rect {
 		// TODO Auto-generated method stub
 
 		//debug
-		this.lbl_1.setText("rect A: x = " + CONS.Views.rect_A_X);
+		this.lbl_AreaData.setText("rect A: x = " + CONS.Views.rect_A_X);
 		
 		//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
 		GC gc = new GC(cv_1);
@@ -573,6 +577,7 @@ public class Rect {
 //		Device device = Display.getCurrent ();
 //		Color red = new Color (device, 255, 0, 0);
 		
+//		gc.setBackground(this.burlywood2); 
 		gc.setBackground(blue_light); 
 		
 		//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
@@ -583,7 +588,80 @@ public class Rect {
 		
 		gc.dispose();
 		
+		////////////////////////////////
+
+		// update: area data
+
+		////////////////////////////////
+		this.update_Label__AreaData(x, y, w, h);
+		
 	}//draw_Periphery
+
+	private void 
+	update_Label__AreaData(int x, int y, int w, int h) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// calculate
+
+		////////////////////////////////
+		int area = w * h;
+		
+		int remain = -1;
+		
+		boolean set = true;
+		
+		switch(CONS.Admin.status) {
+		
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+			
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+		case 10:
+			
+		case 11:
+		case 12:
+		case 13:
+		case 14:
+		case 15:
+			
+		case 16:
+			
+			remain = area - (CONS.Views.rect_A_W * CONS.Views.rect_A_H)
+							- (CONS.Views.rect_B_W_orig * CONS.Views.rect_B_H_orig);
+			
+			break;
+		
+		default: set = false; break;
+		
+		}
+		
+		////////////////////////////////
+
+		// update
+
+		////////////////////////////////
+		if (set == false) {
+			
+			return;
+			
+		}
+		
+		String text = String.format(Locale.JAPAN, 
+						"w = %d\nh = %d\narea = %d\nremain = %d", 
+						w, h, area, remain);
+		
+		this.lbl_AreaData.setText(text);
+		
+	}
+	
 
 	private void 
 	_init_Views__Groups
@@ -693,7 +771,7 @@ public class Rect {
 				
 //				while (f_Executing) {
 
-					Rect.this.lbl_1.setText("executing... " + count);
+					Rect.this.lbl_AreaData.setText("executing... " + count);
 					
 					
 //        					lbl_1.setText("clicked => " + count);
@@ -1755,18 +1833,20 @@ public class Rect {
 		// canvas size
 
 		////////////////////////////////
-		lbl_1 = new Label(shell, SWT.NONE);
-		fd_lbl_In.bottom = new FormAttachment(lbl_1, -112);
-		fd_lbl_Status.bottom = new FormAttachment(lbl_1, -40);
-		FormData fd_lbl_1 = new FormData();
-		fd_lbl_1.bottom = new FormAttachment(cv_1, 0, SWT.BOTTOM);
-		fd_lbl_1.right = new FormAttachment(100, -63);
-		fd_lbl_1.top = new FormAttachment(0, 585);
-		fd_lbl_1.left = new FormAttachment(0, 854);
-		lbl_1.setLayoutData(fd_lbl_1);
+		lbl_AreaData = new Label(shell, SWT.NONE);
+		fd_lbl_In.bottom = new FormAttachment(lbl_AreaData, -85);
+		fd_lbl_Status.bottom = new FormAttachment(lbl_AreaData, -79);
+		
+		lbl_AreaData.setBackground(this.burlywood2);
+		FormData fd_lbl_AreaData = new FormData();
+		fd_lbl_AreaData.bottom = new FormAttachment(100, -43);
+		fd_lbl_AreaData.right = new FormAttachment(100, -70);
+		fd_lbl_AreaData.top = new FormAttachment(0, 558);
+		fd_lbl_AreaData.left = new FormAttachment(0, 847);
+		lbl_AreaData.setLayoutData(fd_lbl_AreaData);
 		//		lbl_1.setText("Thanks");
 				
-				lbl_1.setText("x = " + shell.getSize().x + "\n" + "y = " + shell.getSize().y);
+				lbl_AreaData.setText("x = " + shell.getSize().x + "\n" + "y = " + shell.getSize().y);
 				
 
 	}//_init_Views__Labels
