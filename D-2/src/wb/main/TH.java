@@ -42,51 +42,72 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 public class TH {
 
+	////////////////////////////////
+
+	// fields
+
+	////////////////////////////////
+	static Button button;
+	
+	
 	 public static void main(String[] args) {
 
-		    final Display display = new Display();
-		    Shell shell = new Shell(display);
-		    
-		    final Runnable print = new Runnable() {
-		      public void run() {
-		        System.out.println("Print from thread: \t" + Thread.currentThread().getName());
-		      }
-		    };
-		    
-		    final Thread applicationThread = new Thread("applicationThread") {
-		      public void run() {
-		        System.out.println("Hello from thread: \t" + Thread.currentThread().getName());
-		        display.syncExec(print);
-		        System.out.println("Bye from thread: \t" + Thread.currentThread().getName());
-		      }
-		    };
-		    
-		    shell.setText("syncExec Example");
-		    shell.setSize(300, 100);
-		    
-		    Button button = new Button(shell, SWT.CENTER);
-		    button.setText("Click to start");
-		    button.setBounds(shell.getClientArea());
-		    button.addSelectionListener(new SelectionListener() {
-		      public void widgetDefaultSelected(SelectionEvent e) {
-		      }
-		      public void widgetSelected(SelectionEvent e) {
-		        applicationThread.start();
-		      }
-		    });
-		    
-		    shell.open();    
-		    
-		    
-		    while(! shell.isDisposed()) {
-		      if(! display.readAndDispatch()) {// If no more entries in event queue
-		        display.sleep();
-		      }
-		    }
-		    
-		    display.dispose();
-		  
-		  }	
+		final Display display = new Display();
+		Shell shell = new Shell(display);
+		
+		final Runnable print = new Runnable() {
+			public void run() {
+				
+				System.out.println("Print from thread: \t" + Thread.currentThread().getName());
+				
+				TH.button.setText("clicked!");
+				
+			}
+			
+		};
+		
+		final Thread applicationThread = new Thread("applicationThread") {
+			public void run() {
+				
+				System.out.println("Hello from thread: \t" + Thread.currentThread().getName());
+				display.syncExec(print);
+				System.out.println("Bye from thread: \t" + Thread.currentThread().getName());
+				
+			}
+		};
+		
+		shell.setText("syncExec Example");
+		shell.setSize(300, 100);
+		
+//		Button button = new Button(shell, SWT.CENTER);
+		TH.button = new Button(shell, SWT.CENTER);
+		TH.button.setText("Click to start");
+		TH.button.setBounds(shell.getClientArea());
+		TH.button.addSelectionListener(new SelectionListener() {
+			
+			public void widgetDefaultSelected(SelectionEvent e) {
+				
+			}
+			
+			public void widgetSelected(SelectionEvent e) {
+				
+				applicationThread.start();
+				
+			}
+		});
+		
+		shell.open();	
+		
+		
+		while(! shell.isDisposed()) {
+			if(! display.readAndDispatch()) {// If no more entries in event queue
+			display.sleep();
+			}
+		}
+		
+		display.dispose();
+			
+			}	
 	 
 }
 
@@ -99,9 +120,9 @@ public class TH {
 //	}
 //	
 //	XThread(String threadName){
-//		super(threadName);                       // Initialize thread.
+//		super(threadName);					   // Initialize thread.
 //		System.out.println(this);
-//	    start();
+//		start();
 //	}
 //	
 //	public XThread(Rect rect) {
