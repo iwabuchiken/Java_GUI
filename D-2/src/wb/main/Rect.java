@@ -179,7 +179,10 @@ public class Rect {
 			public void run() {
 				
 				System.out.println("Hello from thread: \t" + Thread.currentThread().getName());
-				display.syncExec(print);
+				
+				display.asyncExec(print);
+//				display.syncExec(print);
+				
 				System.out.println("Bye from thread: \t" + Thread.currentThread().getName());
 				
 			}
