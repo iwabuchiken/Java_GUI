@@ -56,7 +56,8 @@ public class Rect {
 	Runnable print;
 	
 	//REF http://stackoverflow.com/questions/10961714/how-to-properly-stop-the-thread-in-java answered Jun 9 '12 at 14:21
-	boolean running = true;
+	volatile boolean running = true;
+//	boolean running = true;
 	
 	Label lbl_AreaData;
 
