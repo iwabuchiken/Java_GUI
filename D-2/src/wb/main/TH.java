@@ -31,6 +31,7 @@ import org.eclipse.swt.widgets.Group;
 
 
 
+
 import wb.utils.CONS;
 import wb.utils.Methods;
 
@@ -49,6 +50,9 @@ public class TH {
 	////////////////////////////////
 	static Button button;
 	
+	static boolean clicked = true;
+	
+	static Thread applicationThread;
 	
 	 public static void main(String[] args) {
 
@@ -62,11 +66,14 @@ public class TH {
 				
 				TH.button.setText("clicked!");
 				
+				System.out.println("clicked => " + clicked);
+				
 			}
 			
 		};
 		
-		final Thread applicationThread = new Thread("applicationThread") {
+		applicationThread = new Thread("applicationThread") {
+//			final Thread applicationThread = new Thread("applicationThread") {
 			public void run() {
 				
 				System.out.println("Hello from thread: \t" + Thread.currentThread().getName());
@@ -77,24 +84,37 @@ public class TH {
 		};
 		
 		shell.setText("syncExec Example");
-		shell.setSize(300, 100);
+		shell.setSize(404, 346);
+
+		////////////////////////////////
+
+		// widgets
+
+		////////////////////////////////
+		_Setup_Widgets(shell);
 		
 //		Button button = new Button(shell, SWT.CENTER);
-		TH.button = new Button(shell, SWT.CENTER);
-		TH.button.setText("Click to start");
-		TH.button.setBounds(shell.getClientArea());
-		TH.button.addSelectionListener(new SelectionListener() {
-			
-			public void widgetDefaultSelected(SelectionEvent e) {
-				
-			}
-			
-			public void widgetSelected(SelectionEvent e) {
-				
-				applicationThread.start();
-				
-			}
-		});
+//		TH.button = new Button(shell, SWT.CENTER);
+//		TH.button.setText("Click to start");
+//		TH.button.setBounds(shell.getClientArea());
+//		TH.button.addSelectionListener(new SelectionListener() {
+//			
+//			public void widgetDefaultSelected(SelectionEvent e) {
+//				
+//			}
+//			
+//			public void widgetSelected(SelectionEvent e) {
+//				
+//				if (clicked) {
+//					
+//					clicked = false;
+//					
+//					applicationThread.start();
+//					
+//				}
+//				
+//			}
+//		});
 		
 		shell.open();	
 		
@@ -107,7 +127,77 @@ public class TH {
 		
 		display.dispose();
 			
-			}	
+			}
+
+
+	private static void 
+	_Setup_Widgets(Shell shell) {
+		// TODO Auto-generated method stub
+
+		////////////////////////////////
+
+		// button: start
+
+		////////////////////////////////
+//		Thread th = applicationThread;
+		
+		TH.button = new Button(shell, SWT.CENTER);
+		TH.button.setText("Click to start");
+		TH.button.setBounds(shell.getClientArea());
+		TH.button.addSelectionListener(new SelectionListener() {
+			
+			public void widgetDefaultSelected(SelectionEvent e) {
+				
+			}
+			
+			public void widgetSelected(SelectionEvent e) {
+				
+				if (clicked) {
+					
+					clicked = false;
+					
+					applicationThread.start();
+					
+				}
+				
+			}
+		});
+		
+		////////////////////////////////
+		
+		// button: start
+		
+		////////////////////////////////
+//		Thread th = applicationThread;
+		
+		TH.button = new Button(shell, SWT.CENTER);
+		
+		TH.button.setText("Stop thread");
+		
+		TH.button.setBounds(shell.getClientArea());
+		
+		TH.button.addSelectionListener(new SelectionListener() {
+			
+			public void widgetDefaultSelected(SelectionEvent e) {
+				
+			}
+			
+			public void widgetSelected(SelectionEvent e) {
+				
+				if (!clicked) {
+					
+					System.out.println("Stopping the thread...");
+					
+//					clicked = true;
+//					
+//					applicationThread.start();
+					
+				}
+				
+			}
+		});
+		
+	}	
 	 
 }
 
