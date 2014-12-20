@@ -67,6 +67,7 @@ public class Rect {
 
 	boolean f_Executing = false;
 	private Group gr_navigate, gr_ops;
+	private Button btnOptions;
 //	private Group group_2;
 	
 	////////////////////////////////
@@ -235,6 +236,17 @@ public class Rect {
 		
 		_init_Set_Listeners(shell);
 		
+//		Group group = new Group(shell, SWT.NONE);
+//		FormData fd_group = new FormData();
+//		fd_group.right = new FormAttachment(gr_navigate, 0, SWT.RIGHT);
+//		fd_group.left = new FormAttachment(gr_navigate, 0, SWT.LEFT);
+//		fd_group.bottom = new FormAttachment(lbl_Status, -15);
+//		group.setLayoutData(fd_group);
+		
+//		btnOptions = new Button(group, SWT.NONE);
+//		btnOptions.setBounds(10, 0, 115, 37);
+//		btnOptions.setText("Options");
+		
 		////////////////////////////////
 
 		// draw: rect
@@ -282,6 +294,7 @@ public class Rect {
 		
 		blue_light = new Color (device, 255, 0, 255);
 		
+		//REF http://web.njit.edu/~kevin/rgb.txt.html
 		burlywood2 = new Color (device, 238, 197, 145);
 		
 	}//_init_Colors
@@ -855,6 +868,21 @@ public class Rect {
 			
 		});//bt_Clear.addSelectionListener
 
+		////////////////////////////////
+
+		// options
+
+		////////////////////////////////
+		btnOptions.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				
+				
+			}
+		});
+
+		
 	}//_init_Set_Listeners
 
 	private void 
@@ -905,6 +933,23 @@ public class Rect {
 		});
 		
 		bt_Forward.setText("->");
+		
+		////////////////////////////////
+
+		// options
+
+		////////////////////////////////
+		Group group = new Group(shell, SWT.NONE);
+		FormData fd_group = new FormData();
+		fd_group.right = new FormAttachment(gr_navigate, 0, SWT.RIGHT);
+		fd_group.left = new FormAttachment(gr_navigate, 0, SWT.LEFT);
+		fd_group.bottom = new FormAttachment(lbl_Status, -15);
+		group.setLayoutData(fd_group);
+
+		btnOptions = new Button(group, SWT.NONE);
+		btnOptions.setBounds(10, 0, 115, 37);
+		btnOptions.setText("Options");
+
 		
 	}//_init_Views__Buttons
 	
@@ -1925,7 +1970,32 @@ public class Rect {
 		
 		mntmQuit.setText("&Quit");
 		
+		MenuItem mntmOptions_1 = new MenuItem(menu, SWT.CASCADE);
+		mntmOptions_1.setText("Options");
+		
+		Menu menu_3 = new Menu(mntmOptions_1);
+		mntmOptions_1.setMenu(menu_3);
+		
+		MenuItem mntmCalcTheSmallest = new MenuItem(menu_3, SWT.NONE);
+		mntmCalcTheSmallest.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				Rect.this.calc_Smallest_Status();
+				
+			}
+		});
+		mntmCalcTheSmallest.setText("Calc the smallest status");
+		
 	}//_init_Views__Menues
+
+	protected void 
+	calc_Smallest_Status() {
+		// TODO Auto-generated method stub
+		
+		this._move_Rect_B__Case_10();
+		
+	}
 
 	public void clear_Canvas() {
 		
@@ -1988,8 +2058,6 @@ public class Rect {
 			
 		}
 	}
-	
-	
 }
 
 //class XThread extends Thread{
