@@ -10,3 +10,4 @@
 [2014/12/16 16:41:41.527] [TypedListener.java : 248] return code => 32
 [2014/12/16 16:41:59.362] [Rect.java : 97] while => ended
 [2014/12/16 16:43:48.452] [TypedListener.java : 248] return code => 32
+[2014/12/18 15:50:02.712] [Rect.java : 99] while => ended

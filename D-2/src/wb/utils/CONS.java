@@ -68,8 +68,18 @@ public class CONS {
 		
 		public static int rect_B_Y;
 		
+		////////////////////////////////
+
+		// periphery
+
+		////////////////////////////////
+		public static int peri_X;
+		public static int peri_Y;
 		
-	}
+		public static int peri_W;
+		public static int peri_H;
+		
+	}//public static class Views
 	
 	public static class Strings {
 		

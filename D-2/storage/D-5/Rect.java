@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.PaintEvent;
+import java.util.Locale;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
@@ -29,6 +30,7 @@ import org.eclipse.swt.widgets.Group;
 
 
 
+
 import wb.utils.CONS;
 import wb.utils.Methods;
 
@@ -46,7 +48,7 @@ public class Rect {
 	
 	Display display;
 	
-	Label lbl_1;
+	Label lbl_AreaData;
 
 	Dimension dim;
 
@@ -59,12 +61,13 @@ public class Rect {
 	Canvas cv_1;
 
 	// colors
-	Color red, blue;
+	Color red, blue, blue_light, burlywood2;
 	
 	int count = 0;
 
 	boolean f_Executing = false;
 	private Group gr_navigate, gr_ops;
+	private Button btnOptions;
 //	private Group group_2;
 	
 	////////////////////////////////
@@ -179,6 +182,8 @@ public class Rect {
 		
 		this.draw_Rect__B();
 		
+		this.draw_Periphery();
+		
 		this.update_Status_Label();
 		
 	}
@@ -231,6 +236,17 @@ public class Rect {
 		
 		_init_Set_Listeners(shell);
 		
+//		Group group = new Group(shell, SWT.NONE);
+//		FormData fd_group = new FormData();
+//		fd_group.right = new FormAttachment(gr_navigate, 0, SWT.RIGHT);
+//		fd_group.left = new FormAttachment(gr_navigate, 0, SWT.LEFT);
+//		fd_group.bottom = new FormAttachment(lbl_Status, -15);
+//		group.setLayoutData(fd_group);
+		
+//		btnOptions = new Button(group, SWT.NONE);
+//		btnOptions.setBounds(10, 0, 115, 37);
+//		btnOptions.setText("Options");
+		
 		////////////////////////////////
 
 		// draw: rect
@@ -276,6 +292,11 @@ public class Rect {
 		
 		blue = new Color (device, 0, 0, 255);
 		
+		blue_light = new Color (device, 255, 0, 255);
+		
+		//REF http://web.njit.edu/~kevin/rgb.txt.html
+		burlywood2 = new Color (device, 238, 197, 145);
+		
 	}//_init_Colors
 
 	private void 
@@ -283,7 +304,7 @@ public class Rect {
 		// TODO Auto-generated method stub
 
 		//debug
-		this.lbl_1.setText("rect A: x = " + CONS.Views.rect_A_X);
+		this.lbl_AreaData.setText("rect A: x = " + CONS.Views.rect_A_X);
 		
 		//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
 		GC gc = new GC(cv_1);
@@ -364,6 +385,295 @@ public class Rect {
 		gc.dispose();
 		
 	}//draw_Rect
+
+	void
+	draw_Periphery() {
+		
+		int x = -1, y = -1, w = -1, h = -1;
+		
+		boolean set = true;
+		
+		switch(CONS.Admin.status) {
+		
+		case 1:
+			
+			x = CONS.Views.rect_B_X;
+			y = CONS.Views.rect_B_Y;
+			w = CONS.Views.rect_A_W;
+			h = CONS.Views.rect_A_H + CONS.Views.rect_B_H_orig;
+			
+			break;
+		
+		case 2:
+			
+			x = CONS.Views.rect_B_X;
+			y = CONS.Views.rect_B_Y;
+			w = CONS.Views.rect_A_W;
+			h = CONS.Views.rect_A_H + CONS.Views.rect_B_W_orig;
+			
+			break;
+			
+		case 3:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_B_Y;
+			w = CONS.Views.rect_A_W;
+			h = CONS.Views.rect_A_H + CONS.Views.rect_B_H_orig;
+			
+			break;
+			
+		case 4:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_B_Y;
+			w = CONS.Views.rect_A_W;
+			h = CONS.Views.rect_A_H + CONS.Views.rect_B_W_orig;
+			
+			break;
+			
+		case 5:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_A_Y;
+			w = CONS.Views.rect_A_W + CONS.Views.rect_B_H_orig;
+			h = CONS.Views.rect_A_H; 
+			
+			break;
+			
+		case 6:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_B_Y;
+			w = CONS.Views.rect_A_W + CONS.Views.rect_B_W_orig;
+			h = (CONS.Views.rect_A_H >= CONS.Views.rect_B_H_orig) 
+				? CONS.Views.rect_A_H
+					: CONS.Views.rect_B_H_orig;
+			
+			break;
+			
+		case 7:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_A_Y;
+			w = CONS.Views.rect_A_W + CONS.Views.rect_B_H_orig;
+			h = (CONS.Views.rect_A_H >= CONS.Views.rect_B_W_orig) 
+					? CONS.Views.rect_A_H
+							: CONS.Views.rect_B_W_orig;
+			
+			break;
+			
+		case 8:
+			
+			x = CONS.Views.rect_A_X;
+			y = (CONS.Views.rect_A_Y < CONS.Views.rect_B_Y) 
+					? CONS.Views.rect_A_Y
+							: CONS.Views.rect_B_Y;
+			
+			w = CONS.Views.rect_A_W + CONS.Views.rect_B_W_orig;
+			h = (CONS.Views.rect_A_H >= CONS.Views.rect_B_H_orig) 
+					? CONS.Views.rect_A_H
+							: CONS.Views.rect_B_H_orig;
+			
+			break;
+			
+		case 9:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_A_Y;
+			
+			w = CONS.Views.rect_A_W;
+			h = CONS.Views.rect_A_H + CONS.Views.rect_B_H_orig;
+			
+			break;
+			
+		case 10:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_A_Y;
+			
+			w = Methods.larger_INT(CONS.Views.rect_A_W, CONS.Views.rect_B_H_orig);
+			h = CONS.Views.rect_A_H + CONS.Views.rect_B_W_orig;
+			
+			break;
+			
+		case 11:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_A_Y;
+			
+			w = CONS.Views.rect_A_W;
+			h = CONS.Views.rect_A_H + CONS.Views.rect_B_H_orig;
+			
+			break;
+			
+		case 12:
+			
+			x = CONS.Views.rect_A_X;
+			y = CONS.Views.rect_A_Y;
+			
+			w = Methods.larger_INT(CONS.Views.rect_A_W, CONS.Views.rect_B_H_orig);
+			h = CONS.Views.rect_A_H + CONS.Views.rect_B_W_orig;
+			
+			break;
+			
+		case 13:
+			
+			x = CONS.Views.rect_B_X;
+			y = CONS.Views.rect_A_Y;
+			
+			w = CONS.Views.rect_A_W + CONS.Views.rect_B_H_orig;
+			h = CONS.Views.rect_A_H;
+			
+			break;
+			
+		case 14:
+			
+			x = CONS.Views.rect_B_X;
+			y = Methods.smaller_INT(CONS.Views.rect_A_Y, CONS.Views.rect_B_Y);
+			
+			w = CONS.Views.rect_A_W + CONS.Views.rect_B_W_orig;
+			h = Methods.larger_INT(CONS.Views.rect_A_H, CONS.Views.rect_B_H_orig);
+			
+			break;
+			
+		case 15:
+			
+			x = CONS.Views.rect_B_X;
+			y = CONS.Views.rect_B_Y;
+			
+			w = CONS.Views.rect_A_W + CONS.Views.rect_B_H_orig;
+			h = Methods.larger_INT(CONS.Views.rect_A_H, CONS.Views.rect_B_W_orig);
+			
+			break;
+			
+		case 16:
+			
+			x = CONS.Views.rect_B_X;
+			y = CONS.Views.rect_B_Y;
+			
+			w = CONS.Views.rect_A_W + CONS.Views.rect_B_W_orig;
+			h = Methods.larger_INT(CONS.Views.rect_A_H, CONS.Views.rect_B_H_orig);
+			
+			break;
+			
+//		case 9:
+//			
+//			x = CONS.Views.rect_A_X;
+//			y = CONS.Views.rect_A_Y;
+//			
+//			w = CONS.Views.rect_A_W;
+//			h = CONS.Views.rect_A_H + CONS.Views.rect_B_H_orig;
+//			
+//			break;
+			
+		default: set = false; break;
+		
+		}//switch(CONS.Admin.status)
+		
+		if (set == false) {
+			
+			return;
+			
+		}
+		
+		////////////////////////////////
+
+		// draw
+
+		////////////////////////////////
+		//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
+		GC gc = new GC(cv_1);
+		
+//		gc.setForeground(display.getSystemColor(SWT.COLOR_CYAN)); 
+		
+		//REF http://stackoverflow.com/questions/50064/setting-colors-in-swt answered Sep 8 '08 at 16:49
+//		Device device = Display.getCurrent ();
+//		Color red = new Color (device, 255, 0, 0);
+		
+//		gc.setBackground(this.burlywood2); 
+		gc.setBackground(blue_light); 
+		
+		//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
+		gc.setLineWidth(CONS.Views.lineWidth_Rect);
+		
+//		gc.fillRectangle(x, y, w, h);
+		gc.drawRectangle(x, y, w, h);
+		
+		gc.dispose();
+		
+		////////////////////////////////
+
+		// update: area data
+
+		////////////////////////////////
+		this.update_Label__AreaData(x, y, w, h);
+		
+	}//draw_Periphery
+
+	private void 
+	update_Label__AreaData(int x, int y, int w, int h) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// calculate
+
+		////////////////////////////////
+		int area = w * h;
+		
+		int remain = -1;
+		
+		boolean set = true;
+		
+		switch(CONS.Admin.status) {
+		
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+			
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+		case 10:
+			
+		case 11:
+		case 12:
+		case 13:
+		case 14:
+		case 15:
+			
+		case 16:
+			
+			remain = area - (CONS.Views.rect_A_W * CONS.Views.rect_A_H)
+							- (CONS.Views.rect_B_W_orig * CONS.Views.rect_B_H_orig);
+			
+			break;
+		
+		default: set = false; break;
+		
+		}
+		
+		////////////////////////////////
+
+		// update
+
+		////////////////////////////////
+		if (set == false) {
+			
+			return;
+			
+		}
+		
+		String text = String.format(Locale.JAPAN, 
+						"w = %d\nh = %d\narea = %d\nremain = %d", 
+						w, h, area, remain);
+		
+		this.lbl_AreaData.setText(text);
+		
+	}
 	
 
 	private void 
@@ -474,7 +784,7 @@ public class Rect {
 				
 //				while (f_Executing) {
 
-					Rect.this.lbl_1.setText("executing... " + count);
+					Rect.this.lbl_AreaData.setText("executing... " + count);
 					
 					
 //        					lbl_1.setText("clicked => " + count);
@@ -558,6 +868,21 @@ public class Rect {
 			
 		});//bt_Clear.addSelectionListener
 
+		////////////////////////////////
+
+		// options
+
+		////////////////////////////////
+		btnOptions.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				
+				
+			}
+		});
+
+		
 	}//_init_Set_Listeners
 
 	private void 
@@ -609,6 +934,23 @@ public class Rect {
 		
 		bt_Forward.setText("->");
 		
+		////////////////////////////////
+
+		// options
+
+		////////////////////////////////
+		Group group = new Group(shell, SWT.NONE);
+		FormData fd_group = new FormData();
+		fd_group.right = new FormAttachment(gr_navigate, 0, SWT.RIGHT);
+		fd_group.left = new FormAttachment(gr_navigate, 0, SWT.LEFT);
+		fd_group.bottom = new FormAttachment(lbl_Status, -15);
+		group.setLayoutData(fd_group);
+
+		btnOptions = new Button(group, SWT.NONE);
+		btnOptions.setBounds(10, 0, 115, 37);
+		btnOptions.setText("Options");
+
+		
 	}//_init_Views__Buttons
 	
 	protected void 
@@ -641,6 +983,13 @@ public class Rect {
 		
 		}//switch(CONS.Admin.status)
 
+		////////////////////////////////
+
+		// draw: periphery
+
+		////////////////////////////////
+		this.draw_Periphery();
+		
 	}//_move_Rect_B_left
 
 	private void 
@@ -721,7 +1070,14 @@ public class Rect {
 		case 16: _move_Rect_B__Case_1(); break;
 		
 		}//switch(CONS.Admin.status)
-		
+
+		////////////////////////////////
+
+		// draw: periphery
+
+		////////////////////////////////
+		this.draw_Periphery();
+
 	}//_move_Rect_B_right
 
 	private void 
@@ -1522,18 +1878,20 @@ public class Rect {
 		// canvas size
 
 		////////////////////////////////
-		lbl_1 = new Label(shell, SWT.NONE);
-		fd_lbl_In.bottom = new FormAttachment(lbl_1, -112);
-		fd_lbl_Status.bottom = new FormAttachment(lbl_1, -40);
-		FormData fd_lbl_1 = new FormData();
-		fd_lbl_1.bottom = new FormAttachment(cv_1, 0, SWT.BOTTOM);
-		fd_lbl_1.right = new FormAttachment(100, -63);
-		fd_lbl_1.top = new FormAttachment(0, 585);
-		fd_lbl_1.left = new FormAttachment(0, 854);
-		lbl_1.setLayoutData(fd_lbl_1);
+		lbl_AreaData = new Label(shell, SWT.NONE);
+		fd_lbl_In.bottom = new FormAttachment(lbl_AreaData, -85);
+		fd_lbl_Status.bottom = new FormAttachment(lbl_AreaData, -79);
+		
+		lbl_AreaData.setBackground(this.burlywood2);
+		FormData fd_lbl_AreaData = new FormData();
+		fd_lbl_AreaData.bottom = new FormAttachment(100, -43);
+		fd_lbl_AreaData.right = new FormAttachment(100, -70);
+		fd_lbl_AreaData.top = new FormAttachment(0, 558);
+		fd_lbl_AreaData.left = new FormAttachment(0, 847);
+		lbl_AreaData.setLayoutData(fd_lbl_AreaData);
 		//		lbl_1.setText("Thanks");
 				
-				lbl_1.setText("x = " + shell.getSize().x + "\n" + "y = " + shell.getSize().y);
+				lbl_AreaData.setText("x = " + shell.getSize().x + "\n" + "y = " + shell.getSize().y);
 				
 
 	}//_init_Views__Labels
@@ -1612,7 +1970,32 @@ public class Rect {
 		
 		mntmQuit.setText("&Quit");
 		
+		MenuItem mntmOptions_1 = new MenuItem(menu, SWT.CASCADE);
+		mntmOptions_1.setText("Options");
+		
+		Menu menu_3 = new Menu(mntmOptions_1);
+		mntmOptions_1.setMenu(menu_3);
+		
+		MenuItem mntmCalcTheSmallest = new MenuItem(menu_3, SWT.NONE);
+		mntmCalcTheSmallest.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				Rect.this.calc_Smallest_Status();
+				
+			}
+		});
+		mntmCalcTheSmallest.setText("Calc the smallest status");
+		
 	}//_init_Views__Menues
+
+	protected void 
+	calc_Smallest_Status() {
+		// TODO Auto-generated method stub
+		
+		this._move_Rect_B__Case_10();
+		
+	}
 
 	public void clear_Canvas() {
 		
@@ -1675,8 +2058,6 @@ public class Rect {
 			
 		}
 	}
-	
-	
 }
 
 //class XThread extends Thread{
