@@ -31,6 +31,10 @@ import org.eclipse.swt.widgets.Group;
 
 
 
+
+
+
+
 import wb.utils.CONS;
 import wb.utils.Methods;
 
@@ -47,6 +51,12 @@ public class Rect {
 	//abc
 	
 	Display display;
+
+	Thread applicationThread;
+	Runnable print;
+	
+	//REF http://stackoverflow.com/questions/10961714/how-to-properly-stop-the-thread-in-java answered Jun 9 '12 at 14:21
+	boolean running = true;
 	
 	Label lbl_AreaData;
 
@@ -82,6 +92,9 @@ public class Rect {
 	 */
 	public static void 
 	main(String[] args) {
+		
+		
+		
 		try {
 			Rect window = new Rect();
 			
@@ -130,7 +143,48 @@ public class Rect {
 		init_Vars();
 		
 		display = Display.getDefault();
-//		Display display = Display.getDefault();
+		
+		////////////////////////////////
+
+		// thread
+
+		////////////////////////////////
+//		final Runnable print = new Runnable() {
+		print = new Runnable() {
+			public void run() {
+				
+				while(running) {
+					
+					System.out.println("Print from thread: \t" + Thread.currentThread().getName());
+					
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+				
+				
+//				TH.button.setText("clicked!");
+				
+			}
+			
+		};
+
+//		final Thread applicationThread = new Thread("applicationThread") {
+		applicationThread = new Thread("applicationThread") {
+			public void run() {
+				
+				System.out.println("Hello from thread: \t" + Thread.currentThread().getName());
+				display.syncExec(print);
+				System.out.println("Bye from thread: \t" + Thread.currentThread().getName());
+				
+			}
+		};
+
+		
 		
 		//REF http://stackoverflow.com/questions/4322253/screen-display-size answered Dec 1 '10 at 7:57
 		dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -166,6 +220,13 @@ public class Rect {
 		
 	}
 
+	private void
+	terminate() {
+		
+		running = false;
+		
+	}
+	
 	private void 
 	init_Vars() {
 		// TODO Auto-generated method stub
@@ -757,68 +818,70 @@ public class Rect {
 			public void 
 			widgetSelected(SelectionEvent e) {
 
-				//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
-				GC gc = new GC(cv_1);
-//                if(lp != null) {
-//                    gc.setXORMode(true);
+				applicationThread.start();
 				
-				gc.setForeground(display.getSystemColor(SWT.COLOR_BLUE)); 
-				
-				//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
-				gc.setLineWidth(10);
-		
-				gc.drawRectangle(0, 0, 100, 100);
-//				gc.fillRectangle(0, 0, 100, 100);
-//                    gc.drawLine(0,0, 100, 100);
-
-//                    lp = new Point(e.x, e.y);
-//                    gc.drawLine(fp.x, fp.y, lp.x, lp.y);
-//                }else {
-//                    lp = new Point(e.x, e.y);
-//                }
-
-				gc.dispose();
-				
-				// label
-				Rect.this.f_Executing = true;
-				
-//				while (f_Executing) {
-
-					Rect.this.lbl_AreaData.setText("executing... " + count);
-					
-					
-//        					lbl_1.setText("clicked => " + count);
-					
-					count ++;
-					
-//				}
-
-//				////////////////////////////////
-//
-//				// dialog
-//
-//				////////////////////////////////
-//				//REF http://www.vogella.com/tutorials/EclipseDialogs/article.html
-//				MessageBox dialog = 
-//						  new MessageBox(Rect.this.shell, SWT.ICON_QUESTION | SWT.OK| SWT.CANCEL);
-//									dialog.setText("My info");
-//									dialog.setMessage("Do you really want to do this?");
-//
-////						# open dialog and await user selection
-//				int returnCode = dialog.open();
-//
+//				//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
+//				GC gc = new GC(cv_1);
+////                if(lp != null) {
+////                    gc.setXORMode(true);
 //				
+//				gc.setForeground(display.getSystemColor(SWT.COLOR_BLUE)); 
 //				
-//				//log
-//				String text = "return code => " + returnCode;
+//				//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
+//				gc.setLineWidth(10);
+//		
+//				gc.drawRectangle(0, 0, 100, 100);
+////				gc.fillRectangle(0, 0, 100, 100);
+////                    gc.drawLine(0,0, 100, 100);
 //
-//				String fname = Thread.currentThread().getStackTrace()[2]
-//						.getFileName();
+////                    lp = new Point(e.x, e.y);
+////                    gc.drawLine(fp.x, fp.y, lp.x, lp.y);
+////                }else {
+////                    lp = new Point(e.x, e.y);
+////                }
 //
-//				int line_Num = Thread.currentThread().getStackTrace()[2]
-//						.getLineNumber();
+//				gc.dispose();
+//				
+//				// label
+//				Rect.this.f_Executing = true;
+//				
+////				while (f_Executing) {
 //
-//				Methods.write_Log(text, fname, line_Num);
+//					Rect.this.lbl_AreaData.setText("executing... " + count);
+//					
+//					
+////        					lbl_1.setText("clicked => " + count);
+//					
+//					count ++;
+//					
+////				}
+//
+////				////////////////////////////////
+////
+////				// dialog
+////
+////				////////////////////////////////
+////				//REF http://www.vogella.com/tutorials/EclipseDialogs/article.html
+////				MessageBox dialog = 
+////						  new MessageBox(Rect.this.shell, SWT.ICON_QUESTION | SWT.OK| SWT.CANCEL);
+////									dialog.setText("My info");
+////									dialog.setMessage("Do you really want to do this?");
+////
+//////						# open dialog and await user selection
+////				int returnCode = dialog.open();
+////
+////				
+////				
+////				//log
+////				String text = "return code => " + returnCode;
+////
+////				String fname = Thread.currentThread().getStackTrace()[2]
+////						.getFileName();
+////
+////				int line_Num = Thread.currentThread().getStackTrace()[2]
+////						.getLineNumber();
+////
+////				Methods.write_Log(text, fname, line_Num);
 				
 			}//widgetSelected
 			
@@ -834,7 +897,26 @@ public class Rect {
 			public void 
 			widgetSelected(SelectionEvent e) {
 
-				Rect.this.clear_Canvas();
+				if (applicationThread != null) {
+					
+		            Rect.this.terminate();
+		            
+		            try {
+						Rect.this.applicationThread.join();
+						
+						System.out.println("Thread => stopped: \t" + Thread.currentThread().getName());
+						
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+//		            LOGGER.debug("Thread successfully stopped.");
+		            
+		        }
+				
+//				applicationThread.stop();
+				
+//				Rect.this.clear_Canvas();
 				
 //				Rect.this.f_Executing = false;
 ////				f_Executing = false;
