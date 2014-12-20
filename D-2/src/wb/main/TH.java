@@ -32,6 +32,7 @@ import org.eclipse.swt.widgets.Group;
 
 
 
+
 import wb.utils.CONS;
 import wb.utils.Methods;
 
@@ -53,36 +54,42 @@ public class TH {
 	static boolean clicked = true;
 	
 	static Thread applicationThread;
+
+	static Runnable print;
 	
 	 public static void main(String[] args) {
 
 		final Display display = new Display();
 		Shell shell = new Shell(display);
 		
-		final Runnable print = new Runnable() {
-			public void run() {
-				
-				System.out.println("Print from thread: \t" + Thread.currentThread().getName());
-				
-				TH.bt_Start.setText("clicked!");
-//				TH.button.setText("clicked!");
-				
-				System.out.println("clicked => " + clicked);
-				
-			}
-			
-		};
+//		final Runnable print = new Run_Draw();
 		
-		applicationThread = new Thread("applicationThread") {
-//			final Thread applicationThread = new Thread("applicationThread") {
-			public void run() {
-				
-				System.out.println("Hello from thread: \t" + Thread.currentThread().getName());
-				display.syncExec(print);
-				System.out.println("Bye from thread: \t" + Thread.currentThread().getName());
-				
-			}
-		};
+//		final Runnable print = new Runnable() {
+//			public void run() {
+//				
+//				System.out.println("Print from thread: \t" + Thread.currentThread().getName());
+//				
+//				TH.bt_Start.setText("clicked!");
+////				TH.button.setText("clicked!");
+//				
+//				System.out.println("clicked => " + clicked);
+//				
+//			}
+//			
+//		};
+		
+//		applicationThread = new Th_Draw(display, print);
+//			applicationThread = new Thread(new Th_Draw(print), "applicationThread") {
+//		applicationThread = new Thread("applicationThread") {
+////			final Thread applicationThread = new Thread("applicationThread") {
+//			public void run() {
+//				
+//				System.out.println("Hello from thread: \t" + Thread.currentThread().getName());
+//				display.syncExec(print);
+//				System.out.println("Bye from thread: \t" + Thread.currentThread().getName());
+//				
+//			}
+//		};
 		
 		shell.setText("syncExec Example");
 		shell.setSize(459, 419);
@@ -91,6 +98,10 @@ public class TH {
 		bt_Start.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				
+				print = new Run_Draw();
+				
+				applicationThread = new Th_Draw(display, print);
 				
 				applicationThread.start();
 				
@@ -104,7 +115,24 @@ public class TH {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
+				try {
+					
+					TH.applicationThread.join();
+					
+					System.out.println("Thread => joined");
+					
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 				TH.bt_Start.setText("Start");
+				
+				print = null;
+				
+				TH.applicationThread = null;
+				
+				System.out.println("Thread => stopped");
 				
 			}
 		});
