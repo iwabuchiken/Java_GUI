@@ -9,6 +9,7 @@ import java.io.File;
 import java.util.Locale;
 
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
@@ -32,6 +33,7 @@ import org.eclipse.swt.widgets.Group;
 
 
 
+
 import wb.utils.CONS;
 import wb.utils.Methods;
 
@@ -49,6 +51,8 @@ public class Rect {
 	
 	Display display;
 
+	JFrame frame;
+	
 	Thread applicationThread;
 	Runnable print;
 	
@@ -62,7 +66,7 @@ public class Rect {
 
 	Button bt_Execute, bt_Quit, bt_Clear, bt_Back, bt_Forward;
 
-	Label lbl_Status, lbl_In;
+	static Label lbl_Status, lbl_In;
 	
 	//test
 	
@@ -943,6 +947,13 @@ public class Rect {
 			public void 
 			widgetSelected(SelectionEvent e) {
 
+				//test
+				if (Rect.this.frame != null) {
+					
+					Rect.this.frame.setVisible(false);
+					
+				}
+				
 				if (applicationThread != null) {
 					
 		            Rect.this.terminate();
@@ -2126,10 +2137,14 @@ public class Rect {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
-		        JFrame frame = new JFrame("DialogDemo");
+		        frame = new JFrame("DialogDemo");
+//		        JFrame frame = new JFrame("DialogDemo");
+//		        JFrame frame = new JFrame("DialogDemo");
+//		        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		        
-		        DialogDemo newContentPane = new DialogDemo(frame);
+		        DialogDemo newContentPane = new DialogDemo(frame, Rect.this.display);
+//		        DialogDemo newContentPane = new DialogDemo(frame);
 		        
 		        newContentPane.setOpaque(true); //content panes must be opaque
 		        frame.setContentPane(newContentPane);

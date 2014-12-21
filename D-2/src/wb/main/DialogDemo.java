@@ -41,10 +41,15 @@ import javax.swing.ImageIcon;
 import javax.swing.BoxLayout;
 import javax.swing.Box;
 import javax.swing.BorderFactory;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
+
+import org.eclipse.swt.widgets.Display;
+
+import wb.utils.CONS;
 
 import java.beans.*; //Property change stuff
 import java.io.File;
@@ -52,6 +57,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.Locale;
 
 /*
  * DialogDemo.java requires these files:
@@ -60,7 +66,7 @@ import java.net.URLClassLoader;
  */
 public class DialogDemo extends JPanel {
     JLabel label;
-    
+
 //    String fpath_Image = "C:/WORKS/WS/Eclipse_Luna2/Java_GUI/D-2/middle.gif";
 //    
 //    ImageIcon icon = createImageIcon(fpath_Image);
@@ -73,6 +79,8 @@ public class DialogDemo extends JPanel {
     String iconDesc = "A JOptionPane has its choice of icons";
     String moreDialogDesc = "Some more dialogs";
     CustomDialog customDialog;
+
+	private Display display;
 
     /** Creates the GUI shown inside the frame's content pane. */
     public DialogDemo(JFrame frame) {
@@ -111,6 +119,46 @@ public class DialogDemo extends JPanel {
         label.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
     }
 
+    public DialogDemo(JFrame frame, Display display) {
+    	super(new BorderLayout());
+    	
+    	this.frame = frame;
+    	
+//    	this.display = display;
+    	
+    	customDialog = new CustomDialog(frame, "geisel", this);
+    	customDialog.pack();
+    	
+    	//Create the components.
+    	JPanel frequentPanel = createSimpleDialogBox();
+    	JPanel featurePanel = createFeatureDialogBox();
+    	JPanel iconPanel = createIconDialogBox();
+    	label = new JLabel("Click the \"Show it!\" button"
+    			+ " to bring up the selected dialog.",
+    			JLabel.CENTER);
+    	
+    	//Lay them out.
+    	Border padding = BorderFactory.createEmptyBorder(20,20,5,20);
+    	frequentPanel.setBorder(padding);
+    	featurePanel.setBorder(padding);
+    	iconPanel.setBorder(padding);
+    	
+    	JTabbedPane tabbedPane = new JTabbedPane();
+    	tabbedPane.addTab("Simple Modal Dialogs", null,
+    			frequentPanel,
+    			simpleDialogDesc); //tooltip text
+    	tabbedPane.addTab("More Dialogs", null,
+    			featurePanel,
+    			moreDialogDesc); //tooltip text
+    	tabbedPane.addTab("Dialog Icons", null,
+    			iconPanel,
+    			iconDesc); //tooltip text
+    			
+    	add(tabbedPane, BorderLayout.CENTER);
+    	add(label, BorderLayout.PAGE_END);
+    	label.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+    }
+    
     /** Sets the text displayed at the bottom of the frame. */
     void setLabel(String newText) {
         label.setText(newText);
@@ -460,6 +508,70 @@ public class DialogDemo extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String command = group.getSelection().getActionCommand();
 
+                //test
+//                DialogDemo.this.frame.dispose();	//=> doesn't get disposed
+                
+                //REF http://stackoverflow.com/questions/10936306/programmatically-close-a-jpanel-which-is-displayed-in-jdialog answered Jun 7 '12 at 17:01
+                Window w = SwingUtilities.getWindowAncestor(DialogDemo.this);
+                
+                //log
+                String thName = Thread.currentThread().getName();
+                
+				String text = "w => " + w.getClass().getName();
+
+				String fname = Thread.currentThread().getStackTrace()[0]	//=> 
+//				String fname = Thread.currentThread().getStackTrace()[3]	//=> null
+//						String fname = Thread.currentThread().getStackTrace()[2] //=> null
+						.getFileName();
+
+				int line_Num = Thread.currentThread().getStackTrace()[2]
+//						int line_Num = Thread.currentThread().getStackTrace()[2]
+						.getLineNumber();
+
+				System.out.format(Locale.JAPAN, "[%s:%d] %s(thread => %s)", fname, line_Num,
+						text, thName);
+
+				CONS.Admin.status = 6;
+				
+				System.out.format(Locale.JAPAN, "status => 6");
+				
+				//REF http://stackoverflow.com/questions/1234912/how-to-programmatically-close-a-jframe answered Aug 5 '09 at 22:00
+//				DialogDemo.this.frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+				
+//				Rect.lbl_Status.setText("message from the dialog");
+				
+				//REF
+//				Runnable print = new Run_Draw();
+				
+//				if (print == null) {
+//					
+//					//log
+//					text = "print => null";
+//
+//					fname = Thread.currentThread().getStackTrace()[2]
+//							.getFileName();
+//
+//					line_Num = Thread.currentThread().getStackTrace()[2]
+//							.getLineNumber();
+//
+//					System.out.format(Locale.JAPAN, "[%s:%d] %s", fname,
+//							line_Num, text);
+//
+//					
+//				}
+				
+//				display = Display.getDefault();
+//				
+//				if (display == null) {
+//					
+//					System.out.println("display => null");
+//					
+//				}
+//				
+//				Thread applicationThread = new Th_Draw(display, print);
+//				
+//				applicationThread.start();
+                
                 //pick one of many
                 if (command == pickOneCommand) {
                     Object[] possibilities = {"ham", "spam", "yam"};
@@ -632,6 +744,7 @@ public class DialogDemo extends JPanel {
      */
     private static void createAndShowGUI() {
         //Create and set up the window.
+
         JFrame frame = new JFrame("DialogDemo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -643,6 +756,8 @@ public class DialogDemo extends JPanel {
         //Display the window.
         frame.pack();
         frame.setVisible(true);
+
+        
     }
 
 //    public static void main(String[] args) {

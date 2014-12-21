@@ -21,3 +21,7 @@
 [2014/12/21 15:21:24.024] [Rect.java : 125] while => ended
 [2014/12/21 15:21:25.761] [Rect.java : 125] while => ended
 [2014/12/21 15:21:27.248] [Rect.java : 125] while => ended
+[2014/12/21 16:20:45.435] [Rect.java : 129] while => ended
+[2014/12/21 16:20:47.159] [Rect.java : 129] while => ended
+[2014/12/21 16:20:58.682] [Rect.java : 129] while => ended
+[2014/12/21 16:21:00.868] [Rect.java : 129] while => ended
