@@ -1,3 +1,6 @@
+/**
+ * used in: D-4/v-3.0
+ */
 package wb.main;
 
 //import java.awt.Color;
@@ -42,7 +45,7 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-public class TH {
+public class TH_3 {
 
 	////////////////////////////////
 
@@ -117,12 +120,12 @@ public class TH {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
-				if (TH.applicationThread != null) {
+				if (TH_3.applicationThread != null) {
 //					if (TH.applicationThread != null && TH.applicationThread.isAlive()) {
 					
 					try {
 						
-						TH.applicationThread.join();
+						TH_3.applicationThread.join();
 						
 						System.out.println("Thread => joined");
 						
@@ -134,11 +137,11 @@ public class TH {
 						
 					}
 					
-					TH.bt_Start.setText("Start: " + count_1);
+					TH_3.bt_Start.setText("Start: " + count_1);
 					
 					print = null;
 					
-					TH.applicationThread = null;
+					TH_3.applicationThread = null;
 					
 					System.out.println("Thread => stopped");
 					
