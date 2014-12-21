@@ -5,7 +5,10 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.PaintEvent;
+import java.io.File;
 import java.util.Locale;
+
+import javax.swing.JFrame;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
@@ -26,6 +29,8 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Group;
 //import org.eclipse.wb.swt.SWTResourceManager;
+
+
 
 import wb.utils.CONS;
 import wb.utils.Methods;
@@ -86,7 +91,21 @@ public class Rect {
 	public static void 
 	main(String[] args) {
 		
-		
+	    //debug
+	    String fpath_Image = "C:/WORKS/WS/Eclipse_Luna2/Java_GUI/D-2/middle.gif";
+	    File f = new File(fpath_Image);
+
+	    
+	    if (f.exists()) {
+			
+	    	System.out.println("gif file => exists: " + f.getAbsolutePath());
+			
+		} else {
+			
+			System.out.println("gif file => not exist: " + f.getAbsolutePath());
+			
+		}
+
 		
 		try {
 			Rect window = new Rect();
@@ -2095,6 +2114,34 @@ public class Rect {
 			}
 		});
 		mntmCalcTheSmallest.setText("Calc the smallest status");
+		
+		MenuItem mntmOptions_2 = new MenuItem(menu, SWT.CASCADE);
+		mntmOptions_2.setText("Options");
+		
+		Menu menu_4 = new Menu(mntmOptions_2);
+		mntmOptions_2.setMenu(menu_4);
+		
+		MenuItem mntmSettings = new MenuItem(menu_4, SWT.NONE);
+		mntmSettings.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+		        JFrame frame = new JFrame("DialogDemo");
+		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		        
+		        DialogDemo newContentPane = new DialogDemo(frame);
+		        
+		        newContentPane.setOpaque(true); //content panes must be opaque
+		        frame.setContentPane(newContentPane);
+
+		        //Display the window.
+		        frame.pack();
+		        frame.setVisible(true);
+
+
+			}
+		});
+		mntmSettings.setText("Settings");
 		
 	}//_init_Views__Menues
 

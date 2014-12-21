@@ -11,3 +11,13 @@
 [2014/12/16 16:41:59.362] [Rect.java : 97] while => ended
 [2014/12/16 16:43:48.452] [TypedListener.java : 248] return code => 32
 [2014/12/18 15:50:02.712] [Rect.java : 99] while => ended
+[2014/12/21 14:03:58.898] [Rect.java : 125] while => ended
+[2014/12/21 14:04:07.810] [Rect.java : 109] while => ended
+[2014/12/21 15:11:44.038] [Rect.java : 125] while => ended
+[2014/12/21 15:11:54.451] [Rect.java : 125] while => ended
+[2014/12/21 15:12:11.582] [Rect.java : 125] while => ended
+[2014/12/21 15:13:27.674] [Rect.java : 125] while => ended
+[2014/12/21 15:15:32.521] [Rect.java : 125] while => ended
+[2014/12/21 15:21:24.024] [Rect.java : 125] while => ended
+[2014/12/21 15:21:25.761] [Rect.java : 125] while => ended
+[2014/12/21 15:21:27.248] [Rect.java : 125] while => ended
