@@ -27,14 +27,6 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Group;
 //import org.eclipse.wb.swt.SWTResourceManager;
 
-
-
-
-
-
-
-
-
 import wb.utils.CONS;
 import wb.utils.Methods;
 
@@ -151,28 +143,28 @@ public class Rect {
 
 		////////////////////////////////
 //		final Runnable print = new Runnable() {
-		print = new Runnable() {
-			public void run() {
-				
-				while(running) {
-					
-					System.out.println("Print from thread: \t" + Thread.currentThread().getName());
-					
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-				}
-				
-				
-//				TH.button.setText("clicked!");
-				
-			}
-			
-		};
+//		print = new Runnable() {
+//			public void run() {
+//				
+//				while(running) {
+//					
+//					System.out.println("Print from thread: \t" + Thread.currentThread().getName());
+//					
+//					try {
+//						Thread.sleep(1000);
+//					} catch (InterruptedException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//					
+//				}
+//				
+//				
+////				TH.button.setText("clicked!");
+//				
+//			}
+//			
+//		};
 
 //		final Thread applicationThread = new Thread("applicationThread") {
 //		applicationThread = new Thread("applicationThread") {
@@ -822,30 +814,37 @@ public class Rect {
 			public void 
 			widgetSelected(SelectionEvent e) {
 
+				print = new Run_Draw();
+				
+				applicationThread = new Th_Draw(display, print);
+				
+				applicationThread.start();
+
+				
 //				applicationThread.start();
 				
-				if (applicationThread == null || !applicationThread.isAlive()) {
-					
-					applicationThread = new Thread("applicationThread") {
-						public void run() {
-							
-							System.out.println("Hello from thread: \t" + Thread.currentThread().getName());
-							
-							display.asyncExec(print);
-//						display.syncExec(print);
-							
-							System.out.println("Bye from thread: \t" + Thread.currentThread().getName());
-							
-						}
-					};
-					
-					applicationThread.start();
-					
-				} else {
-
-					System.out.println("Thread => not null or is alive" + Thread.currentThread().getName());
-					
-				}
+//				if (applicationThread == null || !applicationThread.isAlive()) {
+//					
+//					applicationThread = new Thread("applicationThread") {
+//						public void run() {
+//							
+//							System.out.println("Hello from thread: \t" + Thread.currentThread().getName());
+//							
+//							display.asyncExec(print);
+////						display.syncExec(print);
+//							
+//							System.out.println("Bye from thread: \t" + Thread.currentThread().getName());
+//							
+//						}
+//					};
+//					
+//					applicationThread.start();
+//					
+//				} else {
+//
+//					System.out.println("Thread => not null or is alive" + Thread.currentThread().getName());
+//					
+//				}
 				
 				
 //				//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
