@@ -10,17 +10,17 @@ public class Run_Draw implements Runnable {
 		
 		System.out.println("Print from thread: \t" + Thread.currentThread().getName());
 		
-        JFrame frame = new JFrame("DialogDemo");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        DialogDemo newContentPane = new DialogDemo(frame);
-        
-        newContentPane.setOpaque(true); //content panes must be opaque
-        frame.setContentPane(newContentPane);
-
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
+//        JFrame frame = new JFrame("DialogDemo");
+////        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        
+//        DialogDemo newContentPane = new DialogDemo(frame);
+//        
+//        newContentPane.setOpaque(true); //content panes must be opaque
+//        frame.setContentPane(newContentPane);
+//
+//        //Display the window.
+//        frame.pack();
+//        frame.setVisible(true);
 
 		
 //		TH_3.bt_Start.setText("clicked!");

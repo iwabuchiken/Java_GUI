@@ -947,12 +947,12 @@ public class Rect {
 			public void 
 			widgetSelected(SelectionEvent e) {
 
-				//test
-				if (Rect.this.frame != null) {
-					
-					Rect.this.frame.setVisible(false);
-					
-				}
+//				//test
+//				if (Rect.this.frame != null) {
+//					
+//					Rect.this.frame.setVisible(false);
+//					
+//				}
 				
 				if (applicationThread != null) {
 					
@@ -1065,6 +1065,7 @@ public class Rect {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
+//				Rect.this._move_Rect_B_right(CONS.Admin.status);
 				Rect.this._move_Rect_B_right();
 				
 			}
@@ -1131,6 +1132,338 @@ public class Rect {
 		
 	}//_move_Rect_B_left
 
+	protected void 
+	_move_Rect_B_left(int status) {
+		// TODO Auto-generated method stub
+		
+		switch(status) {
+		
+		case 1: 
+//			_move_Rect_B__Case_16(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_W_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+			
+			// status
+			CONS.Admin.status = 16;
+
+			break;
+		
+		case 2: 
+//			_move_Rect_B__Case_1(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_H_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+			
+			// status
+			CONS.Admin.status = 15;
+
+			
+			break;
+		
+		case 3: 
+//			_move_Rect_B__Case_2(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_W_orig;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+			
+			// status
+			CONS.Admin.status = 2;
+
+			break;
+			
+		case 4: 
+//			_move_Rect_B__Case_3(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W - CONS.Views.rect_B_W_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_H_orig;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+
+			// status
+			CONS.Admin.status = 3;
+
+			
+			break;
+		
+		case 5: 
+//			_move_Rect_B__Case_4(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W - CONS.Views.rect_B_H_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_W_orig;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+			
+			// status
+			CONS.Admin.status = 4;
+			
+			break;
+			
+		case 6: 
+//			_move_Rect_B__Case_5(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+
+			// status
+			CONS.Admin.status = 5;
+			
+			break;
+			
+		case 7: 
+//			_move_Rect_B__Case_6(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+			
+			CONS.Admin.status = 6;
+			
+			break;
+		
+		case 8: 
+//			_move_Rect_B__Case_7(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H - CONS.Views.rect_B_W_orig;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+
+			// status
+			CONS.Admin.status = 7;
+			break;
+			
+		case 9: 
+//			_move_Rect_B__Case_8(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H - CONS.Views.rect_B_H_orig;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+
+			// status
+			CONS.Admin.status = 8;
+			
+			break;
+			
+		case 10: 
+//			_move_Rect_B__Case_9(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W - CONS.Views.rect_B_W_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+
+			// status
+			CONS.Admin.status = 9;
+
+			break;
+		
+		case 11: 
+//			_move_Rect_B__Case_10(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W - CONS.Views.rect_B_H_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+			
+			// status
+			CONS.Admin.status = 10;
+
+			break;
+			
+		case 12: 
+//			_move_Rect_B__Case_11(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+			
+			// status
+			CONS.Admin.status = 11;
+
+			break;
+			
+		case 13: 
+//			_move_Rect_B__Case_12(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+			
+			// status
+			CONS.Admin.status = 12;
+
+			break;
+		
+		case 14: 
+//			_move_Rect_B__Case_13(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_H_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H - CONS.Views.rect_B_W_orig;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+			
+			// status
+			CONS.Admin.status = 13;
+
+			break;
+			
+		case 15: 
+//			_move_Rect_B__Case_14(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_W_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H - CONS.Views.rect_B_H_orig;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+			
+			// status
+			CONS.Admin.status = 14;
+
+			break;
+			
+		case 16: 
+//			_move_Rect_B__Case_15(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_H_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+			
+			// status
+			CONS.Admin.status = 15;
+
+			break;
+		
+		}//switch(CONS.Admin.status)
+
+		////////////////////////////////
+
+		// draw
+
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+
+		////////////////////////////////
+		
+		// draw: periphery
+		
+		////////////////////////////////
+		this.draw_Periphery();
+		
+	}//_move_Rect_B_left
+	
+	
 	private void 
 	_move_Rect_B__Case_1() {
 		// TODO Auto-generated method stub
@@ -1219,6 +1552,352 @@ public class Rect {
 
 	}//_move_Rect_B_right
 
+	protected void 
+	_move_Rect_B_right(int status) {
+		// TODO Auto-generated method stub
+		
+//		CONS.Admin.status = 1;
+		
+		switch(status) {
+	
+		case 1: 
+			
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_W_orig;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+			
+			// status
+			CONS.Admin.status = 2;
+			
+			break;
+
+		case 2: 
+//			_move_Rect_B__Case_3(); 
+			
+			////////////////////////////////
+			
+			// update: params
+			
+			////////////////////////////////
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W - CONS.Views.rect_B_W_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_H_orig;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+
+			// status
+			CONS.Admin.status = 3;
+			
+			break;
+			
+		case 3: 
+//			_move_Rect_B__Case_4(); 
+			
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W - CONS.Views.rect_B_H_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_W_orig;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+			
+			// status
+			CONS.Admin.status = 4;
+			
+			break;
+			
+		case 4: 
+//			_move_Rect_B__Case_5(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+
+			// status
+			CONS.Admin.status = 5;
+			
+			break;
+			
+		case 5: 
+//			_move_Rect_B__Case_6(); 
+			
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+			
+			CONS.Admin.status = 6;
+
+			break;
+			
+		case 6: 
+//			_move_Rect_B__Case_7(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H - CONS.Views.rect_B_W_orig;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+
+			// status
+			CONS.Admin.status = 7;
+
+			break;
+			
+		case 7: 
+//			_move_Rect_B__Case_8(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H - CONS.Views.rect_B_H_orig;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+
+			// status
+			CONS.Admin.status = 8;
+
+			break;
+			
+		case 8: 
+//			_move_Rect_B__Case_9(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W - CONS.Views.rect_B_W_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+
+			// status
+			CONS.Admin.status = 9;
+			
+			break;
+			
+		case 9: 
+//			_move_Rect_B__Case_10(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W - CONS.Views.rect_B_H_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+			
+			// status
+			CONS.Admin.status = 10;
+
+			break;
+
+		case 10: 
+//			_move_Rect_B__Case_11(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+			
+			// status
+			CONS.Admin.status = 11;
+			
+			break;
+			
+		case 11: 
+//			_move_Rect_B__Case_12(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+			
+			// status
+			CONS.Admin.status = 12;
+
+			break;
+			
+		case 12: 
+//			_move_Rect_B__Case_13(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_H_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H - CONS.Views.rect_B_W_orig;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+			
+			// status
+			CONS.Admin.status = 13;
+			
+			break;
+		
+		case 13: 
+//			_move_Rect_B__Case_14(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_W_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + CONS.Views.rect_A_H - CONS.Views.rect_B_H_orig;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+			
+			// status
+			CONS.Admin.status = 14;
+			
+			break;
+		case 14: 
+//			_move_Rect_B__Case_15(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_H_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
+			
+			// status
+			CONS.Admin.status = 15;
+			
+			break;
+			
+		case 15: 
+//			_move_Rect_B__Case_16(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_W_orig;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+			
+			// status
+			CONS.Admin.status = 16;
+			
+			break;
+		
+		case 16: 
+//			_move_Rect_B__Case_1(); 
+			// X
+			CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+			
+			// Y
+			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_H_orig;
+			
+			// W
+			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+			
+			// H
+			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+			
+			// status
+			CONS.Admin.status = 1;
+			
+			break;
+
+		}//switch(CONS.Admin.status)
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		
+		////////////////////////////////
+		
+		// draw: periphery
+		
+		////////////////////////////////
+		this.draw_Periphery();
+
+		////////////////////////////////
+
+		// update: status label
+
+		////////////////////////////////
+		update_Status_Label();
+
+	}//_move_Rect_B_right(int status)
+	
 	private void 
 	_move_Rect_B__Case_16() {
 		// TODO Auto-generated method stub
@@ -2141,7 +2820,7 @@ public class Rect {
 //		        JFrame frame = new JFrame("DialogDemo");
 //		        JFrame frame = new JFrame("DialogDemo");
 //		        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		        
 		        DialogDemo newContentPane = new DialogDemo(frame, Rect.this.display);
 //		        DialogDemo newContentPane = new DialogDemo(frame);
