@@ -53,9 +53,11 @@ public class TH {
 	
 	static boolean clicked = true;
 	
-	static Thread applicationThread;
+	static volatile Thread applicationThread;
 
 	static Runnable print;
+	
+	static int count_1, count_2;
 	
 	 public static void main(String[] args) {
 
@@ -115,27 +117,40 @@ public class TH {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
-				try {
+				if (TH.applicationThread != null) {
+//					if (TH.applicationThread != null && TH.applicationThread.isAlive()) {
 					
-					TH.applicationThread.join();
+					try {
+						
+						TH.applicationThread.join();
+						
+						System.out.println("Thread => joined");
+						
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						
+						return;
+						
+					}
 					
-					System.out.println("Thread => joined");
+					TH.bt_Start.setText("Start: " + count_1);
 					
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					print = null;
+					
+					TH.applicationThread = null;
+					
+					System.out.println("Thread => stopped");
+					
+				} else {
+
+					System.out.println("Thread => already stopped");
+					
 				}
-				
-				TH.bt_Start.setText("Start");
-				
-				print = null;
-				
-				TH.applicationThread = null;
-				
-				System.out.println("Thread => stopped");
 				
 			}
 		});
+		
 		bt_Stop.setBounds(131, 186, 140, 70);
 		bt_Stop.setText("Stop");
 
