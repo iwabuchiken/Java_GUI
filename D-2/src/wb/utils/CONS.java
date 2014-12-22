@@ -31,7 +31,7 @@ public class CONS {
 			HORI_HORI, HORI_VERTI,
 			VERTI_VERTI, VERTI_HORI,
 			
-			INITIAL, NEXT_NODE,
+			INITIAL, NEXT_NODE, PREV_NODE,
 			
 		}
 		

@@ -300,4 +300,44 @@ public class Methods {
 		
 	}//get_NextOrien
 	
-}
+	public static Orien 
+	get_PrevOrien(NodeNames name, Orien orien_Current) {
+		// TODO Auto-generated method stub
+		
+		switch(name) {
+		
+		case B_UL:
+			
+			switch(orien_Current) {
+			
+			case HORI_VERTI://---------------
+				
+				return CONS.Admin.Orien.PREV_NODE;
+				
+			case HORI_HORI://---------------
+				
+				return CONS.Admin.Orien.HORI_VERTI;
+				
+			case VERTI_HORI://---------------
+				
+				return CONS.Admin.Orien.HORI_HORI;
+				
+			case VERTI_VERTI://---------------
+				
+				return CONS.Admin.Orien.VERTI_HORI;
+				
+			case INITIAL://---------------
+				
+				return CONS.Admin.Orien.HORI_VERTI;
+				
+			}//switch(orien_Current)
+			
+			break;
+			
+		}//switch(name)
+		
+		return orien_Current;
+		
+	}//get_PrevOrien(NodeNames name, Orien orien_Current)
+	
+}//public class Methods
