@@ -339,5 +339,97 @@ public class Methods {
 		return orien_Current;
 		
 	}//get_PrevOrien(NodeNames name, Orien orien_Current)
+
+	public static int 
+	smallest(int[] list) {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// validate
+
+		////////////////////////////////
+		if (list == null || list.length < 1) {
+			
+			return -1;
+			
+		}
+		
+		////////////////////////////////
+
+		// length: 1
+
+		////////////////////////////////
+		if (list.length == 1) {
+			
+			return list[0];
+			
+		}
+		
+		////////////////////////////////
+
+		// get: largest
+
+		////////////////////////////////
+		int temp = list[0];
+		
+		for (int i = 1; i < list.length; i++) {
+			
+			if (temp > list[i]) {
+				
+				temp = list[i];
+				
+			}
+			
+		}
+		
+		return temp;
+		
+	}//smallest
+	
+	public static int 
+	largest(int[] list) {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+		
+		// validate
+		
+		////////////////////////////////
+		if (list == null || list.length < 1) {
+			
+			return -1;
+			
+		}
+		
+		////////////////////////////////
+		
+		// length: 1
+		
+		////////////////////////////////
+		if (list.length == 1) {
+			
+			return list[0];
+			
+		}
+		
+		////////////////////////////////
+		
+		// get: largest
+		
+		////////////////////////////////
+		int temp = list[0];
+		
+		for (int i = 1; i < list.length; i++) {
+			
+			if (temp < list[i]) {
+				
+				temp = list[i];
+				
+			}
+			
+		}
+		
+		return temp;
+		
+	}//smallest
 	
 }//public class Methods

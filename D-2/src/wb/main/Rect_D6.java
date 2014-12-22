@@ -654,6 +654,103 @@ public class Rect_D6 {
 		
 	}//draw_Periphery
 
+	void
+	draw_Periphery_XObjects() {
+		
+		int x_smallest = -1, y_smallest = -1, w = -1, h = -1;
+		int x_largest, y_largest;
+
+		x_smallest = Methods.smallest(
+				new int[]{
+						CONS.Views.rect_A_X, CONS.Views.rect_B_X, CONS.Views.rect_C_X
+						}
+				);
+		
+		y_smallest = Methods.smallest(new int[]{CONS.Views.rect_A_Y, CONS.Views.rect_B_Y, CONS.Views.rect_C_Y});
+		
+		x_largest = Methods.largest(
+				new int[]{
+						CONS.Views.rect_A_X + CONS.Views.rect_A_W, 
+						CONS.Views.rect_B_X + CONS.Views.rect_B_W_cur, 
+						CONS.Views.rect_C_X +  + CONS.Views.rect_C_W_cur
+				});
+		
+		y_largest = Methods.largest(
+				new int[]{
+						
+						CONS.Views.rect_A_Y + CONS.Views.rect_A_H, 
+						CONS.Views.rect_B_Y + CONS.Views.rect_B_H_cur, 
+						CONS.Views.rect_C_Y + CONS.Views.rect_C_H_cur
+						
+				});
+		
+		w = x_largest - x_smallest;
+		
+		h = y_largest - y_smallest;
+		
+//		//log
+//		String text = String.format(
+//				Locale.JAPAN, 
+//				"rect_A_X = %d, rect_B_X = %d, rect_C_X = %d", 
+//				CONS.Views.rect_A_X,
+//				CONS.Views.rect_B_X,
+//				CONS.Views.rect_C_X
+//				);
+//		
+//		String fname = Thread.currentThread().getStackTrace()[2].getFileName();
+//		
+//		int line_Num = Thread.currentThread().getStackTrace()[2].getLineNumber();
+//		
+//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//		
+//		text = String.format(
+//				Locale.JAPAN, 
+//				"x_small = %d, y_small = %d, w = %d, h = %d\n", 
+//				x_smallest, y_smallest, w, h);
+//		
+//		fname = Thread.currentThread().getStackTrace()[2].getFileName();
+//		
+//		line_Num = Thread.currentThread().getStackTrace()[2].getLineNumber();
+//		
+//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+
+		
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
+		GC gc = new GC(cv_1);
+		
+//		gc.setForeground(display.getSystemColor(SWT.COLOR_CYAN)); 
+		
+		//REF http://stackoverflow.com/questions/50064/setting-colors-in-swt answered Sep 8 '08 at 16:49
+//		Device device = Display.getCurrent ();
+//		Color red = new Color (device, 255, 0, 0);
+		
+//		gc.setBackground(this.burlywood2); 
+		gc.setBackground(blue_light); 
+		
+		//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
+		gc.setLineWidth(CONS.Views.lineWidth_Rect);
+		
+//		gc.fillRectangle(x, y, w, h);
+		gc.drawRectangle(x_smallest, y_smallest, w, h);
+		
+		gc.dispose();
+		
+		////////////////////////////////
+		
+		// update: area data
+		
+		////////////////////////////////
+		this.update_Label__AreaData(x_smallest, y_smallest, w, h);
+		
+	}//draw_Periphery
+	
 	private void 
 	update_Label__AreaData(int x, int y, int w, int h) {
 		// TODO Auto-generated method stub
@@ -1032,22 +1129,22 @@ public class Rect_D6 {
 							Methods.get_PrevOrien(name, CONS.Admin.orien_Current);
 //				Methods.get_NextOrien(name, CONS.Admin.orien_Current);
 				
-				//log
-				String text = String.format(
-							Locale.JAPAN, 
-							"node = %s / orien = %s", 
-							name.toString(), CONS.Admin.orien_Current.toString());
-
-				String fname = Thread.currentThread().getStackTrace()[1]
-//						String fname = Thread.currentThread().getStackTrace()[2]
-						.getFileName();
-
-				int line_Num = Thread.currentThread().getStackTrace()[1]
-						.getLineNumber();
-
-				System.out.format(Locale.JAPAN, "[%s:%d] %s\n", fname, line_Num,
-//						System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num,
-						text);
+//				//log
+//				String text = String.format(
+//							Locale.JAPAN, 
+//							"node = %s / orien = %s", 
+//							name.toString(), CONS.Admin.orien_Current.toString());
+//
+//				String fname = Thread.currentThread().getStackTrace()[1]
+////						String fname = Thread.currentThread().getStackTrace()[2]
+//						.getFileName();
+//
+//				int line_Num = Thread.currentThread().getStackTrace()[1]
+//						.getLineNumber();
+//
+//				System.out.format(Locale.JAPAN, "[%s:%d] %s\n", fname, line_Num,
+////						System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num,
+//						text);
 
 				////////////////////////////////
 
@@ -2219,7 +2316,8 @@ public class Rect_D6 {
 		// draw: periphery
 		
 		////////////////////////////////
-		this.draw_Periphery();
+		this.draw_Periphery_XObjects();
+//		this.draw_Periphery();
 		
 		////////////////////////////////
 		
@@ -2451,7 +2549,8 @@ public class Rect_D6 {
 		// draw: periphery
 		
 		////////////////////////////////
-		this.draw_Periphery();
+		this.draw_Periphery_XObjects();
+//		this.draw_Periphery();
 		
 		////////////////////////////////
 		
