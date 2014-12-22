@@ -198,5 +198,31 @@ public class Methods {
 		return (a < b) ? a : b;
 		
 	}
+
 	
+	public static int 
+	get_NodeNumber(int status) {
+		
+		// validate
+		if (status < 0) {
+			
+			return -1;
+			
+		}
+		
+		int a = status / 2;
+		
+		int b = status % 2;
+		
+		if (b > 0) {
+			
+			return a + 1;
+			
+		} else {
+			
+			return a;
+
+		}
+		
+	}//get_NodeNumber
 }

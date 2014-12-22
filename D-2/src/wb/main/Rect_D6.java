@@ -6,6 +6,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.PaintEvent;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.swing.JFrame;
@@ -34,7 +36,12 @@ import org.eclipse.swt.widgets.Group;
 
 
 
+
+
+
 import wb.utils.CONS;
+import wb.utils.CONS.Admin.NodeNames;
+import wb.utils.CONS.Admin.Orien;
 import wb.utils.Methods;
 
 import org.eclipse.swt.layout.FillLayout;
@@ -43,7 +50,7 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-public class Rect {
+public class Rect_D6 {
 
 	protected Shell shell;
 	
@@ -73,13 +80,15 @@ public class Rect {
 	Canvas cv_1;
 
 	// colors
-	Color red, blue, blue_light, burlywood2;
+	Color red, blue, blue_light, burlywood2, green;
 	
 	int count = 0;
 
 	boolean f_Executing = false;
 	private Group gr_navigate, gr_ops;
 	private Button btnOptions;
+	private FormData fd_gr_navigate;
+	private FormData fd_gr_ops;
 //	private Group group_2;
 	
 	////////////////////////////////
@@ -95,50 +104,10 @@ public class Rect {
 	public static void 
 	main(String[] args) {
 		
-	    //debug
-	    String fpath_Image = "C:/WORKS/WS/Eclipse_Luna2/Java_GUI/D-2/middle.gif";
-	    File f = new File(fpath_Image);
-
-	    
-	    if (f.exists()) {
-			
-	    	System.out.println("gif file => exists: " + f.getAbsolutePath());
-			
-		} else {
-			
-			System.out.println("gif file => not exist: " + f.getAbsolutePath());
-			
-		}
-
-		
 		try {
-			Rect window = new Rect();
-			
-//			//log
-//			String text = "window => opening...";
-//
-//			String fname = Thread.currentThread().getStackTrace()[1]
-//					.getFileName();
-//
-//			int line_Num = Thread.currentThread().getStackTrace()[1]
-//					.getLineNumber();
-//
-//			Methods.write_Log(text, fname, line_Num);
-			
+			Rect_D6 window = new Rect_D6();
 			
 			window.open();
-			
-//			//log
-//			text = "window => opened";
-//
-//			fname = Thread.currentThread().getStackTrace()[1]
-//					.getFileName();
-//
-//			line_Num = Thread.currentThread().getStackTrace()[1]
-//					.getLineNumber();
-//
-//			Methods.write_Log(text, fname, line_Num);
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -159,51 +128,6 @@ public class Rect {
 		init_Vars();
 		
 		display = Display.getDefault();
-		
-		////////////////////////////////
-
-		// thread
-
-		////////////////////////////////
-//		final Runnable print = new Runnable() {
-//		print = new Runnable() {
-//			public void run() {
-//				
-//				while(running) {
-//					
-//					System.out.println("Print from thread: \t" + Thread.currentThread().getName());
-//					
-//					try {
-//						Thread.sleep(1000);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//					
-//				}
-//				
-//				
-////				TH.button.setText("clicked!");
-//				
-//			}
-//			
-//		};
-
-//		final Thread applicationThread = new Thread("applicationThread") {
-//		applicationThread = new Thread("applicationThread") {
-//			public void run() {
-//				
-//				System.out.println("Hello from thread: \t" + Thread.currentThread().getName());
-//				
-//				display.asyncExec(print);
-////				display.syncExec(print);
-//				
-//				System.out.println("Bye from thread: \t" + Thread.currentThread().getName());
-//				
-//			}
-//		};
-
-		
 		
 		//REF http://stackoverflow.com/questions/4322253/screen-display-size answered Dec 1 '10 at 7:57
 		dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -227,17 +151,17 @@ public class Rect {
 			}
 		}
 		
-		//log
-		String text = "while => ended";
-
-		String fname = Thread.currentThread().getStackTrace()[2].getFileName();
-
-		int line_Num = Thread.currentThread().getStackTrace()[2]
-				.getLineNumber();
-
-		Methods.write_Log(text, fname, line_Num);
+//		//log
+//		String text = "while => ended";
+//
+//		String fname = Thread.currentThread().getStackTrace()[2].getFileName();
+//
+//		int line_Num = Thread.currentThread().getStackTrace()[2]
+//				.getLineNumber();
+//
+//		Methods.write_Log(text, fname, line_Num);
 		
-	}
+	}//open
 
 	private void
 	terminate() {
@@ -251,6 +175,22 @@ public class Rect {
 		// TODO Auto-generated method stub
 		
 		CONS.Admin.status = 1;
+		CONS.Admin.status_C = 1;
+		
+		CONS.Admin.orien_Current = CONS.Admin.Orien.VERTICAL;
+		
+		CONS.Admin.node_Current = 1;
+		
+		// node list
+		CONS.Admin.list_NodeNames = new ArrayList<NodeNames>();
+		
+		CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.B_UL);
+		CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.B_UR);
+		CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.B_LR);
+		
+		CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_UR);
+		CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_LR);
+		CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_LL);
 		
 	}
 
@@ -261,6 +201,8 @@ public class Rect {
 		this.draw_Rect__A();
 		
 		this.draw_Rect__B();
+		
+		this.draw_Rect__C();
 		
 		this.draw_Periphery();
 		
@@ -275,10 +217,13 @@ public class Rect {
 	createContents() {
 		shell = new Shell();
 		
-		int shell_W = (int) ((int)(float)dim.getWidth() * 0.7);
-		int shell_H = (int) ((int)(float)dim.getHeight() * 0.7);
+		int shell_W = (int) ((int)(float)dim.getWidth() * 0.8);
+		int shell_H = (int) ((int)(float)dim.getHeight() * 0.8);
+//		int shell_W = (int) ((int)(float)dim.getWidth() * 0.7);
+//		int shell_H = (int) ((int)(float)dim.getHeight() * 0.7);
 		
-		shell.setSize(CONS.Views.win_W, CONS.Views.win_H);
+		shell.setSize(1246, 927);
+//		shell.setSize(CONS.Views.win_W, CONS.Views.win_H);
 //		shell.setSize(1200, 1000);
 		shell.setText(CONS.Admin.str_MainWindow_Title);
 		
@@ -316,26 +261,6 @@ public class Rect {
 		
 		_init_Set_Listeners(shell);
 		
-//		Group group = new Group(shell, SWT.NONE);
-//		FormData fd_group = new FormData();
-//		fd_group.right = new FormAttachment(gr_navigate, 0, SWT.RIGHT);
-//		fd_group.left = new FormAttachment(gr_navigate, 0, SWT.LEFT);
-//		fd_group.bottom = new FormAttachment(lbl_Status, -15);
-//		group.setLayoutData(fd_group);
-		
-//		btnOptions = new Button(group, SWT.NONE);
-//		btnOptions.setBounds(10, 0, 115, 37);
-//		btnOptions.setText("Options");
-		
-		////////////////////////////////
-
-		// draw: rect
-
-		////////////////////////////////
-//		init_Size_Rect_A();
-		
-//		draw_Rect__Main();
-		
 	}//createContents
 
 	private void 
@@ -348,7 +273,7 @@ public class Rect {
 
 		////////////////////////////////
 		CONS.Views.rect_A_X = cv_1.getSize().x / 2 - CONS.Views.rect_A_W / 2; 
-		CONS.Views.rect_A_Y = cv_1.getSize().y / 2 - CONS.Views.rect_A_H;
+		CONS.Views.rect_A_Y = cv_1.getSize().y / 2 - CONS.Views.rect_A_H + CONS.Views.offset_Y_A;
 		
 		////////////////////////////////
 		
@@ -360,6 +285,17 @@ public class Rect {
 		
 		CONS.Views.rect_B_X = CONS.Views.rect_A_X; 
 		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_H_cur;
+		
+		////////////////////////////////
+		
+		// rect: C
+		
+		////////////////////////////////
+		CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
+		CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
+		
+		CONS.Views.rect_C_X = CONS.Views.rect_B_X; 
+		CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_H_cur;
 		
 	}//init_Size_Rect_A
 
@@ -376,6 +312,8 @@ public class Rect {
 		
 		//REF http://web.njit.edu/~kevin/rgb.txt.html
 		burlywood2 = new Color (device, 238, 197, 145);
+		
+		green = new Color (device, 0, 255, 0);
 		
 	}//_init_Colors
 
@@ -466,6 +404,31 @@ public class Rect {
 		
 	}//draw_Rect
 
+	private void 
+	draw_Rect__C() {
+		// TODO Auto-generated method stub
+		
+		//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
+		GC gc = new GC(cv_1);
+		
+		gc.setForeground(display.getSystemColor(SWT.COLOR_CYAN)); 
+		
+		gc.setBackground(this.green); 
+		
+		//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
+		gc.setLineWidth(CONS.Views.lineWidth_Rect);
+
+		gc.fillRectangle(
+				CONS.Views.rect_C_X, 
+				CONS.Views.rect_C_Y, 
+				CONS.Views.rect_C_W_cur, 
+				CONS.Views.rect_C_H_cur);
+		
+		gc.dispose();
+		
+	}//draw_Rect__C
+	
+	
 	void
 	draw_Periphery() {
 		
@@ -762,19 +725,16 @@ public class Rect {
 		// TODO Auto-generated method stub
 	
 		gr_navigate = new Group(shell, SWT.NONE);
-		FormData fd_gr_navigate = new FormData();
-		fd_gr_navigate.bottom = new FormAttachment(0, 184);
-		fd_gr_navigate.right = new FormAttachment(0, 1002);
-		fd_gr_navigate.top = new FormAttachment(0, 31);
-		fd_gr_navigate.left = new FormAttachment(0, 867);
+		fd_gr_navigate = new FormData();
+		fd_gr_navigate.right = new FormAttachment(100, -93);
 		gr_navigate.setLayoutData(fd_gr_navigate);
 		
 		gr_ops = new Group(shell, SWT.NONE);
-		FormData fd_gr_ops = new FormData();
-		fd_gr_ops.top = new FormAttachment(gr_navigate, 19);
-		fd_gr_ops.right = new FormAttachment(100, -39);
-		fd_gr_ops.bottom = new FormAttachment(0, 297);
-		fd_gr_ops.left = new FormAttachment(0, 824);
+		fd_gr_navigate.bottom = new FormAttachment(100, -645);
+		fd_gr_ops = new FormData();
+		fd_gr_ops.top = new FormAttachment(gr_navigate, 6);
+		fd_gr_ops.right = new FormAttachment(100, -55);
+		fd_gr_ops.left = new FormAttachment(0, 961);
 		gr_ops.setLayoutData(fd_gr_ops);
 		gr_ops.setLayout(new FillLayout(SWT.HORIZONTAL));
 
@@ -797,7 +757,7 @@ public class Rect {
 				////////////////////////////////
 				//REF http://www.vogella.com/tutorials/EclipseDialogs/article.html
 				MessageBox dialog = 
-						  new MessageBox(Rect.this.shell, SWT.ICON_QUESTION | SWT.OK| SWT.CANCEL);
+						  new MessageBox(Rect_D6.this.shell, SWT.ICON_QUESTION | SWT.OK| SWT.CANCEL);
 									dialog.setText(CONS.Strings.title_Confirm);
 									dialog.setMessage(CONS.Strings.msg_QuitApp);
 
@@ -956,10 +916,10 @@ public class Rect {
 				
 				if (applicationThread != null) {
 					
-		            Rect.this.terminate();
+		            Rect_D6.this.terminate();
 		            
 		            try {
-						Rect.this.applicationThread.join();
+						Rect_D6.this.applicationThread.join();
 						
 						System.out.println("Thread => stopped: \t" + Thread.currentThread().getName());
 						
@@ -1052,7 +1012,7 @@ public class Rect {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
-				Rect.this._move_Rect_B_left();
+				Rect_D6.this._move_Rect_B_left();
 				
 			}
 		});
@@ -1066,7 +1026,8 @@ public class Rect {
 			public void widgetSelected(SelectionEvent e) {
 				
 //				Rect.this._move_Rect_B_right(CONS.Admin.status);
-				Rect.this._move_Rect_B_right();
+//				Rect_D6.this._move_Rect_B_right();
+				Rect_D6.this._move_Rect_C_right(CONS.Admin.status_C);
 				
 			}
 
@@ -1080,9 +1041,10 @@ public class Rect {
 
 		////////////////////////////////
 		Group group = new Group(shell, SWT.NONE);
+		fd_gr_navigate.top = new FormAttachment(group, 59);
 		FormData fd_group = new FormData();
-		fd_group.right = new FormAttachment(gr_navigate, 0, SWT.RIGHT);
-		fd_group.left = new FormAttachment(gr_navigate, 0, SWT.LEFT);
+		fd_group.left = new FormAttachment(0, 867);
+		fd_group.right = new FormAttachment(100, -222);
 		fd_group.bottom = new FormAttachment(lbl_Status, -15);
 		group.setLayoutData(fd_group);
 
@@ -1898,6 +1860,219 @@ public class Rect {
 
 	}//_move_Rect_B_right(int status)
 	
+	protected void 
+	_move_Rect_C_right(int status) {
+		// TODO Auto-generated method stub
+		
+//		CONS.Admin.status = 1;
+		
+		switch(status) {
+		
+		case 1: 
+
+			////////////////////////////////
+
+			// coordinates
+
+			////////////////////////////////
+			// X
+			CONS.Views.rect_C_X = CONS.Views.rect_A_X;
+			
+			// Y
+			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_W_orig;
+			
+			// W
+			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
+			
+			// H
+			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
+			
+			////////////////////////////////
+
+			// meta
+
+			////////////////////////////////
+			// status
+			CONS.Admin.status_C = 2;
+			
+			// current node
+			CONS.Admin.node_Current += CONS.Admin.status_C % 2;
+			
+			// orientation
+			CONS.Admin.orien_Current = CONS.Admin.Orien.HORIZONTAL;
+			
+			break;
+			
+		case 2: 
+//			_move_Rect_B__Case_3(); 
+			
+			////////////////////////////////
+			
+			// update: params
+			
+			////////////////////////////////
+//			// X
+//			CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W - CONS.Views.rect_B_W_orig;
+//			
+//			// Y
+//			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_H_orig;
+//			
+//			// W
+//			CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+//			
+//			// H
+//			CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+//			
+//			// status
+//			CONS.Admin.status = 3;
+			
+			break;
+			
+			
+		}//switch(CONS.Admin.status)
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		this.draw_Rect__C();
+		
+		////////////////////////////////
+		
+		// draw: periphery
+		
+		////////////////////////////////
+		this.draw_Periphery();
+		
+		////////////////////////////////
+		
+		// update: status label
+		
+		////////////////////////////////
+		update_Status_Label();
+		
+	}//_move_Rect_B_right(int status)
+	
+	protected void 
+	_move_Rect_C_right(NodeNames node_Name, Orien orien) {
+		// TODO Auto-generated method stub
+		
+//		CONS.Admin.status = 1;
+		
+		switch(node_Name) {
+		
+		case B_UL://--------------------------------------
+			
+			switch(orien) {
+			
+			case HORIZONTAL://--------------------------------------
+				
+				////////////////////////////////
+				
+				// coordinates
+				
+				////////////////////////////////
+				// X
+				CONS.Views.rect_C_X = CONS.Views.rect_A_X;
+				
+				// Y
+				CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_W_orig;
+				
+				// W
+				CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
+				
+				// H
+				CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
+				
+				////////////////////////////////
+				
+				// meta
+				
+				////////////////////////////////
+				// status
+				CONS.Admin.status_C = 2;
+				
+				// current node
+				CONS.Admin.node_Current += CONS.Admin.status_C % 2;
+				
+				// orientation
+				CONS.Admin.orien_Current = CONS.Admin.Orien.HORIZONTAL;
+				
+				break;
+				
+			case VERTICAL://--------------------------------------
+				
+				break;
+			
+			}
+			
+//			////////////////////////////////
+//			
+//			// coordinates
+//			
+//			////////////////////////////////
+//			// X
+//			CONS.Views.rect_C_X = CONS.Views.rect_A_X;
+//			
+//			// Y
+//			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_W_orig;
+//			
+//			// W
+//			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
+//			
+//			// H
+//			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
+//			
+//			////////////////////////////////
+//			
+//			// meta
+//			
+//			////////////////////////////////
+//			// status
+//			CONS.Admin.status_C = 2;
+//			
+//			// current node
+//			CONS.Admin.node_Current += CONS.Admin.status_C % 2;
+//			
+//			// orientation
+//			CONS.Admin.orien_Current = CONS.Admin.Orien.HORIZONTAL;
+			
+			break;//case B_UL:
+			
+		}//switch(CONS.Admin.status)
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		this.draw_Rect__C();
+		
+		////////////////////////////////
+		
+		// draw: periphery
+		
+		////////////////////////////////
+		this.draw_Periphery();
+		
+		////////////////////////////////
+		
+		// update: status label
+		
+		////////////////////////////////
+		update_Status_Label();
+		
+	}//_move_Rect_B_right(int status)
+	
 	private void 
 	_move_Rect_B__Case_16() {
 		// TODO Auto-generated method stub
@@ -2656,7 +2831,17 @@ public class Rect {
 	update_Status_Label() {
 		// TODO Auto-generated method stub
 		
-		this.lbl_Status.setText(CONS.Admin.str_Status + CONS.Admin.status);
+		String text = String.format(
+						Locale.JAPAN, 
+						"%s%d\nCurrent node = %d\nOrien = %s", 
+						CONS.Admin.str_Status, 
+						CONS.Admin.status_C, 
+						CONS.Admin.node_Current, 
+						CONS.Admin.orien_Current.toString());
+		
+		this.lbl_Status.setText(text);
+//		this.lbl_Status.setText(CONS.Admin.str_Status + CONS.Admin.status_C);
+//		this.lbl_Status.setText(CONS.Admin.str_Status + CONS.Admin.status);
 		
 	}
 
@@ -2670,11 +2855,12 @@ public class Rect {
 
 		////////////////////////////////
 		lbl_Status = new Label(shell, SWT.NONE);
+		fd_gr_ops.bottom = new FormAttachment(100, -545);
 		lbl_Status.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
 		FormData fd_lbl_Status = new FormData();
-		fd_lbl_Status.top = new FormAttachment(gr_ops, 136);
-		fd_lbl_Status.right = new FormAttachment(cv_1, 168, SWT.RIGHT);
-		fd_lbl_Status.left = new FormAttachment(cv_1, 44);
+		fd_lbl_Status.top = new FormAttachment(gr_ops, 59);
+		fd_lbl_Status.left = new FormAttachment(cv_1, 81);
+		fd_lbl_Status.right = new FormAttachment(100, -45);
 		lbl_Status.setLayoutData(fd_lbl_Status);
 		lbl_Status.setText("Status = ");
 
@@ -2684,10 +2870,12 @@ public class Rect {
 
 		////////////////////////////////
 		lbl_In = new Label(shell, SWT.NONE);
+		fd_lbl_Status.bottom = new FormAttachment(lbl_In, -21);
 		lbl_In.setBackground(SWTResourceManager.getColor(SWT.COLOR_GRAY));
 		FormData fd_lbl_In = new FormData();
-		fd_lbl_In.left = new FormAttachment(cv_1, 218);
-		fd_lbl_In.right = new FormAttachment(100, -10);
+		fd_lbl_In.top = new FormAttachment(gr_ops, 166);
+		fd_lbl_In.right = new FormAttachment(gr_navigate, 0, SWT.RIGHT);
+		fd_lbl_In.left = new FormAttachment(0, 1022);
 		lbl_In.setLayoutData(fd_lbl_In);
 		lbl_In.setText("In");
 
@@ -2697,15 +2885,14 @@ public class Rect {
 
 		////////////////////////////////
 		lbl_AreaData = new Label(shell, SWT.NONE);
-		fd_lbl_In.bottom = new FormAttachment(lbl_AreaData, -85);
-		fd_lbl_Status.bottom = new FormAttachment(lbl_AreaData, -79);
+		fd_lbl_In.bottom = new FormAttachment(lbl_AreaData, -30);
 		
 		lbl_AreaData.setBackground(this.burlywood2);
 		FormData fd_lbl_AreaData = new FormData();
-		fd_lbl_AreaData.bottom = new FormAttachment(100, -43);
-		fd_lbl_AreaData.right = new FormAttachment(100, -70);
-		fd_lbl_AreaData.top = new FormAttachment(0, 558);
-		fd_lbl_AreaData.left = new FormAttachment(0, 847);
+		fd_lbl_AreaData.top = new FormAttachment(0, 539);
+		fd_lbl_AreaData.bottom = new FormAttachment(100, -150);
+		fd_lbl_AreaData.left = new FormAttachment(gr_navigate, 0, SWT.LEFT);
+		fd_lbl_AreaData.right = new FormAttachment(100, -72);
 		lbl_AreaData.setLayoutData(fd_lbl_AreaData);
 		//		lbl_1.setText("Thanks");
 				
@@ -2725,11 +2912,17 @@ public class Rect {
 
 		////////////////////////////////
 		cv_1 = new Canvas(shell, SWT.NONE);
+		fd_gr_navigate.left = new FormAttachment(cv_1, 116);
 		FormData fd_cv_1 = new FormData();
-		fd_cv_1.bottom = new FormAttachment(0, 651);
-		fd_cv_1.right = new FormAttachment(0, 760);
-		fd_cv_1.top = new FormAttachment(0, 31);
-		fd_cv_1.left = new FormAttachment(0, 49);
+		
+		fd_cv_1.bottom = new FormAttachment(0, 740);
+		fd_cv_1.right = new FormAttachment(0, 880);
+//		fd_cv_1.right = new FormAttachment(0, 760);
+		fd_cv_1.top = new FormAttachment(0, CONS.Views.cv_Padding_Top);
+//		fd_cv_1.top = new FormAttachment(0, 31);
+		fd_cv_1.left = new FormAttachment(0, CONS.Views.cv_Padding_Left);
+//		fd_cv_1.left = new FormAttachment(0, 49);
+		
 		cv_1.setLayoutData(fd_cv_1);
 		
 		Color col = display.getSystemColor(SWT.COLOR_BLUE);
@@ -2799,7 +2992,7 @@ public class Rect {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
-				Rect.this.calc_Smallest_Status();
+				Rect_D6.this.calc_Smallest_Status();
 				
 			}
 		});
@@ -2822,7 +3015,7 @@ public class Rect {
 //		        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 //		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		        
-		        DialogDemo newContentPane = new DialogDemo(frame, Rect.this.display);
+		        DialogDemo newContentPane = new DialogDemo(frame, Rect_D6.this.display);
 //		        DialogDemo newContentPane = new DialogDemo(frame);
 		        
 		        newContentPane.setOpaque(true); //content panes must be opaque
@@ -2872,7 +3065,7 @@ public class Rect {
 //          lp = new Point(e.x, e.y);
 //      }
 
-		this.cv_1.drawBackground(gc, 0, 0, Rect.this.cv_1.getSize().x, Rect.this.cv_1.getSize().y);
+		this.cv_1.drawBackground(gc, 0, 0, Rect_D6.this.cv_1.getSize().x, Rect_D6.this.cv_1.getSize().y);
 
 		gc.dispose();
 		
@@ -2881,7 +3074,7 @@ public class Rect {
 
 	class XThread extends Thread{
 	
-		private Rect rect;
+		private Rect_D6 rect;
 	
 		XThread(){
 			
@@ -2893,7 +3086,7 @@ public class Rect {
 		    start();
 		}
 		
-		public XThread(Rect rect) {
+		public XThread(Rect_D6 rect) {
 			// TODO Auto-generated constructor stub
 			
 			this.rect = rect;
