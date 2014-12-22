@@ -2246,35 +2246,6 @@ public class Rect_D6 {
 			
 			case HORI_VERTI://--------------------------------------
 				
-//				CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
-//				CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
-//				
-//				CONS.Views.rect_C_X = CONS.Views.rect_B_X; 
-//				CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_H_cur;
-//				
-//				////////////////////////////////
-//				
-//				// meta
-//				
-//				////////////////////////////////
-//				// status
-//				CONS.Admin.status_C = 1;
-//				
-//				// current node
-//				CONS.Admin.node_Current = 
-////						CONS.Admin.node_Current += 
-//						Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
-////				CONS.Admin.node_Current += CONS.Admin.status_C % 2;
-//				
-//				break;//case HORI_VERTI
-				
-			case HORI_HORI://--------------------------------------
-
-				////////////////////////////////
-				
-				// coordinates
-				
-				////////////////////////////////
 				CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
 				CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
 				
@@ -2288,6 +2259,35 @@ public class Rect_D6 {
 				////////////////////////////////
 				// status
 				CONS.Admin.status_C = 1;
+				
+				// current node
+				CONS.Admin.node_Current = 
+//						CONS.Admin.node_Current += 
+						Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
+//				CONS.Admin.node_Current += CONS.Admin.status_C % 2;
+				
+				break;//case HORI_VERTI
+				
+			case HORI_HORI://--------------------------------------
+
+				////////////////////////////////
+				
+				// coordinates
+				
+				////////////////////////////////
+				CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
+				CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
+				
+				CONS.Views.rect_C_X = CONS.Views.rect_B_X; 
+				CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_W_orig;
+				
+				////////////////////////////////
+				
+				// meta
+				
+				////////////////////////////////
+				// status
+				CONS.Admin.status_C = 2;
 				
 				// current node
 				CONS.Admin.node_Current = 
@@ -2333,6 +2333,7 @@ public class Rect_D6 {
 				
 			case VERTI_HORI://--------------------------------------
 				
+				// => to HORI_HORI
 				CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
 				CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
 				
@@ -2344,6 +2345,19 @@ public class Rect_D6 {
 				// meta
 				
 				////////////////////////////////
+				//log
+				String text = String.format(
+							Locale.JAPAN, 
+							"name = %s, orien = %s\n", 
+							node_Name.toString(), orien.toString());
+				
+				String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+				
+				int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+				
+				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+
 				// status
 				CONS.Admin.status_C = 
 						Methods.get_Status_from_NodeAndPosition(

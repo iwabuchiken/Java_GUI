@@ -6,7 +6,8 @@ public class CONS {
 
 	public static class Admin {
 	
-		public static final String str_MainWindow_Title = "Rectangles";
+		public static final String str_MainWindow_Title = "Rectangles -- 3 objects";
+//		public static final String str_MainWindow_Title = "Rectangles";
 		
 		public static final String dPath_Log = "log";
 		
