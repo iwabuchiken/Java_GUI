@@ -10,6 +10,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import wb.utils.CONS.Admin.NodeNames;
+import wb.utils.CONS.Admin.Orien;
+
 public class Methods {
 
 	public static void 
@@ -201,7 +204,7 @@ public class Methods {
 
 	
 	public static int 
-	get_NodeNumber(int status) {
+	get_NodeNumber_frmo_Status(int status) {
 		
 		// validate
 		if (status < 0) {
@@ -210,9 +213,10 @@ public class Methods {
 			
 		}
 		
-		int a = status / 2;
-		
-		int b = status % 2;
+		int a = status / CONS.Admin.numOf_Positions_per_Node;
+		int b = status % CONS.Admin.numOf_Positions_per_Node;
+//		int a = status / 2;
+//		int b = status % 2;
 		
 		if (b > 0) {
 			
@@ -225,4 +229,33 @@ public class Methods {
 		}
 		
 	}//get_NodeNumber
+
+	public static int 
+	get_Status_from_NodeAndPosition
+	(NodeNames name, Orien orien) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// names
+
+		////////////////////////////////
+		switch(name) {
+		
+		case B_UL:
+			
+			switch(orien) {
+			
+			case HORI_VERTI: return 1;
+			case VERTI_VERTI: return 4;
+			
+			}//switch(orien)
+			
+			break;
+		}//switch(name)
+		
+		return -1;
+		
+	}//get_Status_from_NodeAndPosition
+	
 }

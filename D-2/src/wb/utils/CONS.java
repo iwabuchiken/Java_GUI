@@ -27,7 +27,9 @@ public class CONS {
 		
 		public static enum Orien {
 			
-			HORIZONTAL, VERTICAL
+//			HORIZONTAL, VERTICAL
+			HORI_HORI, HORI_VERTI,
+			VERTI_VERTI, VERTI_HORI,
 			
 		}
 		
@@ -42,6 +44,8 @@ public class CONS {
 		}
 		
 		public static List<NodeNames> list_NodeNames;
+		
+		public static final int numOf_Positions_per_Node = 4;
 		
 	}
 	

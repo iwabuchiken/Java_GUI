@@ -177,7 +177,8 @@ public class Rect_D6 {
 		CONS.Admin.status = 1;
 		CONS.Admin.status_C = 1;
 		
-		CONS.Admin.orien_Current = CONS.Admin.Orien.VERTICAL;
+		CONS.Admin.orien_Current = CONS.Admin.Orien.HORI_VERTI;
+//		CONS.Admin.orien_Current = CONS.Admin.Orien.VERTICAL;
 		
 		CONS.Admin.node_Current = 1;
 		
@@ -1023,15 +1024,66 @@ public class Rect_D6 {
 		
 		bt_Forward.addSelectionListener(new SelectionAdapter() {
 			@Override
-			public void widgetSelected(SelectionEvent e) {
+			public void 
+			widgetSelected(SelectionEvent e) {
 				
 //				Rect.this._move_Rect_B_right(CONS.Admin.status);
 //				Rect_D6.this._move_Rect_B_right();
-				Rect_D6.this._move_Rect_C_right(CONS.Admin.status_C);
+//				Rect_D6.this._move_Rect_C_right(CONS.Admin.status_C);
 				
-			}
+				////////////////////////////////
 
-		});
+				// prep: params
+
+				////////////////////////////////
+				// node name
+				int node_Num = Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
+
+				NodeNames name = null;
+				
+//				if (CONS.Admin.node_Current == CONS.Admin.Orien.) {
+//					
+//				} else {
+//
+//				}
+				
+				name = CONS.Admin.list_NodeNames.get(node_Num - 1);
+				
+				// orien
+				switch(CONS.Admin.orien_Current) {
+				
+				case HORI_VERTI://---------------
+					
+					CONS.Admin.orien_Current = CONS.Admin.Orien.HORI_HORI; break;
+				
+				case HORI_HORI://---------------
+					
+					CONS.Admin.orien_Current = CONS.Admin.Orien.VERTI_VERTI; break;
+					
+				}
+				
+				//log
+				String text = String.format(
+							Locale.JAPAN, 
+							"node = %s / orien = %s", 
+							name.toString(), CONS.Admin.orien_Current.toString());
+
+				String fname = Thread.currentThread().getStackTrace()[1]
+//						String fname = Thread.currentThread().getStackTrace()[2]
+						.getFileName();
+
+				int line_Num = Thread.currentThread().getStackTrace()[1]
+						.getLineNumber();
+
+				System.out.format(Locale.JAPAN, "[%s:%d] %s\n", fname, line_Num,
+//						System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num,
+						text);
+
+				Rect_D6.this._move_Rect_C_right(name, CONS.Admin.orien_Current);
+				
+			}//widgetSelected(SelectionEvent e)
+
+		});//addSelectionListener(new SelectionAdapter()
 		
 		bt_Forward.setText("->");
 		
@@ -1899,7 +1951,8 @@ public class Rect_D6 {
 			CONS.Admin.node_Current += CONS.Admin.status_C % 2;
 			
 			// orientation
-			CONS.Admin.orien_Current = CONS.Admin.Orien.HORIZONTAL;
+			CONS.Admin.orien_Current = CONS.Admin.Orien.HORI_HORI;
+//			CONS.Admin.orien_Current = CONS.Admin.Orien.HORIZONTAL;
 			
 			break;
 			
@@ -1970,7 +2023,7 @@ public class Rect_D6 {
 			
 			switch(orien) {
 			
-			case HORIZONTAL://--------------------------------------
+			case HORI_HORI://--------------------------------------
 				
 				////////////////////////////////
 				
@@ -1998,17 +2051,64 @@ public class Rect_D6 {
 				CONS.Admin.status_C = 2;
 				
 				// current node
-				CONS.Admin.node_Current += CONS.Admin.status_C % 2;
+				CONS.Admin.node_Current += 
+								Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
+//				CONS.Admin.node_Current += CONS.Admin.status_C % 2;
 				
-				// orientation
-				CONS.Admin.orien_Current = CONS.Admin.Orien.HORIZONTAL;
+//				// orientation
+//				CONS.Admin.orien_Current = CONS.Admin.Orien.HORIZONTAL;
 				
 				break;
 				
-			case VERTICAL://--------------------------------------
+			case HORI_VERTI://--------------------------------------
+
+				CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
+				CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
 				
+				CONS.Views.rect_C_X = CONS.Views.rect_B_X; 
+				CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_H_cur;
+
+				////////////////////////////////
+				
+				// meta
+				
+				////////////////////////////////
+				// status
+				CONS.Admin.status_C = 1;
+				
+				// current node
+				CONS.Admin.node_Current += 
+								Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
+//				CONS.Admin.node_Current += CONS.Admin.status_C % 2;
+
 				break;
 			
+			case VERTI_VERTI://--------------------------------------
+				
+				CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
+				CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
+				
+				CONS.Views.rect_C_X = CONS.Views.rect_B_X - CONS.Views.rect_C_W_orig; 
+				CONS.Views.rect_C_Y = CONS.Views.rect_B_Y;
+				
+				////////////////////////////////
+				
+				// meta
+				
+				////////////////////////////////
+				// status
+				CONS.Admin.status_C = 
+								Methods.get_Status_from_NodeAndPosition(
+											CONS.Admin.NodeNames.B_UL, 
+											CONS.Admin.Orien.VERTI_VERTI);
+				
+				// current node
+				CONS.Admin.node_Current += 
+						Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
+//				CONS.Admin.node_Current += CONS.Admin.status_C % 2;
+				
+				break;
+				
 			}
 			
 //			////////////////////////////////
