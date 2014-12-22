@@ -254,6 +254,21 @@ public class Methods {
 			}//switch(orien)
 			
 			break;
+			
+		case B_UR:
+			
+			switch(orien) {
+			
+			case INITIAL: 
+			case HORI_VERTI: return 5;
+			case HORI_HORI: return 6;
+			case VERTI_HORI: return 7;
+			case VERTI_VERTI: return 8;
+			
+			}//switch(orien)
+			
+			break;
+			
 		}//switch(name)
 		
 		return -1;
@@ -431,5 +446,26 @@ public class Methods {
 		return temp;
 		
 	}//smallest
+
+	/*******************************
+
+		@return
+		default => HORI_VERTI
+
+	 *******************************/
+	public static Orien 
+	get_InitialOrien(NodeNames name) {
+		// TODO Auto-generated method stub
+		
+		switch(name) {
+		
+		case B_UL: return CONS.Admin.Orien.HORI_VERTI;
+		case B_UR: return CONS.Admin.Orien.HORI_VERTI;
+		
+		}
+		
+		return CONS.Admin.Orien.HORI_VERTI;
+		
+	}//get_InitialOrien(NodeNames name)
 	
 }//public class Methods
