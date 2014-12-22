@@ -1050,17 +1050,20 @@ public class Rect_D6 {
 				name = CONS.Admin.list_NodeNames.get(node_Num - 1);
 				
 				// orien
-				switch(CONS.Admin.orien_Current) {
+				CONS.Admin.orien_Current = 
+							Methods.get_NextOrien(name, CONS.Admin.orien_Current);
 				
-				case HORI_VERTI://---------------
-					
-					CONS.Admin.orien_Current = CONS.Admin.Orien.HORI_HORI; break;
-				
-				case HORI_HORI://---------------
-					
-					CONS.Admin.orien_Current = CONS.Admin.Orien.VERTI_VERTI; break;
-					
-				}
+//				switch(CONS.Admin.orien_Current) {
+//				
+//				case HORI_VERTI://---------------
+//					
+//					CONS.Admin.orien_Current = CONS.Admin.Orien.HORI_HORI; break;
+//				
+//				case HORI_HORI://---------------
+//					
+//					CONS.Admin.orien_Current = CONS.Admin.Orien.VERTI_VERTI; break;
+//					
+//				}
 				
 				//log
 				String text = String.format(
@@ -2022,7 +2025,31 @@ public class Rect_D6 {
 		case B_UL://--------------------------------------
 			
 			switch(orien) {
-			
+
+			case HORI_VERTI://--------------------------------------
+
+				CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
+				CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
+				
+				CONS.Views.rect_C_X = CONS.Views.rect_B_X; 
+				CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_H_cur;
+
+				////////////////////////////////
+				
+				// meta
+				
+				////////////////////////////////
+				// status
+				CONS.Admin.status_C = 1;
+				
+				// current node
+				CONS.Admin.node_Current = 
+//						CONS.Admin.node_Current += 
+								Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
+//				CONS.Admin.node_Current += CONS.Admin.status_C % 2;
+
+				break;//case HORI_VERTI
+
 			case HORI_HORI://--------------------------------------
 				
 				////////////////////////////////
@@ -2051,38 +2078,43 @@ public class Rect_D6 {
 				CONS.Admin.status_C = 2;
 				
 				// current node
-				CONS.Admin.node_Current += 
+				CONS.Admin.node_Current = 
+//						CONS.Admin.node_Current += 
 								Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
 //				CONS.Admin.node_Current += CONS.Admin.status_C % 2;
 				
 //				// orientation
 //				CONS.Admin.orien_Current = CONS.Admin.Orien.HORIZONTAL;
 				
-				break;
+				break;//case HORI_HORI
 				
-			case HORI_VERTI://--------------------------------------
-
-				CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
-				CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
+			case VERTI_HORI://--------------------------------------
 				
-				CONS.Views.rect_C_X = CONS.Views.rect_B_X; 
-				CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_H_cur;
-
+				CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
+				CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
+				
+				CONS.Views.rect_C_X = CONS.Views.rect_B_X - CONS.Views.rect_C_H_orig; 
+				CONS.Views.rect_C_Y = CONS.Views.rect_B_Y;
+				
 				////////////////////////////////
 				
 				// meta
 				
 				////////////////////////////////
 				// status
-				CONS.Admin.status_C = 1;
+				CONS.Admin.status_C = 
+						Methods.get_Status_from_NodeAndPosition(
+								node_Name, 
+								orien);
+//				CONS.Admin.Orien.VERTI_VERTI);
 				
-				// current node
-				CONS.Admin.node_Current += 
-								Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
+				// current node number
+				CONS.Admin.node_Current = 
+						Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
 //				CONS.Admin.node_Current += CONS.Admin.status_C % 2;
-
-				break;
-			
+				
+				break;//case VERTI_VERTI
+				
 			case VERTI_VERTI://--------------------------------------
 				
 				CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
@@ -2102,14 +2134,14 @@ public class Rect_D6 {
 											CONS.Admin.NodeNames.B_UL, 
 											CONS.Admin.Orien.VERTI_VERTI);
 				
-				// current node
-				CONS.Admin.node_Current += 
+				// current node number
+				CONS.Admin.node_Current = 
 						Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
 //				CONS.Admin.node_Current += CONS.Admin.status_C % 2;
 				
-				break;
+				break;//case VERTI_VERTI
 				
-			}
+			}//switch(orien)
 			
 //			////////////////////////////////
 //			

@@ -31,6 +31,8 @@ public class CONS {
 			HORI_HORI, HORI_VERTI,
 			VERTI_VERTI, VERTI_HORI,
 			
+			INITIAL, NEXT_NODE,
+			
 		}
 		
 		public static Orien orien_Current;

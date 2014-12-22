@@ -247,6 +247,8 @@ public class Methods {
 			switch(orien) {
 			
 			case HORI_VERTI: return 1;
+			case HORI_HORI: return 2;
+			case VERTI_HORI: return 3;
 			case VERTI_VERTI: return 4;
 			
 			}//switch(orien)
@@ -257,5 +259,45 @@ public class Methods {
 		return -1;
 		
 	}//get_Status_from_NodeAndPosition
+
+	public static Orien 
+	get_NextOrien(NodeNames name, Orien orien_Current) {
+		// TODO Auto-generated method stub
+		
+		switch(name) {
+		
+		case B_UL:
+			
+			switch(orien_Current) {
+			
+			case HORI_VERTI://---------------
+				
+				return CONS.Admin.Orien.HORI_HORI;
+				
+			case HORI_HORI://---------------
+				
+				return CONS.Admin.Orien.VERTI_HORI;
+				
+			case VERTI_HORI://---------------
+				
+				return CONS.Admin.Orien.VERTI_VERTI;
+				
+			case VERTI_VERTI://---------------
+				
+				return CONS.Admin.Orien.NEXT_NODE;
+				
+			case INITIAL://---------------
+				
+				return CONS.Admin.Orien.HORI_VERTI;
+				
+			}
+			
+			break;
+			
+		}
+
+		return orien_Current;
+		
+	}//get_NextOrien
 	
 }
