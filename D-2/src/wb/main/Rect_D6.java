@@ -2274,8 +2274,10 @@ public class Rect_D6 {
 			
 			////////////////////////////////
 			// X
-			CONS.Views.rect_C_X = Methods.smaller_INT(CONS.Views.rect_C_X, CONS.Views.rect_B_X);
-			
+//			CONS.Views.rect_C_X = Methods.smaller_INT(CONS.Views.rect_C_X, CONS.Views.rect_B_X);
+			CONS.Views.rect_C_X = CONS.Views.rect_B_X 
+									+ CONS.Views.rect_B_W_cur 
+									- CONS.Views.rect_C_H_orig;
 			// Y
 			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_W_orig;
 			
