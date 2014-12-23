@@ -474,6 +474,7 @@ public class Methods {
 		
 		case B_UL: return CONS.Admin.Orien.HORI_VERTI;
 		case B_UR: return CONS.Admin.Orien.HORI_VERTI;
+		case B_LR: return CONS.Admin.Orien.VERTI_HORI;
 		
 		}
 		

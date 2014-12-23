@@ -1362,6 +1362,11 @@ public class Rect_D6 {
 				
 				name = CONS.Admin.list_NodeNames.get(node_Num - 1);
 				
+				////////////////////////////////
+
+				// update: orien
+
+				////////////////////////////////
 				// orien
 				CONS.Admin.orien_Current = 
 							Methods.get_NextOrien(name, CONS.Admin.orien_Current);
@@ -2498,48 +2503,15 @@ public class Rect_D6 {
 			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
 			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
 			
-//			////////////////////////////////
-//			
-//			// meta
-//			
-//			////////////////////////////////
-//			// status
-//			CONS.Admin.status_C = 
-//					Methods.get_Status_from_NodeAndPosition(
-//							node_Name, 
-//							orien);
-////			CONS.Admin.Orien.VERTI_VERTI);
-//			
-//			// current node number
-//			CONS.Admin.node_Current = 
-//					Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
-////			CONS.Admin.node_Current += CONS.Admin.status_C % 2;
-			
 			break;//case VERTI_VERTI
 			
 		case VERTI_VERTI://--------------------------------------
 			
-//			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
-//			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
-//			
-//			CONS.Views.rect_C_X = CONS.Views.rect_B_X - CONS.Views.rect_C_W_orig; 
-//			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y;
-//			
-//			////////////////////////////////
-//			
-//			// meta
-//			
-//			////////////////////////////////
-//			// status
-//			CONS.Admin.status_C = 
-//							Methods.get_Status_from_NodeAndPosition(
-//										CONS.Admin.NodeNames.B_UL, 
-//										CONS.Admin.Orien.VERTI_VERTI);
-//			
-//			// current node number
-//			CONS.Admin.node_Current = 
-//					Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
-////			CONS.Admin.node_Current += CONS.Admin.status_C % 2;
+			CONS.Views.rect_C_X = CONS.Views.rect_B_X + CONS.Views.rect_B_W_orig; 
+			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y;
+			
+			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
+			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
 			
 			break;//case VERTI_VERTI
 			
