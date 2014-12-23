@@ -2768,41 +2768,11 @@ public class Rect_D6 {
 		case VERTI_HORI://-------------------------------------- status = 7
 			
 			// => to HORI_HORI
-			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
-			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
-			
-			CONS.Views.rect_C_X = CONS.Views.rect_B_X - CONS.Views.rect_C_H_orig; 
+			CONS.Views.rect_C_X = CONS.Views.rect_B_X + CONS.Views.rect_B_W_orig; 
 			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y;
 			
-//			////////////////////////////////
-//			
-//			// meta
-//			
-//			////////////////////////////////
-//			//log
-//			String text = String.format(
-//						Locale.JAPAN, 
-//						"name = %s, orien = %s\n", 
-//						node_Name.toString(), orien.toString());
-//			
-//			String fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//			
-//			int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//			
-//			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-//
-//
-//			// status
-//			CONS.Admin.status_C = 
-//					Methods.get_Status_from_NodeAndPosition(
-//							node_Name, 
-//							orien);
-////			CONS.Admin.Orien.VERTI_VERTI);
-//			
-//			// current node number
-//			CONS.Admin.node_Current = 
-//					Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
-////			CONS.Admin.node_Current += CONS.Admin.status_C % 2;
+			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
+			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
 			
 			break;//case VERTI_VERTI
 			
@@ -2813,22 +2783,6 @@ public class Rect_D6 {
 			
 			CONS.Views.rect_C_X = CONS.Views.rect_B_X - CONS.Views.rect_C_W_orig; 
 			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y;
-			
-//			////////////////////////////////
-//			
-//			// meta
-//			
-//			////////////////////////////////
-//			// status
-//			CONS.Admin.status_C = 
-//					Methods.get_Status_from_NodeAndPosition(
-//							CONS.Admin.NodeNames.B_UL, 
-//							CONS.Admin.Orien.VERTI_VERTI);
-//			
-//			// current node number
-//			CONS.Admin.node_Current = 
-//					Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
-////			CONS.Admin.node_Current += CONS.Admin.status_C % 2;
 			
 			break;//case VERTI_VERTI
 			
