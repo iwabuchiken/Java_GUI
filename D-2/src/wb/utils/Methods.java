@@ -274,6 +274,20 @@ public class Methods {
 			
 			break;
 			
+		case B_LR:
+			
+			switch(orien) {
+			
+			case INITIAL: 
+			case VERTI_HORI: return 9;
+			case VERTI_VERTI: return 10;
+			case HORI_VERTI: return 11;
+			case HORI_HORI: return 12;
+			
+			}//switch(orien)
+			
+			break;
+			
 		}//switch(name)
 		
 		return -1;

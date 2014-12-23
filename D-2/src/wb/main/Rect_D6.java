@@ -2274,6 +2274,13 @@ public class Rect_D6 {
 			
 			break;//case B_UL:
 			
+		case B_LR://--------------------------------------
+			
+			_move_Right__B_LR(node_Name, orien);
+			
+			
+			break;//case B_UL:
+			
 		}//switch(CONS.Admin.status)
 		
 		////////////////////////////////
@@ -2307,7 +2314,7 @@ public class Rect_D6 {
 	 
 	
 	private void 
-	_move_Right__B_UR(NodeNames node_Name, Orien orien) {
+	_move_Right__B_LR(NodeNames node_Name, Orien orien) {
 		// TODO Auto-generated method stub
 
 		////////////////////////////////
@@ -2318,6 +2325,16 @@ public class Rect_D6 {
 		switch(orien) {
 
 		case INITIAL://--------------------------------------
+		case VERTI_HORI://--------------------------------------
+			
+			CONS.Views.rect_C_X = CONS.Views.rect_B_X + CONS.Views.rect_B_W_orig; 
+			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y + CONS.Views.rect_B_H_orig - CONS.Views.rect_C_W_orig;
+			
+			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
+			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
+			
+			break;//case VERTI_VERTI
+			
 		case HORI_VERTI://--------------------------------------
 
 			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
@@ -2331,6 +2348,85 @@ public class Rect_D6 {
 			
 			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_H_orig;
 
+			break;//case HORI_VERTI
+
+		case HORI_HORI://--------------------------------------
+			
+			////////////////////////////////
+			
+			// coordinates
+			
+			////////////////////////////////
+			// X
+//			CONS.Views.rect_C_X = Methods.smaller_INT(CONS.Views.rect_C_X, CONS.Views.rect_B_X);
+			CONS.Views.rect_C_X = CONS.Views.rect_B_X 
+									+ CONS.Views.rect_B_W_cur 
+									- CONS.Views.rect_C_H_orig;
+			// Y
+			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_W_orig;
+			
+			// W
+			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
+			
+			// H
+			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
+			
+			break;//case HORI_HORI
+			
+		case VERTI_VERTI://--------------------------------------
+			
+			CONS.Views.rect_C_X = CONS.Views.rect_B_X + CONS.Views.rect_B_W_orig; 
+			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y;
+			
+			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
+			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
+			
+			break;//case VERTI_VERTI
+			
+		}//switch(orien)
+
+		////////////////////////////////
+		
+		// meta
+		
+		////////////////////////////////
+		// status
+		CONS.Admin.status_C = 
+				Methods.get_Status_from_NodeAndPosition(
+						node_Name, 
+						orien);
+		
+		// current node number
+		CONS.Admin.node_Current = 
+				Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
+
+	}//_move_Right__B_LR(NodeNames node_Name, Orien orien)
+
+	private void 
+	_move_Right__B_UR(NodeNames node_Name, Orien orien) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// coordinates
+		
+		////////////////////////////////
+		switch(orien) {
+		
+		case INITIAL://--------------------------------------
+		case HORI_VERTI://--------------------------------------
+			
+			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
+			
+			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
+			
+			CONS.Views.rect_C_X = 
+					CONS.Views.rect_B_X 
+					+ CONS.Views.rect_B_W_cur 
+					- CONS.Views.rect_C_W_orig; 
+			
+			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_H_orig;
+			
 //			////////////////////////////////
 //			
 //			// meta
@@ -2347,9 +2443,9 @@ public class Rect_D6 {
 ////					CONS.Admin.node_Current += 
 //							Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
 ////			CONS.Admin.node_Current += CONS.Admin.status_C % 2;
-
+			
 			break;//case HORI_VERTI
-
+			
 		case HORI_HORI://--------------------------------------
 			
 			////////////////////////////////
@@ -2360,8 +2456,8 @@ public class Rect_D6 {
 			// X
 //			CONS.Views.rect_C_X = Methods.smaller_INT(CONS.Views.rect_C_X, CONS.Views.rect_B_X);
 			CONS.Views.rect_C_X = CONS.Views.rect_B_X 
-									+ CONS.Views.rect_B_W_cur 
-									- CONS.Views.rect_C_H_orig;
+			+ CONS.Views.rect_B_W_cur 
+			- CONS.Views.rect_C_H_orig;
 			// Y
 			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_W_orig;
 			
@@ -2411,7 +2507,7 @@ public class Rect_D6 {
 			break;//case VERTI_VERTI
 			
 		}//switch(orien)
-
+		
 		////////////////////////////////
 		
 		// meta
@@ -2426,9 +2522,9 @@ public class Rect_D6 {
 		// current node number
 		CONS.Admin.node_Current = 
 				Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
-
+		
 	}//_move_Right__B_UR(NodeNames node_Name, Orien orien)
-
+	
 	
 	private void 
 	_move_Right__B_UL(NodeNames node_Name, Orien orien) {
