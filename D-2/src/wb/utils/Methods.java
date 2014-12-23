@@ -548,8 +548,8 @@ public class Methods {
 
 		//log
 		String text = String.format(Locale.JAPAN, 
-							"status => %d / index_Orien => %d\n", 
-							status, index_Orien);
+							"status => %d / name = %s / index_Orien => %d\n", 
+							status, name.toString(), index_Orien);
 		
 		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
 		
@@ -569,7 +569,7 @@ public class Methods {
 		////////////////////////////////
 		switch(name) {
 		
-		case B_UL:
+		case B_UL://----------------------------------
 			
 			switch(index_Orien) {
 			
@@ -580,8 +580,21 @@ public class Methods {
 			
 			}
 			
-			break;
+			break;//case B_UL
 		
+		case B_UR://----------------------------------
+			
+			switch(index_Orien) {
+			
+			case 1: orien = CONS.Admin.Orien.HORI_VERTI; break; 
+			case 2: orien = CONS.Admin.Orien.HORI_HORI; break; 
+			case 3: orien = CONS.Admin.Orien.VERTI_HORI; break; 
+			case 4: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			
+			}
+			
+			break;//case B_UL
+			
 		}//switch(name)
 		
 		return new Object[]{name, orien};

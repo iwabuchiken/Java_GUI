@@ -1124,132 +1124,10 @@ public class Rect_D6 {
 			public void widgetSelected(SelectionEvent e) {
 
 				Rect_D6.this.bt_Selected_Jump(Rect_D6.this.txt_Jump.getText());
-				
-//				/*******************************
-//
-//					validate
-//
-//				 *******************************/
-//				String tmp = Rect_D6.this.txt_Jump.getText();
-//				
-//				if (tmp == null) {
-//					
-//					return;
-//					
-//				}
-//				
-//				if (tmp.equals("")) {
-//
-//					String msg;
-//					
-//					msg = String.format(
-//							Locale.JAPAN,
-//							"no input",
-//							Thread.currentThread().getStackTrace()[1].getLineNumber());
-//					
-//					JOptionPane.showMessageDialog(null,
-//							msg,
-//							"message", JOptionPane.ERROR_MESSAGE);
-//					
-//					return;
-//					
-//				}
-//				
-//				if (!NumberUtils.isNumber(tmp)) {
-//					
-//					String msg = String.format(
-//							Locale.JAPAN,
-//							"[%s:%d]not a number => " + tmp,
-//							Thread.currentThread().getStackTrace()[1].getFileName(),
-//							Thread.currentThread().getStackTrace()[1].getLineNumber());
-//					
-//					JOptionPane.showMessageDialog(null,
-//							msg,
-//							"message", JOptionPane.ERROR_MESSAGE);
-//					
-//					return;
-//					
-//				}
-//				
-//				////////////////////////////////
-//
-//				// jump
-//
-//				////////////////////////////////
-//				Object[] objs = Methods.get_NodeNameAndOrien_frmo_Status(Integer.parseInt(tmp));
-//
-//				NodeNames name = (NodeNames)objs[0];
-//				
-//				Orien orien = (Orien)objs[1];
-//				
-//				// validate
-//				if (name == null && orien == null) {
-//
-//					String msg = String.format(
-//							Locale.JAPAN,
-//							"[%s:%d] name and orien are both null",
-//							Thread.currentThread().getStackTrace()[1].getFileName(),
-//							Thread.currentThread().getStackTrace()[1].getLineNumber()
-//							);
-//					
-//					JOptionPane.showMessageDialog(null,
-//							msg,
-//							"message", JOptionPane.ERROR_MESSAGE);
-//					
-//					return;
-//
-//				} else if (name == null) {
-//						
-//						String msg = String.format(
-//								Locale.JAPAN,
-//								"[%s:%d] name is null",
-//								Thread.currentThread().getStackTrace()[1].getFileName(),
-//								Thread.currentThread().getStackTrace()[1].getLineNumber()
-//								);
-//						
-//						JOptionPane.showMessageDialog(null,
-//								msg,
-//								"message", JOptionPane.ERROR_MESSAGE);
-//						
-//						return;
-//						
-//				} else if (orien == null) {
-//						
-//						String msg = String.format(
-//								Locale.JAPAN,
-//								"[%s:%d] orien is null",
-//								Thread.currentThread().getStackTrace()[1].getFileName(),
-//								Thread.currentThread().getStackTrace()[1].getLineNumber()
-//								);
-//						
-//						JOptionPane.showMessageDialog(null,
-//								msg,
-//								"message", JOptionPane.ERROR_MESSAGE);
-//						
-//						return;
-//						
-//				}
-//				
-//				//log
-//				String text = String.format(Locale.JAPAN, 
-//						"name = %s / orien = %s\n", 
-//						name.toString(),
-//						((Orien)objs[1]).toString()
-//						);
-//				
-//				
-////				String fname = Thread.currentThread().getStackTrace()[1].getFileName();
-////				
-////				int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-////				
-////				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-				
-				
 
 			}//public void widgetSelected(SelectionEvent e)
 			
 		});
-
 		
 	}//_init_Set_Listeners
 
@@ -4052,7 +3930,6 @@ public class Rect_D6 {
 
 		////////////////////////////////
 		CONS.Admin.orien_Current = orien;
-
 		
 		////////////////////////////////
 
@@ -4074,21 +3951,6 @@ public class Rect_D6 {
 		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 
 		this._move_Rect_C_RIGHT(name, orien);
-		
-		
-//		//log
-//		String text = String.format(Locale.JAPAN, 
-//				"name = %s / orien = %s\n", 
-//				name.toString(),
-//				((Orien)objs[1]).toString()
-//				);
-		
-		
-	//	String fname = Thread.currentThread().getStackTrace()[1].getFileName();
-	//	
-	//	int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-	//	
-	//	System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 		
 	}//bt_Selected_Jump
 
