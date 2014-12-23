@@ -2740,7 +2740,7 @@ public class Rect_D6 {
 	
 		switch(orien) {
 		
-		case HORI_VERTI://--------------------------------------
+		case HORI_VERTI://-------------------------------------- status = 5
 			
 			CONS.Views.rect_C_X = CONS.Views.rect_B_X + CONS.Views.rect_B_W_orig - CONS.Views.rect_C_W_orig; 
 			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_H_orig;
@@ -2748,86 +2748,24 @@ public class Rect_D6 {
 			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
 			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
 			
-//			////////////////////////////////
-//			
-//			// meta
-//			
-//			////////////////////////////////
-//			// status
-//			CONS.Admin.status_C = 1;
-//			
-//			// current node
-//			CONS.Admin.node_Current = 
-////					CONS.Admin.node_Current += 
-//					Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
-////			CONS.Admin.node_Current += CONS.Admin.status_C % 2;
-			
 			break;//case HORI_VERTI
 			
-		case HORI_HORI://--------------------------------------
+		case HORI_HORI://-------------------------------------- status = 6
 
 			////////////////////////////////
 			
 			// coordinates
 			
 			////////////////////////////////
+			CONS.Views.rect_C_X = CONS.Views.rect_B_X + CONS.Views.rect_B_W_orig - CONS.Views.rect_C_H_orig; 
+			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_W_orig;
+			
 			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
 			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
 			
-			CONS.Views.rect_C_X = CONS.Views.rect_B_X; 
-			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_W_orig;
-			
-//			////////////////////////////////
-//			
-//			// meta
-//			
-//			////////////////////////////////
-//			// status
-//			CONS.Admin.status_C = 2;
-//			
-//			// current node
-//			CONS.Admin.node_Current = 
-////					CONS.Admin.node_Current += 
-//					Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
-////			CONS.Admin.node_Current += CONS.Admin.status_C % 2;
-
-//			////////////////////////////////
-//			
-//			// coordinates
-//			
-//			////////////////////////////////
-//			// X
-//			CONS.Views.rect_C_X = CONS.Views.rect_A_X;
-//			
-//			// Y
-//			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_W_orig;
-//			
-//			// W
-//			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
-//			
-//			// H
-//			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
-//			
-//			////////////////////////////////
-//			
-//			// meta
-//			
-//			////////////////////////////////
-//			// status
-//			CONS.Admin.status_C = 2;
-//			
-//			// current node
-//			CONS.Admin.node_Current = 
-////					CONS.Admin.node_Current += 
-//					Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
-////			CONS.Admin.node_Current += CONS.Admin.status_C % 2;
-//			
-////			// orientation
-////			CONS.Admin.orien_Current = CONS.Admin.Orien.HORIZONTAL;
-			
 			break;//case HORI_HORI
 			
-		case VERTI_HORI://--------------------------------------
+		case VERTI_HORI://-------------------------------------- status = 7
 			
 			// => to HORI_HORI
 			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
