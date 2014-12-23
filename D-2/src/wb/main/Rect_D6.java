@@ -44,6 +44,7 @@ import org.eclipse.swt.widgets.Group;
 
 
 
+
 import wb.utils.CONS;
 import wb.utils.CONS.Admin.NodeNames;
 import wb.utils.CONS.Admin.Orien;
@@ -1122,7 +1123,7 @@ public class Rect_D6 {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 
-				Methods.bt_Selected_Jump(Rect_D6.this.txt_Jump.getText());
+				Rect_D6.this.bt_Selected_Jump(Rect_D6.this.txt_Jump.getText());
 				
 //				/*******************************
 //
@@ -2351,7 +2352,7 @@ public class Rect_D6 {
 		
 	}//_move_Rect_B_right(int status)
 	
-	protected void 
+	public void
 	_move_Rect_C_RIGHT(NodeNames node_Name, Orien orien) {
 		// TODO Auto-generated method stub
 		
@@ -2684,6 +2685,15 @@ public class Rect_D6 {
 			break;//case VERTI_VERTI
 			
 		}//switch(orien)
+		
+		//log
+		String text = String.format(Locale.JAPAN, "_move_Right__B_UL => complete\n");
+		
+		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 		
 	}//_move_Right__B_UL(Orien orien)
 
@@ -3916,6 +3926,153 @@ public class Rect_D6 {
 		
 
 	}
+
+	public void 
+	bt_Selected_Jump(String tmp) {
+		// TODO Auto-generated method stub
+		
+		/*******************************
+
+			validate
+	
+		 *******************************/
+//		String tmp = Rect_D6.txt_Jump.getText();
+		
+		if (tmp == null) {
+			
+			return;
+			
+		}
+		
+		if (tmp.equals("")) {
+	
+			String msg;
+			
+			msg = String.format(
+					Locale.JAPAN,
+					"no input",
+					Thread.currentThread().getStackTrace()[1].getLineNumber());
+			
+			JOptionPane.showMessageDialog(null,
+					msg,
+					"message", JOptionPane.ERROR_MESSAGE);
+			
+			return;
+			
+		}
+		
+		if (!NumberUtils.isNumber(tmp)) {
+			
+			String msg = String.format(
+					Locale.JAPAN,
+					"[%s:%d]not a number => " + tmp,
+					Thread.currentThread().getStackTrace()[1].getFileName(),
+					Thread.currentThread().getStackTrace()[1].getLineNumber());
+			
+			JOptionPane.showMessageDialog(null,
+					msg,
+					"message", JOptionPane.ERROR_MESSAGE);
+			
+			return;
+			
+		}
+		
+		////////////////////////////////
+	
+		// prep data
+	
+		////////////////////////////////
+		Object[] objs = Methods.get_NodeNameAndOrien_frmo_Status(Integer.parseInt(tmp));
+	
+		NodeNames name = (NodeNames)objs[0];
+		
+		Orien orien = (Orien)objs[1];
+		
+		// validate
+		if (name == null && orien == null) {
+	
+			String msg = String.format(
+					Locale.JAPAN,
+					"[%s:%d] name and orien are both null",
+					Thread.currentThread().getStackTrace()[1].getFileName(),
+					Thread.currentThread().getStackTrace()[1].getLineNumber()
+					);
+			
+			JOptionPane.showMessageDialog(null,
+					msg,
+					"message", JOptionPane.ERROR_MESSAGE);
+			
+			return;
+	
+		} else if (name == null) {
+				
+				String msg = String.format(
+						Locale.JAPAN,
+						"[%s:%d] name is null",
+						Thread.currentThread().getStackTrace()[1].getFileName(),
+						Thread.currentThread().getStackTrace()[1].getLineNumber()
+						);
+				
+				JOptionPane.showMessageDialog(null,
+						msg,
+						"message", JOptionPane.ERROR_MESSAGE);
+				
+				return;
+				
+		} else if (orien == null) {
+				
+				String msg = String.format(
+						Locale.JAPAN,
+						"[%s:%d] orien is null",
+						Thread.currentThread().getStackTrace()[1].getFileName(),
+						Thread.currentThread().getStackTrace()[1].getLineNumber()
+						);
+				
+				JOptionPane.showMessageDialog(null,
+						msg,
+						"message", JOptionPane.ERROR_MESSAGE);
+				
+				return;
+				
+		}
+		
+		////////////////////////////////
+
+		// jump
+
+		////////////////////////////////
+		//log
+		String text = String.format(Locale.JAPAN, 
+				"calling => _move_Rect_C_RIGHT (name = %s / orien = %s)\n", 
+				name.toString(),
+				orien.toString()
+				);
+		
+		
+		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		this._move_Rect_C_RIGHT(name, orien);
+		
+		
+//		//log
+//		String text = String.format(Locale.JAPAN, 
+//				"name = %s / orien = %s\n", 
+//				name.toString(),
+//				((Orien)objs[1]).toString()
+//				);
+		
+		
+	//	String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+	//	
+	//	int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+	//	
+	//	System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+	}//bt_Selected_Jump
 
 	class XThread extends Thread{
 	
