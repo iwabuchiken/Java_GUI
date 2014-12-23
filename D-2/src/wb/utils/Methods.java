@@ -490,7 +490,23 @@ public class Methods {
 		
 		NodeNames name = CONS.Admin.list_NodeNames.get(node_Number - 1);
 		
-		int index_Orien = 4 - (status % 4);
+//		int index_Orien = 4 - (status % 4);
+		int index_Orien = status % 4;
+		
+		if (index_Orien == 0) index_Orien = 4;
+
+		//log
+		String text = String.format(Locale.JAPAN, 
+							"status => %d / index_Orien => %d\n", 
+							status, index_Orien);
+		
+		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+
 		
 		CONS.Admin.Orien orien = null;
 //		Orien orien;
