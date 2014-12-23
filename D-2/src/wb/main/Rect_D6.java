@@ -13,6 +13,8 @@ import java.util.Locale;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+import org.apache.commons.lang.math.NumberUtils;
+//import org.apache.commons.lang.NumberUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
@@ -39,6 +41,7 @@ import org.eclipse.swt.widgets.Group;
 
 
 
+
 import wb.utils.CONS;
 import wb.utils.CONS.Admin.NodeNames;
 import wb.utils.CONS.Admin.Orien;
@@ -49,6 +52,7 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.wb.swt.SWTResourceManager;
+import org.eclipse.swt.widgets.Text;
 
 public class Rect_D6 {
 
@@ -71,7 +75,7 @@ public class Rect_D6 {
 
 	Dimension dim;
 
-	Button bt_Execute, bt_Quit, bt_Clear, bt_Back, bt_Forward;
+	Button bt_Execute, bt_Quit, bt_Clear, bt_Back, bt_Forward, bt_Jump;
 
 	static Label lbl_Status, lbl_In;
 	
@@ -89,6 +93,7 @@ public class Rect_D6 {
 	private Button btnOptions;
 	private FormData fd_gr_navigate;
 	private FormData fd_gr_ops;
+	private Text txt_Jump;
 //	private Group group_2;
 	
 	////////////////////////////////
@@ -261,6 +266,45 @@ public class Rect_D6 {
 		this._init_Views__Labels(shell, gr_ops);
 		
 		_init_Set_Listeners(shell);
+		
+		Group group = new Group(shell, SWT.NONE);
+		group.setBackground(SWTResourceManager.getColor(SWT.COLOR_YELLOW));
+		FormData fd_group = new FormData();
+		fd_group.left = new FormAttachment(gr_navigate, -44, SWT.LEFT);
+		fd_group.top = new FormAttachment(lbl_In, 23);
+		fd_group.bottom = new FormAttachment(lbl_AreaData, -12);
+		fd_group.right = new FormAttachment(100, -55);
+		group.setLayoutData(fd_group);
+		
+		txt_Jump = new Text(group, SWT.BORDER);
+		txt_Jump.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT));
+		txt_Jump.setBounds(27, 27, 72, 33);
+		
+//		Button btnJump = new Button(group, SWT.NONE);
+		bt_Jump = new Button(group, SWT.NONE);
+		bt_Jump.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				//log
+				
+				String text = String.format(Locale.JAPAN, 
+							"txt_Jump => %s(is number => %s)\n", 
+							Rect_D6.this.txt_Jump.getText(),
+//							org.apache.commons.lang.math.NumberUtils.isNumber(Rect_D6.this.txt_Jump.getText())
+							NumberUtils.isNumber(Rect_D6.this.txt_Jump.getText())
+							);
+				
+				String fname = Thread.currentThread().getStackTrace()[2].getFileName();
+				
+				int line_Num = Thread.currentThread().getStackTrace()[2].getLineNumber();
+				
+				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+			}
+		});
+		bt_Jump.setBounds(115, 25, 92, 37);
+		bt_Jump.setText("Jump");
 		
 	}//createContents
 
@@ -1005,6 +1049,8 @@ public class Rect_D6 {
 			public void 
 			widgetSelected(SelectionEvent e) {
 
+				Rect_D6.this.reset_Canvas();
+				
 //				//test
 //				if (Rect.this.frame != null) {
 //					
@@ -1012,22 +1058,22 @@ public class Rect_D6 {
 //					
 //				}
 				
-				if (applicationThread != null) {
-					
-		            Rect_D6.this.terminate();
-		            
-		            try {
-						Rect_D6.this.applicationThread.join();
-						
-						System.out.println("Thread => stopped: \t" + Thread.currentThread().getName());
-						
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-//		            LOGGER.debug("Thread successfully stopped.");
-		            
-		        }
+//				if (applicationThread != null) {
+//					
+//		            Rect_D6.this.terminate();
+//		            
+//		            try {
+//						Rect_D6.this.applicationThread.join();
+//						
+//						System.out.println("Thread => stopped: \t" + Thread.currentThread().getName());
+//						
+//					} catch (InterruptedException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
+////		            LOGGER.debug("Thread successfully stopped.");
+//		            
+//		        }
 				
 //				applicationThread.stop();
 				
@@ -1081,6 +1127,19 @@ public class Rect_D6 {
 
 		
 	}//_init_Set_Listeners
+
+	protected void 
+	reset_Canvas() {
+		// TODO Auto-generated method stub
+	
+		CONS.Admin.orien_Current = CONS.Admin.Orien.HORI_VERTI;
+		CONS.Admin.NodeNames name = CONS.Admin.NodeNames.B_UL;
+		
+		this._move_Rect_C_RIGHT(name, CONS.Admin.orien_Current);
+//		this._move_Rect_C_RIGHT(CONS.Admin.NodeNames.B_UL, CONS.Admin.Orien.HORI_VERTI);
+		
+	}
+	
 
 	private void 
 	_init_Views__Buttons
@@ -3535,7 +3594,7 @@ public class Rect_D6 {
 		fd_lbl_Status.bottom = new FormAttachment(lbl_In, -21);
 		lbl_In.setBackground(SWTResourceManager.getColor(SWT.COLOR_GRAY));
 		FormData fd_lbl_In = new FormData();
-		fd_lbl_In.top = new FormAttachment(gr_ops, 166);
+		fd_lbl_In.top = new FormAttachment(0, 463);
 		fd_lbl_In.right = new FormAttachment(gr_navigate, 0, SWT.RIGHT);
 		fd_lbl_In.left = new FormAttachment(0, 1022);
 		lbl_In.setLayoutData(fd_lbl_In);
@@ -3547,14 +3606,14 @@ public class Rect_D6 {
 
 		////////////////////////////////
 		lbl_AreaData = new Label(shell, SWT.NONE);
-		fd_lbl_In.bottom = new FormAttachment(lbl_AreaData, -30);
+		fd_lbl_In.bottom = new FormAttachment(lbl_AreaData, -129);
 		
 		lbl_AreaData.setBackground(this.burlywood2);
 		FormData fd_lbl_AreaData = new FormData();
-		fd_lbl_AreaData.top = new FormAttachment(0, 539);
-		fd_lbl_AreaData.bottom = new FormAttachment(100, -150);
-		fd_lbl_AreaData.left = new FormAttachment(gr_navigate, 0, SWT.LEFT);
-		fd_lbl_AreaData.right = new FormAttachment(100, -72);
+		fd_lbl_AreaData.bottom = new FormAttachment(100, -51);
+		fd_lbl_AreaData.left = new FormAttachment(gr_navigate, 4, SWT.LEFT);
+		fd_lbl_AreaData.right = new FormAttachment(100, -68);
+		fd_lbl_AreaData.top = new FormAttachment(0, 638);
 		lbl_AreaData.setLayoutData(fd_lbl_AreaData);
 		//		lbl_1.setText("Thanks");
 				
