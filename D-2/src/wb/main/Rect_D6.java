@@ -1339,7 +1339,9 @@ public class Rect_D6 {
 					name = CONS.Admin.list_NodeNames.get(node_Num - 1 -1);
 					
 					// update: orien
-					CONS.Admin.orien_Current = Methods.get_InitialOrien(name);
+					CONS.Admin.orien_Current = Methods.get_LastOrien(name);
+//					CONS.Admin.orien_Current = Methods.get_InitialOrien(name);
+//					CONS.Admin.orien_Current = Methods.get_InitialOrien(name);
 //					CONS.Admin.orien_Current = CONS.Admin.Orien.INITIAL;
 					
 				}
@@ -2862,40 +2864,6 @@ public class Rect_D6 {
 //					CONS.Admin.node_Current += 
 					Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
 //			CONS.Admin.node_Current += CONS.Admin.status_C % 2;
-			
-//			////////////////////////////////
-//			
-//			// coordinates
-//			
-//			////////////////////////////////
-//			// X
-//			CONS.Views.rect_C_X = CONS.Views.rect_A_X;
-//			
-//			// Y
-//			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_W_orig;
-//			
-//			// W
-//			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
-//			
-//			// H
-//			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
-//			
-//			////////////////////////////////
-//			
-//			// meta
-//			
-//			////////////////////////////////
-//			// status
-//			CONS.Admin.status_C = 2;
-//			
-//			// current node
-//			CONS.Admin.node_Current = 
-////					CONS.Admin.node_Current += 
-//					Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
-////			CONS.Admin.node_Current += CONS.Admin.status_C % 2;
-//			
-////			// orientation
-////			CONS.Admin.orien_Current = CONS.Admin.Orien.HORIZONTAL;
 			
 			break;//case HORI_HORI
 			

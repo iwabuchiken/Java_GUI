@@ -510,6 +510,28 @@ public class Methods {
 		
 	}//get_InitialOrien(NodeNames name)
 
+	/*******************************
+
+		@return
+		default => HORI_VERTI
+
+	 *******************************/
+	public static Orien 
+	get_LastOrien(NodeNames name) {
+		// TODO Auto-generated method stub
+		
+		switch(name) {
+		
+		case B_UL: return CONS.Admin.Orien.VERTI_VERTI;
+		case B_UR: return CONS.Admin.Orien.VERTI_VERTI;
+		case B_LR: return CONS.Admin.Orien.HORI_HORI;
+		
+		}
+		
+		return CONS.Admin.Orien.HORI_VERTI;
+		
+	}//get_InitialOrien(NodeNames name)
+	
 	public static Object[] 
 	get_NodeNameAndOrien_frmo_Status(int status) {
 		// TODO Auto-generated method stub
