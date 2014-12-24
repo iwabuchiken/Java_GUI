@@ -114,6 +114,7 @@ public class CONS {
 		////////////////////////////////
 		public static final int rect_C_W_orig = 50;
 		
+//		public static final int rect_C_H_orig = 120;
 		public static final int rect_C_H_orig = 100;
 //		public static final int rect_C_H_orig = rect_C_W_orig * 2;
 		
