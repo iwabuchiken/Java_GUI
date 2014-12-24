@@ -71,6 +71,9 @@ public class Rect_D6 {
 	
 	Thread applicationThread;
 	Runnable print;
+
+	// rectangles
+	Rect rect_A, rect_B, rect_C;
 	
 	//REF http://stackoverflow.com/questions/10961714/how-to-properly-stop-the-thread-in-java answered Jun 9 '12 at 14:21
 	volatile boolean running = true;
@@ -153,6 +156,8 @@ public class Rect_D6 {
 		////////////////////////////////
 		this.init_Sizes();
 		
+		this.init_Rects();
+		
 		draw_Initial();
 		
 		while (!shell.isDisposed()) {
@@ -172,6 +177,52 @@ public class Rect_D6 {
 //		Methods.write_Log(text, fname, line_Num);
 		
 	}//open
+
+	private void 
+	init_Rects() {
+		// TODO Auto-generated method stub
+	
+		////////////////////////////////
+
+		// rectangles
+
+		////////////////////////////////
+		////////////////////////////////
+
+		// rect: A
+
+		////////////////////////////////
+		rect_A = new Rect();
+		
+		rect_A.setColor(red);
+		
+		rect_A.setX_Cur(CONS.Views.rect_A_X);
+		rect_A.setY_Cur(CONS.Views.rect_A_Y);
+		
+		rect_A.setW(CONS.Views.rect_A_W);
+		rect_A.setH(CONS.Views.rect_A_H);
+		
+		rect_A.setW_Orig(CONS.Views.rect_A_W);
+		rect_A.setH_Orig(CONS.Views.rect_A_H);
+		
+		////////////////////////////////
+		
+		// rect: B
+		
+		////////////////////////////////
+		Rect rect_B = new Rect();
+		
+		rect_B.setColor(this.blue);
+		
+		rect_B.setX_Cur(CONS.Views.rect_B_X);
+		
+		rect_B.setW(CONS.Views.rect_B_W_orig);
+		rect_B.setH(CONS.Views.rect_B_H_orig);
+		
+		rect_B.setW_Orig(CONS.Views.rect_B_W_orig);
+		rect_B.setH_Orig(CONS.Views.rect_B_H_orig);
+
+	}
 
 	private void
 	terminate() {
@@ -203,44 +254,44 @@ public class Rect_D6 {
 		CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_LR);
 		CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_LL);
 		
-		////////////////////////////////
-
-		// rectangles
-
-		////////////////////////////////
-		////////////////////////////////
-
-		// rect: A
-
-		////////////////////////////////
-		Rect rect_A = new Rect();
-		
-		rect_A.setColor(red);
-		
-		rect_A.setX_Cur(CONS.Views.rect_A_X);
-		
-		rect_A.setW(CONS.Views.rect_A_W);
-		rect_A.setH(CONS.Views.rect_A_H);
-		
-		rect_A.setW_Orig(CONS.Views.rect_A_W);
-		rect_A.setH_Orig(CONS.Views.rect_A_H);
-		
-		////////////////////////////////
-		
-		// rect: B
-		
-		////////////////////////////////
-		Rect rect_B = new Rect();
-		
-		rect_B.setColor(this.blue);
-		
-		rect_B.setX_Cur(CONS.Views.rect_B_X);
-		
-		rect_B.setW(CONS.Views.rect_B_W_orig);
-		rect_B.setH(CONS.Views.rect_B_H_orig);
-		
-		rect_B.setW_Orig(CONS.Views.rect_B_W_orig);
-		rect_B.setH_Orig(CONS.Views.rect_B_H_orig);
+//		////////////////////////////////
+//
+//		// rectangles
+//
+//		////////////////////////////////
+//		////////////////////////////////
+//
+//		// rect: A
+//
+//		////////////////////////////////
+//		rect_A = new Rect();
+//		
+//		rect_A.setColor(red);
+//		
+//		rect_A.setX_Cur(CONS.Views.rect_A_X);
+//		
+//		rect_A.setW(CONS.Views.rect_A_W);
+//		rect_A.setH(CONS.Views.rect_A_H);
+//		
+//		rect_A.setW_Orig(CONS.Views.rect_A_W);
+//		rect_A.setH_Orig(CONS.Views.rect_A_H);
+//		
+//		////////////////////////////////
+//		
+//		// rect: B
+//		
+//		////////////////////////////////
+//		Rect rect_B = new Rect();
+//		
+//		rect_B.setColor(this.blue);
+//		
+//		rect_B.setX_Cur(CONS.Views.rect_B_X);
+//		
+//		rect_B.setW(CONS.Views.rect_B_W_orig);
+//		rect_B.setH(CONS.Views.rect_B_H_orig);
+//		
+//		rect_B.setW_Orig(CONS.Views.rect_B_W_orig);
+//		rect_B.setH_Orig(CONS.Views.rect_B_H_orig);
 		
 	}//init_Vars
 
@@ -378,6 +429,7 @@ public class Rect_D6 {
 	_init_Colors() {
 		// TODO Auto-generated method stub
 		
+		//REF http://stackoverflow.com/questions/50064/setting-colors-in-swt answered Sep 8 '08 at 16:49
 		Device device = Display.getCurrent ();
 		red = new Color (device, 255, 0, 0);
 		
@@ -401,38 +453,24 @@ public class Rect_D6 {
 		
 		//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
 		GC gc = new GC(cv_1);
-//        if(lp != null) {
-//            gc.setXORMode(true);
 		
 		gc.setForeground(display.getSystemColor(SWT.COLOR_CYAN)); 
-		
-		//REF http://stackoverflow.com/questions/50064/setting-colors-in-swt answered Sep 8 '08 at 16:49
-//		Device device = Display.getCurrent ();
-//		Color red = new Color (device, 255, 0, 0);
 		
 		gc.setBackground(red); 
 		
 		//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
 		gc.setLineWidth(CONS.Views.lineWidth_Rect);
 		
-		
-		
-//        gc.drawLine(0,0, 100, 100);
 		gc.fillRectangle(
-				CONS.Views.rect_A_X, 
-				CONS.Views.rect_A_Y, 
-//				cv_1.getSize().x / 2 - CONS.Views.rect_Main_W / 2, 
-//				cv_1.getSize().y / 2 - CONS.Views.rect_Main_H, 
-				CONS.Views.rect_A_W, 
-				CONS.Views.rect_A_H);
-//		gc.fillRectangle(
-//				dim.getSize().width / 2, 
-//				dim.getSize().height / 2, 
-//				CONS.Views.rect_Main_W, 
-//				CONS.Views.rect_Main_H);
-//		gc.fillRectangle(100, 100, 200, 100);
-//		gc.drawRectangle(100, 100, 100, 100);
-//		gc.fillRectangle(0, 0, 100, 100);
+				this.rect_A.getX_Cur(), 
+				this.rect_A.getY_Cur(), 
+				this.rect_A.getW(), 
+				this.rect_A.getH()
+				);
+//		CONS.Views.rect_A_X, 
+//		CONS.Views.rect_A_Y, 
+//		CONS.Views.rect_A_W, 
+//		CONS.Views.rect_A_H);
 
         gc.dispose();
 		
