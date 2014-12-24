@@ -2340,13 +2340,13 @@ public class Rect_D6 {
 			CONS.Views.rect_C_X = 
 						CONS.Views.rect_B_X 
 							+ CONS.Views.rect_B_W_cur 
-							- CONS.Views.rect_C_H_orig; 
+							- CONS.Views.rect_C_W_orig; 
 			
 			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y + CONS.Views.rect_B_H_orig;
 
-			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
+			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
 			
-			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
+			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
 			
 			break;//case HORI_VERTI
 
@@ -2363,7 +2363,7 @@ public class Rect_D6 {
 									+ CONS.Views.rect_B_W_cur 
 									- CONS.Views.rect_C_H_orig;
 			// Y
-			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_W_orig;
+			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y + CONS.Views.rect_B_H_orig;
 			
 			// W
 			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
