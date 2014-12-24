@@ -78,9 +78,9 @@ public class CONS {
 		// rect: A
 
 		////////////////////////////////
-		public static final int rect_A_W = 200;
+		public static int rect_A_W = 200;
 		
-		public static final int rect_A_H = rect_A_W / 2;
+		public static int rect_A_H = rect_A_W / 2;
 		
 		public static int rect_A_X;
 		
@@ -93,10 +93,10 @@ public class CONS {
 		// rect: B
 		
 		////////////////////////////////
-		public static final int rect_B_W_orig = 70;
+		public static int rect_B_W_orig = 70;
 //		public static final int rect_B_W_orig = 50;
 		
-		public static final int rect_B_H_orig = 150;
+		public static int rect_B_H_orig = 150;
 //		public static final int rect_B_H_orig = rect_B_W_orig * 2;
 		
 		public static int rect_B_W_cur;
@@ -112,10 +112,10 @@ public class CONS {
 		// rect: C
 		
 		////////////////////////////////
-		public static final int rect_C_W_orig = 50;
+		public static int rect_C_W_orig = 50;
 		
 //		public static final int rect_C_H_orig = 120;
-		public static final int rect_C_H_orig = 100;
+		public static int rect_C_H_orig = 100;
 //		public static final int rect_C_H_orig = rect_C_W_orig * 2;
 		
 		public static int rect_C_W_cur;

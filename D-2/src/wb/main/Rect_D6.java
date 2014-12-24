@@ -76,6 +76,8 @@ import org.eclipse.swt.widgets.Text;
 public class Rect_D6 {
 
 	protected Shell shell;
+
+	private Properties prop;
 	
 	//abc
 	
@@ -106,7 +108,7 @@ public class Rect_D6 {
 	Canvas cv_1;
 
 	// colors
-	Color red, blue, blue_light, burlywood2, green;
+	Color red, blue, blue_light, burlywood2, green, yellow;
 	
 	int count = 0;
 
@@ -168,7 +170,24 @@ public class Rect_D6 {
 		// draw: initial
 
 		////////////////////////////////
-		this.init_Properties();
+		boolean res = this.init_Properties();
+		
+		if (res == false) {
+			
+			return;
+			
+		} else {
+			
+			//log
+			String text = String.format(Locale.JAPAN, "Properties => initialized\n");
+			
+			String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+		}
 		
 		this.init_Sizes();
 		
@@ -202,7 +221,7 @@ public class Rect_D6 {
 		
 	}//open
 
-	private void 
+	private boolean 
 	init_Properties() {
 		// TODO Auto-generated method stub
 		
@@ -217,14 +236,40 @@ public class Rect_D6 {
 		
 		if (!fpath_Config.exists()) {
 			
-			Methods.create_PropertiesFile(fpath_Config);
+			boolean res = Methods.create_PropertiesFile(fpath_Config);
+			
+			if (res == false) {
+				
+				return false;
+				
+			}
+			
+//			Properties prop = new Properties();
+			
+			this.prop = Methods.load_Properties(fpath_Config);
 			
 		} else {
 			
-			Methods.load_Properties(fpath_Config);
+			this.prop = Methods.load_Properties(fpath_Config);
+			
 		}
 		
-	}
+		//log
+		String text = String.format(Locale.JAPAN, 
+					"prop: w => %s, h => %s\n", 
+					prop.getProperty("rect_A_W"),
+					prop.getProperty("rect_A_H")
+			);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		return true;
+		
+	}//init_Properties
 
 	private void 
 	do_Test() {
@@ -493,7 +538,7 @@ public class Rect_D6 {
 		// setup: colors
 
 		////////////////////////////////
-		_init_Colors();
+		init_Colors();
 		
 		////////////////////////////////
 		
@@ -553,6 +598,9 @@ public class Rect_D6 {
 		// rect: A
 
 		////////////////////////////////
+		CONS.Views.rect_A_W = Integer.parseInt(this.prop.getProperty("rect_A_W"));
+		CONS.Views.rect_A_H = Integer.parseInt(this.prop.getProperty("rect_A_H"));
+		
 		CONS.Views.rect_A_X = cv_1.getSize().x / 2 - CONS.Views.rect_A_W / 2; 
 		CONS.Views.rect_A_Y = cv_1.getSize().y / 2 - CONS.Views.rect_A_H + CONS.Views.offset_Y_A;
 		
@@ -561,6 +609,9 @@ public class Rect_D6 {
 		// rect: B
 		
 		////////////////////////////////
+		CONS.Views.rect_B_W_orig = Integer.parseInt(this.prop.getProperty("rect_B_W_orig"));
+		CONS.Views.rect_B_H_orig = Integer.parseInt(this.prop.getProperty("rect_B_H_orig"));
+		
 		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
 		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
 		
@@ -572,6 +623,9 @@ public class Rect_D6 {
 		// rect: C
 		
 		////////////////////////////////
+		CONS.Views.rect_C_W_orig = Integer.parseInt(this.prop.getProperty("rect_C_W_orig"));
+		CONS.Views.rect_C_H_orig = Integer.parseInt(this.prop.getProperty("rect_C_H_orig"));
+
 		CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
 		CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
 		
@@ -581,7 +635,7 @@ public class Rect_D6 {
 	}//init_Size_Rect_A
 
 	private void 
-	_init_Colors() {
+	init_Colors() {
 		// TODO Auto-generated method stub
 		
 		//REF http://stackoverflow.com/questions/50064/setting-colors-in-swt answered Sep 8 '08 at 16:49
@@ -597,6 +651,8 @@ public class Rect_D6 {
 		
 		green = new Color (device, 0, 255, 0);
 		
+		yellow = new Color (device, 255, 255, 0);
+		
 	}//_init_Colors
 
 	private void 
@@ -611,7 +667,24 @@ public class Rect_D6 {
 		
 		gc.setForeground(display.getSystemColor(SWT.COLOR_CYAN)); 
 		
-		gc.setBackground(red); 
+		////////////////////////////////
+
+		// color
+
+		////////////////////////////////
+		Color col = null;
+		String prop_col = prop.getProperty("rect_A_Color");
+		
+		if (prop_col == null) prop_col = "red";
+//		red, blue, blue_light, burlywood2, green, yellow
+		if (prop_col.equals("red")) col = red;
+		else if (prop_col.equals("blue")) col = blue;
+		else if (prop_col.equals("green")) col = green;
+		else if (prop_col.equals("yellow")) col = yellow;
+		else col = yellow;
+		
+		gc.setBackground(col); 
+//		gc.setBackground(red); 
 		
 		//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
 		gc.setLineWidth(CONS.Views.lineWidth_Rect);
@@ -647,7 +720,25 @@ public class Rect_D6 {
 //		Device device = Display.getCurrent ();
 //		Color red = new Color (device, 255, 0, 0);
 		
-		gc.setBackground(blue); 
+		////////////////////////////////
+
+		// color
+
+		////////////////////////////////
+		Color col = null;
+		String prop_col = prop.getProperty("rect_B_Color");
+		
+		if (prop_col == null) prop_col = "green";
+//		red, blue, blue_light, burlywood2, green, yellow
+		if (prop_col.equals("red")) col = red;
+		else if (prop_col.equals("blue")) col = blue;
+		else if (prop_col.equals("green")) col = green;
+		else if (prop_col.equals("yellow")) col = yellow;
+		else col = yellow;
+		
+		gc.setBackground(col); 
+	
+//		gc.setBackground(blue); 
 		
 		//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
 		gc.setLineWidth(CONS.Views.lineWidth_Rect);
@@ -681,7 +772,25 @@ public class Rect_D6 {
 		
 		gc.setForeground(display.getSystemColor(SWT.COLOR_CYAN)); 
 		
-		gc.setBackground(this.green); 
+		////////////////////////////////
+
+		// color
+
+		////////////////////////////////
+		Color col = null;
+		String prop_col = prop.getProperty("rect_C_Color");
+		
+		if (prop_col == null) prop_col = "blue";
+//		red, blue, blue_light, burlywood2, green, yellow
+		if (prop_col.equals("red")) col = red;
+		else if (prop_col.equals("blue")) col = blue;
+		else if (prop_col.equals("green")) col = green;
+		else if (prop_col.equals("yellow")) col = yellow;
+		else col = yellow;
+		
+		gc.setBackground(col); 
+
+//		gc.setBackground(this.green); 
 		
 		//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
 		gc.setLineWidth(CONS.Views.lineWidth_Rect);

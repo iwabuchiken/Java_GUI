@@ -1,9 +1,11 @@
 package wb.utils;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -751,21 +753,83 @@ public class Methods {
 					msg,
 					"message", JOptionPane.ERROR_MESSAGE);
 
+			return false;
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+
+			String msg = String.format(
+					Locale.JAPAN,
+					"IOException: " + fpath_Config.getAbsolutePath(),
+					Thread.currentThread().getStackTrace()[1].getLineNumber());
+			
+			JOptionPane.showMessageDialog(null,
+					msg,
+					"message", JOptionPane.ERROR_MESSAGE);
+
+			return false;
+			
 		}
 		
 		
-		return false;
+		return true;
 		
 	}//create_PropertiesFile
 
-	public static void 
+	public static Properties
 	load_Properties(File fpath_Config) {
 		// TODO Auto-generated method stub
+
+		Properties prop = new Properties();		
+		InputStream input = null;
 		
-	}
+		try {
+			
+			input = new FileInputStream(fpath_Config);
+			
+			prop.load(input);
+//			prop.setProperty("rect_B_W", "250");
+	 
+			// save properties to project root folder
+//			prop.store(output, null);
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			
+			e.printStackTrace();
+
+			String msg = String.format(
+					Locale.JAPAN,
+					"can't open the file: " + fpath_Config.getAbsolutePath(),
+					Thread.currentThread().getStackTrace()[1].getLineNumber());
+			
+			JOptionPane.showMessageDialog(null,
+					msg,
+					"message", JOptionPane.ERROR_MESSAGE);
+
+			return null;
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+			String msg = String.format(
+					Locale.JAPAN,
+					"IOException: " + fpath_Config.getAbsolutePath(),
+					Thread.currentThread().getStackTrace()[1].getLineNumber());
+			
+			JOptionPane.showMessageDialog(null,
+					msg,
+					"message", JOptionPane.ERROR_MESSAGE);
+
+			return null;
+			
+		}
+
+		return prop;
+		
+	}//load_Properties(File fpath_Config)
 
 //	public static void 
 //	bt_Selected_Jump(String tmp) {
