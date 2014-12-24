@@ -288,6 +288,20 @@ public class Methods {
 			
 			break;
 			
+		case A_UR:
+			
+			switch(orien) {
+			
+//			case INITIAL: 
+//			case VERTI_HORI: return 9;
+//			case VERTI_VERTI: return 10;
+//			case HORI_VERTI: return 11;
+//			case HORI_HORI: return 12;
+			
+			}//switch(orien)
+			
+			break;
+			
 		}//switch(name)
 		
 		return -1;
@@ -349,6 +363,24 @@ public class Methods {
 			case HORI_HORI: return CONS.Admin.Orien.NEXT_NODE;
 			
 			case INITIAL: return CONS.Admin.Orien.VERTI_HORI;
+			
+			}
+			
+			break;
+			
+		case A_UR:
+			
+			switch(orien_Current) {
+			
+//			case VERTI_HORI: return CONS.Admin.Orien.VERTI_VERTI;
+//			
+//			case VERTI_VERTI: return CONS.Admin.Orien.HORI_VERTI;
+//			
+//			case HORI_VERTI: return CONS.Admin.Orien.HORI_HORI;
+//			
+//			case HORI_HORI: return CONS.Admin.Orien.NEXT_NODE;
+//			
+//			case INITIAL: return CONS.Admin.Orien.VERTI_HORI;
 			
 			}
 			
