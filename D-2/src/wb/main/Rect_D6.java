@@ -1252,18 +1252,18 @@ public class Rect_D6 {
 //					CONS.Admin.orien_Current = Methods.get_InitialOrien(name);
 //					CONS.Admin.orien_Current = CONS.Admin.Orien.INITIAL;
 					
-				}
+				}//if (CONS.Admin.orien_Current == CONS.Admin.Orien.PREV_NODE)
 
-				//log
-				String text = String.format(Locale.JAPAN, 
-						"name => %s / orien => %s\n", 
-						name.toString(), CONS.Admin.orien_Current.toString());
-				
-				String fname = Thread.currentThread().getStackTrace()[1].getFileName();
-				
-				int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-				
-				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//				//log
+//				String text = String.format(Locale.JAPAN, 
+//						"name => %s / orien => %s\n", 
+//						name.toString(), CONS.Admin.orien_Current.toString());
+//				
+//				String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//				
+//				int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//				
+//				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 
 				////////////////////////////////
 
@@ -2785,12 +2785,11 @@ public class Rect_D6 {
 			
 		case VERTI_HORI://-------------------------------------- status = 7
 			
-//			// => to HORI_HORI
-//			CONS.Views.rect_C_X = CONS.Views.rect_B_X + CONS.Views.rect_B_W_orig; 
-//			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y;
-//			
-//			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
-//			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
+			CONS.Views.rect_C_X = CONS.Views.rect_B_X + CONS.Views.rect_B_W_orig; 
+			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y + CONS.Views.rect_B_H_orig - CONS.Views.rect_C_W_orig;
+			
+			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
+			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
 			
 			break;//case VERTI_VERTI
 			
