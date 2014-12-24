@@ -336,7 +336,25 @@ public class Methods {
 			
 			break;
 			
-		}
+		case B_LR:
+			
+			switch(orien_Current) {
+			
+			case VERTI_HORI: return CONS.Admin.Orien.VERTI_VERTI;
+			
+			case VERTI_VERTI: return CONS.Admin.Orien.HORI_VERTI;
+			
+			case HORI_VERTI: return CONS.Admin.Orien.HORI_HORI;
+			
+			case HORI_HORI: return CONS.Admin.Orien.NEXT_NODE;
+			
+			case INITIAL: return CONS.Admin.Orien.VERTI_HORI;
+			
+			}
+			
+			break;
+			
+		}//switch(name)
 
 		return orien_Current;
 		
