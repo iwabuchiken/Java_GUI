@@ -2760,11 +2760,11 @@ public class Rect_D6 {
 		
 		case HORI_VERTI://-------------------------------------- status = 5
 			
-//			CONS.Views.rect_C_X = CONS.Views.rect_B_X + CONS.Views.rect_B_W_orig - CONS.Views.rect_C_W_orig; 
-//			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_H_orig;
-//			
-//			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
-//			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
+			CONS.Views.rect_C_X = CONS.Views.rect_B_X + CONS.Views.rect_B_W_orig - CONS.Views.rect_C_W_orig; 
+			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y + CONS.Views.rect_B_H_orig;
+			
+			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
+			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
 			
 			break;//case HORI_VERTI
 			
@@ -4035,12 +4035,8 @@ public class Rect_D6 {
 		 *******************************/
 //		String tmp = Rect_D6.txt_Jump.getText();
 		
-		if (tmp == null) {
+		if (tmp == null) return;
 			
-			return;
-			
-		}
-		
 		if (tmp.equals("")) {
 	
 			String msg;

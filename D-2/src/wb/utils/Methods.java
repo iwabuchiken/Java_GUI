@@ -621,6 +621,29 @@ public class Methods {
 //		CONS.Admin.NodeNames name
 		int node_Number = Methods.get_NodeNumber_frmo_Status(status);
 		
+		/*******************************
+
+			validate: node exists
+
+		 *******************************/
+		if (node_Number < 1 || node_Number > CONS.Admin.list_NodeNames.size()) {
+
+			//log
+			String text = String.format(Locale.JAPAN, 
+								"no node for: status => %d / node_Numer => %d\n", 
+								status, node_Number);
+			
+			String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+			return new Object[]{null, null};
+			
+		}
+		
+		// node name
 		NodeNames name = CONS.Admin.list_NodeNames.get(node_Number - 1);
 		
 //		int index_Orien = 4 - (status % 4);
@@ -672,6 +695,19 @@ public class Methods {
 			case 2: orien = CONS.Admin.Orien.HORI_HORI; break; 
 			case 3: orien = CONS.Admin.Orien.VERTI_HORI; break; 
 			case 4: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			
+			}
+			
+			break;//case B_UL
+			
+		case B_LR://----------------------------------
+			
+			switch(index_Orien) {
+			
+			case 1: orien = CONS.Admin.Orien.VERTI_HORI; break; 
+			case 2: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			case 3: orien = CONS.Admin.Orien.HORI_VERTI; break; 
+			case 4: orien = CONS.Admin.Orien.HORI_HORI; break; 
 			
 			}
 			
