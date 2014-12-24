@@ -1182,6 +1182,27 @@ public class Rect_D6 {
 				// node name
 				int node_Num = Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
 
+				/*******************************
+
+					validate: prev exists
+
+				 *******************************/
+				if (node_Num < 1) {
+//					if (node_Num < 2) {
+					
+					//log
+					String text = String.format(Locale.JAPAN, "no node for the num => %d\n", node_Num);
+					
+					String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+					
+					int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+					
+					System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+					
+					return;
+
+				}
+				
 				NodeNames name = null;
 				
 				name = CONS.Admin.list_NodeNames.get(node_Num - 1);
@@ -1197,14 +1218,23 @@ public class Rect_D6 {
 				if (CONS.Admin.orien_Current == CONS.Admin.Orien.PREV_NODE) {
 					
 					// validate
-					if ((node_Num -1 < 0)) {
+					if ((node_Num - 2 < 0)) {
+//						if ((node_Num -1 < 0)) {
+						
+						////////////////////////////////
+
+						// orien => reset
+
+						////////////////////////////////
+						CONS.Admin.orien_Current = Methods.get_InitialOrien(name);
+//						CONS.Admin.orien_Current = CONS.Admin.Orien.INITIAL;
 						
 						//log
 						String text = String.format(Locale.JAPAN, "no prev node\n");
 						
-						String fname = Thread.currentThread().getStackTrace()[2].getFileName();
+						String fname = Thread.currentThread().getStackTrace()[1].getFileName();
 						
-						int line_Num = Thread.currentThread().getStackTrace()[2].getLineNumber();
+						int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
 						
 						System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 						
@@ -1224,7 +1254,17 @@ public class Rect_D6 {
 					
 				}
 
+				//log
+				String text = String.format(Locale.JAPAN, 
+						"name => %s / orien => %s\n", 
+						name.toString(), CONS.Admin.orien_Current.toString());
 				
+				String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+				
+				int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+				
+				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
 				////////////////////////////////
 
 				// move
@@ -2680,6 +2720,8 @@ public class Rect_D6 {
 			
 			break;//case B_UL:
 			
+		case B_LR: this._move_Left__C_LR(node_Name, orien); break;//case B_UL:
+			
 		}//switch(CONS.Admin.status)
 		
 		////////////////////////////////
@@ -2711,9 +2753,81 @@ public class Rect_D6 {
 	}//_move_Rect_B_right(int status)
 	
 	private void 
-	_move_Left__C_UR(NodeNames node_Name, Orien orien) {
+	_move_Left__C_LR(NodeNames node_Name, Orien orien) {
 		// TODO Auto-generated method stub
 	
+		switch(orien) {
+		
+		case HORI_VERTI://-------------------------------------- status = 5
+			
+//			CONS.Views.rect_C_X = CONS.Views.rect_B_X + CONS.Views.rect_B_W_orig - CONS.Views.rect_C_W_orig; 
+//			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_H_orig;
+//			
+//			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
+//			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
+			
+			break;//case HORI_VERTI
+			
+		case HORI_HORI://-------------------------------------- status = 6
+
+			////////////////////////////////
+			
+			// coordinates
+			
+			////////////////////////////////
+			CONS.Views.rect_C_X = CONS.Views.rect_B_X + CONS.Views.rect_B_W_orig - CONS.Views.rect_C_H_orig; 
+			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_W_orig;
+			
+			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
+			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
+			
+			break;//case HORI_HORI
+			
+		case VERTI_HORI://-------------------------------------- status = 7
+			
+//			// => to HORI_HORI
+//			CONS.Views.rect_C_X = CONS.Views.rect_B_X + CONS.Views.rect_B_W_orig; 
+//			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y;
+//			
+//			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_W_orig;
+//			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_H_orig;
+			
+			break;//case VERTI_VERTI
+			
+		case VERTI_VERTI://--------------------------------------
+			
+//			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
+//			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
+//			
+//			CONS.Views.rect_C_X = CONS.Views.rect_B_X - CONS.Views.rect_C_W_orig; 
+//			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y;
+			
+			break;//case VERTI_VERTI
+			
+		}//switch(orien)
+
+		////////////////////////////////
+		
+		// meta
+		
+		////////////////////////////////
+		// status
+		CONS.Admin.status_C = 
+				Methods.get_Status_from_NodeAndPosition(
+						node_Name, 
+						orien);
+		
+		// current node number
+		CONS.Admin.node_Current = 
+				Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
+//		CONS.Admin.node_Current += CONS.Admin.status_C % 2;
+
+	}//_move_Left__C_LR(NodeNames node_Name, Orien orien)
+
+	private void 
+	_move_Left__C_UR(NodeNames node_Name, Orien orien) {
+		// TODO Auto-generated method stub
+		
 		switch(orien) {
 		
 		case HORI_VERTI://-------------------------------------- status = 5
@@ -2727,7 +2841,7 @@ public class Rect_D6 {
 			break;//case HORI_VERTI
 			
 		case HORI_HORI://-------------------------------------- status = 6
-
+			
 			////////////////////////////////
 			
 			// coordinates
@@ -2754,16 +2868,16 @@ public class Rect_D6 {
 			
 		case VERTI_VERTI://--------------------------------------
 			
+			CONS.Views.rect_C_X = CONS.Views.rect_B_X + CONS.Views.rect_B_W_orig; 
+			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y;
+			
 			CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
 			CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
-			
-			CONS.Views.rect_C_X = CONS.Views.rect_B_X - CONS.Views.rect_C_W_orig; 
-			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y;
 			
 			break;//case VERTI_VERTI
 			
 		}//switch(orien)
-
+		
 		////////////////////////////////
 		
 		// meta
@@ -2779,9 +2893,9 @@ public class Rect_D6 {
 		CONS.Admin.node_Current = 
 				Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
 //		CONS.Admin.node_Current += CONS.Admin.status_C % 2;
-
+		
 	}//_move_Left__C_UR(NodeNames node_Name, Orien orien)
-
+	
 	private void 
 	_move_Left__C_UL(NodeNames node_Name, Orien orien) {
 		// TODO Auto-generated method stub
