@@ -4,11 +4,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
@@ -718,6 +720,52 @@ public class Methods {
 		return new Object[]{name, orien};
 		
 	}//get_NodeNameAndOrien_frmo_Status
+
+	public static boolean 
+	create_PropertiesFile(File fpath_Config) {
+		// TODO Auto-generated method stub
+	
+		Properties prop = new Properties();
+		OutputStream output = null;
+		
+		try {
+			
+			output = new FileOutputStream(fpath_Config, true);
+			
+			prop.setProperty("rect_B_W", "250");
+	 
+			// save properties to project root folder
+			prop.store(output, null);
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			
+			e.printStackTrace();
+
+			String msg = String.format(
+					Locale.JAPAN,
+					"can't open the file: " + fpath_Config.getAbsolutePath(),
+					Thread.currentThread().getStackTrace()[1].getLineNumber());
+			
+			JOptionPane.showMessageDialog(null,
+					msg,
+					"message", JOptionPane.ERROR_MESSAGE);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return false;
+		
+	}//create_PropertiesFile
+
+	public static void 
+	load_Properties(File fpath_Config) {
+		// TODO Auto-generated method stub
+		
+	}
 
 //	public static void 
 //	bt_Selected_Jump(String tmp) {

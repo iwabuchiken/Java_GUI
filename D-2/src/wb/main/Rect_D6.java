@@ -6,14 +6,21 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.PaintEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.lang.math.NumberUtils;
 //import org.apache.commons.lang.NumberUtils;
 import org.eclipse.swt.widgets.Display;
@@ -35,6 +42,13 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Group;
 //import org.eclipse.wb.swt.SWTResourceManager;
+
+
+
+
+
+
+
 
 
 
@@ -154,11 +168,21 @@ public class Rect_D6 {
 		// draw: initial
 
 		////////////////////////////////
+		this.init_Properties();
+		
 		this.init_Sizes();
 		
 		this.init_Rects();
 		
 		draw_Initial();
+		
+		////////////////////////////////
+
+		// tests
+
+		////////////////////////////////
+		do_Test();
+		
 		
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch()) {
@@ -177,6 +201,137 @@ public class Rect_D6 {
 //		Methods.write_Log(text, fname, line_Num);
 		
 	}//open
+
+	private void 
+	init_Properties() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// validate
+
+		////////////////////////////////
+		String fname = "config.properties";
+		
+		File fpath_Config = new File("data", fname);
+		
+		if (!fpath_Config.exists()) {
+			
+			Methods.create_PropertiesFile(fpath_Config);
+			
+		} else {
+			
+			Methods.load_Properties(fpath_Config);
+		}
+		
+	}
+
+	private void 
+	do_Test() {
+		// TODO Auto-generated method stub
+		
+		_test_SEG_1_PropertiesConfiguration();
+//		_test_SEG_1_Properties();
+		
+	}
+
+	private void 
+	_test_SEG_1_PropertiesConfiguration() {
+		// TODO Auto-generated method stub
+		
+		PropertiesConfiguration config = new PropertiesConfiguration();
+
+		OutputStream output = null;
+
+		String fname = "config_2.properties";
+		
+		File file_Config = new File("data", fname);
+		
+		try {
+			
+			output = new FileOutputStream(file_Config, false);
+//			output = new FileOutputStream(fname, false);
+//			output = new FileOutputStream(fname, true);
+			
+			config.setHeader("the main rectangle");
+			
+			config.setProperty("rect_B_W", "10000");
+//			config.setProperty("rect_B_W", "250");
+	 
+			// save properties to project root folder
+			config.save(output);
+//			prop.store(output, null);
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			
+			e.printStackTrace();
+
+			String msg = String.format(
+					Locale.JAPAN,
+					"can't open the file: " + fname,
+					Thread.currentThread().getStackTrace()[1].getLineNumber());
+			
+			JOptionPane.showMessageDialog(null,
+					msg,
+					"message", JOptionPane.ERROR_MESSAGE);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		} catch (ConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	private void 
+	_test_SEG_1_Properties() {
+		// TODO Auto-generated method stub
+	
+		//REF http://www.mkyong.com/java/java-properties-file-examples/
+		Properties prop = new Properties();
+		OutputStream output = null;
+		
+		String fname = "config.properties";
+		
+		try {
+			
+			output = new FileOutputStream(fname, true);
+//			output = new FileOutputStream("config.properties");
+			
+			// set the properties value
+//			prop.setProperty("database", "localhost");
+//			prop.setProperty("dbuser", "mkyong");
+//			prop.setProperty("dbpassword", "password");
+//			prop.setProperty("rect_A_W", "200");
+			prop.setProperty("rect_B_W", "250");
+	 
+			// save properties to project root folder
+			prop.store(output, null);
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			
+			e.printStackTrace();
+
+			String msg = String.format(
+					Locale.JAPAN,
+					"can't open the file: " + fname,
+					Thread.currentThread().getStackTrace()[1].getLineNumber());
+			
+			JOptionPane.showMessageDialog(null,
+					msg,
+					"message", JOptionPane.ERROR_MESSAGE);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 	private void 
 	init_Rects() {
