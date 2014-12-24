@@ -45,10 +45,12 @@ import org.eclipse.swt.widgets.Group;
 
 
 
+
 import wb.utils.CONS;
 import wb.utils.CONS.Admin.NodeNames;
 import wb.utils.CONS.Admin.Orien;
 import wb.utils.Methods;
+import wb.utils.Rect;
 
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormLayout;
@@ -201,7 +203,46 @@ public class Rect_D6 {
 		CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_LR);
 		CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_LL);
 		
-	}
+		////////////////////////////////
+
+		// rectangles
+
+		////////////////////////////////
+		////////////////////////////////
+
+		// rect: A
+
+		////////////////////////////////
+		Rect rect_A = new Rect();
+		
+		rect_A.setColor(red);
+		
+		rect_A.setX_Cur(CONS.Views.rect_A_X);
+		
+		rect_A.setW(CONS.Views.rect_A_W);
+		rect_A.setH(CONS.Views.rect_A_H);
+		
+		rect_A.setW_Orig(CONS.Views.rect_A_W);
+		rect_A.setH_Orig(CONS.Views.rect_A_H);
+		
+		////////////////////////////////
+		
+		// rect: B
+		
+		////////////////////////////////
+		Rect rect_B = new Rect();
+		
+		rect_B.setColor(this.blue);
+		
+		rect_B.setX_Cur(CONS.Views.rect_B_X);
+		
+		rect_B.setW(CONS.Views.rect_B_W_orig);
+		rect_B.setH(CONS.Views.rect_B_H_orig);
+		
+		rect_B.setW_Orig(CONS.Views.rect_B_W_orig);
+		rect_B.setH_Orig(CONS.Views.rect_B_H_orig);
+		
+	}//init_Vars
 
 	private void 
 	draw_Initial() {
