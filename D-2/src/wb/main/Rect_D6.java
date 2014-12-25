@@ -923,7 +923,7 @@ public class Rect_D6 {
 			y = CONS.Views.rect_B_Y;
 			w = this.rect_A.getW_Orig();
 //			w = CONS.Views.rect_A_W;
-			h = this.rect_A.getH_Orig() + CONS.Views.rect_B_W_orig;
+			h = this.rect_A.getH_Orig() + rect_B.getW_Orig();
 			
 			break;
 			
@@ -942,7 +942,7 @@ public class Rect_D6 {
 			x = this.rect_A.getX_Cur();
 			y = CONS.Views.rect_B_Y;
 			w = this.rect_A.getW_Orig();
-			h = this.rect_A.getH_Orig() + CONS.Views.rect_B_W_orig;
+			h = this.rect_A.getH_Orig() + rect_B.getW_Orig();
 			
 			break;
 			
@@ -959,7 +959,7 @@ public class Rect_D6 {
 			
 			x = this.rect_A.getX_Cur();
 			y = CONS.Views.rect_B_Y;
-			w = this.rect_A.getW_Orig() + CONS.Views.rect_B_W_orig;
+			w = this.rect_A.getW_Orig() + rect_B.getW_Orig();
 			h = (this.rect_A.getH_Orig() >= CONS.Views.rect_B_H_orig) 
 				? CONS.Views.rect_A_H
 					: CONS.Views.rect_B_H_orig;
@@ -971,9 +971,9 @@ public class Rect_D6 {
 			x = this.rect_A.getX_Cur();
 			y = this.rect_A.getY_Cur();
 			w = this.rect_A.getW_Orig() + CONS.Views.rect_B_H_orig;
-			h = (this.rect_A.getH_Orig() >= CONS.Views.rect_B_W_orig) 
+			h = (this.rect_A.getH_Orig() >= rect_B.getW_Orig()) 
 					? this.rect_A.getH_Orig()
-							: CONS.Views.rect_B_W_orig;
+							: rect_B.getW_Orig();
 			
 			break;
 			
@@ -984,7 +984,7 @@ public class Rect_D6 {
 					? this.rect_A.getY_Cur()
 							: CONS.Views.rect_B_Y;
 			
-			w = this.rect_A.getW_Orig() + CONS.Views.rect_B_W_orig;
+			w = this.rect_A.getW_Orig() + rect_B.getW_Orig();
 			h = (this.rect_A.getH_Orig() >= CONS.Views.rect_B_H_orig) 
 					? this.rect_A.getH_Orig()
 							: CONS.Views.rect_B_H_orig;
@@ -1007,7 +1007,7 @@ public class Rect_D6 {
 			y = this.rect_A.getY_Cur();
 			
 			w = Methods.larger_INT(this.rect_A.getW_Orig(), CONS.Views.rect_B_H_orig);
-			h = this.rect_A.getH_Orig() + CONS.Views.rect_B_W_orig;
+			h = this.rect_A.getH_Orig() + rect_B.getW_Orig();
 			
 			break;
 			
@@ -1027,7 +1027,7 @@ public class Rect_D6 {
 			y = this.rect_A.getY_Cur();
 			
 			w = Methods.larger_INT(this.rect_A.getW_Orig(), CONS.Views.rect_B_H_orig);
-			h = this.rect_A.getH_Orig() + CONS.Views.rect_B_W_orig;
+			h = this.rect_A.getH_Orig() + rect_B.getW_Orig();
 			
 			break;
 			
@@ -1046,7 +1046,7 @@ public class Rect_D6 {
 			x = CONS.Views.rect_B_X;
 			y = Methods.smaller_INT(this.rect_A.getY_Cur(), CONS.Views.rect_B_Y);
 			
-			w = this.rect_A.getW_Orig() + CONS.Views.rect_B_W_orig;
+			w = this.rect_A.getW_Orig() + rect_B.getW_Orig();
 			h = Methods.larger_INT(this.rect_A.getH_Orig(), CONS.Views.rect_B_H_orig);
 			
 			break;
@@ -1057,7 +1057,7 @@ public class Rect_D6 {
 			y = CONS.Views.rect_B_Y;
 			
 			w = this.rect_A.getW_Orig() + CONS.Views.rect_B_H_orig;
-			h = Methods.larger_INT(this.rect_A.getH_Orig(), CONS.Views.rect_B_W_orig);
+			h = Methods.larger_INT(this.rect_A.getH_Orig(), rect_B.getW_Orig());
 			
 			break;
 			
@@ -1066,7 +1066,7 @@ public class Rect_D6 {
 			x = CONS.Views.rect_B_X;
 			y = CONS.Views.rect_B_Y;
 			
-			w = this.rect_A.getW_Orig() + CONS.Views.rect_B_W_orig;
+			w = this.rect_A.getW_Orig() + rect_B.getW_Orig();
 			h = Methods.larger_INT(this.rect_A.getH_Orig(), CONS.Views.rect_B_H_orig);
 			
 			break;
