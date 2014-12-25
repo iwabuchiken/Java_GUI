@@ -393,19 +393,6 @@ public class Rect_D6 {
 		////////////////////////////////
 		rect_A = new Rect();
 		
-//		rect_A.setColor(red);
-//		
-////		rect_A.setX_Cur(this.rect_A.setW(Integer.parseInt(this.prop.getProperty("rect_A_W"))););
-//		rect_A.setX_Cur(CONS.Views.rect_A_X);
-//		rect_A.setY_Cur(CONS.Views.rect_A_Y);
-//		
-//		rect_A.setW(this.rect_A.getW_Orig());
-////		rect_A.setW(CONS.Views.rect_A_W);
-//		rect_A.setH(CONS.Views.rect_A_H);
-//		
-//		rect_A.setW_Orig(this.rect_A.getW_Orig());
-//		rect_A.setH_Orig(CONS.Views.rect_A_H);
-		
 		////////////////////////////////
 		
 		// rect: B
@@ -671,7 +658,8 @@ public class Rect_D6 {
 		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
 		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
 		
-		CONS.Views.rect_B_X = CONS.Views.rect_A_X; 
+		CONS.Views.rect_B_X = this.rect_A.getX_Cur(); 
+//		CONS.Views.rect_B_X = CONS.Views.rect_A_X; 
 		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_H_cur;
 		
 		////////////////////////////////
@@ -754,7 +742,7 @@ public class Rect_D6 {
 		// TODO Auto-generated method stub
 
 		//debug
-		this.lbl_AreaData.setText("rect A: x = " + CONS.Views.rect_A_X);
+		this.lbl_AreaData.setText("rect A: x = " + this.rect_A.getX_Cur());
 		
 		//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
 		GC gc = new GC(cv_1);
@@ -931,7 +919,7 @@ public class Rect_D6 {
 			
 		case 3:
 			
-			x = CONS.Views.rect_A_X;
+			x = this.rect_A.getX_Cur();
 			y = CONS.Views.rect_B_Y;
 			w = this.rect_A.getW_Orig();
 //			w = CONS.Views.rect_A_W;
@@ -941,7 +929,7 @@ public class Rect_D6 {
 			
 		case 4:
 			
-			x = CONS.Views.rect_A_X;
+			x = this.rect_A.getX_Cur();
 			y = CONS.Views.rect_B_Y;
 			w = this.rect_A.getW_Orig();
 			h = this.rect_A.getH_Orig() + CONS.Views.rect_B_W_orig;
@@ -950,7 +938,7 @@ public class Rect_D6 {
 			
 		case 5:
 			
-			x = CONS.Views.rect_A_X;
+			x = this.rect_A.getX_Cur();
 			y = CONS.Views.rect_A_Y;
 			w = this.rect_A.getW_Orig() + CONS.Views.rect_B_H_orig;
 			h = this.rect_A.getH_Orig(); 
@@ -959,7 +947,7 @@ public class Rect_D6 {
 			
 		case 6:
 			
-			x = CONS.Views.rect_A_X;
+			x = this.rect_A.getX_Cur();
 			y = CONS.Views.rect_B_Y;
 			w = this.rect_A.getW_Orig() + CONS.Views.rect_B_W_orig;
 			h = (this.rect_A.getH_Orig() >= CONS.Views.rect_B_H_orig) 
@@ -970,7 +958,7 @@ public class Rect_D6 {
 			
 		case 7:
 			
-			x = CONS.Views.rect_A_X;
+			x = this.rect_A.getX_Cur();
 			y = CONS.Views.rect_A_Y;
 			w = this.rect_A.getW_Orig() + CONS.Views.rect_B_H_orig;
 			h = (this.rect_A.getH_Orig() >= CONS.Views.rect_B_W_orig) 
@@ -981,7 +969,7 @@ public class Rect_D6 {
 			
 		case 8:
 			
-			x = CONS.Views.rect_A_X;
+			x = this.rect_A.getX_Cur();
 			y = (CONS.Views.rect_A_Y < CONS.Views.rect_B_Y) 
 					? CONS.Views.rect_A_Y
 							: CONS.Views.rect_B_Y;
@@ -995,7 +983,7 @@ public class Rect_D6 {
 			
 		case 9:
 			
-			x = CONS.Views.rect_A_X;
+			x = this.rect_A.getX_Cur();
 			y = CONS.Views.rect_A_Y;
 			
 			w = this.rect_A.getW_Orig();
@@ -1005,7 +993,7 @@ public class Rect_D6 {
 			
 		case 10:
 			
-			x = CONS.Views.rect_A_X;
+			x = this.rect_A.getX_Cur();
 			y = CONS.Views.rect_A_Y;
 			
 			w = Methods.larger_INT(this.rect_A.getW_Orig(), CONS.Views.rect_B_H_orig);
@@ -1015,7 +1003,7 @@ public class Rect_D6 {
 			
 		case 11:
 			
-			x = CONS.Views.rect_A_X;
+			x = this.rect_A.getX_Cur();
 			y = CONS.Views.rect_A_Y;
 			
 			w = this.rect_A.getW_Orig();
@@ -1025,7 +1013,7 @@ public class Rect_D6 {
 			
 		case 12:
 			
-			x = CONS.Views.rect_A_X;
+			x = this.rect_A.getX_Cur();
 			y = CONS.Views.rect_A_Y;
 			
 			w = Methods.larger_INT(this.rect_A.getW_Orig(), CONS.Views.rect_B_H_orig);
@@ -1135,7 +1123,7 @@ public class Rect_D6 {
 
 		x_smallest = Methods.smallest(
 				new int[]{
-						CONS.Views.rect_A_X, CONS.Views.rect_B_X, CONS.Views.rect_C_X
+						this.rect_A.getX_Cur(), CONS.Views.rect_B_X, CONS.Views.rect_C_X
 						}
 				);
 		
@@ -1143,7 +1131,7 @@ public class Rect_D6 {
 		
 		x_largest = Methods.largest(
 				new int[]{
-						CONS.Views.rect_A_X + this.rect_A.getW_Orig(), 
+						this.rect_A.getX_Cur() + this.rect_A.getW_Orig(), 
 						CONS.Views.rect_B_X + CONS.Views.rect_B_W_cur, 
 						CONS.Views.rect_C_X +  + CONS.Views.rect_C_W_cur
 				});
@@ -1905,7 +1893,7 @@ public class Rect_D6 {
 		case 1: 
 //			_move_Rect_B__Case_16(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_W_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() - CONS.Views.rect_B_W_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
@@ -1924,7 +1912,7 @@ public class Rect_D6 {
 		case 2: 
 //			_move_Rect_B__Case_1(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_H_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() - CONS.Views.rect_B_H_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
@@ -1944,7 +1932,7 @@ public class Rect_D6 {
 		case 3: 
 //			_move_Rect_B__Case_2(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur();
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_W_orig;
@@ -1963,7 +1951,7 @@ public class Rect_D6 {
 		case 4: 
 //			_move_Rect_B__Case_3(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X + this.rect_A.getW_Orig() - CONS.Views.rect_B_W_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() + this.rect_A.getW_Orig() - CONS.Views.rect_B_W_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_H_orig;
@@ -1983,7 +1971,7 @@ public class Rect_D6 {
 		case 5: 
 //			_move_Rect_B__Case_4(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X + this.rect_A.getW_Orig() - CONS.Views.rect_B_H_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() + this.rect_A.getW_Orig() - CONS.Views.rect_B_H_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_W_orig;
@@ -2002,7 +1990,7 @@ public class Rect_D6 {
 		case 6: 
 //			_move_Rect_B__Case_5(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X + this.rect_A.getW_Orig();
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() + this.rect_A.getW_Orig();
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
@@ -2021,7 +2009,7 @@ public class Rect_D6 {
 		case 7: 
 //			_move_Rect_B__Case_6(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X + this.rect_A.getW_Orig();
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() + this.rect_A.getW_Orig();
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
@@ -2039,7 +2027,7 @@ public class Rect_D6 {
 		case 8: 
 //			_move_Rect_B__Case_7(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X + this.rect_A.getW_Orig();
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() + this.rect_A.getW_Orig();
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + this.rect_A.getH_Orig() - CONS.Views.rect_B_W_orig;
@@ -2057,7 +2045,7 @@ public class Rect_D6 {
 		case 9: 
 //			_move_Rect_B__Case_8(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X + this.rect_A.getW_Orig();
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() + this.rect_A.getW_Orig();
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + this.rect_A.getH_Orig() - CONS.Views.rect_B_H_orig;
@@ -2076,7 +2064,7 @@ public class Rect_D6 {
 		case 10: 
 //			_move_Rect_B__Case_9(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X + this.rect_A.getW_Orig() - CONS.Views.rect_B_W_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() + this.rect_A.getW_Orig() - CONS.Views.rect_B_W_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + this.rect_A.getH_Orig();
@@ -2095,7 +2083,7 @@ public class Rect_D6 {
 		case 11: 
 //			_move_Rect_B__Case_10(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X + this.rect_A.getW_Orig() - CONS.Views.rect_B_H_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() + this.rect_A.getW_Orig() - CONS.Views.rect_B_H_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + this.rect_A.getH_Orig();
@@ -2114,7 +2102,7 @@ public class Rect_D6 {
 		case 12: 
 //			_move_Rect_B__Case_11(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur();
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + this.rect_A.getH_Orig();
@@ -2133,7 +2121,7 @@ public class Rect_D6 {
 		case 13: 
 //			_move_Rect_B__Case_12(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur();
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + this.rect_A.getH_Orig();
@@ -2152,7 +2140,7 @@ public class Rect_D6 {
 		case 14: 
 //			_move_Rect_B__Case_13(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_H_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() - CONS.Views.rect_B_H_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + this.rect_A.getH_Orig() - CONS.Views.rect_B_W_orig;
@@ -2171,7 +2159,7 @@ public class Rect_D6 {
 		case 15: 
 //			_move_Rect_B__Case_14(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_W_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() - CONS.Views.rect_B_W_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + this.rect_A.getH_Orig() - CONS.Views.rect_B_H_orig;
@@ -2190,7 +2178,7 @@ public class Rect_D6 {
 		case 16: 
 //			_move_Rect_B__Case_15(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_H_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() - CONS.Views.rect_B_H_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
@@ -2228,53 +2216,6 @@ public class Rect_D6 {
 	}//_move_Rect_B_left
 	
 	
-	private void 
-	_move_Rect_B__Case_1() {
-		// TODO Auto-generated method stub
-
-		////////////////////////////////
-
-		// update: params
-
-		////////////////////////////////
-		// X
-		CONS.Views.rect_B_X = CONS.Views.rect_A_X;
-		
-		// Y
-		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_H_orig;
-		
-		// W
-		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
-		
-		// H
-		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
-		
-		////////////////////////////////
-
-		// draw
-
-		////////////////////////////////
-		this.clear_Canvas();
-		
-		this.draw_Rect__A();
-		this.draw_Rect__B();
-
-		////////////////////////////////
-		
-		// update: status value
-		
-		////////////////////////////////
-		CONS.Admin.status = 1;
-		
-		////////////////////////////////
-
-		// update: status label
-
-		////////////////////////////////
-		update_Status_Label();
-
-	}
-
 	protected void 
 	_move_Rect_B_right(int status) {
 		// TODO Auto-generated method stub
@@ -2286,7 +2227,7 @@ public class Rect_D6 {
 		case 1: 
 			
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur();
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_W_orig;
@@ -2311,7 +2252,7 @@ public class Rect_D6 {
 			
 			////////////////////////////////
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X + this.rect_A.getW_Orig() - CONS.Views.rect_B_W_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() + this.rect_A.getW_Orig() - CONS.Views.rect_B_W_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_H_orig;
@@ -2331,7 +2272,7 @@ public class Rect_D6 {
 //			_move_Rect_B__Case_4(); 
 			
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X + this.rect_A.getW_Orig() - CONS.Views.rect_B_H_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() + this.rect_A.getW_Orig() - CONS.Views.rect_B_H_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_W_orig;
@@ -2350,7 +2291,7 @@ public class Rect_D6 {
 		case 4: 
 //			_move_Rect_B__Case_5(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X + this.rect_A.getW_Orig();
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() + this.rect_A.getW_Orig();
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
@@ -2370,7 +2311,7 @@ public class Rect_D6 {
 //			_move_Rect_B__Case_6(); 
 			
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X + this.rect_A.getW_Orig();
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() + this.rect_A.getW_Orig();
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
@@ -2388,7 +2329,7 @@ public class Rect_D6 {
 		case 6: 
 //			_move_Rect_B__Case_7(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X + this.rect_A.getW_Orig();
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() + this.rect_A.getW_Orig();
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + this.rect_A.getH_Orig() - CONS.Views.rect_B_W_orig;
@@ -2407,7 +2348,7 @@ public class Rect_D6 {
 		case 7: 
 //			_move_Rect_B__Case_8(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X + this.rect_A.getW_Orig();
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() + this.rect_A.getW_Orig();
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + this.rect_A.getH_Orig() - CONS.Views.rect_B_H_orig;
@@ -2426,7 +2367,7 @@ public class Rect_D6 {
 		case 8: 
 //			_move_Rect_B__Case_9(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X + this.rect_A.getW_Orig() - CONS.Views.rect_B_W_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() + this.rect_A.getW_Orig() - CONS.Views.rect_B_W_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + this.rect_A.getH_Orig();
@@ -2445,7 +2386,7 @@ public class Rect_D6 {
 		case 9: 
 //			_move_Rect_B__Case_10(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X + this.rect_A.getW_Orig() - CONS.Views.rect_B_H_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() + this.rect_A.getW_Orig() - CONS.Views.rect_B_H_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + this.rect_A.getH_Orig();
@@ -2464,7 +2405,7 @@ public class Rect_D6 {
 		case 10: 
 //			_move_Rect_B__Case_11(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur();
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + this.rect_A.getH_Orig();
@@ -2483,7 +2424,7 @@ public class Rect_D6 {
 		case 11: 
 //			_move_Rect_B__Case_12(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur();
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + this.rect_A.getH_Orig();
@@ -2502,7 +2443,7 @@ public class Rect_D6 {
 		case 12: 
 //			_move_Rect_B__Case_13(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_H_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() - CONS.Views.rect_B_H_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + this.rect_A.getH_Orig() - CONS.Views.rect_B_W_orig;
@@ -2521,7 +2462,7 @@ public class Rect_D6 {
 		case 13: 
 //			_move_Rect_B__Case_14(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_W_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() - CONS.Views.rect_B_W_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y + this.rect_A.getH_Orig() - CONS.Views.rect_B_H_orig;
@@ -2539,7 +2480,7 @@ public class Rect_D6 {
 		case 14: 
 //			_move_Rect_B__Case_15(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_H_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() - CONS.Views.rect_B_H_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
@@ -2558,7 +2499,7 @@ public class Rect_D6 {
 		case 15: 
 //			_move_Rect_B__Case_16(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_W_orig;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur() - CONS.Views.rect_B_W_orig;
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
@@ -2577,7 +2518,7 @@ public class Rect_D6 {
 		case 16: 
 //			_move_Rect_B__Case_1(); 
 			// X
-			CONS.Views.rect_B_X = CONS.Views.rect_A_X;
+			CONS.Views.rect_B_X = this.rect_A.getX_Cur();
 			
 			// Y
 			CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_H_orig;
@@ -2637,7 +2578,7 @@ public class Rect_D6 {
 
 			////////////////////////////////
 			// X
-			CONS.Views.rect_C_X = CONS.Views.rect_A_X;
+			CONS.Views.rect_C_X = this.rect_A.getX_Cur();
 			
 			// Y
 			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_W_orig;
@@ -3032,7 +2973,7 @@ public class Rect_D6 {
 			
 			////////////////////////////////
 			// X
-			CONS.Views.rect_C_X = CONS.Views.rect_A_X;
+			CONS.Views.rect_C_X = this.rect_A.getX_Cur();
 			
 			// Y
 			CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_W_orig;
@@ -3454,156 +3395,6 @@ public class Rect_D6 {
 	}//_move_Left_UL(NodeNames node_Name, Orien orien)
 	
 	private void 
-	_move_Rect_B__Case_16() {
-		// TODO Auto-generated method stub
-		
-		////////////////////////////////
-
-		// update: params
-
-		////////////////////////////////
-		// X
-		CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_W_orig;
-		
-		// Y
-		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
-		
-		// W
-		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
-		
-		// H
-		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
-		
-		////////////////////////////////
-
-		// draw
-
-		////////////////////////////////
-		this.clear_Canvas();
-		
-		this.draw_Rect__A();
-		this.draw_Rect__B();
-
-		////////////////////////////////
-		
-		// update: status value
-		
-		////////////////////////////////
-		CONS.Admin.status = 16;
-//		CONS.Admin.status += 1;
-		
-		////////////////////////////////
-
-		// update: status label
-
-		////////////////////////////////
-		update_Status_Label();
-		
-		
-	}//_move_Rect_B__Case_9
-
-	
-	private void 
-	_move_Rect_B__Case_15() {
-		// TODO Auto-generated method stub
-		
-		////////////////////////////////
-		
-		// update: params
-		
-		////////////////////////////////
-		// X
-		CONS.Views.rect_B_X = CONS.Views.rect_A_X - CONS.Views.rect_B_H_orig;
-		
-		// Y
-		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
-		
-		// W
-		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
-		
-		// H
-		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
-		
-		////////////////////////////////
-		
-		// draw
-		
-		////////////////////////////////
-		this.clear_Canvas();
-		
-		this.draw_Rect__A();
-		this.draw_Rect__B();
-		
-		////////////////////////////////
-		
-		// update: status value
-		
-		////////////////////////////////
-		CONS.Admin.status = 15;
-//		CONS.Admin.status += 1;
-		
-		////////////////////////////////
-		
-		// update: status label
-		
-		////////////////////////////////
-		update_Status_Label();
-		
-		
-	}//_move_Rect_B__Case_9
-	
-	
-	private void 
-	_move_Rect_B__Case_6() {
-		// TODO Auto-generated method stub
-		
-		////////////////////////////////
-		
-		// update: params
-		
-		////////////////////////////////
-		// X
-		CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W;
-		
-		// Y
-		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y;
-		
-		// W
-		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
-		
-		// H
-		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
-		
-		////////////////////////////////
-		
-		// draw
-		
-		////////////////////////////////
-		this.clear_Canvas();
-		
-		this.draw_Rect__A();
-		this.draw_Rect__B();
-		
-		////////////////////////////////
-		
-		// update: status value
-		
-		////////////////////////////////
-		CONS.Admin.status = 6;
-//		CONS.Admin.status += 1;
-		
-		////////////////////////////////
-		
-		// update: status label
-		
-		////////////////////////////////
-		update_Status_Label();
-		
-		
-	}//_move_Rect_B__Case_6
-	
-	
-	private void 
 	_move_Rect_B__Case_5() {
 		// TODO Auto-generated method stub
 		
@@ -3652,105 +3443,6 @@ public class Rect_D6 {
 		
 	}//_move_Rect_B__Case_5
 	
-	
-	private void 
-	_move_Rect_B__Case_4() {
-		// TODO Auto-generated method stub
-		
-		////////////////////////////////
-		
-		// update: params
-		
-		////////////////////////////////
-		// X
-		CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W - CONS.Views.rect_B_H_orig;
-		
-		// Y
-		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_W_orig;
-		
-		// W
-		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_H_orig;
-		
-		// H
-		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_W_orig;
-		
-		////////////////////////////////
-		
-		// draw
-		
-		////////////////////////////////
-		this.clear_Canvas();
-		
-		this.draw_Rect__A();
-		this.draw_Rect__B();
-		
-		////////////////////////////////
-		
-		// update: status value
-		
-		////////////////////////////////
-		CONS.Admin.status = 4;
-//		CONS.Admin.status += 1;
-		
-		////////////////////////////////
-		
-		// update: status label
-		
-		////////////////////////////////
-		update_Status_Label();
-		
-		
-	}//_move_Rect_B__Case_4
-	
-	
-	private void 
-	_move_Rect_B__Case_3() {
-		// TODO Auto-generated method stub
-		
-		////////////////////////////////
-		
-		// update: params
-		
-		////////////////////////////////
-		// X
-		CONS.Views.rect_B_X = CONS.Views.rect_A_X + CONS.Views.rect_A_W - CONS.Views.rect_B_W_orig;
-		
-		// Y
-		CONS.Views.rect_B_Y = CONS.Views.rect_A_Y - CONS.Views.rect_B_H_orig;
-		
-		// W
-		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
-		
-		// H
-		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
-		
-		////////////////////////////////
-		
-		// draw
-		
-		////////////////////////////////
-		this.clear_Canvas();
-		
-		this.draw_Rect__A();
-		this.draw_Rect__B();
-		
-		////////////////////////////////
-		
-		// update: status value
-		
-		////////////////////////////////
-		CONS.Admin.status = 3;
-//		CONS.Admin.status += 1;
-		
-		////////////////////////////////
-		
-		// update: status label
-		
-		////////////////////////////////
-		update_Status_Label();
-		
-		
-	}//_move_Rect_B__Case_3
 	
 	private void 
 	update_Status_Label() {
