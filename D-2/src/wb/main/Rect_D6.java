@@ -632,8 +632,44 @@ public class Rect_D6 {
 		CONS.Views.rect_C_X = CONS.Views.rect_B_X; 
 		CONS.Views.rect_C_Y = CONS.Views.rect_B_Y - CONS.Views.rect_C_H_cur;
 		
-	}//init_Size_Rect_A
+	}//init_Sizes
 
+	private void 
+	init_Sizes__WandH() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// rect: A
+		
+		////////////////////////////////
+		CONS.Views.rect_A_W = Integer.parseInt(this.prop.getProperty("rect_A_W"));
+		CONS.Views.rect_A_H = Integer.parseInt(this.prop.getProperty("rect_A_H"));
+		
+		////////////////////////////////
+		
+		// rect: B
+		
+		////////////////////////////////
+		CONS.Views.rect_B_W_orig = Integer.parseInt(this.prop.getProperty("rect_B_W_orig"));
+		CONS.Views.rect_B_H_orig = Integer.parseInt(this.prop.getProperty("rect_B_H_orig"));
+		
+		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
+		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
+		
+		////////////////////////////////
+		
+		// rect: C
+		
+		////////////////////////////////
+		CONS.Views.rect_C_W_orig = Integer.parseInt(this.prop.getProperty("rect_C_W_orig"));
+		CONS.Views.rect_C_H_orig = Integer.parseInt(this.prop.getProperty("rect_C_H_orig"));
+		
+		CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
+		CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
+		
+	}//init_Size_Rect_A
+	
 	private void 
 	init_Colors() {
 		// TODO Auto-generated method stub
@@ -1270,12 +1306,14 @@ public class Rect_D6 {
 			@Override
 			public void 
 			widgetSelected(SelectionEvent e) {
+				
+				Rect_D6.this.exec_ReloadProperties();
 
-				print = new Run_Draw();
-				
-				applicationThread = new Th_Draw(display, print);
-				
-				applicationThread.start();
+//				print = new Run_Draw();
+//				
+//				applicationThread = new Th_Draw(display, print);
+//				
+//				applicationThread.start();
 
 				
 //				applicationThread.start();
@@ -1473,6 +1511,72 @@ public class Rect_D6 {
 		});
 		
 	}//_init_Set_Listeners
+
+	protected void 
+	exec_ReloadProperties() {
+		// TODO Auto-generated method stub
+	
+		////////////////////////////////
+
+		// reload
+
+		////////////////////////////////
+		boolean res = this.init_Properties();
+		
+		if (res == false) {
+			
+			//log
+			String text = String.format(Locale.JAPAN, "can't init properties\n");
+			
+			String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		}
+		
+		//log
+		String text = String.format(Locale.JAPAN, "properties => reloaded\n");
+		
+		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+
+		// update: w, h
+
+		////////////////////////////////
+		this.init_Sizes();
+//		this.init_Sizes__WandH();
+		
+		////////////////////////////////
+
+		// redraw
+
+		////////////////////////////////
+		
+		this.bt_Selected_Jump(String.valueOf(CONS.Admin.status_C));
+//		this.bt_Selected_Jump(Rect_D6.this.txt_Jump.getText());
+		
+		
+//		this.clear_Canvas();
+//		
+//		this.draw_Rect__A();
+//		this.draw_Rect__B();
+//		this.draw_Rect__C();
+//		
+//		////////////////////////////////
+//		
+//		// draw: periphery
+//		
+//		////////////////////////////////
+//		this.draw_Periphery_XObjects();
+		
+	}//exec_ReloadProperties
 
 	protected void 
 	reset_Canvas() {
