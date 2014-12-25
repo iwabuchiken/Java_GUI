@@ -4397,13 +4397,7 @@ public class Rect_D6 {
 		});
 		mntmCalcTheSmallest.setText("Calc the smallest status");
 		
-		MenuItem mntmOptions_2 = new MenuItem(menu, SWT.CASCADE);
-		mntmOptions_2.setText("Options");
-		
-		Menu menu_4 = new Menu(mntmOptions_2);
-		mntmOptions_2.setMenu(menu_4);
-		
-		MenuItem mntmSettings = new MenuItem(menu_4, SWT.NONE);
+		MenuItem mntmSettings = new MenuItem(menu_3, SWT.NONE);
 		mntmSettings.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -4428,6 +4422,17 @@ public class Rect_D6 {
 			}
 		});
 		mntmSettings.setText("Settings");
+		
+		MenuItem mntmReloadProperties = new MenuItem(menu_3, SWT.NONE);
+		mntmReloadProperties.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				Rect_D6.this.exec_ReloadProperties();
+				
+			}
+		});
+		mntmReloadProperties.setText("Reload properties");
 		
 	}//_init_Views__Menues
 
