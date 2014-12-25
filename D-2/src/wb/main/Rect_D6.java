@@ -189,7 +189,7 @@ public class Rect_D6 {
 			
 		}
 		
-		this.init_Rects();
+		this.instantiate_Rects();
 		
 		this.init_Sizes();
 		
@@ -334,7 +334,6 @@ public class Rect_D6 {
 
 	private void 
 	_test_SEG_1_Properties() {
-		// TODO Auto-generated method stub
 	
 		//REF http://www.mkyong.com/java/java-properties-file-examples/
 		Properties prop = new Properties();
@@ -372,14 +371,14 @@ public class Rect_D6 {
 					"message", JOptionPane.ERROR_MESSAGE);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
 	}
 
 	private void 
-	init_Rects() {
+	instantiate_Rects() {
 		// TODO Auto-generated method stub
 	
 		////////////////////////////////
@@ -394,17 +393,18 @@ public class Rect_D6 {
 		////////////////////////////////
 		rect_A = new Rect();
 		
-		rect_A.setColor(red);
-		
-		rect_A.setX_Cur(CONS.Views.rect_A_X);
-		rect_A.setY_Cur(CONS.Views.rect_A_Y);
-		
-		rect_A.setW(this.rect_A.getW_Orig());
-//		rect_A.setW(CONS.Views.rect_A_W);
-		rect_A.setH(CONS.Views.rect_A_H);
-		
-		rect_A.setW_Orig(this.rect_A.getW_Orig());
-		rect_A.setH_Orig(CONS.Views.rect_A_H);
+//		rect_A.setColor(red);
+//		
+////		rect_A.setX_Cur(this.rect_A.setW(Integer.parseInt(this.prop.getProperty("rect_A_W"))););
+//		rect_A.setX_Cur(CONS.Views.rect_A_X);
+//		rect_A.setY_Cur(CONS.Views.rect_A_Y);
+//		
+//		rect_A.setW(this.rect_A.getW_Orig());
+////		rect_A.setW(CONS.Views.rect_A_W);
+//		rect_A.setH(CONS.Views.rect_A_H);
+//		
+//		rect_A.setW_Orig(this.rect_A.getW_Orig());
+//		rect_A.setH_Orig(CONS.Views.rect_A_H);
 		
 		////////////////////////////////
 		
@@ -628,6 +628,7 @@ public class Rect_D6 {
 			return;
 			
 		}
+
 		
 		////////////////////////////////
 
@@ -636,11 +637,25 @@ public class Rect_D6 {
 		////////////////////////////////
 		this.rect_A.setW(Integer.parseInt(this.prop.getProperty("rect_A_W")));
 		this.rect_A.setW_Orig(Integer.parseInt(this.prop.getProperty("rect_A_W")));
+		
+		this.rect_A.setColor(red);
+		
 //		CONS.Views.rect_A_W = Integer.parseInt(this.prop.getProperty("rect_A_W"));
 		CONS.Views.rect_A_H = Integer.parseInt(this.prop.getProperty("rect_A_H"));
 		
 		CONS.Views.rect_A_X = cv_1.getSize().x / 2 - this.rect_A.getW_Orig() / 2; 
 		CONS.Views.rect_A_Y = cv_1.getSize().y / 2 - CONS.Views.rect_A_H + CONS.Views.offset_Y_A;
+		
+//		this.rect_A.setX_Cur(this.rect_A.setW(Integer.parseInt(this.prop.getProperty("rect_A_W"))););
+		this.rect_A.setX_Cur(CONS.Views.rect_A_X);
+		this.rect_A.setY_Cur(CONS.Views.rect_A_Y);
+		
+		this.rect_A.setW(this.rect_A.getW_Orig());
+//		this.rect_A.setW(CONS.Views.rect_A_W);
+		this.rect_A.setH(CONS.Views.rect_A_H);
+		
+		this.rect_A.setW_Orig(this.rect_A.getW_Orig());
+		this.rect_A.setH_Orig(CONS.Views.rect_A_H);
 		
 		////////////////////////////////
 		
