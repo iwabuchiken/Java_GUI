@@ -400,6 +400,13 @@ public class Rect_D6 {
 		////////////////////////////////
 		rect_B = new Rect();
 		
+		////////////////////////////////
+		
+		// rect: C
+		
+		////////////////////////////////
+		rect_C = new Rect();
+		
 	}//init_Rects
 
 	private void
@@ -630,7 +637,7 @@ public class Rect_D6 {
 		// rect: C
 		
 		////////////////////////////////
-		CONS.Views.rect_C_W_orig = Integer.parseInt(this.prop.getProperty("rect_C_W_orig"));
+		this.rect_C.setW_Orig(Integer.parseInt(this.prop.getProperty("rect_C_W_orig")));
 		CONS.Views.rect_C_H_orig = Integer.parseInt(this.prop.getProperty("rect_C_H_orig"));
 
 		CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
@@ -638,7 +645,19 @@ public class Rect_D6 {
 		
 		CONS.Views.rect_C_X = rect_B.getX_Cur(); 
 		CONS.Views.rect_C_Y = this.rect_B.getY_Cur() - CONS.Views.rect_C_H_cur;
+
+		// Rect B
+		rect_C.setColor(this.red);
 		
+		rect_C.setX_Cur(CONS.Views.rect_C_X);
+		rect_C.setY_Cur(CONS.Views.rect_C_Y);
+		
+		rect_C.setW(CONS.Views.rect_C_W_orig);
+		rect_C.setH(CONS.Views.rect_C_H_orig);
+		
+		rect_C.setW_Orig(CONS.Views.rect_C_W_orig);
+		rect_C.setH_Orig(CONS.Views.rect_C_H_orig);
+
 	}//init_Sizes
 
 	private void 
@@ -670,13 +689,13 @@ public class Rect_D6 {
 		// rect: C
 		
 		////////////////////////////////
-		CONS.Views.rect_C_W_orig = Integer.parseInt(this.prop.getProperty("rect_C_W_orig"));
+		this.rect_C.setW_Orig(Integer.parseInt(this.prop.getProperty("rect_C_W_orig")));
 		CONS.Views.rect_C_H_orig = Integer.parseInt(this.prop.getProperty("rect_C_H_orig"));
 		
 		CONS.Views.rect_C_H_cur = CONS.Views.rect_C_H_orig;
 		CONS.Views.rect_C_W_cur = CONS.Views.rect_C_W_orig;
 		
-	}//init_Size_Rect_A
+	}//init_Sizes__WandH
 	
 	private void 
 	init_Colors() {
