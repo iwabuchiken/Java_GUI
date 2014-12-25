@@ -864,7 +864,7 @@ public class Rect_D6 {
 
 		gc.fillRectangle(
 				this.rect_C.getX_Cur(), 
-				CONS.Views.rect_C_Y, 
+				this.rect_C.getY_Cur(),
 				this.rect_C.getW(), 
 //				CONS.Views.rect_C_W_cur, 
 				this.rect_C.getH());
@@ -1113,7 +1113,7 @@ public class Rect_D6 {
 						}
 				);
 		
-		y_smallest = Methods.smallest(new int[]{this.rect_A.getY_Cur(), CONS.Views.rect_B_Y, CONS.Views.rect_C_Y});
+		y_smallest = Methods.smallest(new int[]{this.rect_A.getY_Cur(), CONS.Views.rect_B_Y, this.rect_C.getY_Cur()});
 		
 		x_largest = Methods.largest(
 				new int[]{
@@ -1128,7 +1128,7 @@ public class Rect_D6 {
 						
 						this.rect_A.getY_Cur() + this.rect_A.getH_Orig(), 
 						CONS.Views.rect_B_Y + CONS.Views.rect_B_H_cur, 
-						CONS.Views.rect_C_Y + this.rect_C.getH()
+						this.rect_C.getY_Cur() + this.rect_C.getH()
 						
 				});
 		
@@ -1890,7 +1890,7 @@ public class Rect_D6 {
 			this.rect_C.setX_Cur(this.rect_A.getX_Cur());
 			
 			// Y
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() - this.rect_C.getW_Orig();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() - this.rect_C.getW_Orig());
 			
 			// W
 			this.rect_C.setW(this.rect_C.getH_Orig());
@@ -2046,7 +2046,7 @@ public class Rect_D6 {
 		case VERTI_HORI://--------------------------------------
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() + rect_B.getH_Orig() - this.rect_C.getW_Orig();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() + rect_B.getH_Orig() - this.rect_C.getW_Orig());
 			
 			this.rect_C.setH(this.rect_C.getW_Orig());
 			this.rect_C.setW(this.rect_C.getH_Orig());
@@ -2063,7 +2063,7 @@ public class Rect_D6 {
 //							+ CONS.Views.rect_B_W_cur 
 //							- this.rect_C.getW_Orig(); 
 			
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() + rect_B.getH_Orig();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() + rect_B.getH_Orig());
 
 			this.rect_C.setH(this.rect_C.getH_Orig());
 			
@@ -2087,7 +2087,7 @@ public class Rect_D6 {
 //									+ CONS.Views.rect_B_W_cur 
 //									- this.rect_C.getH_Orig();
 			// Y
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() + rect_B.getH_Orig();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() + rect_B.getH_Orig());
 			
 			// W
 			this.rect_C.setW(this.rect_C.getH_Orig());
@@ -2100,7 +2100,7 @@ public class Rect_D6 {
 		case VERTI_VERTI://--------------------------------------
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() + rect_B.getH_Orig() - this.rect_C.getH_Orig();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() + rect_B.getH_Orig() - this.rect_C.getH_Orig());
 			
 			this.rect_C.setH(this.rect_C.getH_Orig());
 			this.rect_C.setW(this.rect_C.getW_Orig());
@@ -2153,7 +2153,7 @@ public class Rect_D6 {
 //					+ CONS.Views.rect_B_W_cur 
 //					- this.rect_C.getW_Orig(); 
 			
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() - this.rect_C.getH_Orig();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() - this.rect_C.getH_Orig());
 			
 //			////////////////////////////////
 //			
@@ -2190,7 +2190,7 @@ public class Rect_D6 {
 //			+ CONS.Views.rect_B_W_cur 
 //			- this.rect_C.getH_Orig();
 			// Y
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() - this.rect_C.getW_Orig();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() - this.rect_C.getW_Orig());
 			
 			// W
 			this.rect_C.setW(this.rect_C.getH_Orig());
@@ -2220,7 +2220,7 @@ public class Rect_D6 {
 		case VERTI_HORI://--------------------------------------
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur());
 			
 			this.rect_C.setH(this.rect_C.getW_Orig());
 			this.rect_C.setW(this.rect_C.getH_Orig());
@@ -2230,7 +2230,7 @@ public class Rect_D6 {
 		case VERTI_VERTI://--------------------------------------
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur());
 			
 			this.rect_C.setH(this.rect_C.getH_Orig());
 			this.rect_C.setW(this.rect_C.getW_Orig());
@@ -2269,8 +2269,8 @@ public class Rect_D6 {
 			this.rect_C.setW(this.rect_C.getW_Orig());
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() - this.rect_C.getH_Orig();
-//			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() - CONS.Views.rect_C_H_cur;
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() - this.rect_C.getH_Orig());
+//			this.rect_C.setY_Cur(this.rect_B.getY_Cur() - CONS.Views.rect_C_H_cur);
 
 			////////////////////////////////
 			
@@ -2299,7 +2299,7 @@ public class Rect_D6 {
 			this.rect_C.setX_Cur(this.rect_A.getX_Cur());
 			
 			// Y
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() - this.rect_C.getW_Orig();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() - this.rect_C.getW_Orig());
 			
 			// W
 			this.rect_C.setW(this.rect_C.getH_Orig());
@@ -2332,7 +2332,7 @@ public class Rect_D6 {
 			this.rect_C.setW(this.rect_C.getH_Orig());
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() - this.rect_C.getH_Orig()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur());
 			
 			////////////////////////////////
 			
@@ -2359,7 +2359,7 @@ public class Rect_D6 {
 			this.rect_C.setW(this.rect_C.getW_Orig());
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() - this.rect_C.getW_Orig()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur());
 			
 			////////////////////////////////
 			
@@ -2453,7 +2453,7 @@ public class Rect_D6 {
 		case HORI_VERTI://-------------------------------------- status = 5
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig() - this.rect_C.getW_Orig()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() + rect_B.getH_Orig();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() + rect_B.getH_Orig());
 			
 			this.rect_C.setH(this.rect_C.getH_Orig());
 			this.rect_C.setW(this.rect_C.getW_Orig());
@@ -2468,7 +2468,7 @@ public class Rect_D6 {
 			
 			////////////////////////////////
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig() - this.rect_C.getH_Orig()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() - this.rect_C.getW_Orig();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() - this.rect_C.getW_Orig());
 			
 			this.rect_C.setH(this.rect_C.getW_Orig());
 			this.rect_C.setW(this.rect_C.getH_Orig());
@@ -2478,7 +2478,7 @@ public class Rect_D6 {
 		case VERTI_HORI://-------------------------------------- status = 7
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() + rect_B.getH_Orig() - this.rect_C.getW_Orig();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() + rect_B.getH_Orig() - this.rect_C.getW_Orig());
 			
 			this.rect_C.setH(this.rect_C.getW_Orig());
 			this.rect_C.setW(this.rect_C.getH_Orig());
@@ -2488,7 +2488,7 @@ public class Rect_D6 {
 		case VERTI_VERTI://--------------------------------------
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() + rect_B.getH_Orig() - this.rect_C.getH_Orig();;
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() + rect_B.getH_Orig() - this.rect_C.getH_Orig());
 			
 			this.rect_C.setH(this.rect_C.getH_Orig());
 			this.rect_C.setW(this.rect_C.getW_Orig());
@@ -2524,7 +2524,7 @@ public class Rect_D6 {
 		case HORI_VERTI://-------------------------------------- status = 5
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig() - this.rect_C.getW_Orig()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() - this.rect_C.getH_Orig();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() - this.rect_C.getH_Orig());
 			
 			this.rect_C.setH(this.rect_C.getH_Orig());
 			this.rect_C.setW(this.rect_C.getW_Orig());
@@ -2539,7 +2539,7 @@ public class Rect_D6 {
 			
 			////////////////////////////////
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig() - this.rect_C.getH_Orig()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() - this.rect_C.getW_Orig();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() - this.rect_C.getW_Orig());
 			
 			this.rect_C.setH(this.rect_C.getW_Orig());
 			this.rect_C.setW(this.rect_C.getH_Orig());
@@ -2550,7 +2550,7 @@ public class Rect_D6 {
 			
 			// => to HORI_HORI
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur());
 			
 			this.rect_C.setH(this.rect_C.getW_Orig());
 			this.rect_C.setW(this.rect_C.getH_Orig());
@@ -2560,7 +2560,7 @@ public class Rect_D6 {
 		case VERTI_VERTI://--------------------------------------
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur());
 			
 			this.rect_C.setH(this.rect_C.getH_Orig());
 			this.rect_C.setW(this.rect_C.getW_Orig());
@@ -2599,8 +2599,8 @@ public class Rect_D6 {
 			this.rect_C.setW(this.rect_C.getW_Orig());
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() - this.rect_C.getH_Orig();
-//			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() - CONS.Views.rect_C_H_cur;
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() - this.rect_C.getH_Orig());
+//			this.rect_C.setY_Cur(this.rect_B.getY_Cur() - CONS.Views.rect_C_H_cur);
 			
 			////////////////////////////////
 			
@@ -2629,7 +2629,7 @@ public class Rect_D6 {
 			this.rect_C.setW(this.rect_C.getH_Orig());
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur() - this.rect_C.getW_Orig();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur() - this.rect_C.getW_Orig());
 			
 			////////////////////////////////
 			
@@ -2654,7 +2654,7 @@ public class Rect_D6 {
 			this.rect_C.setW(this.rect_C.getH_Orig());
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() - this.rect_C.getH_Orig()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur());
 			
 			////////////////////////////////
 			
@@ -2694,7 +2694,7 @@ public class Rect_D6 {
 			this.rect_C.setW(this.rect_C.getW_Orig());
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() - this.rect_C.getW_Orig()); 
-			CONS.Views.rect_C_Y = this.rect_B.getY_Cur();
+			this.rect_C.setY_Cur(this.rect_B.getY_Cur());
 			
 			////////////////////////////////
 			
