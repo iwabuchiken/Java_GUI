@@ -398,17 +398,17 @@ public class Rect_D6 {
 		// rect: B
 		
 		////////////////////////////////
-		Rect rect_B = new Rect();
+		rect_B = new Rect();
 		
-		rect_B.setColor(this.blue);
-		
-		rect_B.setX_Cur(CONS.Views.rect_B_X);
-		
-		rect_B.setW(CONS.Views.rect_B_W_orig);
-		rect_B.setH(CONS.Views.rect_B_H_orig);
-		
-		rect_B.setW_Orig(CONS.Views.rect_B_W_orig);
-		rect_B.setH_Orig(CONS.Views.rect_B_H_orig);
+//		rect_B.setColor(this.blue);
+//		
+//		rect_B.setX_Cur(CONS.Views.rect_B_X);
+//		
+//		rect_B.setW(CONS.Views.rect_B_W_orig);
+//		rect_B.setH(CONS.Views.rect_B_H_orig);
+//		
+//		rect_B.setW_Orig(CONS.Views.rect_B_W_orig);
+//		rect_B.setH_Orig(CONS.Views.rect_B_H_orig);
 
 	}//init_Rects
 
@@ -661,7 +661,18 @@ public class Rect_D6 {
 		CONS.Views.rect_B_X = this.rect_A.getX_Cur(); 
 //		CONS.Views.rect_B_X = CONS.Views.rect_A_X; 
 		CONS.Views.rect_B_Y = this.rect_A.getY_Cur() - CONS.Views.rect_B_H_cur;
+
+		// Rect B
+		rect_B.setColor(this.blue);
 		
+		rect_B.setX_Cur(CONS.Views.rect_B_X);
+		
+		rect_B.setW(CONS.Views.rect_B_W_orig);
+		rect_B.setH(CONS.Views.rect_B_H_orig);
+		
+		rect_B.setW_Orig(CONS.Views.rect_B_W_orig);
+		rect_B.setH_Orig(CONS.Views.rect_B_H_orig);
+
 		////////////////////////////////
 		
 		// rect: C
@@ -680,7 +691,6 @@ public class Rect_D6 {
 
 	private void 
 	init_Sizes__WandH() {
-		// TODO Auto-generated method stub
 		
 		////////////////////////////////
 		
