@@ -1845,6 +1845,7 @@ public class Rect_D6 {
 				
 				// dispatch
 				//		orien => updated
+				//		name => updated
 				
 				////////////////////////////////
 				if (name.toString().startsWith("A")) {
@@ -1957,19 +1958,6 @@ public class Rect_D6 {
 		if (pos_Name.equals("UR")) {
 			
 			this._move_Rect_C_RIGHT__A_UR(CONS.Admin.status_C);
-//			// w, h
-//			this.rect_C.setH(this.rect_C.getH_Orig());
-//			this.rect_C.setW(this.rect_C.getW_Orig());
-//			
-//			// x, y
-//			this.rect_C.setX_Cur(
-//							this.rect_C.getAttachedTo().getX_Cur() 
-//							+ this.rect_C.getAttachedTo().getW_Orig() 
-//							- this.rect_C.getW_Orig());
-//			
-//			this.rect_C.setY_Cur(
-//					this.rect_C.getAttachedTo().getY_Cur() 
-//					- this.rect_C.getH_Orig());
 			
 		} else {
 			
@@ -1977,30 +1965,6 @@ public class Rect_D6 {
 			
 		}
 		
-//		////////////////////////////////
-//
-//		// update: meta data
-//
-//		////////////////////////////////
-//		// status
-//		CONS.Admin.status_C = 
-//						Methods.get_Status_from_NodeAndPosition(
-//									name,
-//									orien_Current);
-//		
-//		// current node number
-//		CONS.Admin.node_Current = 
-//				Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
-//
-//		
-//		//log
-//		String text = String.format(Locale.JAPAN, 
-//							"node name => %s / attached to => %s / pos_Name => %s\n", 
-//							name.toString(),
-//							this.rect_C.getAttachedTo().getRect_Name(),
-//							pos_Name
-//							);
-//		
 		////////////////////////////////
 
 		// update: canvas
