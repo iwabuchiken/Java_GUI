@@ -296,11 +296,11 @@ public class Methods {
 			
 			switch(orien) {
 			
-//			case INITIAL: 
-//			case VERTI_HORI: return 9;
-//			case VERTI_VERTI: return 10;
-//			case HORI_VERTI: return 11;
-//			case HORI_HORI: return 12;
+			case INITIAL: 
+			case HORI_VERTI: return 13;
+			case HORI_HORI: return 14;
+			case VERTI_HORI: return 15;
+			case VERTI_VERTI: return 16;
 			
 			}//switch(orien)
 			
@@ -376,15 +376,15 @@ public class Methods {
 			
 			switch(orien_Current) {
 			
-//			case VERTI_HORI: return CONS.Admin.Orien.VERTI_VERTI;
-//			
-//			case VERTI_VERTI: return CONS.Admin.Orien.HORI_VERTI;
-//			
-//			case HORI_VERTI: return CONS.Admin.Orien.HORI_HORI;
-//			
-//			case HORI_HORI: return CONS.Admin.Orien.NEXT_NODE;
-//			
-//			case INITIAL: return CONS.Admin.Orien.VERTI_HORI;
+			case HORI_VERTI: return CONS.Admin.Orien.HORI_HORI;
+			
+			case HORI_HORI: return CONS.Admin.Orien.VERTI_HORI;
+			
+			case VERTI_HORI: return CONS.Admin.Orien.VERTI_VERTI;
+			
+			case VERTI_VERTI: return CONS.Admin.Orien.NEXT_NODE;
+			
+			case INITIAL: return CONS.Admin.Orien.HORI_VERTI;
 			
 			}
 			
@@ -830,6 +830,68 @@ public class Methods {
 		return prop;
 		
 	}//load_Properties(File fpath_Config)
+
+	public static void 
+	update_AttachedTo
+	(Rect_D6 rect_D6, Rect rect_C, NodeNames name) {
+		// TODO Auto-generated method stub
+		
+		/*******************************
+
+			validate
+
+		 *******************************/
+		if (name == null) {
+			
+			//log
+			String text = String.format(Locale.JAPAN, "name => null\n");
+			
+			String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+			return;
+			
+		}
+		
+		////////////////////////////////
+
+		// update
+
+		////////////////////////////////
+		String rect_Name = name.toString().split("_")[0];
+		
+		if (rect_Name.equals("A")) rect_C.setAttachedTo(rect_D6.getRect_A());
+		else if (rect_Name.equals("B")) rect_C.setAttachedTo(rect_D6.getRect_B());
+		else {
+			
+			rect_C.setAttachedTo(rect_D6.getRect_B());
+			
+			//log
+			String text = String.format(Locale.JAPAN, "rect name => unknow; set to default, i.e. rect B\n");
+			
+			String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		}//if (rect_Name.equals("A"))
+
+		//log
+		String text = String.format(Locale.JAPAN, 
+							"attached to => %s\n", 
+							rect_C.getAttachedTo().getRect_Name());
+		
+		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+	}//update_AttachedTo
 
 //	public static void 
 //	bt_Selected_Jump(String tmp) {

@@ -10,11 +10,25 @@ public class Rect {
 	
 	private int w_Orig, h_Orig;
 	
-	
+	private String rect_Name;
 	
 	Color color;
 	
 	Rect attachedTo;
+
+	public Rect(String rect_Name) {
+		
+		this.rect_Name = rect_Name;
+		
+	}
+
+	public String getRect_Name() {
+		return rect_Name;
+	}
+
+	public void setRect_Name(String rect_Name) {
+		this.rect_Name = rect_Name;
+	}
 
 	public int getW_Orig() {
 		return w_Orig;
