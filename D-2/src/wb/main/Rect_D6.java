@@ -3375,23 +3375,23 @@ public class Rect_D6 {
 		////////////////////////////////
 		Methods.update_AttachedTo(Rect_D6.this, Rect_D6.this.rect_C, name);
 
-//		//log
-//		text = String.format(Locale.JAPAN, "status_C => %d\n", CONS.Admin.status_C);
-//		
-//		fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//		
-//		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//		
-//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-
 		////////////////////////////////
 
 		// jump
 
 		////////////////////////////////
+		if (name.toString().startsWith("A")) {
+			
+			this._move_Rect_C_RIGHT__A(name, orien);
+			
+		} else {
+			
+			this._move_Rect_C_RIGHT(name, orien);
+			
+		}
 		
 		
-		this._move_Rect_C_RIGHT(name, orien);
+//		this._move_Rect_C_RIGHT(name, orien);
 		
 	}//bt_Selected_Jump
 

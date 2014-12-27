@@ -746,7 +746,21 @@ public class Methods {
 			}
 			
 			break;//case B_UL
+
+		case A_UR://----------------------------------
 			
+			switch(index_Orien) {
+			
+			case 1: orien = CONS.Admin.Orien.HORI_VERTI; break; 
+			case 2: orien = CONS.Admin.Orien.HORI_HORI; break; 
+			case 3: orien = CONS.Admin.Orien.VERTI_HORI; break; 
+			case 4: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			
+			}
+			
+			break;//case A_UR
+			
+
 		}//switch(name)
 		
 		return new Object[]{name, orien};
