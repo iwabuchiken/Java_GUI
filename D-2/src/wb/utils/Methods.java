@@ -703,22 +703,10 @@ public class Methods {
 		// node name
 		NodeNames name = CONS.Admin.list_NodeNames.get(node_Number - 1);
 		
-//		int index_Orien = 4 - (status % 4);
 		int index_Orien = status % 4;
 		
 		if (index_Orien == 0) index_Orien = 4;
 
-//		//log
-//		String text = String.format(Locale.JAPAN, 
-//							"status => %d / name = %s / index_Orien => %d\n", 
-//							status, name.toString(), index_Orien);
-//		
-//		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//		
-//		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//		
-//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-		
 		CONS.Admin.Orien orien = null;
 		
 		////////////////////////////////
@@ -780,6 +768,18 @@ public class Methods {
 			
 			break;//case A_UR
 			
+		case A_LR://----------------------------------
+			
+			switch(index_Orien) {
+			
+			case 1: orien = CONS.Admin.Orien.VERTI_HORI; break; 
+			case 2: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			case 3: orien = CONS.Admin.Orien.HORI_VERTI; break; 
+			case 4: orien = CONS.Admin.Orien.HORI_HORI; break; 
+			
+			}
+			
+			break;//case A_UL
 
 		}//switch(name)
 		

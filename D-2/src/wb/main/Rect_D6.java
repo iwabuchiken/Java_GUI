@@ -444,6 +444,21 @@ public class Rect_D6 {
 	private void 
 	draw_Initial() {
 		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// initial status
+
+		////////////////////////////////
+		String initial_Status = this.prop.getProperty("initial_status", null);
+		
+		if (initial_Status != null) {
+			
+			this.bt_Selected_Jump(initial_Status);
+			
+			return;
+			
+		}
+		
 		
 		this.draw_Rect__A();
 		
