@@ -556,6 +556,24 @@ public class Methods {
 			
 			break;	// case A_LR
 
+		case A_LL://------------------------------
+			
+			switch(orien_Current) {
+			
+			case HORI_VERTI: return CONS.Admin.Orien.PREV_NODE;
+				
+			case HORI_HORI: return CONS.Admin.Orien.HORI_VERTI;
+				
+			case VERTI_HORI: return CONS.Admin.Orien.HORI_HORI;
+				
+			case VERTI_VERTI: return CONS.Admin.Orien.VERTI_HORI;
+				
+			case INITIAL: return CONS.Admin.Orien.HORI_VERTI;
+				
+			}//switch(orien_Current)
+			
+			break;	// case A_LL
+			
 		}//switch(name)
 		
 		return orien_Current;
@@ -698,6 +716,7 @@ public class Methods {
 		
 		case A_UR: return CONS.Admin.Orien.VERTI_VERTI;
 		case A_LR: return CONS.Admin.Orien.HORI_HORI;
+		case A_LL: return CONS.Admin.Orien.VERTI_VERTI;
 		
 		}
 		

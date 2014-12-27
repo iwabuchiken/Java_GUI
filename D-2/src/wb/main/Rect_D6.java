@@ -1776,7 +1776,6 @@ public class Rect_D6 {
 				line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
 				
 				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-				
 
 				////////////////////////////////
 				
