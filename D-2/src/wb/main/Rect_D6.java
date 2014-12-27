@@ -1708,7 +1708,8 @@ public class Rect_D6 {
 						
 						////////////////////////////////
 
-						// orien => reset
+						// no prev orien
+						// 		orien => reset
 
 						////////////////////////////////
 						CONS.Admin.orien_Current = Methods.get_InitialOrien(name);
