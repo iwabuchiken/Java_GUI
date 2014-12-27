@@ -438,25 +438,15 @@ public class Methods {
 			
 			switch(orien_Current) {
 			
-			case HORI_VERTI://---------------
+			case HORI_VERTI: return CONS.Admin.Orien.PREV_NODE;
 				
-				return CONS.Admin.Orien.PREV_NODE;
+			case HORI_HORI: return CONS.Admin.Orien.HORI_VERTI;
 				
-			case HORI_HORI://---------------
+			case VERTI_HORI: return CONS.Admin.Orien.HORI_HORI;
 				
-				return CONS.Admin.Orien.HORI_VERTI;
+			case VERTI_VERTI: return CONS.Admin.Orien.VERTI_HORI;
 				
-			case VERTI_HORI://---------------
-				
-				return CONS.Admin.Orien.HORI_HORI;
-				
-			case VERTI_VERTI://---------------
-				
-				return CONS.Admin.Orien.VERTI_HORI;
-				
-			case INITIAL://---------------
-				
-				return CONS.Admin.Orien.HORI_VERTI;
+			case INITIAL: return CONS.Admin.Orien.HORI_VERTI;
 				
 			}//switch(orien_Current)
 			
@@ -466,25 +456,15 @@ public class Methods {
 			
 			switch(orien_Current) {
 			
-			case HORI_VERTI://---------------
+			case HORI_VERTI: return CONS.Admin.Orien.PREV_NODE;
 				
-				return CONS.Admin.Orien.PREV_NODE;
+			case HORI_HORI: return CONS.Admin.Orien.HORI_VERTI;
 				
-			case HORI_HORI://---------------
+			case VERTI_HORI: return CONS.Admin.Orien.HORI_HORI;
 				
-				return CONS.Admin.Orien.HORI_VERTI;
+			case VERTI_VERTI: return CONS.Admin.Orien.VERTI_HORI;
 				
-			case VERTI_HORI://---------------
-				
-				return CONS.Admin.Orien.HORI_HORI;
-				
-			case VERTI_VERTI://---------------
-				
-				return CONS.Admin.Orien.VERTI_HORI;
-				
-			case INITIAL://---------------
-				
-				return CONS.Admin.Orien.HORI_VERTI;
+			case INITIAL: return CONS.Admin.Orien.HORI_VERTI;
 				
 			}//switch(orien_Current)
 			
@@ -507,7 +487,26 @@ public class Methods {
 			}//switch(orien_Current)
 			
 			break;
+
+		case A_UR:
 			
+			switch(orien_Current) {
+			
+			case HORI_VERTI: return CONS.Admin.Orien.PREV_NODE;
+				
+			case HORI_HORI: return CONS.Admin.Orien.HORI_VERTI;
+				
+			case VERTI_HORI: return CONS.Admin.Orien.HORI_HORI;
+				
+			case VERTI_VERTI: return CONS.Admin.Orien.VERTI_HORI;
+				
+			case INITIAL: return CONS.Admin.Orien.HORI_VERTI;
+				
+			}//switch(orien_Current)
+			
+			break;
+			
+
 		}//switch(name)
 		
 		return orien_Current;
@@ -689,21 +688,18 @@ public class Methods {
 		
 		if (index_Orien == 0) index_Orien = 4;
 
-		//log
-		String text = String.format(Locale.JAPAN, 
-							"status => %d / name = %s / index_Orien => %d\n", 
-							status, name.toString(), index_Orien);
-		
-		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
-		
-		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-		
-		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-		
-
+//		//log
+//		String text = String.format(Locale.JAPAN, 
+//							"status => %d / name = %s / index_Orien => %d\n", 
+//							status, name.toString(), index_Orien);
+//		
+//		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//		
+//		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//		
+//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 		
 		CONS.Admin.Orien orien = null;
-//		Orien orien;
 		
 		////////////////////////////////
 
