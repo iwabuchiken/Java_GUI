@@ -1989,6 +1989,10 @@ public class Rect_D6 {
 				
 			this._move_Rect_C_RIGHT__A_LR(CONS.Admin.status_C);
 				
+		} else if (pos_Name.equals("LL")) {
+			
+			this._move_Rect_C_RIGHT__A_LL(CONS.Admin.status_C);
+			
 		} else {
 			
 			;
@@ -2260,6 +2264,132 @@ public class Rect_D6 {
 			this.rect_C.setY_Cur(
 					this.rect_C.getAttachedTo().getY_Cur() 
 					+ this.rect_C.getAttachedTo().getH_Orig()
+					);
+			
+			break;	// case 4:	// HH
+			
+		default:
+			
+			//log
+			text = String.format(Locale.JAPAN, "pos_seq => default\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			
+			break;
+		}
+		
+	}//_move_Rect_C_RIGHT__A_LR
+	
+	private void 
+	_move_Rect_C_RIGHT__A_LL(int status_C) {
+		
+		String text, fname;
+		
+		int line_Num;
+		
+		////////////////////////////////
+		
+		// position sequence
+		
+		////////////////////////////////
+		int pos_seq = status_C % 4;
+		
+		if (pos_seq == 0) pos_seq = 4;
+		
+		//log
+		text = String.format(Locale.JAPAN, "pos_seq => %d\n", pos_seq);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+		
+		// dispatch
+		
+		////////////////////////////////
+		switch(pos_seq) {
+		
+		case 1:	// HV ---------------------------------
+			
+			// w, h
+			this.rect_C.setH(this.rect_C.getH_Orig());
+			this.rect_C.setW(this.rect_C.getW_Orig());
+			
+			// x, y
+			this.rect_C.setX_Cur(
+					this.rect_C.getAttachedTo().getX_Cur() 
+					);
+			
+			this.rect_C.setY_Cur(
+					this.rect_C.getAttachedTo().getY_Cur()
+					+ this.rect_C.getAttachedTo().getH_Orig()
+					);
+			
+			break;	// case 1:	// VV
+			
+		case 2:	// HH ---------------------------------
+			
+			// w, h
+			this.rect_C.setH(this.rect_C.getW_Orig());
+			this.rect_C.setW(this.rect_C.getH_Orig());
+			
+			// x, y
+			this.rect_C.setX_Cur(
+					this.rect_C.getAttachedTo().getX_Cur() 
+					);
+			
+			this.rect_C.setY_Cur(
+					this.rect_C.getAttachedTo().getY_Cur()
+					+ this.rect_C.getAttachedTo().getH_Orig()
+					);
+			
+			break;	// case 2:	// VH
+			
+		case 3:	// VH ---------------------------------
+			
+			// w, h
+			this.rect_C.setH(this.rect_C.getW_Orig());
+			this.rect_C.setW(this.rect_C.getH_Orig());
+			
+			// x, y
+			this.rect_C.setX_Cur(
+					this.rect_C.getAttachedTo().getX_Cur() 
+					- this.rect_C.getH_Orig()
+//					- this.rect_C.getX_Cur()
+					);
+			
+			this.rect_C.setY_Cur(
+					this.rect_C.getAttachedTo().getY_Cur()
+					+ this.rect_C.getAttachedTo().getH_Orig()
+					- this.rect_C.getW_Orig()
+					);
+			
+			break;	// case 3:	// HV
+			
+		case 4:	// VV ---------------------------------
+			
+			// w, h
+			this.rect_C.setH(this.rect_C.getH_Orig());
+			this.rect_C.setW(this.rect_C.getW_Orig());
+			
+			// x, y
+			this.rect_C.setX_Cur(
+					this.rect_C.getAttachedTo().getX_Cur() 
+					- this.rect_C.getW_Orig()
+					);
+			
+			this.rect_C.setY_Cur(
+					this.rect_C.getAttachedTo().getY_Cur()
+					+ this.rect_C.getAttachedTo().getH_Orig()
+					- this.rect_C.getH_Orig()
 					);
 			
 			break;	// case 4:	// HH

@@ -251,7 +251,7 @@ public class Methods {
 		////////////////////////////////
 		switch(name) {
 		
-		case B_UL:
+		case B_UL://-----------------------------
 			
 			switch(orien) {
 			
@@ -264,7 +264,7 @@ public class Methods {
 			
 			break;
 			
-		case B_UR:
+		case B_UR://-----------------------------
 			
 			switch(orien) {
 			
@@ -278,7 +278,7 @@ public class Methods {
 			
 			break;
 			
-		case B_LR:
+		case B_LR://-----------------------------
 			
 			switch(orien) {
 			
@@ -292,7 +292,7 @@ public class Methods {
 			
 			break;
 			
-		case A_UR:
+		case A_UR://-----------------------------
 			
 			switch(orien) {
 			
@@ -306,7 +306,7 @@ public class Methods {
 			
 			break;
 			
-		case A_LR:
+		case A_LR://-----------------------------
 			
 			switch(orien) {
 			
@@ -315,6 +315,19 @@ public class Methods {
 			case VERTI_VERTI: return 18;
 			case HORI_VERTI: return 19;
 			case HORI_HORI: return 20;
+			
+			}//switch(orien)
+			
+			break;
+			
+		case A_LL://-----------------------------
+			
+			switch(orien) {
+			
+			case HORI_VERTI: return 21;
+			case HORI_HORI: return 22;
+			case VERTI_HORI: return 23;
+			case VERTI_VERTI: return 24;
 			
 			}//switch(orien)
 			
@@ -421,7 +434,26 @@ public class Methods {
 			}
 			
 			break;
+
+		case A_LL://-----------------------------
 			
+			switch(orien_Current) {
+			
+			case HORI_VERTI: return CONS.Admin.Orien.HORI_HORI;
+				
+			case HORI_HORI: return CONS.Admin.Orien.VERTI_HORI;
+				
+			case VERTI_HORI: return CONS.Admin.Orien.VERTI_VERTI;
+				
+			case VERTI_VERTI: return CONS.Admin.Orien.NEXT_NODE;
+				
+			case INITIAL: return CONS.Admin.Orien.HORI_VERTI;
+				
+			}
+			
+			break;	// case A_LL
+			
+
 		}//switch(name)
 
 		return orien_Current;
@@ -637,8 +669,10 @@ public class Methods {
 		case B_UL: return CONS.Admin.Orien.HORI_VERTI;
 		case B_UR: return CONS.Admin.Orien.HORI_VERTI;
 		case B_LR: return CONS.Admin.Orien.VERTI_HORI;
+		
 		case A_UR: return CONS.Admin.Orien.HORI_VERTI;
 		case A_LR: return CONS.Admin.Orien.VERTI_HORI;
+		case A_LL: return CONS.Admin.Orien.HORI_VERTI;
 		
 		}
 		
