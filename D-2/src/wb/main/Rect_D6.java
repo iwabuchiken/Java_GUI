@@ -55,6 +55,9 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.TableColumn;
 
 public class Rect_D6 {
 
@@ -83,7 +86,8 @@ public class Rect_D6 {
 	Dimension dim;
 
 	Button bt_Execute, bt_Quit, bt_Clear, bt_Back, bt_Forward, bt_Jump;
-
+	TableItem ti_W;
+	
 	static Label lbl_Status, lbl_Msg;
 	
 	//test
@@ -97,12 +101,20 @@ public class Rect_D6 {
 
 	boolean f_Executing = false, f_Off_Status_Limit = false;
 	
-	private Group gr_navigate, gr_ops;
+	private Group gr_navigate, gr_ops, group_2;
+	
 	private Button btnOptions;
+	
 	private FormData fd_gr_navigate;
 	private FormData fd_gr_ops;
+	
 	private Text txt_Jump;
-//	private Group group_2;
+	
+	private Table tbl_AreaData;
+	
+	private TableItem ti_H;
+	
+	private Label lbl_Width, lbl_Height;
 	
 	////////////////////////////////
 
@@ -511,19 +523,20 @@ public class Rect_D6 {
 		Group group = new Group(shell, SWT.NONE);
 		group.setBackground(SWTResourceManager.getColor(SWT.COLOR_YELLOW));
 		FormData fd_group = new FormData();
-		fd_group.top = new FormAttachment(lbl_Msg, 25);
-		fd_group.bottom = new FormAttachment(lbl_AreaData, -12);
-		fd_group.left = new FormAttachment(gr_navigate, -44, SWT.LEFT);
-		fd_group.right = new FormAttachment(100, -55);
+		fd_group.bottom = new FormAttachment(lbl_Msg, 90, SWT.BOTTOM);
+		fd_group.top = new FormAttachment(lbl_Msg, 18);
+		//		fd_group.bottom = new FormAttachment(lbl_AreaData, -12);
+				fd_group.left = new FormAttachment(gr_navigate, -44, SWT.LEFT);
+		fd_group.right = new FormAttachment(gr_ops, 0, SWT.RIGHT);
 		group.setLayoutData(fd_group);
 		
 		txt_Jump = new Text(group, SWT.BORDER);
 		txt_Jump.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT));
-		txt_Jump.setBounds(27, 27, 72, 33);
+		txt_Jump.setBounds(27, 20, 72, 33);
 		
 //		Button btnJump = new Button(group, SWT.NONE);
 		bt_Jump = new Button(group, SWT.NONE);
-		bt_Jump.setBounds(115, 25, 92, 37);
+		bt_Jump.setBounds(115, 20, 92, 37);
 		bt_Jump.setText("Jump");
 		
 		////////////////////////////////
@@ -532,6 +545,40 @@ public class Rect_D6 {
 
 		////////////////////////////////
 		_init_Set_Listeners(shell);
+		
+		tbl_AreaData = new Table(shell, SWT.BORDER | SWT.FULL_SELECTION);
+		FormData fd_tbl_AreaData = new FormData();
+		fd_tbl_AreaData.left = new FormAttachment(gr_navigate, 60, SWT.LEFT);
+		fd_tbl_AreaData.top = new FormAttachment(cv_1, -146);
+		fd_tbl_AreaData.bottom = new FormAttachment(cv_1, 0, SWT.BOTTOM);
+		fd_tbl_AreaData.right = new FormAttachment(lbl_Status, 0, SWT.RIGHT);
+		tbl_AreaData.setLayoutData(fd_tbl_AreaData);
+		tbl_AreaData.setHeaderVisible(true);
+		tbl_AreaData.setLinesVisible(true);
+		
+//		TableItem ti_W = new TableItem(tbl_AreaData, SWT.NONE);
+		ti_W = new TableItem(tbl_AreaData, SWT.NONE);
+		ti_W.setText("Width");
+		
+		Group group_1 = new Group(shell, SWT.NONE);
+		FormData fd_group_1 = new FormData();
+		fd_group_1.right = new FormAttachment(tbl_AreaData, -10);
+		fd_group_1.top = new FormAttachment(group, 15);
+		fd_group_1.left = new FormAttachment(tbl_AreaData, -100, SWT.LEFT);
+		fd_group_1.bottom = new FormAttachment(group, 160, SWT.BOTTOM);
+		
+		ti_H = new TableItem(tbl_AreaData, SWT.NONE);
+		ti_H.setText("Height");
+		
+		group_1.setLayoutData(fd_group_1);
+		
+		lbl_Width = new Label(group_1, SWT.NONE);
+		lbl_Width.setBounds(0, 38, 90, 27);
+		lbl_Width.setText("Width");
+		
+		lbl_Height = new Label(group_1, SWT.NONE);
+		lbl_Height.setBounds(0, 71, 90, 27);
+		lbl_Height.setText("Height");
 		
 	}//createContents
 
@@ -730,7 +777,7 @@ public class Rect_D6 {
 		// TODO Auto-generated method stub
 
 		//debug
-		this.lbl_AreaData.setText("rect A: x = " + this.rect_A.getX_Cur());
+//		this.lbl_AreaData.setText("rect A: x = " + this.rect_A.getX_Cur());
 		
 		//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
 		GC gc = new GC(cv_1);
@@ -1112,25 +1159,31 @@ public class Rect_D6 {
 
 		x_smallest = Methods.smallest(
 				new int[]{
-						this.rect_A.getX_Cur(), rect_B.getX_Cur(), this.rect_C.getX_Cur()
-						}
-				);
+						this.rect_A.getX_Cur(), 
+						rect_B.getX_Cur(), 
+						this.rect_C.getX_Cur()
+						});
 		
-		y_smallest = Methods.smallest(new int[]{this.rect_A.getY_Cur(), CONS.Views.rect_B_Y, this.rect_C.getY_Cur()});
+		y_smallest = Methods.smallest(new int[]{
+						this.rect_A.getY_Cur(), 
+						this.rect_B.getY_Cur(), 
+//						CONS.Views.rect_B_Y, 
+						this.rect_C.getY_Cur()
+						});
 		
 		x_largest = Methods.largest(
 				new int[]{
 						this.rect_A.getX_Cur() + this.rect_A.getW_Orig(), 
-						rect_B.getX_Cur() + CONS.Views.rect_B_W_cur, 
+						rect_B.getX_Cur() + this.rect_B.getW(), 
 						this.rect_C.getX_Cur() + this.rect_C.getW()
-//						this.rect_C.getX_Cur() + CONS.Views.rect_C_W_cur
 				});
 		
 		y_largest = Methods.largest(
 				new int[]{
 						
 						this.rect_A.getY_Cur() + this.rect_A.getH_Orig(), 
-						CONS.Views.rect_B_Y + CONS.Views.rect_B_H_cur, 
+						rect_B.getY_Cur() + this.rect_B.getH(), 
+//						CONS.Views.rect_B_Y + CONS.Views.rect_B_H_cur, 
 						this.rect_C.getY_Cur() + this.rect_C.getH()
 						
 				});
@@ -1138,35 +1191,6 @@ public class Rect_D6 {
 		w = x_largest - x_smallest;
 		
 		h = y_largest - y_smallest;
-		
-//		//log
-//		String text = String.format(
-//				Locale.JAPAN, 
-//				"rect_A_X = %d, rect_B_X = %d, rect_C_X = %d", 
-//				CONS.Views.rect_A_X,
-//				rect_B.getX_Cur(),
-//				CONS.Views.rect_C_X
-//				);
-//		
-//		String fname = Thread.currentThread().getStackTrace()[2].getFileName();
-//		
-//		int line_Num = Thread.currentThread().getStackTrace()[2].getLineNumber();
-//		
-//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-//		
-//		text = String.format(
-//				Locale.JAPAN, 
-//				"x_small = %d, y_small = %d, w = %d, h = %d\n", 
-//				x_smallest, y_smallest, w, h);
-//		
-//		fname = Thread.currentThread().getStackTrace()[2].getFileName();
-//		
-//		line_Num = Thread.currentThread().getStackTrace()[2].getLineNumber();
-//		
-//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-		
-
-		
 		
 		////////////////////////////////
 		
@@ -1176,19 +1200,12 @@ public class Rect_D6 {
 		//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
 		GC gc = new GC(cv_1);
 		
-//		gc.setForeground(display.getSystemColor(SWT.COLOR_CYAN)); 
-		
 		//REF http://stackoverflow.com/questions/50064/setting-colors-in-swt answered Sep 8 '08 at 16:49
-//		Device device = Display.getCurrent ();
-//		Color red = new Color (device, 255, 0, 0);
-		
-//		gc.setBackground(this.burlywood2); 
 		gc.setBackground(blue_light); 
 		
 		//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
 		gc.setLineWidth(CONS.Views.lineWidth_Rect);
 		
-//		gc.fillRectangle(x, y, w, h);
 		gc.drawRectangle(x_smallest, y_smallest, w, h);
 		
 		gc.dispose();
@@ -1200,7 +1217,7 @@ public class Rect_D6 {
 		////////////////////////////////
 		this.update_Label__AreaData(x_smallest, y_smallest, w, h);
 		
-	}//draw_Periphery
+	}//draw_Periphery_XObjects
 	
 	private void 
 	update_Label__AreaData(int x, int y, int w, int h) {
@@ -1263,9 +1280,12 @@ public class Rect_D6 {
 						"w = %d\nh = %d\narea = %d\nremain = %d", 
 						w, h, area, remain);
 		
-		this.lbl_AreaData.setText(text);
+		this.ti_W.setText(String.valueOf(w));
+		this.ti_H.setText(String.valueOf(h));
 		
-	}
+//		this.lbl_AreaData.setText(text);
+		
+	}//update_Label__AreaData
 	
 
 	private void 
@@ -2014,15 +2034,15 @@ public class Rect_D6 {
 		// options
 
 		////////////////////////////////
-		Group group = new Group(shell, SWT.NONE);
-		fd_gr_navigate.top = new FormAttachment(group, 59);
-		FormData fd_group = new FormData();
-		fd_group.left = new FormAttachment(0, 867);
-		fd_group.right = new FormAttachment(100, -222);
-		fd_group.bottom = new FormAttachment(lbl_Status, -15);
-		group.setLayoutData(fd_group);
+		group_2 = new Group(shell, SWT.NONE);
+		fd_gr_navigate.top = new FormAttachment(group_2, 59);
+		FormData fd_group_2 = new FormData();
+		fd_group_2.left = new FormAttachment(0, 867);
+		fd_group_2.right = new FormAttachment(100, -222);
+		fd_group_2.bottom = new FormAttachment(lbl_Status, -15);
+		group_2.setLayoutData(fd_group_2);
 
-		btnOptions = new Button(group, SWT.NONE);
+		btnOptions = new Button(group_2, SWT.NONE);
 		btnOptions.setBounds(10, 0, 115, 37);
 		btnOptions.setText("Options");
 
@@ -3427,22 +3447,22 @@ public class Rect_D6 {
 
 		////////////////////////////////
 
-		// canvas size
+		// area data
 
 		////////////////////////////////
-		lbl_AreaData = new Label(shell, SWT.NONE);
-		fd_lbl_Msg.bottom = new FormAttachment(lbl_AreaData, -118);
-		
-		lbl_AreaData.setBackground(this.burlywood2);
-		FormData fd_lbl_AreaData = new FormData();
-		fd_lbl_AreaData.bottom = new FormAttachment(100, -51);
-		fd_lbl_AreaData.left = new FormAttachment(gr_navigate, 4, SWT.LEFT);
-		fd_lbl_AreaData.right = new FormAttachment(100, -68);
-		fd_lbl_AreaData.top = new FormAttachment(0, 638);
-		lbl_AreaData.setLayoutData(fd_lbl_AreaData);
-		//		lbl_1.setText("Thanks");
-				
-				lbl_AreaData.setText("x = " + shell.getSize().x + "\n" + "y = " + shell.getSize().y);
+//		lbl_AreaData = new Label(shell, SWT.NONE);
+//		fd_lbl_Msg.bottom = new FormAttachment(lbl_AreaData, -118);
+//		
+//		lbl_AreaData.setBackground(this.burlywood2);
+//		FormData fd_lbl_AreaData = new FormData();
+//		fd_lbl_AreaData.bottom = new FormAttachment(100, -51);
+//		fd_lbl_AreaData.left = new FormAttachment(gr_navigate, 4, SWT.LEFT);
+//		fd_lbl_AreaData.right = new FormAttachment(100, -68);
+//		fd_lbl_AreaData.top = new FormAttachment(0, 638);
+//		lbl_AreaData.setLayoutData(fd_lbl_AreaData);
+//		//		lbl_1.setText("Thanks");
+//				
+//				lbl_AreaData.setText("x = " + shell.getSize().x + "\n" + "y = " + shell.getSize().y);
 				
 
 	}//_init_Views__Labels
@@ -3681,8 +3701,6 @@ public class Rect_D6 {
 			Rect_D6.lbl_Msg.setForeground(red);
 			
 			Rect_D6.lbl_Msg.setText("range is => 1 ~ 24 !");
-			
-			return;
 			
 		} else {
 			
