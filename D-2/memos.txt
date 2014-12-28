@@ -1,0 +1,6 @@
+pushd C:\WORKS\WS\Eclipse_Luna2\Java_GUI\D-2\LAB
+
+javac C:\WORKS\WS\Eclipse_Luna2\Java_GUI\D-2\LAB\D_8.java
+
+java -cp C:\WORKS\WS\Eclipse_Luna2\Java_GUI\D-2\LAB C:\WORKS\WS\Eclipse_Luna2\Java_GUI\D-2\LAB\D_8
+java -cp C:\WORKS\WS\Eclipse_Luna2\Java_GUI\D-2\LAB D_8

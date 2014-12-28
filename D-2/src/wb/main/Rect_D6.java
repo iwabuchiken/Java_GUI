@@ -154,7 +154,7 @@ public class Rect_D6 {
 		// init: vars
 
 		////////////////////////////////
-		init_Vars();
+//		init_Vars();
 		
 		display = Display.getDefault();
 		
@@ -193,6 +193,15 @@ public class Rect_D6 {
 		
 		this.init_Sizes();
 		
+		this.init_Vars();	// status_C, node name list
+		
+		////////////////////////////////
+
+		// update: node name list
+
+		////////////////////////////////
+		this.update_NodeNameList();
+		
 		draw_Initial();
 		
 		////////////////////////////////
@@ -220,6 +229,112 @@ public class Rect_D6 {
 //		Methods.write_Log(text, fname, line_Num);
 		
 	}//open
+
+	private void 
+	update_NodeNameList() {
+		// TODO Auto-generated method stub
+		
+		List<NodeNames> tmp_List_Names = new ArrayList<NodeNames>();
+		
+		boolean isIn = false;
+		
+		NodeNames n1;
+		NodeNames n2;
+		
+//		for (int i = 0; i < CONS.Admin.list_NodeNames.size() - 1; i++) {
+		for (int i = 0; i < CONS.Admin.list_NodeNames.size(); i++) {
+			
+			n1 = CONS.Admin.list_NodeNames.get(i);
+			
+			for (int j = 0; j < CONS.Admin.list_NodeNames.size(); j++) {
+//				for (int j = i + 1; j < CONS.Admin.list_NodeNames.size(); j++) {
+				
+				/*******************************
+
+					omit: same index
+
+				 *******************************/
+				if (i == j) {
+					
+					continue;
+					
+				}
+				
+				n2 = CONS.Admin.list_NodeNames.get(j);
+				
+				isIn = Methods.is_SamePoint(n1, n2, this.rect_A, this.rect_B);
+						
+				if (isIn == true) {
+					
+					break;	// next i
+					
+				}
+				
+			}//for (int j = i + 1; j < CONS.Admin.list_NodeNames.size(); j++)
+
+			// put in or not
+			if (isIn == false) {
+				
+				// isIn => false: i.e. this node name is unique in the list
+				tmp_List_Names.add(n1);
+				
+			} else {
+				
+				isIn = true;	// reset is_In
+				
+			}
+			
+		}//for (int i = 0; i < CONS.Admin.list_NodeNames.size(); i++)
+		
+		////////////////////////////////
+
+		// report
+
+		////////////////////////////////
+		for (int j = 0; j < CONS.Admin.list_NodeNames.size(); j++) {
+			
+			//log
+			String text = String.format(Locale.JAPAN, 
+								"CONS.Admin.list_NodeNames(%d) => %s\n", 
+								j, CONS.Admin.list_NodeNames.get(j));
+			
+			String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+		}
+
+		if (tmp_List_Names.size() > 0) {
+			
+			for (int j = 0; j < tmp_List_Names.size(); j++) {
+				
+				//log
+				String text = String.format(Locale.JAPAN, 
+									"tmp_List_Names(%d) => %s\n", 
+									j, tmp_List_Names.get(j));
+				
+				String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+				
+				int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+				
+				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+				
+			}
+			
+			////////////////////////////////
+
+			// update: list
+
+			////////////////////////////////
+			CONS.Admin.list_NodeNames.clear();
+			
+			CONS.Admin.list_NodeNames.addAll(tmp_List_Names);
+			
+		}
+		
+	}//update_NodeNameList
 
 	private boolean 
 	init_Properties() {
@@ -428,16 +543,42 @@ public class Rect_D6 {
 		
 		CONS.Admin.node_Current = 1;
 		
-		// node list
-		CONS.Admin.list_NodeNames = new ArrayList<NodeNames>();
-		
-		CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.B_UL);
-		CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.B_UR);
-		CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.B_LR);
-		
-		CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_UR);
-		CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_LR);
-		CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_LL);
+		////////////////////////////////
+
+		// node name list
+
+		////////////////////////////////
+		if (this.rect_A.getY_Cur() < this.rect_B.getY_Cur()) {
+			
+			// node list
+			CONS.Admin.list_NodeNames = new ArrayList<NodeNames>();
+			
+			CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_UL);
+			CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_UR);
+			CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_LR);
+			CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_LL);
+			
+			CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.B_UL);
+			CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.B_UR);
+			CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.B_LR);
+			CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.B_LL);
+			
+		} else {
+			
+			// node list
+			CONS.Admin.list_NodeNames = new ArrayList<NodeNames>();
+			
+			CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.B_UL);
+			CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.B_UR);
+			CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.B_LR);
+			CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.B_LL);
+			
+			CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_UL);
+			CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_UR);
+			CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_LR);
+			CONS.Admin.list_NodeNames.add(CONS.Admin.NodeNames.A_LL);
+			
+		}
 		
 	}//init_Vars
 

@@ -1,5 +1,6 @@
 package wb.utils;
 
+import java.awt.Point;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -1023,137 +1024,49 @@ public class Methods {
 		
 	}//update_AttachedTo
 
-//	public static void 
-//	bt_Selected_Jump(String tmp) {
-//		// TODO Auto-generated method stub
-//		
-//		/*******************************
-//
-//			validate
-//	
-//		 *******************************/
-////		String tmp = Rect_D6.txt_Jump.getText();
-//		
-//		if (tmp == null) {
-//			
-//			return;
-//			
-//		}
-//		
-//		if (tmp.equals("")) {
-//	
-//			String msg;
-//			
-//			msg = String.format(
-//					Locale.JAPAN,
-//					"no input",
-//					Thread.currentThread().getStackTrace()[1].getLineNumber());
-//			
-//			JOptionPane.showMessageDialog(null,
-//					msg,
-//					"message", JOptionPane.ERROR_MESSAGE);
-//			
-//			return;
-//			
-//		}
-//		
-//		if (!NumberUtils.isNumber(tmp)) {
-//			
-//			String msg = String.format(
-//					Locale.JAPAN,
-//					"[%s:%d]not a number => " + tmp,
-//					Thread.currentThread().getStackTrace()[1].getFileName(),
-//					Thread.currentThread().getStackTrace()[1].getLineNumber());
-//			
-//			JOptionPane.showMessageDialog(null,
-//					msg,
-//					"message", JOptionPane.ERROR_MESSAGE);
-//			
-//			return;
-//			
-//		}
-//		
-//		////////////////////////////////
-//	
-//		// prep data
-//	
-//		////////////////////////////////
-//		Object[] objs = Methods.get_NodeNameAndOrien_frmo_Status(Integer.parseInt(tmp));
-//	
-//		NodeNames name = (NodeNames)objs[0];
-//		
-//		Orien orien = (Orien)objs[1];
-//		
-//		// validate
-//		if (name == null && orien == null) {
-//	
-//			String msg = String.format(
-//					Locale.JAPAN,
-//					"[%s:%d] name and orien are both null",
-//					Thread.currentThread().getStackTrace()[1].getFileName(),
-//					Thread.currentThread().getStackTrace()[1].getLineNumber()
-//					);
-//			
-//			JOptionPane.showMessageDialog(null,
-//					msg,
-//					"message", JOptionPane.ERROR_MESSAGE);
-//			
-//			return;
-//	
-//		} else if (name == null) {
-//				
-//				String msg = String.format(
-//						Locale.JAPAN,
-//						"[%s:%d] name is null",
-//						Thread.currentThread().getStackTrace()[1].getFileName(),
-//						Thread.currentThread().getStackTrace()[1].getLineNumber()
-//						);
-//				
-//				JOptionPane.showMessageDialog(null,
-//						msg,
-//						"message", JOptionPane.ERROR_MESSAGE);
-//				
-//				return;
-//				
-//		} else if (orien == null) {
-//				
-//				String msg = String.format(
-//						Locale.JAPAN,
-//						"[%s:%d] orien is null",
-//						Thread.currentThread().getStackTrace()[1].getFileName(),
-//						Thread.currentThread().getStackTrace()[1].getLineNumber()
-//						);
-//				
-//				JOptionPane.showMessageDialog(null,
-//						msg,
-//						"message", JOptionPane.ERROR_MESSAGE);
-//				
-//				return;
-//				
-//		}
-//		
-//		////////////////////////////////
-//
-//		// jump
-//
-//		////////////////////////////////
-//		new Rect_D6()._move_Rect_C_RIGHT(name, orien);
-//		
-//		
-////		//log
-////		String text = String.format(Locale.JAPAN, 
-////				"name = %s / orien = %s\n", 
-////				name.toString(),
-////				((Orien)objs[1]).toString()
-////				);
-//		
-//		
-//	//	String fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//	//	
-//	//	int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//	//	
-//	//	System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-//		
-//	}//bt_Selected_Jump
+	public static boolean 
+	is_SamePoint(NodeNames n1, NodeNames n2, Rect rect_A, Rect rect_B) {
+		// TODO Auto-generated method stub
+		
+		Point p_n1 = Methods.get_Node_Coordinates(n1, rect_A, rect_B);
+		Point p_n2 = Methods.get_Node_Coordinates(n2, rect_A, rect_B);
+		
+		if (p_n1.x == p_n2.x && p_n1.y == p_n2.y) {
+			
+			return true;
+			
+		}
+		
+		return false;
+		
+	}//is_SamePoint
+
+	private static Point 
+	get_Node_Coordinates(NodeNames name, Rect rect_A, Rect rect_B) {
+		// TODO Auto-generated method stub
+		
+		switch(name) {
+		
+		case A_UL: return new Point(rect_A.getX_Cur(), rect_A.getY_Cur());
+		case A_UR: return new Point(rect_A.getX_Cur() + rect_A.getW_Orig(), 
+										rect_A.getY_Cur());
+		case A_LL: return new Point(rect_A.getX_Cur(), 
+									rect_A.getY_Cur() + rect_A.getH_Orig());
+		case A_LR: return new Point(rect_A.getX_Cur() + rect_A.getW_Orig(), 
+									rect_A.getY_Cur() + rect_A.getH_Orig());
+
+		case B_UL: return new Point(rect_B.getX_Cur(), rect_B.getY_Cur());
+		case B_UR: return new Point(rect_B.getX_Cur() + rect_B.getW_Orig(), 
+				rect_B.getY_Cur());
+		case B_LL: return new Point(rect_B.getX_Cur(), 
+				rect_B.getY_Cur() + rect_B.getH_Orig());
+		case B_LR: return new Point(rect_B.getX_Cur() + rect_B.getW_Orig(), 
+				rect_B.getY_Cur() + rect_B.getH_Orig());
+		
+		}
+		
+		return null;
+		
+	}//get_Node_Coordinates
 	
 }//public class Methods
