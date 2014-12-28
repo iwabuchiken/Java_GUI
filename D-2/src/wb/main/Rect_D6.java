@@ -1874,21 +1874,20 @@ public class Rect_D6 {
 				//		name => updated
 				
 				////////////////////////////////
-				if (name.toString().startsWith("A")) {
+//				if (name.toString().startsWith("A")) {
 					
 					Rect_D6.this._move_Rect_C_RIGHT__A(name, CONS.Admin.orien_Current);
 					
-					return;
-					
-				}
+//					return;
+//					
+//				}
 
 				////////////////////////////////
 
 				// move
 
 				////////////////////////////////
-				Rect_D6.this._move_Rect_C_LEFT(name, CONS.Admin.orien_Current);
-//				Rect_D6.this._move_Rect_C_RIGHT(name, CONS.Admin.orien_Current);
+//				Rect_D6.this._move_Rect_C_LEFT(name, CONS.Admin.orien_Current);
 				
 			}//widgetSelected(SelectionEvent e)
 			
