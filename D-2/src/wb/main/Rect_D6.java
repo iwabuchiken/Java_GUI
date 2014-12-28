@@ -43,23 +43,6 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Group;
 //import org.eclipse.wb.swt.SWTResourceManager;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import wb.utils.CONS;
 import wb.utils.CONS.Admin.NodeNames;
 import wb.utils.CONS.Admin.Orien;
@@ -101,18 +84,19 @@ public class Rect_D6 {
 
 	Button bt_Execute, bt_Quit, bt_Clear, bt_Back, bt_Forward, bt_Jump;
 
-	static Label lbl_Status, lbl_In;
+	static Label lbl_Status, lbl_Msg;
 	
 	//test
 	
 	Canvas cv_1;
 
 	// colors
-	Color red, blue, blue_light, burlywood2, green, yellow;
+	Color red, blue, blue_light, burlywood2, green, yellow, white, black;
 	
 	int count = 0;
 
-	boolean f_Executing = false;
+	boolean f_Executing = false, f_Off_Status_Limit = false;
+	
 	private Group gr_navigate, gr_ops;
 	private Button btnOptions;
 	private FormData fd_gr_navigate;
@@ -527,9 +511,9 @@ public class Rect_D6 {
 		Group group = new Group(shell, SWT.NONE);
 		group.setBackground(SWTResourceManager.getColor(SWT.COLOR_YELLOW));
 		FormData fd_group = new FormData();
-		fd_group.left = new FormAttachment(gr_navigate, -44, SWT.LEFT);
-		fd_group.top = new FormAttachment(lbl_In, 23);
+		fd_group.top = new FormAttachment(lbl_Msg, 25);
 		fd_group.bottom = new FormAttachment(lbl_AreaData, -12);
+		fd_group.left = new FormAttachment(gr_navigate, -44, SWT.LEFT);
 		fd_group.right = new FormAttachment(100, -55);
 		group.setLayoutData(fd_group);
 		
@@ -734,6 +718,10 @@ public class Rect_D6 {
 		green = new Color (device, 0, 255, 0);
 		
 		yellow = new Color (device, 255, 255, 0);
+		
+		white = new Color (device, 255, 255, 255);
+		
+		black = new Color (device, 0, 0, 0);
 		
 	}//_init_Colors
 
@@ -1730,6 +1718,21 @@ public class Rect_D6 {
 						CONS.Admin.orien_Current = Methods.get_InitialOrien(name);
 //						CONS.Admin.orien_Current = CONS.Admin.Orien.INITIAL;
 						
+						////////////////////////////////
+
+						// show: message
+
+						////////////////////////////////
+						if (Rect_D6.this.f_Off_Status_Limit == false) {
+							
+							Rect_D6.lbl_Msg.setForeground(Rect_D6.this.red);
+							
+							Rect_D6.lbl_Msg.setText("No prev node");
+							
+							Rect_D6.this.f_Off_Status_Limit = true;
+									
+						}
+
 						//log
 						text = String.format(Locale.JAPAN, "no prev node\n");
 						
@@ -1741,7 +1744,24 @@ public class Rect_D6 {
 						
 						return;
 
-					}
+					} else {
+						
+						////////////////////////////////
+
+						// show: message
+
+						////////////////////////////////
+						if (Rect_D6.this.f_Off_Status_Limit == true) {
+							
+							Rect_D6.lbl_Msg.setForeground(Rect_D6.this.black);
+							
+							Rect_D6.lbl_Msg.setText("");
+							
+							Rect_D6.this.f_Off_Status_Limit = false;
+									
+						}
+
+					}//if ((node_Num - 2 < 0))
 
 					
 					// get next node name
@@ -1750,7 +1770,18 @@ public class Rect_D6 {
 					// update: orien
 					CONS.Admin.orien_Current = Methods.get_LastOrien(name);
 					
-				}//if (CONS.Admin.orien_Current == CONS.Admin.Orien.PREV_NODE)
+				} else {//if (CONS.Admin.orien_Current == CONS.Admin.Orien.PREV_NODE)
+					
+					////////////////////////////////
+
+					// show: message
+
+					////////////////////////////////
+					Rect_D6.lbl_Msg.setForeground(Rect_D6.this.black);
+					
+					Rect_D6.lbl_Msg.setText("");
+
+				}
 
 				////////////////////////////////
 
@@ -1800,8 +1831,9 @@ public class Rect_D6 {
 				Rect_D6.this._move_Rect_C_LEFT(name, CONS.Admin.orien_Current);
 //				Rect_D6.this._move_Rect_C_RIGHT(name, CONS.Admin.orien_Current);
 				
-			}
-		});
+			}//widgetSelected(SelectionEvent e)
+			
+		});//bt_Back.addSelectionListener(new SelectionAdapter()
 		
 		bt_Back.setText("<-");
 		
@@ -1859,6 +1891,22 @@ public class Rect_D6 {
 					// validate
 					if (CONS.Admin.list_NodeNames.size() <= node_Num) {
 						
+						////////////////////////////////
+
+						// show: message
+
+						////////////////////////////////
+						if (Rect_D6.this.f_Off_Status_Limit == false) {
+							
+							Rect_D6.this.lbl_Msg.setForeground(red);
+							
+							Rect_D6.this.lbl_Msg.setText("No next node");
+							
+							// set: flag
+							Rect_D6.this.f_Off_Status_Limit = true;
+							
+						}
+						
 						//log
 						text = String.format(Locale.JAPAN, "no next node\n");
 						
@@ -1880,6 +1928,21 @@ public class Rect_D6 {
 //					CONS.Admin.orien_Current = CONS.Admin.Orien.INITIAL;
 					
 				} else {
+
+					////////////////////////////////
+
+					// show: message
+
+					////////////////////////////////
+					if (Rect_D6.this.f_Off_Status_Limit == true) {
+						
+						Rect_D6.lbl_Msg.setForeground(Rect_D6.this.black);
+						
+						Rect_D6.lbl_Msg.setText("");
+						
+						Rect_D6.this.f_Off_Status_Limit = false;
+								
+					}
 					
 					CONS.Admin.orien_Current = tmp_Orien;
 					
@@ -3352,15 +3415,15 @@ public class Rect_D6 {
 		// in
 
 		////////////////////////////////
-		lbl_In = new Label(shell, SWT.NONE);
-		fd_lbl_Status.bottom = new FormAttachment(lbl_In, -21);
-		lbl_In.setBackground(SWTResourceManager.getColor(SWT.COLOR_GRAY));
-		FormData fd_lbl_In = new FormData();
-		fd_lbl_In.top = new FormAttachment(0, 463);
-		fd_lbl_In.right = new FormAttachment(gr_navigate, 0, SWT.RIGHT);
-		fd_lbl_In.left = new FormAttachment(0, 1022);
-		lbl_In.setLayoutData(fd_lbl_In);
-		lbl_In.setText("In");
+		lbl_Msg = new Label(shell, SWT.NONE);
+		fd_lbl_Status.bottom = new FormAttachment(lbl_Msg, -21);
+		lbl_Msg.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT));
+		FormData fd_lbl_Msg = new FormData();
+		fd_lbl_Msg.right = new FormAttachment(gr_ops, 0, SWT.RIGHT);
+		fd_lbl_Msg.left = new FormAttachment(gr_ops, 0, SWT.LEFT);
+		fd_lbl_Msg.top = new FormAttachment(0, 463);
+		lbl_Msg.setLayoutData(fd_lbl_Msg);
+		lbl_Msg.setText("In");
 
 		////////////////////////////////
 
@@ -3368,7 +3431,7 @@ public class Rect_D6 {
 
 		////////////////////////////////
 		lbl_AreaData = new Label(shell, SWT.NONE);
-		fd_lbl_In.bottom = new FormAttachment(lbl_AreaData, -129);
+		fd_lbl_Msg.bottom = new FormAttachment(lbl_AreaData, -118);
 		
 		lbl_AreaData.setBackground(this.burlywood2);
 		FormData fd_lbl_AreaData = new FormData();
