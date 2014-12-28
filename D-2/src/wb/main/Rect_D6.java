@@ -2154,11 +2154,12 @@ public class Rect_D6 {
 	
 			} else if (pos_Name.equals("UR")) {
 					
-//				this._move_Rect_C_RIGHT__B_UR(CONS.Admin.status_C);
+				this._move_Rect_C_RIGHT__B_UR(CONS.Admin.status_C);
 					
 			} else if (pos_Name.equals("LR")) {
 				
 //				this._move_Rect_C_RIGHT__B_LR(CONS.Admin.status_C);
+				this._move_Rect_C_RIGHT__A_LR(CONS.Admin.status_C);
 				
 			} else if (pos_Name.equals("LL")) {
 				
@@ -2328,6 +2329,146 @@ public class Rect_D6 {
 	}
 
 	private void 
+	_move_Rect_C_RIGHT__B_UR(int status_C) {
+		
+		//log
+		String text = String.format(Locale.JAPAN, "status_C => %d\n", status_C);
+		
+		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+		
+		// position sequence
+		
+		////////////////////////////////
+		int pos_seq = status_C % 4;
+		
+		if (pos_seq == 0) pos_seq = 4;
+		
+		//log
+		text = String.format(Locale.JAPAN, "pos_seq => %d\n", pos_seq);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+		
+		// dispatch
+		
+		////////////////////////////////
+		switch(pos_seq) {
+		
+		case 1:// HV ------------------------
+			
+			// w, h
+			this.rect_C.setH(this.rect_C.getH_Orig());
+			this.rect_C.setW(this.rect_C.getW_Orig());
+			
+			// x, y
+			this.rect_C.setX_Cur(
+					this.rect_C.getAttachedTo().getX_Cur() 
+					+ this.rect_C.getAttachedTo().getW_Orig() 
+					- this.rect_C.getW_Orig());
+			
+			this.rect_C.setY_Cur(
+					this.rect_C.getAttachedTo().getY_Cur() 
+					- this.rect_C.getH_Orig());
+			
+			break; // case 1:// HV ------------------------
+			
+		case 2: // HH ------------------------
+			
+			// w, h
+			this.rect_C.setH(this.rect_C.getW_Orig());
+			this.rect_C.setW(this.rect_C.getH_Orig());
+			
+			// x, y
+			this.rect_C.setX_Cur(
+					this.rect_C.getAttachedTo().getX_Cur() 
+					+ this.rect_C.getAttachedTo().getW_Orig() 
+					- this.rect_C.getH_Orig());
+			
+			this.rect_C.setY_Cur(
+					this.rect_C.getAttachedTo().getY_Cur() 
+					- this.rect_C.getW_Orig());
+			
+			break; // case 2: // HH ------------------------
+			
+		case 3: // VH ------------------------
+			
+			// w, h
+			this.rect_C.setH(this.rect_C.getW_Orig());
+			this.rect_C.setW(this.rect_C.getH_Orig());
+			
+			// x, y
+			this.rect_C.setX_Cur(
+					this.rect_C.getAttachedTo().getX_Cur() 
+					+ this.rect_C.getAttachedTo().getW_Orig() 
+					);
+			
+			this.rect_C.setY_Cur(
+					this.rect_C.getAttachedTo().getY_Cur() 
+					);
+			
+			break; // case 3: // VH ------------------------
+			
+		case 4: // VV ------------------------
+			
+			// w, h
+			this.rect_C.setH(this.rect_C.getH_Orig());
+			this.rect_C.setW(this.rect_C.getW_Orig());
+			
+			// x, y
+			this.rect_C.setX_Cur(
+					this.rect_C.getAttachedTo().getX_Cur() 
+					+ this.rect_C.getAttachedTo().getW_Orig() 
+					);
+			
+			this.rect_C.setY_Cur(
+					this.rect_C.getAttachedTo().getY_Cur() 
+					);
+			
+			break; // case 4: // VV ------------------------
+			
+		default:
+			
+			//log
+			text = String.format(Locale.JAPAN, "pos_seq => default\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			
+			break;
+		}
+//		// w, h
+//		this.rect_C.setH(this.rect_C.getH_Orig());
+//		this.rect_C.setW(this.rect_C.getW_Orig());
+//		
+//		// x, y
+//		this.rect_C.setX_Cur(
+//						this.rect_C.getAttachedTo().getX_Cur() 
+//						+ this.rect_C.getAttachedTo().getW_Orig() 
+//						- this.rect_C.getW_Orig());
+//		
+//		this.rect_C.setY_Cur(
+//				this.rect_C.getAttachedTo().getY_Cur() 
+//				- this.rect_C.getH_Orig());
+		
+	}//_move_Rect_C_RIGHT__B_UR(int status_C)
+	
+	
+	private void 
 	_move_Rect_C_RIGHT__A_LR(int status_C) {
 		
 //		//log
@@ -2464,6 +2605,7 @@ public class Rect_D6 {
 		}
 		
 	}//_move_Rect_C_RIGHT__A_LR
+	
 	
 	private void 
 	_move_Rect_C_RIGHT__A_LL(int status_C) {
