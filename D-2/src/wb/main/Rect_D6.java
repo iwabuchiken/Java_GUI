@@ -3672,6 +3672,27 @@ public class Rect_D6 {
 		}
 		
 		////////////////////////////////
+
+		// validate: within range
+
+		////////////////////////////////
+		if (Integer.parseInt(tmp) < 1 || Integer.parseInt(tmp) > 24) {
+			
+			Rect_D6.lbl_Msg.setForeground(red);
+			
+			Rect_D6.lbl_Msg.setText("range is => 1 ~ 24 !");
+			
+			return;
+			
+		} else {
+			
+			Rect_D6.lbl_Msg.setForeground(black);
+			Rect_D6.lbl_Msg.setText("");
+			
+		}
+		
+		
+		////////////////////////////////
 	
 		// prep data
 	
