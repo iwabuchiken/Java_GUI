@@ -1834,15 +1834,27 @@ public class Rect_D6 {
 
 				////////////////////////////////
 				// orien
-				CONS.Admin.orien_Current = 
+				CONS.Admin.Orien tmp_Orien = 
 							Methods.get_NextOrien(name, CONS.Admin.orien_Current);
+//				CONS.Admin.orien_Current = 
+//						Methods.get_NextOrien(name, CONS.Admin.orien_Current);
 				
 				////////////////////////////////
 
 				// NEXT_NODE => update the node name, orien
 
 				////////////////////////////////
-				if (CONS.Admin.orien_Current == CONS.Admin.Orien.NEXT_NODE) {
+				if (tmp_Orien == CONS.Admin.Orien.NEXT_NODE) {
+//				if (CONS.Admin.orien_Current == CONS.Admin.Orien.NEXT_NODE) {
+					
+					//log
+					text = String.format(Locale.JAPAN, "NEXT_NODE\n");
+					
+					fname = Thread.currentThread().getStackTrace()[1].getFileName();
+					
+					line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+					
+					System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 					
 					// validate
 					if (CONS.Admin.list_NodeNames.size() <= node_Num) {
@@ -1867,7 +1879,11 @@ public class Rect_D6 {
 					CONS.Admin.orien_Current = Methods.get_InitialOrien(name);
 //					CONS.Admin.orien_Current = CONS.Admin.Orien.INITIAL;
 					
-				}
+				} else {
+					
+					CONS.Admin.orien_Current = tmp_Orien;
+					
+				}//if (tmp_Orien == CONS.Admin.Orien.NEXT_NODE)
 				
 				////////////////////////////////
 
@@ -2301,7 +2317,10 @@ public class Rect_D6 {
 		if (pos_seq == 0) pos_seq = 4;
 		
 		//log
-		text = String.format(Locale.JAPAN, "pos_seq => %d\n", pos_seq);
+		text = String.format(Locale.JAPAN, 
+						"pos_seq => %d / statuc_C => %d\n",
+						status_C,
+						pos_seq);
 		
 		fname = Thread.currentThread().getStackTrace()[1].getFileName();
 		
