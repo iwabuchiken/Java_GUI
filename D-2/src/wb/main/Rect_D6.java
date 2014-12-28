@@ -115,6 +115,10 @@ public class Rect_D6 {
 	private TableItem ti_H;
 	
 	private Label lbl_Width, lbl_Height;
+	private TableItem ti_Area;
+	private Label lbl_Area;
+	private TableItem ti_Residue;
+	private Label lbl_Residue;
 	
 	////////////////////////////////
 
@@ -548,9 +552,9 @@ public class Rect_D6 {
 		
 		tbl_AreaData = new Table(shell, SWT.BORDER | SWT.FULL_SELECTION);
 		FormData fd_tbl_AreaData = new FormData();
+		fd_tbl_AreaData.bottom = new FormAttachment(cv_1, 90, SWT.BOTTOM);
+		fd_tbl_AreaData.top = new FormAttachment(cv_1, -150);
 		fd_tbl_AreaData.left = new FormAttachment(gr_navigate, 60, SWT.LEFT);
-		fd_tbl_AreaData.top = new FormAttachment(cv_1, -146);
-		fd_tbl_AreaData.bottom = new FormAttachment(cv_1, 0, SWT.BOTTOM);
 		fd_tbl_AreaData.right = new FormAttachment(lbl_Status, 0, SWT.RIGHT);
 		tbl_AreaData.setLayoutData(fd_tbl_AreaData);
 		tbl_AreaData.setHeaderVisible(true);
@@ -562,23 +566,37 @@ public class Rect_D6 {
 		
 		Group group_1 = new Group(shell, SWT.NONE);
 		FormData fd_group_1 = new FormData();
+		fd_group_1.bottom = new FormAttachment(group, 190, SWT.BOTTOM);
 		fd_group_1.right = new FormAttachment(tbl_AreaData, -10);
 		fd_group_1.top = new FormAttachment(group, 15);
 		fd_group_1.left = new FormAttachment(tbl_AreaData, -100, SWT.LEFT);
-		fd_group_1.bottom = new FormAttachment(group, 160, SWT.BOTTOM);
 		
 		ti_H = new TableItem(tbl_AreaData, SWT.NONE);
 		ti_H.setText("Height");
 		
+		ti_Area = new TableItem(tbl_AreaData, SWT.NONE);
+		ti_Area.setText("Area");
+		
+		ti_Residue = new TableItem(tbl_AreaData, SWT.NONE);
+		ti_Residue.setText("Residue");
+		
 		group_1.setLayoutData(fd_group_1);
 		
 		lbl_Width = new Label(group_1, SWT.NONE);
-		lbl_Width.setBounds(0, 38, 90, 27);
+		lbl_Width.setBounds(0, 30, 90, 27);
 		lbl_Width.setText("Width");
 		
 		lbl_Height = new Label(group_1, SWT.NONE);
-		lbl_Height.setBounds(0, 71, 90, 27);
+		lbl_Height.setBounds(0, 62, 90, 27);
 		lbl_Height.setText("Height");
+		
+		lbl_Area = new Label(group_1, SWT.NONE);
+		lbl_Area.setBounds(0, 94, 90, 27);
+		lbl_Area.setText("Area");
+		
+		lbl_Residue = new Label(group_1, SWT.NONE);
+		lbl_Residue.setBounds(0, 125, 90, 27);
+		lbl_Residue.setText("Residue");
 		
 	}//createContents
 
@@ -1276,14 +1294,35 @@ public class Rect_D6 {
 			
 		}
 		
-		String text = String.format(Locale.JAPAN, 
-						"w = %d\nh = %d\narea = %d\nremain = %d", 
-						w, h, area, remain);
+//		String text = String.format(Locale.JAPAN, 
+//						"w = %d\nh = %d\narea = %d\nremain = %d", 
+//						w, h, area, remain);
 		
+		////////////////////////////////
+
+		// w, h
+
+		////////////////////////////////
 		this.ti_W.setText(String.valueOf(w));
 		this.ti_H.setText(String.valueOf(h));
+
+		////////////////////////////////
+
+		// area
+
+		////////////////////////////////
+		this.ti_Area.setText(String.valueOf(w * h));
 		
-//		this.lbl_AreaData.setText(text);
+		////////////////////////////////
+		
+		// residue
+		
+		////////////////////////////////
+		int area_A = this.rect_A.getW_Orig() * this.rect_A.getH_Orig();
+		int area_B = this.rect_B.getW_Orig() * this.rect_B.getH_Orig();
+		int area_C = this.rect_C.getW() * this.rect_C.getH();
+		
+		this.ti_Residue.setText(String.valueOf(w * h - area_A - area_B - area_C));
 		
 	}//update_Label__AreaData
 	
