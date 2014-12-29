@@ -312,35 +312,35 @@ public class Rect_D9 {
 		////////////////////////////////
 		for (int j = 0; j < CONS.Admin.list_NodeNames_C.size(); j++) {
 			
-			//log
-			String text = String.format(Locale.JAPAN, 
-								"CONS.Admin.list_NodeNames(%d) => %s\n", 
-								j, CONS.Admin.list_NodeNames_C.get(j));
-			
-			String fname = Thread.currentThread().getStackTrace()[1].getFileName();
-			
-			int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-			
-			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//			//log
+//			String text = String.format(Locale.JAPAN, 
+//								"CONS.Admin.list_NodeNames(%d) => %s\n", 
+//								j, CONS.Admin.list_NodeNames_C.get(j));
+//			
+//			String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//			
+//			int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//			
+//			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 			
 		}
 
 		if (tmp_List_Names.size() > 0) {
 			
-			for (int j = 0; j < tmp_List_Names.size(); j++) {
-				
-				//log
-				String text = String.format(Locale.JAPAN, 
-									"tmp_List_Names(%d) => %s\n", 
-									j, tmp_List_Names.get(j));
-				
-				String fname = Thread.currentThread().getStackTrace()[1].getFileName();
-				
-				int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-				
-				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-				
-			}
+//			for (int j = 0; j < tmp_List_Names.size(); j++) {
+//				
+//				//log
+//				String text = String.format(Locale.JAPAN, 
+//									"tmp_List_Names(%d) => %s\n", 
+//									j, tmp_List_Names.get(j));
+//				
+//				String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//				
+//				int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//				
+//				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//				
+//			}
 			
 			////////////////////////////////
 
@@ -1005,6 +1005,9 @@ public class Rect_D9 {
 		rect_B.setW_Orig(CONS.Views.rect_B_W_orig);
 		rect_B.setH_Orig(CONS.Views.rect_B_H_orig);
 
+		// attached to
+		rect_B.setAttachedTo(rect_A);
+		
 		////////////////////////////////
 		
 		// rect: C
@@ -1188,19 +1191,12 @@ public class Rect_D9 {
 		
 		gc.fillRectangle(
 				rect_B.getX_Cur(), 
-				CONS.Views.rect_B_Y, 
-//				cv_1.getSize().x / 2 - CONS.Views.rect_Main_W / 2, 
-//				cv_1.getSize().y / 2 - CONS.Views.rect_Main_H, 
-				CONS.Views.rect_B_W_cur, 
-				CONS.Views.rect_B_H_cur);
-//		gc.fillRectangle(
-//				dim.getSize().width / 2, 
-//				dim.getSize().height / 2, 
-//				CONS.Views.rect_Main_W, 
-//				CONS.Views.rect_Main_H);
-//		gc.fillRectangle(100, 100, 200, 100);
-//		gc.drawRectangle(100, 100, 100, 100);
-//		gc.fillRectangle(0, 0, 100, 100);
+				rect_B.getY_Cur(), 
+				rect_B.getW(), 
+				rect_B.getH());
+//		CONS.Views.rect_B_Y, 
+//		CONS.Views.rect_B_W_cur, 
+//		CONS.Views.rect_B_H_cur);
 		
 		gc.dispose();
 		
@@ -2767,6 +2763,149 @@ public class Rect_D9 {
 
 	}//_move_Rect_C_RIGHT__A
 
+	protected void 
+	_move_B(NodeNames name, Orien orien_Current) {
+		
+		String text, fname;
+		int line_Num;
+		
+		////////////////////////////////
+		
+		// dispatch
+		
+		////////////////////////////////
+		String pos_Name = name.toString().split("_")[1];
+		String rect_Name = name.toString().split("_")[0];
+		
+		//log
+		text = String.format(Locale.JAPAN, "pos_Name => %s\n", pos_Name.toString());
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+		
+		// update: meta data
+		
+		////////////////////////////////
+		// status
+		CONS.Admin.status_B = 
+				Methods.get_Status_from_NodeAndPosition_B(
+						name,
+						orien_Current);
+		
+		// current node number
+		CONS.Admin.node_Current = 
+				Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
+		
+		////////////////////////////////
+		
+		// update: params
+		
+		////////////////////////////////
+		if (pos_Name.equals("UL")) {
+		
+			this._move_B_UL(CONS.Admin.status_B);
+			
+		} else if (pos_Name.equals("UR")) {
+			
+//			this._move_Rect_C_RIGHT__B_UR(CONS.Admin.status_B);
+			
+		} else if (pos_Name.equals("LR")) {
+			
+	//		this._move_Rect_C_RIGHT__B_LR(CONS.Admin.status_B);
+//			this._move_Rect_C_RIGHT__A_LR(CONS.Admin.status_B);
+			
+		} else if (pos_Name.equals("LL")) {
+			
+	//		this._move_Rect_C_RIGHT__B_LL(CONS.Admin.status_B);
+			
+		} else {
+			
+			//log
+			text = String.format(Locale.JAPAN, "unknown position name => %s\n", pos_Name);
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+		}//if (pos_Name.equals("UR"))
+
+//		if (rect_Name.equals("A")) {
+//			
+//			if (pos_Name.equals("UR")) {
+//				
+//				this._move_Rect_C_RIGHT__A_UR(CONS.Admin.status_C);
+//				
+//			} else if (pos_Name.equals("LR")) {
+//				
+//				this._move_Rect_C_RIGHT__A_LR(CONS.Admin.status_C);
+//				
+//			} else if (pos_Name.equals("LL")) {
+//				
+//				this._move_Rect_C_RIGHT__A_LL(CONS.Admin.status_C);
+//				
+//			} else {
+//				
+//				//log
+//				String text = String.format(Locale.JAPAN, "unknown position name => %s\n", pos_Name);
+//				
+//				String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//				
+//				int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//				
+//				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//				
+//			}//if (pos_Name.equals("UR"))
+//			
+//		} else if (rect_Name.equals("B")) {
+//			
+//			if (pos_Name.equals("UL")) {
+//				
+//				this._move_Rect_C_RIGHT__B_UL(CONS.Admin.status_C);
+//				
+//			} else if (pos_Name.equals("UR")) {
+//				
+//				this._move_Rect_C_RIGHT__B_UR(CONS.Admin.status_C);
+//				
+//			} else if (pos_Name.equals("LR")) {
+//				
+////				this._move_Rect_C_RIGHT__B_LR(CONS.Admin.status_C);
+//				this._move_Rect_C_RIGHT__A_LR(CONS.Admin.status_C);
+//				
+//			} else if (pos_Name.equals("LL")) {
+//				
+////				this._move_Rect_C_RIGHT__B_LL(CONS.Admin.status_C);
+//				
+//			} else {
+//				
+//				//log
+//				String text = String.format(Locale.JAPAN, "unknown position name => %s\n", pos_Name);
+//				
+//				String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//				
+//				int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//				
+//				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//				
+//			}//if (pos_Name.equals("UR"))
+//			
+//		}//if (rect_Name.equals("A"))
+//		
+		////////////////////////////////
+		
+		// update: canvas
+		
+		////////////////////////////////
+		this.update_Canvas();
+		
+	}//_move_B
+	
 	private void 
 	_move_Rect_C_RIGHT__A_UR(int status_C) {
 
@@ -3417,6 +3556,134 @@ public class Rect_D9 {
 			
 			this.rect_C.setY_Cur(
 					this.rect_C.getAttachedTo().getY_Cur()
+					);
+			
+			break;	// case 4:	// HH
+			
+		default:
+			
+			//log
+			text = String.format(Locale.JAPAN, "pos_seq => default\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			this.lbl_Msg.setForeground(red);
+			this.lbl_Msg.setText("pos_seq => default");
+			this.lbl_Msg.setForeground(black);
+			
+			break;
+			
+		}//switch(pos_seq)
+		
+	}//_move_Rect_C_RIGHT__B_UL
+	
+	private void 
+	_move_B_UL(int status_B) {
+		
+		String text, fname;
+		
+		int line_Num;
+		
+		////////////////////////////////
+		
+		// position sequence
+		
+		////////////////////////////////
+		int pos_seq = status_B % 4;
+		
+		if (pos_seq == 0) pos_seq = 4;
+		
+		//log
+		text = String.format(Locale.JAPAN, 
+				"pos_seq => %d / statuc_B => %d\n",
+				status_B,
+				pos_seq);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+		
+		// dispatch
+		
+		////////////////////////////////
+		switch(pos_seq) {
+		
+		case 1:	// HV ---------------------------------
+			
+			// w, h
+			this.rect_B.setH(this.rect_B.getH_Orig());
+			this.rect_B.setW(this.rect_B.getW_Orig());
+			
+			// x, y
+			this.rect_B.setX_Cur(
+					this.rect_B.getAttachedTo().getX_Cur() 
+					);
+			
+			this.rect_B.setY_Cur(
+					this.rect_B.getAttachedTo().getY_Cur()
+					- this.rect_B.getH_Orig()
+					);
+			
+			break;	// case 1:	// VV
+			
+		case 2:	// HH ---------------------------------
+			
+			// w, h
+			this.rect_B.setH(this.rect_B.getW_Orig());
+			this.rect_B.setW(this.rect_B.getH_Orig());
+			
+			// x, y
+			this.rect_B.setX_Cur(
+					this.rect_B.getAttachedTo().getX_Cur() 
+					);
+			
+			this.rect_B.setY_Cur(
+					this.rect_B.getAttachedTo().getY_Cur()
+					- this.rect_B.getW_Orig()
+					);
+			
+			break;	// case 2:	// VH
+			
+		case 3:	// VH ---------------------------------
+			
+			// w, h
+			this.rect_B.setH(this.rect_B.getW_Orig());
+			this.rect_B.setW(this.rect_B.getH_Orig());
+			
+			// x, y
+			this.rect_B.setX_Cur(
+					this.rect_B.getAttachedTo().getX_Cur() 
+					- this.rect_B.getH_Orig()
+					);
+			
+			this.rect_B.setY_Cur(
+					this.rect_B.getAttachedTo().getY_Cur()
+					);
+			
+			break;	// case 3:	// HV
+			
+		case 4:	// VV ---------------------------------
+			
+			// w, h
+			this.rect_B.setH(this.rect_B.getH_Orig());
+			this.rect_B.setW(this.rect_B.getW_Orig());
+			
+			// x, y
+			this.rect_B.setX_Cur(
+					this.rect_B.getAttachedTo().getX_Cur() 
+					- this.rect_B.getW_Orig()
+					);
+			
+			this.rect_B.setY_Cur(
+					this.rect_B.getAttachedTo().getY_Cur()
 					);
 			
 			break;	// case 4:	// HH
@@ -4781,72 +5048,73 @@ public class Rect_D9 {
 		
 		Orien orien = (Orien)objs[1];
 		
-		//log
-		text = String.format(Locale.JAPAN, "name = %s / orien = %s\n", name.toString(), orien.toString());
-		
-		fname = Thread.currentThread().getStackTrace()[1].getFileName();
-		
-		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-		
-		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//		//log
+//		text = String.format(Locale.JAPAN, "name = %s / orien = %s\n", name.toString(), orien.toString());
+//		
+//		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//		
+//		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//		
+//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 		
 
 		
-//		// validate
-//		if (name == null && orien == null) {
-//			
-//			String msg = String.format(
-//					Locale.JAPAN,
-//					"[%s:%d] name and orien are both null",
-//					Thread.currentThread().getStackTrace()[1].getFileName(),
-//					Thread.currentThread().getStackTrace()[1].getLineNumber()
-//					);
-//			
-//			JOptionPane.showMessageDialog(null,
-//					msg,
-//					"message", JOptionPane.ERROR_MESSAGE);
-//			
-//			return;
-//			
-//		} else if (name == null) {
-//			
-//			String msg = String.format(
-//					Locale.JAPAN,
-//					"[%s:%d] name is null",
-//					Thread.currentThread().getStackTrace()[1].getFileName(),
-//					Thread.currentThread().getStackTrace()[1].getLineNumber()
-//					);
-//			
-//			JOptionPane.showMessageDialog(null,
-//					msg,
-//					"message", JOptionPane.ERROR_MESSAGE);
-//			
-//			return;
-//			
-//		} else if (orien == null) {
-//			
-//			String msg = String.format(
-//					Locale.JAPAN,
-//					"[%s:%d] orien is null",
-//					Thread.currentThread().getStackTrace()[1].getFileName(),
-//					Thread.currentThread().getStackTrace()[1].getLineNumber()
-//					);
-//			
-//			JOptionPane.showMessageDialog(null,
-//					msg,
-//					"message", JOptionPane.ERROR_MESSAGE);
-//			
-//			return;
-//			
-//		}
-//		
-//		////////////////////////////////
-//		
-//		// update: CONS.Admin.orien_Current
-//		
-//		////////////////////////////////
-//		CONS.Admin.orien_Current_C = orien;
-//		
+		/*******************************
+
+			validate: null
+
+		 *******************************/
+		if (name == null && orien == null) {
+
+			//log
+			text = String.format(Locale.JAPAN, 
+							"name and orien are both null\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			return;
+			
+		} else if (name == null) {
+			
+			//log
+			text = String.format(Locale.JAPAN, 
+							"name is null\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			return;
+			
+		} else if (orien == null) {
+
+			//log
+			text = String.format(Locale.JAPAN, 
+							"orien is null\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+			return;
+			
+		}
+		
+		////////////////////////////////
+		
+		// update: CONS.Admin.orien_Current
+		
+		////////////////////////////////
+		CONS.Admin.orien_Current_B = orien;
+
 //		////////////////////////////////
 //		
 //		// update: attachedTo
@@ -4854,11 +5122,13 @@ public class Rect_D9 {
 //		////////////////////////////////
 //		Methods.update_AttachedTo(Rect_D9.this, Rect_D9.this.rect_C, name);
 //		
-//		////////////////////////////////
-//		
-//		// jump
-//		
-//		////////////////////////////////
+		////////////////////////////////
+		
+		// jump
+		
+		////////////////////////////////
+		this._move_B(name, orien);
+		
 //		if (name.toString().startsWith("A")) {
 //			
 //			this._move_Rect_C_RIGHT__A(name, orien);

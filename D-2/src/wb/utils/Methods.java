@@ -340,6 +340,106 @@ public class Methods {
 		
 	}//get_Status_from_NodeAndPosition
 
+	public static int 
+	get_Status_from_NodeAndPosition_B
+	(NodeNames name, Orien orien) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// names
+		
+		////////////////////////////////
+		switch(name) {
+		
+		case A_UL://-----------------------------
+			
+			switch(orien) {
+			
+			case HORI_VERTI: return 1;
+			case HORI_HORI: return 2;
+			case VERTI_HORI: return 3;
+			case VERTI_VERTI: return 4;
+			
+			}//switch(orien)
+			
+			break;
+			
+		case A_UR://-----------------------------
+			
+			switch(orien) {
+			
+			case INITIAL: 
+			case HORI_VERTI: return 5;
+			case HORI_HORI: return 6;
+			case VERTI_HORI: return 7;
+			case VERTI_VERTI: return 8;
+			
+			}//switch(orien)
+			
+			break;
+			
+		case A_LR://-----------------------------
+			
+			switch(orien) {
+			
+			case INITIAL: 
+			case VERTI_HORI: return 9;
+			case VERTI_VERTI: return 10;
+			case HORI_VERTI: return 11;
+			case HORI_HORI: return 12;
+			
+			}//switch(orien)
+			
+			break;
+
+		case A_LL://-----------------------------
+			
+			switch(orien) {
+			
+			case HORI_VERTI: return 13;
+			case HORI_HORI: return 14;
+			case VERTI_HORI: return 15;
+			case VERTI_VERTI: return 16;
+			
+			}//switch(orien)
+			
+			break;
+			
+//		case A_UR://-----------------------------
+//			
+//			switch(orien) {
+//			
+//			case INITIAL: 
+//			case HORI_VERTI: return 13;
+//			case HORI_HORI: return 14;
+//			case VERTI_HORI: return 15;
+//			case VERTI_VERTI: return 16;
+//			
+//			}//switch(orien)
+//			
+//			break;
+//			
+//		case A_LR://-----------------------------
+//			
+//			switch(orien) {
+//			
+//			case INITIAL: 
+//			case VERTI_HORI: return 17;
+//			case VERTI_VERTI: return 18;
+//			case HORI_VERTI: return 19;
+//			case HORI_HORI: return 20;
+//			
+//			}//switch(orien)
+//			
+//			break;
+//			
+		}//switch(name)
+		
+		return -1;
+		
+	}//get_Status_from_NodeAndPosition
+	
 	public static Orien 
 	get_NextOrien(NodeNames name, Orien orien_Current) {
 		// TODO Auto-generated method stub
