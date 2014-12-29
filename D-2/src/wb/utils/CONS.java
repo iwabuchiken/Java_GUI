@@ -36,6 +36,11 @@ public class CONS {
 			
 			INITIAL, NEXT_NODE, PREV_NODE,
 			
+			HH, HV,
+			VV, VH,
+			
+			INIT, NN, PN,
+			
 		}
 		
 		public static Orien orien_Current_C;
@@ -49,7 +54,9 @@ public class CONS {
 			A_UL, A_UR, A_LL, A_LR,
 		}
 		
-		public static List<NodeNames> list_NodeNames;
+		public static List<NodeNames> list_NodeNames_C;
+		
+		public static List<NodeNames> list_NodeNames_B;
 		
 		public static final int numOf_Positions_per_Node = 4;
 		

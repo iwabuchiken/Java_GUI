@@ -737,7 +737,7 @@ public class Methods {
 			validate: node exists
 
 		 *******************************/
-		if (node_Number < 1 || node_Number > CONS.Admin.list_NodeNames.size()) {
+		if (node_Number < 1 || node_Number > CONS.Admin.list_NodeNames_C.size()) {
 
 			//log
 			String text = String.format(Locale.JAPAN, 
@@ -755,7 +755,7 @@ public class Methods {
 		}
 		
 		// node name
-		NodeNames name = CONS.Admin.list_NodeNames.get(node_Number - 1);
+		NodeNames name = CONS.Admin.list_NodeNames_C.get(node_Number - 1);
 		
 		int index_Orien = status % 4;
 		
@@ -854,6 +854,135 @@ public class Methods {
 		
 	}//get_NodeNameAndOrien_frmo_Status
 
+	public static Object[] 
+	get_NodeNameAndOrien_frmo_Status__B(int status) {
+		// TODO Auto-generated method stub
+		
+//		CONS.Admin.NodeNames name
+		int node_Number = Methods.get_NodeNumber_frmo_Status(status);
+		
+		/*******************************
+
+			validate: node exists
+
+		 *******************************/
+		if (node_Number < 1 || node_Number > CONS.Admin.list_NodeNames_B.size()) {
+			
+			//log
+			String text = String.format(Locale.JAPAN, 
+					"no node for: status => %d / node_Numer => %d\n", 
+					status, node_Number);
+			
+			String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			return new Object[]{null, null};
+			
+		}
+		
+		// node name
+		NodeNames name = CONS.Admin.list_NodeNames_B.get(node_Number - 1);
+		
+		int index_Orien = status % 4;
+		
+		if (index_Orien == 0) index_Orien = 4;
+		
+		CONS.Admin.Orien orien = null;
+		
+		////////////////////////////////
+		
+		// orien
+		
+		////////////////////////////////
+		switch(name) {
+		
+		case A_UL://----------------------------------
+			
+			switch(index_Orien) {
+			
+			case 1: orien = CONS.Admin.Orien.HORI_VERTI; break; 
+			case 2: orien = CONS.Admin.Orien.HORI_HORI; break; 
+			case 3: orien = CONS.Admin.Orien.VERTI_HORI; break; 
+			case 4: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			
+			}
+			
+			break;//case B_UL
+			
+//		case B_UR://----------------------------------
+//			
+//			switch(index_Orien) {
+//			
+//			case 1: orien = CONS.Admin.Orien.HORI_VERTI; break; 
+//			case 2: orien = CONS.Admin.Orien.HORI_HORI; break; 
+//			case 3: orien = CONS.Admin.Orien.VERTI_HORI; break; 
+//			case 4: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+//			
+//			}
+//			
+//			break;//case B_UL
+//			
+//		case B_LR://----------------------------------
+//			
+//			switch(index_Orien) {
+//			
+//			case 1: orien = CONS.Admin.Orien.VERTI_HORI; break; 
+//			case 2: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+//			case 3: orien = CONS.Admin.Orien.HORI_VERTI; break; 
+//			case 4: orien = CONS.Admin.Orien.HORI_HORI; break; 
+//			
+//			}
+//			
+//			break;//case B_UL
+//			
+		case A_UR://----------------------------------
+			
+			switch(index_Orien) {
+			
+			case 1: orien = CONS.Admin.Orien.HORI_VERTI; break; 
+			case 2: orien = CONS.Admin.Orien.HORI_HORI; break; 
+			case 3: orien = CONS.Admin.Orien.VERTI_HORI; break; 
+			case 4: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			
+			}
+			
+			break;//case A_UR
+			
+		case A_LL://----------------------------------
+			
+			switch(index_Orien) {
+			
+			case 1: orien = CONS.Admin.Orien.HORI_VERTI; break; 
+			case 2: orien = CONS.Admin.Orien.HORI_HORI; break; 
+			case 3: orien = CONS.Admin.Orien.VERTI_HORI; break; 
+			case 4: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			
+			}
+			
+			break;//case A_LL
+			
+		case A_LR://----------------------------------
+			
+			switch(index_Orien) {
+			
+			case 1: orien = CONS.Admin.Orien.VERTI_HORI; break; 
+			case 2: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			case 3: orien = CONS.Admin.Orien.HORI_VERTI; break; 
+			case 4: orien = CONS.Admin.Orien.HORI_HORI; break; 
+			
+			}
+			
+			break;//case A_UL
+			
+		}//switch(name)
+		
+		return new Object[]{name, orien};
+		
+	}//get_NodeNameAndOrien_frmo_Status__B
+	
 	public static boolean 
 	create_PropertiesFile(File fpath_Config) {
 		// TODO Auto-generated method stub
@@ -1068,5 +1197,25 @@ public class Methods {
 		return null;
 		
 	}//get_Node_Coordinates
+
+	public static Orien 
+	conv_OrieFull_to_OrienShort
+	(Orien orien) {
+		// TODO Auto-generated method stub
+		
+		switch(orien) {
+		
+		case HORI_HORI: return CONS.Admin.Orien.HH;
+		case HORI_VERTI: return CONS.Admin.Orien.HV;
+		case VERTI_VERTI: return CONS.Admin.Orien.VV;
+		case VERTI_HORI: return CONS.Admin.Orien.VH;
+		
+//		VERTI_VERTI, VERTI_HORI,
+		
+		}
+		
+		return null;
+		
+	}
 	
 }//public class Methods
