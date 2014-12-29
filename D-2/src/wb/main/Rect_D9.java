@@ -2845,6 +2845,7 @@ public class Rect_D9 {
 				
 			} else if (pos_Name.equals("UR")) {
 				
+				this._move_C_UR(this.rect_C, CONS.Admin.status_C);
 	//			this._move_B_UR(CONS.Admin.status_B);
 				
 			} else if (pos_Name.equals("LR")) {
@@ -3356,7 +3357,133 @@ public class Rect_D9 {
 //				this.rect_C.getAttachedTo().getY_Cur() 
 //				- this.rect_C.getH_Orig());
 		
-	}//_move_Rect_C_RIGHT__B_UR(int status_C)
+	}//_move_B_UR
+	
+	private void 
+	_move_C_UR(Rect rect, int status_C) {
+		
+		//log
+		String text = String.format(Locale.JAPAN, "status_C => %d\n", status_C);
+		
+		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+		
+		// position sequence
+		
+		////////////////////////////////
+		int pos_seq = status_C % 4;
+		
+		if (pos_seq == 0) pos_seq = 4;
+		
+		//log
+		text = String.format(Locale.JAPAN, "pos_seq => %d\n", pos_seq);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+		
+		// dispatch
+		
+		////////////////////////////////
+		switch(pos_seq) {
+		
+		case 1:// HV ------------------------
+			
+			// w, h
+			rect.setH(rect.getH_Orig());
+			rect.setW(rect.getW_Orig());
+			
+			// x, y
+			rect.setX_Cur(
+					rect.getAttachedTo().getX_Cur() 
+					+ rect.getAttachedTo().getW_Orig() 
+					- rect.getW_Orig());
+			
+			rect.setY_Cur(
+					rect.getAttachedTo().getY_Cur() 
+					- rect.getH_Orig());
+			
+			break; // case 1:// HV ------------------------
+			
+		case 2: // HH ------------------------
+			
+			// w, h
+			rect.setH(rect.getW_Orig());
+			rect.setW(rect.getH_Orig());
+			
+			// x, y
+			rect.setX_Cur(
+					rect.getAttachedTo().getX_Cur() 
+					+ rect.getAttachedTo().getW_Orig() 
+					- rect.getH_Orig());
+			
+			rect.setY_Cur(
+					rect.getAttachedTo().getY_Cur() 
+					- rect.getW_Orig());
+			
+			break; // case 2: // HH ------------------------
+			
+		case 3: // VH ------------------------
+			
+			// w, h
+			rect.setH(rect.getW_Orig());
+			rect.setW(rect.getH_Orig());
+			
+			// x, y
+			rect.setX_Cur(
+					rect.getAttachedTo().getX_Cur() 
+					+ rect.getAttachedTo().getW_Orig() 
+					);
+			
+			rect.setY_Cur(
+					rect.getAttachedTo().getY_Cur() 
+					);
+			
+			break; // case 3: // VH ------------------------
+			
+		case 4: // VV ------------------------
+			
+			// w, h
+			rect.setH(rect.getH_Orig());
+			rect.setW(rect.getW_Orig());
+			
+			// x, y
+			rect.setX_Cur(
+					rect.getAttachedTo().getX_Cur() 
+					+ rect.getAttachedTo().getW_Orig() 
+					);
+			
+			rect.setY_Cur(
+					rect.getAttachedTo().getY_Cur() 
+					);
+			
+			break; // case 4: // VV ------------------------
+			
+		default:
+			
+			//log
+			text = String.format(Locale.JAPAN, "pos_seq => default\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			
+			break;
+		}
+		
+	}//_move_C_UR
 	
 	
 	private void 
@@ -5481,8 +5608,6 @@ public class Rect_D9 {
 		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
 		
 		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-		
-		
 		
 		/*******************************
 
