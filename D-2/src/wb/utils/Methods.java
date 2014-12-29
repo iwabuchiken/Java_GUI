@@ -826,7 +826,7 @@ public class Methods {
 	}//get_InitialOrien(NodeNames name)
 	
 	public static Object[] 
-	get_NodeNameAndOrien_frmo_Status(int status) {
+	get_NodeNameAndOrien_frmo_Status__C(int status) {
 		// TODO Auto-generated method stub
 		
 //		CONS.Admin.NodeNames name

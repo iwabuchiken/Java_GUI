@@ -43,6 +43,7 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Group;
 //import org.eclipse.wb.swt.SWTResourceManager;
 
+
 import wb.utils.CONS;
 import wb.utils.CONS.Admin.NodeNames;
 import wb.utils.CONS.Admin.Orien;
@@ -2092,7 +2093,225 @@ public class Rect_D9 {
 			}//widgetSelected(SelectionEvent e)
 			
 		});//bt_Back.addSelectionListener(new SelectionAdapter()
+
+		////////////////////////////////
+
+		// forward: C
+
+		////////////////////////////////
+		bt_Forward.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void 
+			widgetSelected(SelectionEvent e) {
+
+				String text, fname;
+				
+				int line_Num;
 		
+				////////////////////////////////
+
+				// update: status_C
+
+				////////////////////////////////
+				/*******************************
+
+					validate
+
+				 *******************************/
+				if (CONS.Admin.status_C > 23) {
+					
+					Rect_D9.lbl_Msg.setForeground(red);
+					Rect_D9.lbl_Msg.setText("No next node");
+					Rect_D9.lbl_Msg.setForeground(black);
+					
+					return;
+					
+				}
+				
+				// update
+				CONS.Admin.status_C += 1;
+				
+				
+				////////////////////////////////
+				
+				// move: C
+				
+				////////////////////////////////
+				Rect_D9.this.move_C(CONS.Admin.status_C);
+				
+				////////////////////////////////
+
+				// update: canvas
+
+				////////////////////////////////
+				Rect_D9.this.update_Canvas();
+				
+				////////////////////////////////
+
+				// update: status label
+
+				////////////////////////////////
+				Rect_D9.this.update_Status_Label();
+
+//				////////////////////////////////
+//
+//				// prep: params
+//
+//				////////////////////////////////
+//				// node name
+//				int node_Num = Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
+//
+//				NodeNames name = null;
+//				
+//				name = CONS.Admin.list_NodeNames_C.get(node_Num - 1);
+//				
+//				////////////////////////////////
+//
+//				// update: orien
+//
+//				////////////////////////////////
+//				// orien
+//				CONS.Admin.Orien tmp_Orien = 
+//							Methods.get_NextOrien(name, CONS.Admin.orien_Current_C);
+////				CONS.Admin.orien_Current = 
+////						Methods.get_NextOrien(name, CONS.Admin.orien_Current);
+//				
+//				////////////////////////////////
+//
+//				// NEXT_NODE => update the node name, orien
+//
+//				////////////////////////////////
+//				if (tmp_Orien == CONS.Admin.Orien.NEXT_NODE) {
+////				if (CONS.Admin.orien_Current == CONS.Admin.Orien.NEXT_NODE) {
+//					
+//					//log
+//					text = String.format(Locale.JAPAN, "NEXT_NODE\n");
+//					
+//					fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//					
+//					line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//					
+//					System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//					
+//					// validate
+//					if (CONS.Admin.list_NodeNames_C.size() <= node_Num) {
+//						
+//						////////////////////////////////
+//
+//						// show: message
+//
+//						////////////////////////////////
+//						if (Rect_D9.this.f_Off_Status_Limit == false) {
+//							
+//							Rect_D9.this.lbl_Msg.setForeground(red);
+//							
+//							Rect_D9.this.lbl_Msg.setText("No next node");
+//							
+//							// set: flag
+//							Rect_D9.this.f_Off_Status_Limit = true;
+//							
+//						}
+//						
+//						//log
+//						text = String.format(Locale.JAPAN, "no next node\n");
+//						
+//						fname = Thread.currentThread().getStackTrace()[2].getFileName();
+//						
+//						line_Num = Thread.currentThread().getStackTrace()[2].getLineNumber();
+//						
+//						System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//						
+//						return;
+//
+//					}
+//					
+//					// get next node name
+//					name = CONS.Admin.list_NodeNames_C.get(node_Num);
+//					
+//					// update: orien
+//					CONS.Admin.orien_Current_C = Methods.get_InitialOrien(name);
+////					CONS.Admin.orien_Current = CONS.Admin.Orien.INITIAL;
+//					
+//				} else {
+//
+//					////////////////////////////////
+//
+//					// show: message
+//
+//					////////////////////////////////
+//					if (Rect_D9.this.f_Off_Status_Limit == true) {
+//						
+//						Rect_D9.lbl_Msg.setForeground(Rect_D9.this.black);
+//						
+//						Rect_D9.lbl_Msg.setText("");
+//						
+//						Rect_D9.this.f_Off_Status_Limit = false;
+//								
+//					}
+//					
+//					CONS.Admin.orien_Current_C = tmp_Orien;
+//					
+//				}//if (tmp_Orien == CONS.Admin.Orien.NEXT_NODE)
+//				
+//				////////////////////////////////
+//
+//				// update: attachedTo
+//
+//				////////////////////////////////
+//				Methods.update_AttachedTo(Rect_D9.this, Rect_D9.this.rect_C, name);
+//
+//				//log
+//				text = String.format(Locale.JAPAN, "status_C => %d\n", CONS.Admin.status_C);
+//				
+//				fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//				
+//				line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//				
+//				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//
+//				////////////////////////////////
+//				
+//				// dispatch
+//				//		orien => updated
+//				//		name => updated
+//				
+//				////////////////////////////////
+////				if (name.toString().startsWith("A")) {
+//					
+//					Rect_D9.this._move_Rect_C_RIGHT__A(name, CONS.Admin.orien_Current_C);
+//					
+////					return;
+//					
+////				}
+//
+////				//log
+////				text = String.format(
+////							Locale.JAPAN, 
+////							"node = %s / orien = %s", 
+////							name.toString(), CONS.Admin.orien_Current.toString());
+////
+////				fname = Thread.currentThread().getStackTrace()[1]
+//////						String fname = Thread.currentThread().getStackTrace()[2]
+////						.getFileName();
+////
+////				line_Num = Thread.currentThread().getStackTrace()[1]
+////						.getLineNumber();
+////
+////				System.out.format(Locale.JAPAN, "[%s:%d] %s\n", fname, line_Num,
+//////						System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num,
+////						text);
+////
+////				////////////////////////////////
+////
+////				// move
+////
+////				////////////////////////////////
+////				Rect_D6.this._move_Rect_C_RIGHT(name, CONS.Admin.orien_Current);
+				
+			}//widgetSelected(SelectionEvent e)
+
+		});//addSelectionListener(new SelectionAdapter()
+
 		////////////////////////////////
 
 		// forward: B
@@ -2275,357 +2494,9 @@ public class Rect_D9 {
 
 		bt_Back = new Button(this.gr_ops, SWT.NONE);
 		
-//		bt_Back.addSelectionListener(new SelectionAdapter() {
-//			@Override
-//			public void widgetSelected(SelectionEvent e) {
-//				
-//				String text, fname;
-//				
-//				int line_Num;
-//
-//				////////////////////////////////
-//
-//				// prep: params
-//
-//				////////////////////////////////
-//				// node name
-//				int node_Num = Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
-//
-//				/*******************************
-//
-//					validate: prev exists
-//
-//				 *******************************/
-//				if (node_Num < 1) {
-////					if (node_Num < 2) {
-//					
-//					//log
-//					text = String.format(Locale.JAPAN, "no node for the num => %d\n", node_Num);
-//					
-//					fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//					
-//					line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//					
-//					System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-//					
-//					return;
-//
-//				}
-//				
-//				NodeNames name = null;
-//				
-//				name = CONS.Admin.list_NodeNames.get(node_Num - 1);
-//				
-//				////////////////////////////////
-//
-//				// update: orien
-//
-//				////////////////////////////////
-//				CONS.Admin.orien_Current = 
-//							Methods.get_PrevOrien(name, CONS.Admin.orien_Current);
-//				
-//				if (CONS.Admin.orien_Current == CONS.Admin.Orien.PREV_NODE) {
-//					
-//					// validate
-//					if ((node_Num - 2 < 0)) {
-////						if ((node_Num -1 < 0)) {
-//						
-//						////////////////////////////////
-//
-//						// no prev orien
-//						// 		orien => reset
-//
-//						////////////////////////////////
-//						CONS.Admin.orien_Current = Methods.get_InitialOrien(name);
-////						CONS.Admin.orien_Current = CONS.Admin.Orien.INITIAL;
-//						
-//						////////////////////////////////
-//
-//						// show: message
-//
-//						////////////////////////////////
-//						if (Rect_D9.this.f_Off_Status_Limit == false) {
-//							
-//							Rect_D9.lbl_Msg.setForeground(Rect_D9.this.red);
-//							
-//							Rect_D9.lbl_Msg.setText("No prev node");
-//							
-//							Rect_D9.this.f_Off_Status_Limit = true;
-//									
-//						}
-//
-//						//log
-//						text = String.format(Locale.JAPAN, "no prev node\n");
-//						
-//						fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//						
-//						line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//						
-//						System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-//						
-//						return;
-//
-//					} else {
-//						
-//						////////////////////////////////
-//
-//						// show: message
-//
-//						////////////////////////////////
-//						if (Rect_D9.this.f_Off_Status_Limit == true) {
-//							
-//							Rect_D9.lbl_Msg.setForeground(Rect_D9.this.black);
-//							
-//							Rect_D9.lbl_Msg.setText("");
-//							
-//							Rect_D9.this.f_Off_Status_Limit = false;
-//									
-//						}
-//
-//					}//if ((node_Num - 2 < 0))
-//
-//					
-//					// get next node name
-//					name = CONS.Admin.list_NodeNames.get(node_Num - 1 -1);
-//					
-//					// update: orien
-//					CONS.Admin.orien_Current = Methods.get_LastOrien(name);
-//					
-//				} else {//if (CONS.Admin.orien_Current == CONS.Admin.Orien.PREV_NODE)
-//					
-//					////////////////////////////////
-//
-//					// show: message
-//
-//					////////////////////////////////
-//					Rect_D9.lbl_Msg.setForeground(Rect_D9.this.black);
-//					
-//					Rect_D9.lbl_Msg.setText("");
-//
-//				}
-//
-//				////////////////////////////////
-//
-//				// update: attachedTo
-//
-//				////////////////////////////////
-//				Methods.update_AttachedTo(Rect_D9.this, Rect_D9.this.rect_C, name);
-//
-//				//log
-//				text = String.format(Locale.JAPAN, "status_C => %d\n", CONS.Admin.status_C);
-//				
-//				fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//				
-//				line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//				
-//				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-//
-//				//log
-//				text = String.format(Locale.JAPAN, "name => %s, orien => %s\n", name.toString(), CONS.Admin.orien_Current);
-//				
-//				fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//				
-//				line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//				
-//				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-//
-//				////////////////////////////////
-//				
-//				// dispatch
-//				//		orien => updated
-//				//		name => updated
-//				
-//				////////////////////////////////
-////				if (name.toString().startsWith("A")) {
-//					
-//					Rect_D9.this._move_Rect_C_RIGHT__A(name, CONS.Admin.orien_Current);
-//					
-////					return;
-////					
-////				}
-//
-//				////////////////////////////////
-//
-//				// move
-//
-//				////////////////////////////////
-////				Rect_D6.this._move_Rect_C_LEFT(name, CONS.Admin.orien_Current);
-//				
-//			}//widgetSelected(SelectionEvent e)
-//			
-//		});//bt_Back.addSelectionListener(new SelectionAdapter()
-		
 		bt_Back.setText("<-");
 		
 		bt_Forward = new Button(this.gr_ops, SWT.NONE);
-		
-		bt_Forward.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void 
-			widgetSelected(SelectionEvent e) {
-
-				String text, fname;
-				
-				int line_Num;
-				
-				////////////////////////////////
-
-				// prep: params
-
-				////////////////////////////////
-				// node name
-				int node_Num = Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
-
-				NodeNames name = null;
-				
-				name = CONS.Admin.list_NodeNames_C.get(node_Num - 1);
-				
-				////////////////////////////////
-
-				// update: orien
-
-				////////////////////////////////
-				// orien
-				CONS.Admin.Orien tmp_Orien = 
-							Methods.get_NextOrien(name, CONS.Admin.orien_Current_C);
-//				CONS.Admin.orien_Current = 
-//						Methods.get_NextOrien(name, CONS.Admin.orien_Current);
-				
-				////////////////////////////////
-
-				// NEXT_NODE => update the node name, orien
-
-				////////////////////////////////
-				if (tmp_Orien == CONS.Admin.Orien.NEXT_NODE) {
-//				if (CONS.Admin.orien_Current == CONS.Admin.Orien.NEXT_NODE) {
-					
-					//log
-					text = String.format(Locale.JAPAN, "NEXT_NODE\n");
-					
-					fname = Thread.currentThread().getStackTrace()[1].getFileName();
-					
-					line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-					
-					System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-					
-					// validate
-					if (CONS.Admin.list_NodeNames_C.size() <= node_Num) {
-						
-						////////////////////////////////
-
-						// show: message
-
-						////////////////////////////////
-						if (Rect_D9.this.f_Off_Status_Limit == false) {
-							
-							Rect_D9.this.lbl_Msg.setForeground(red);
-							
-							Rect_D9.this.lbl_Msg.setText("No next node");
-							
-							// set: flag
-							Rect_D9.this.f_Off_Status_Limit = true;
-							
-						}
-						
-						//log
-						text = String.format(Locale.JAPAN, "no next node\n");
-						
-						fname = Thread.currentThread().getStackTrace()[2].getFileName();
-						
-						line_Num = Thread.currentThread().getStackTrace()[2].getLineNumber();
-						
-						System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-						
-						return;
-
-					}
-					
-					// get next node name
-					name = CONS.Admin.list_NodeNames_C.get(node_Num);
-					
-					// update: orien
-					CONS.Admin.orien_Current_C = Methods.get_InitialOrien(name);
-//					CONS.Admin.orien_Current = CONS.Admin.Orien.INITIAL;
-					
-				} else {
-
-					////////////////////////////////
-
-					// show: message
-
-					////////////////////////////////
-					if (Rect_D9.this.f_Off_Status_Limit == true) {
-						
-						Rect_D9.lbl_Msg.setForeground(Rect_D9.this.black);
-						
-						Rect_D9.lbl_Msg.setText("");
-						
-						Rect_D9.this.f_Off_Status_Limit = false;
-								
-					}
-					
-					CONS.Admin.orien_Current_C = tmp_Orien;
-					
-				}//if (tmp_Orien == CONS.Admin.Orien.NEXT_NODE)
-				
-				////////////////////////////////
-
-				// update: attachedTo
-
-				////////////////////////////////
-				Methods.update_AttachedTo(Rect_D9.this, Rect_D9.this.rect_C, name);
-
-				//log
-				text = String.format(Locale.JAPAN, "status_C => %d\n", CONS.Admin.status_C);
-				
-				fname = Thread.currentThread().getStackTrace()[1].getFileName();
-				
-				line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-				
-				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-
-				////////////////////////////////
-				
-				// dispatch
-				//		orien => updated
-				//		name => updated
-				
-				////////////////////////////////
-//				if (name.toString().startsWith("A")) {
-					
-					Rect_D9.this._move_Rect_C_RIGHT__A(name, CONS.Admin.orien_Current_C);
-					
-//					return;
-					
-//				}
-
-//				//log
-//				text = String.format(
-//							Locale.JAPAN, 
-//							"node = %s / orien = %s", 
-//							name.toString(), CONS.Admin.orien_Current.toString());
-//
-//				fname = Thread.currentThread().getStackTrace()[1]
-////						String fname = Thread.currentThread().getStackTrace()[2]
-//						.getFileName();
-//
-//				line_Num = Thread.currentThread().getStackTrace()[1]
-//						.getLineNumber();
-//
-//				System.out.format(Locale.JAPAN, "[%s:%d] %s\n", fname, line_Num,
-////						System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num,
-//						text);
-//
-//				////////////////////////////////
-//
-//				// move
-//
-//				////////////////////////////////
-//				Rect_D6.this._move_Rect_C_RIGHT(name, CONS.Admin.orien_Current);
-				
-			}//widgetSelected(SelectionEvent e)
-
-		});//addSelectionListener(new SelectionAdapter()
 		
 		bt_Forward.setText("->");
 		
@@ -2811,8 +2682,9 @@ public class Rect_D9 {
 						orien_Current);
 		
 		// current node number
-		CONS.Admin.node_Current = 
-				Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
+		CONS.Admin.node_Current_B = 
+				Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_B);
+//		Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
 		
 		////////////////////////////////
 		
@@ -2919,6 +2791,155 @@ public class Rect_D9 {
 		this.update_Canvas();
 		
 	}//_move_B
+	
+	protected void 
+	_move_C(NodeNames name, Orien orien_Current) {
+		
+		String text, fname;
+		int line_Num;
+		
+		////////////////////////////////
+		
+		// dispatch
+		
+		////////////////////////////////
+		String pos_Name = name.toString().split("_")[1];
+//		String rect_Name = name.toString().split("_")[0];
+		
+		//log
+		text = String.format(Locale.JAPAN, "pos_Name => %s\n", pos_Name.toString());
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+		
+		// update: meta data
+		
+		////////////////////////////////
+		// status
+		CONS.Admin.status_C = 
+				Methods.get_Status_from_NodeAndPosition(
+						name,
+						orien_Current);
+		
+		// current node number
+		CONS.Admin.node_Current = 
+				Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
+
+		////////////////////////////////
+		
+		// update: params
+		
+		////////////////////////////////
+//		if (rect_Name.equals("A")) {
+			
+			if (pos_Name.equals("UL")) {
+				
+				this._move_C_UL(CONS.Admin.status_C);
+//				this._move_C_UL(CONS.Admin.status_B);
+//				this._move_B_UL(CONS.Admin.status_B);
+				
+			} else if (pos_Name.equals("UR")) {
+				
+	//			this._move_B_UR(CONS.Admin.status_B);
+				
+			} else if (pos_Name.equals("LR")) {
+				
+				//		this._move_Rect_C_RIGHT__B_LR(CONS.Admin.status_B);
+	//			this._move_Rect_C_RIGHT__A_LR(CONS.Admin.status_B);
+				
+			} else if (pos_Name.equals("LL")) {
+				
+				//		this._move_Rect_C_RIGHT__B_LL(CONS.Admin.status_B);
+				
+			} else {
+				
+				//log
+				text = String.format(Locale.JAPAN, "unknown position name => %s\n", pos_Name);
+				
+				fname = Thread.currentThread().getStackTrace()[1].getFileName();
+				
+				line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+				
+				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+				
+			}//if (pos_Name.equals("UR"))
+
+//		}//if (rect_Name.equals("A"))
+		
+//		if (rect_Name.equals("A")) {
+//			
+//			if (pos_Name.equals("UR")) {
+//				
+//				this._move_Rect_C_RIGHT__A_UR(CONS.Admin.status_C);
+//				
+//			} else if (pos_Name.equals("LR")) {
+//				
+//				this._move_Rect_C_RIGHT__A_LR(CONS.Admin.status_C);
+//				
+//			} else if (pos_Name.equals("LL")) {
+//				
+//				this._move_Rect_C_RIGHT__A_LL(CONS.Admin.status_C);
+//				
+//			} else {
+//				
+//				//log
+//				String text = String.format(Locale.JAPAN, "unknown position name => %s\n", pos_Name);
+//				
+//				String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//				
+//				int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//				
+//				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//				
+//			}//if (pos_Name.equals("UR"))
+//			
+//		} else if (rect_Name.equals("B")) {
+//			
+//			if (pos_Name.equals("UL")) {
+//				
+//				this._move_Rect_C_RIGHT__B_UL(CONS.Admin.status_C);
+//				
+//			} else if (pos_Name.equals("UR")) {
+//				
+//				this._move_Rect_C_RIGHT__B_UR(CONS.Admin.status_C);
+//				
+//			} else if (pos_Name.equals("LR")) {
+//				
+////				this._move_Rect_C_RIGHT__B_LR(CONS.Admin.status_C);
+//				this._move_Rect_C_RIGHT__A_LR(CONS.Admin.status_C);
+//				
+//			} else if (pos_Name.equals("LL")) {
+//				
+////				this._move_Rect_C_RIGHT__B_LL(CONS.Admin.status_C);
+//				
+//			} else {
+//				
+//				//log
+//				String text = String.format(Locale.JAPAN, "unknown position name => %s\n", pos_Name);
+//				
+//				String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//				
+//				int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//				
+//				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//				
+//			}//if (pos_Name.equals("UR"))
+//			
+//		}//if (rect_Name.equals("A"))
+//		
+//		////////////////////////////////
+//		
+//		// update: canvas
+//		
+//		////////////////////////////////
+//		this.update_Canvas();
+		
+	}//_move_C
 	
 	private void 
 	_move_Rect_C_RIGHT__A_UR(int status_C) {
@@ -3862,6 +3883,134 @@ public class Rect_D9 {
 		
 	}//_move_Rect_C_RIGHT__B_UL
 	
+	private void 
+	_move_C_UL(int status_C) {
+		
+		String text, fname;
+		
+		int line_Num;
+		
+		////////////////////////////////
+		
+		// position sequence
+		
+		////////////////////////////////
+		int pos_seq = status_C % 4;
+		
+		if (pos_seq == 0) pos_seq = 4;
+		
+		//log
+		text = String.format(Locale.JAPAN, 
+				"pos_seq => %d / statuc_C => %d\n",
+				status_C,
+				pos_seq);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+		
+		// dispatch
+		
+		////////////////////////////////
+		switch(pos_seq) {
+		
+		case 1:	// HV ---------------------------------
+			
+			// w, h
+			this.rect_C.setH(this.rect_C.getH_Orig());
+			this.rect_C.setW(this.rect_C.getW_Orig());
+			
+			// x, y
+			this.rect_C.setX_Cur(
+					this.rect_C.getAttachedTo().getX_Cur() 
+					);
+			
+			this.rect_C.setY_Cur(
+					this.rect_C.getAttachedTo().getY_Cur()
+					- this.rect_C.getH_Orig()
+					);
+			
+			break;	// case 1:	// VV
+			
+		case 2:	// HH ---------------------------------
+			
+			// w, h
+			this.rect_C.setH(this.rect_C.getW_Orig());
+			this.rect_C.setW(this.rect_C.getH_Orig());
+			
+			// x, y
+			this.rect_C.setX_Cur(
+					this.rect_C.getAttachedTo().getX_Cur() 
+					);
+			
+			this.rect_C.setY_Cur(
+					this.rect_C.getAttachedTo().getY_Cur()
+					- this.rect_C.getW_Orig()
+					);
+			
+			break;	// case 2:	// VH
+			
+		case 3:	// VH ---------------------------------
+			
+			// w, h
+			this.rect_C.setH(this.rect_C.getW_Orig());
+			this.rect_C.setW(this.rect_C.getH_Orig());
+			
+			// x, y
+			this.rect_C.setX_Cur(
+					this.rect_C.getAttachedTo().getX_Cur() 
+					- this.rect_C.getH_Orig()
+					);
+			
+			this.rect_C.setY_Cur(
+					this.rect_C.getAttachedTo().getY_Cur()
+					);
+			
+			break;	// case 3:	// HV
+			
+		case 4:	// VV ---------------------------------
+			
+			// w, h
+			this.rect_C.setH(this.rect_C.getH_Orig());
+			this.rect_C.setW(this.rect_C.getW_Orig());
+			
+			// x, y
+			this.rect_C.setX_Cur(
+					this.rect_C.getAttachedTo().getX_Cur() 
+					- this.rect_C.getW_Orig()
+					);
+			
+			this.rect_C.setY_Cur(
+					this.rect_C.getAttachedTo().getY_Cur()
+					);
+			
+			break;	// case 4:	// HH
+			
+		default:
+			
+			//log
+			text = String.format(Locale.JAPAN, "pos_seq => default\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			this.lbl_Msg.setForeground(red);
+			this.lbl_Msg.setText("pos_seq => default");
+			this.lbl_Msg.setForeground(black);
+			
+			break;
+			
+		}//switch(pos_seq)
+		
+	}//_move_Rect_C_RIGHT__C_UL
+	
 	protected void 
 	_move_Rect_C_right(int status) {
 		// TODO Auto-generated method stub
@@ -4772,7 +4921,7 @@ public class Rect_D9 {
 		
 		this.lbl_Val_Status_C.setText(String.valueOf(status_C));
 		
-		Object[] objs = Methods.get_NodeNameAndOrien_frmo_Status(status_C);
+		Object[] objs = Methods.get_NodeNameAndOrien_frmo_Status__C(status_C);
 
 		// node name
 		this.lbl_Val_Name_C.setText((objs[0]).toString());
@@ -5114,7 +5263,7 @@ public class Rect_D9 {
 		// prep data
 	
 		////////////////////////////////
-		Object[] objs = Methods.get_NodeNameAndOrien_frmo_Status(Integer.parseInt(tmp));
+		Object[] objs = Methods.get_NodeNameAndOrien_frmo_Status__C(Integer.parseInt(tmp));
 	
 		NodeNames name = (NodeNames)objs[0];
 		
@@ -5303,6 +5452,109 @@ public class Rect_D9 {
 		this._move_B(name, orien);
 		
 	}//bt_Selected_Jump
+	
+	@SuppressWarnings("unused")
+	public void 
+	move_C(int status_C) {
+		// TODO Auto-generated method stub
+		
+		String text, fname;
+		
+		int line_Num;
+		
+		////////////////////////////////
+		
+		// prep data
+		
+		////////////////////////////////
+		Object[] objs = Methods.get_NodeNameAndOrien_frmo_Status__C(status_C);
+		
+		NodeNames name = (NodeNames)objs[0];
+		
+		Orien orien = (Orien)objs[1];
+		
+		//log
+		text = String.format(Locale.JAPAN, "name = %s / orien = %s\n", name.toString(), orien.toString());
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		
+		
+		/*******************************
+
+			validate: null
+
+		 *******************************/
+		if (name == null && orien == null) {
+			
+			//log
+			text = String.format(Locale.JAPAN, 
+					"name and orien are both null\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			return;
+			
+		} else if (name == null) {
+			
+			//log
+			text = String.format(Locale.JAPAN, 
+					"name is null\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			return;
+			
+		} else if (orien == null) {
+			
+			//log
+			text = String.format(Locale.JAPAN, 
+					"orien is null\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			return;
+			
+		}
+		
+		////////////////////////////////
+		
+		// update: CONS.Admin.orien_Current
+		
+		////////////////////////////////
+		CONS.Admin.orien_Current_C = orien;
+		
+		////////////////////////////////
+		
+		// update: attachedTo
+		
+		////////////////////////////////
+		Methods.update_AttachedTo(Rect_D9.this, Rect_D9.this.rect_C, name);
+		
+		////////////////////////////////
+		
+		// jump
+		
+		////////////////////////////////
+		this._move_C(name, orien);
+		
+	}//move_C(int status_C)
 	
 	class XThread extends Thread{
 	

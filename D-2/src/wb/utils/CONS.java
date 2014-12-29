@@ -47,6 +47,7 @@ public class CONS {
 		public static Orien orien_Current_B;
 		
 		public static int node_Current;
+		public static int node_Current_B;
 		
 		public static enum NodeNames {
 			
