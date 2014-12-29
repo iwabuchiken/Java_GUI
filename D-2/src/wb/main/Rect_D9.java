@@ -131,9 +131,9 @@ public class Rect_D9 {
 	private Group gr_Meta_Val_B;
 	private Label lbl_Val_Status_B;
 	private Label lbl_Val_Node_Num_B;
-	private Label lblOrien;
+	private Label lbl_Orien;
 	private Label lbl_Val_Name_C;
-	private Label lbl_Orien_B;
+	private Label lbl_Val_Orien_B;
 	private Label lbl_Val_Name_B;
 	private Label lbl_Val_Orien_C;
 	
@@ -863,9 +863,9 @@ public class Rect_D9 {
 		lbl_Val_Node_Num_B.setBounds(0, 38, 90, 27);
 		lbl_Val_Node_Num_B.setText("val_nodenum");
 		
-		lbl_Orien_B = new Label(gr_Meta_Val_B, SWT.NONE);
-		lbl_Orien_B.setBounds(0, 125, 90, 27);
-		lbl_Orien_B.setText("val orien");
+		lbl_Val_Orien_B = new Label(gr_Meta_Val_B, SWT.NONE);
+		lbl_Val_Orien_B.setBounds(0, 125, 90, 27);
+		lbl_Val_Orien_B.setText("val orien");
 		
 		lbl_Val_Name_B = new Label(gr_Meta_Val_B, SWT.NONE);
 		lbl_Val_Name_B.setBounds(0, 83, 90, 27);
@@ -879,10 +879,6 @@ public class Rect_D9 {
 		fd_lblRectC_1.left = new FormAttachment(cv_1, 140);
 		lblRectC_1.setLayoutData(fd_lblRectC_1);
 		lblRectC_1.setText(" Rect B        Rect C ");
-		
-		Label lblNewLabel = new Label(shell, SWT.NONE);
-		lblNewLabel.setLayoutData(new FormData());
-		lblNewLabel.setText("New Label");
 		
 		Label lbl_NodeNum = new Label(shell, SWT.NONE);
 		FormData fd_lbl_NodeNum = new FormData();
@@ -899,12 +895,12 @@ public class Rect_D9 {
 		lbl_NodeName.setLayoutData(fd_lbl_NodeName);
 		lbl_NodeName.setText("Node name");
 		
-		lblOrien = new Label(shell, SWT.NONE);
-		FormData fd_lblOrien = new FormData();
-		fd_lblOrien.top = new FormAttachment(lbl_NodeName, 20);
-		fd_lblOrien.left = new FormAttachment(lbl_Status, 0, SWT.LEFT);
-		lblOrien.setLayoutData(fd_lblOrien);
-		lblOrien.setText("Orien     ");
+		lbl_Orien = new Label(shell, SWT.NONE);
+		FormData fd_lbl_Orien = new FormData();
+		fd_lbl_Orien.top = new FormAttachment(lbl_NodeName, 20);
+		fd_lbl_Orien.left = new FormAttachment(lbl_Status, 0, SWT.LEFT);
+		lbl_Orien.setLayoutData(fd_lbl_Orien);
+		lbl_Orien.setText("Orien     ");
 		
 	}//createContents
 
@@ -2205,7 +2201,10 @@ public class Rect_D9 {
 		// redraw
 
 		////////////////////////////////
+		// B
+		this.move_B(CONS.Admin.status_B);
 		
+		// C
 		this.bt_Selected_Jump(String.valueOf(CONS.Admin.status_C));
 //		this.bt_Selected_Jump(Rect_D6.this.txt_Jump.getText());
 		
@@ -2229,6 +2228,20 @@ public class Rect_D9 {
 	reset_Canvas() {
 		// TODO Auto-generated method stub
 	
+		////////////////////////////////
+
+		// rect: B
+
+		////////////////////////////////
+		CONS.Admin.status_B = 1;	// update: status
+		
+		Rect_D9.this.move_B(CONS.Admin.status_B);	// move
+		
+		////////////////////////////////
+		
+		// rect: C
+		
+		////////////////////////////////
 		CONS.Admin.orien_Current_C = CONS.Admin.Orien.HORI_VERTI;
 		CONS.Admin.NodeNames name = CONS.Admin.NodeNames.B_UL;
 		
@@ -2812,6 +2825,7 @@ public class Rect_D9 {
 			
 		} else if (pos_Name.equals("UR")) {
 			
+			this._move_B_UR(CONS.Admin.status_B);
 //			this._move_Rect_C_RIGHT__B_UR(CONS.Admin.status_B);
 			
 		} else if (pos_Name.equals("LR")) {
@@ -3150,6 +3164,145 @@ public class Rect_D9 {
 			
 			this.rect_C.setY_Cur(
 					this.rect_C.getAttachedTo().getY_Cur() 
+					);
+			
+			break; // case 4: // VV ------------------------
+			
+		default:
+			
+			//log
+			text = String.format(Locale.JAPAN, "pos_seq => default\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			
+			break;
+		}
+//		// w, h
+//		this.rect_C.setH(this.rect_C.getH_Orig());
+//		this.rect_C.setW(this.rect_C.getW_Orig());
+//		
+//		// x, y
+//		this.rect_C.setX_Cur(
+//						this.rect_C.getAttachedTo().getX_Cur() 
+//						+ this.rect_C.getAttachedTo().getW_Orig() 
+//						- this.rect_C.getW_Orig());
+//		
+//		this.rect_C.setY_Cur(
+//				this.rect_C.getAttachedTo().getY_Cur() 
+//				- this.rect_C.getH_Orig());
+		
+	}//_move_Rect_C_RIGHT__B_UR(int status_C)
+	
+	private void 
+	_move_B_UR(int status_B) {
+		
+		//log
+		String text = String.format(Locale.JAPAN, "status_B => %d\n", status_B);
+		
+		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+		
+		// position sequence
+		
+		////////////////////////////////
+		int pos_seq = status_B % 4;
+		
+		if (pos_seq == 0) pos_seq = 4;
+		
+		//log
+		text = String.format(Locale.JAPAN, "pos_seq => %d\n", pos_seq);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+		
+		// dispatch
+		
+		////////////////////////////////
+		switch(pos_seq) {
+		
+		case 1:// HV ------------------------
+			
+			// w, h
+			this.rect_B.setH(this.rect_B.getH_Orig());
+			this.rect_B.setW(this.rect_B.getW_Orig());
+			
+			// x, y
+			this.rect_B.setX_Cur(
+					this.rect_B.getAttachedTo().getX_Cur() 
+					+ this.rect_B.getAttachedTo().getW_Orig() 
+					- this.rect_B.getW_Orig());
+			
+			this.rect_B.setY_Cur(
+					this.rect_B.getAttachedTo().getY_Cur() 
+					- this.rect_B.getH_Orig());
+			
+			break; // case 1:// HV ------------------------
+			
+		case 2: // HH ------------------------
+			
+			// w, h
+			this.rect_B.setH(this.rect_B.getW_Orig());
+			this.rect_B.setW(this.rect_B.getH_Orig());
+			
+			// x, y
+			this.rect_B.setX_Cur(
+					this.rect_B.getAttachedTo().getX_Cur() 
+					+ this.rect_B.getAttachedTo().getW_Orig() 
+					- this.rect_B.getH_Orig());
+			
+			this.rect_B.setY_Cur(
+					this.rect_B.getAttachedTo().getY_Cur() 
+					- this.rect_B.getW_Orig());
+			
+			break; // case 2: // HH ------------------------
+			
+		case 3: // VH ------------------------
+			
+			// w, h
+			this.rect_B.setH(this.rect_B.getW_Orig());
+			this.rect_B.setW(this.rect_B.getH_Orig());
+			
+			// x, y
+			this.rect_B.setX_Cur(
+					this.rect_B.getAttachedTo().getX_Cur() 
+					+ this.rect_B.getAttachedTo().getW_Orig() 
+					);
+			
+			this.rect_B.setY_Cur(
+					this.rect_B.getAttachedTo().getY_Cur() 
+					);
+			
+			break; // case 3: // VH ------------------------
+			
+		case 4: // VV ------------------------
+			
+			// w, h
+			this.rect_B.setH(this.rect_B.getH_Orig());
+			this.rect_B.setW(this.rect_B.getW_Orig());
+			
+			// x, y
+			this.rect_B.setX_Cur(
+					this.rect_B.getAttachedTo().getX_Cur() 
+					+ this.rect_B.getAttachedTo().getW_Orig() 
+					);
+			
+			this.rect_B.setY_Cur(
+					this.rect_B.getAttachedTo().getY_Cur() 
 					);
 			
 			break; // case 4: // VV ------------------------
@@ -4649,7 +4802,27 @@ public class Rect_D9 {
 		int status_B = CONS.Admin.status_B;
 		
 		this.lbl_Val_Status_B.setText(String.valueOf(status_B));
+
+		objs = Methods.get_NodeNameAndOrien_frmo_Status__B(status_B);
+
+		// node name
+		this.lbl_Val_Name_B.setText((objs[0]).toString());
+
+		// node num
+		node_Num = Methods.get_NodeNumber_frmo_Status(status_B);
 		
+		this.lbl_Val_Node_Num_B.setText(String.valueOf(node_Num));
+		
+		// Orien
+		orien_Short = Methods.conv_OrieFull_to_OrienShort((Orien)(objs[1]));
+		
+		orien_Str = null;
+		
+		if (orien_Short != null) orien_Str = orien_Short.toString();
+		else orien_Str = "UNKNOWN";
+				
+		this.lbl_Val_Orien_B.setText(orien_Str);
+
 	}
 
 	private void 
@@ -5128,19 +5301,6 @@ public class Rect_D9 {
 		
 		////////////////////////////////
 		this._move_B(name, orien);
-		
-//		if (name.toString().startsWith("A")) {
-//			
-//			this._move_Rect_C_RIGHT__A(name, orien);
-//			
-//		} else {
-//			
-//			this._move_Rect_C_RIGHT(name, orien);
-//			
-//		}
-		
-		
-//		this._move_Rect_C_RIGHT(name, orien);
 		
 	}//bt_Selected_Jump
 	
