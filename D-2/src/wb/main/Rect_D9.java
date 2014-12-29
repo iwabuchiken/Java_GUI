@@ -690,13 +690,13 @@ public class Rect_D9 {
 //		_init_Set_Listeners(shell);
 		
 		Group group = new Group(shell, SWT.NONE);
-		fd_lbl_Msg.bottom = new FormAttachment(group, -22);
+		fd_lbl_Msg.bottom = new FormAttachment(group, -18);
 		fd_lbl_Msg.left = new FormAttachment(group, 0, SWT.LEFT);
 		group.setBackground(SWTResourceManager.getColor(SWT.COLOR_YELLOW));
 		FormData fd_group = new FormData();
 		fd_group.top = new FormAttachment(0, 580);
-		fd_group.left = new FormAttachment(cv_1, 78);
-		fd_group.right = new FormAttachment(100, -49);
+		fd_group.left = new FormAttachment(cv_1, 70);
+		fd_group.right = new FormAttachment(100, -35);
 		group.setLayoutData(fd_group);
 		
 		txt_Jump = new Text(group, SWT.BORDER);
@@ -720,7 +720,7 @@ public class Rect_D9 {
 		FormData fd_tbl_AreaData = new FormData();
 		fd_tbl_AreaData.right = new FormAttachment(100, -49);
 		fd_tbl_AreaData.bottom = new FormAttachment(cv_1, 90, SWT.BOTTOM);
-		fd_tbl_AreaData.top = new FormAttachment(90, -90);
+		fd_tbl_AreaData.top = new FormAttachment(90, -100);
 		tbl_AreaData.setLayoutData(fd_tbl_AreaData);
 		tbl_AreaData.setHeaderVisible(true);
 		tbl_AreaData.setLinesVisible(true);
@@ -729,13 +729,13 @@ public class Rect_D9 {
 		ti_W = new TableItem(tbl_AreaData, SWT.NONE);
 		ti_W.setText("Width");
 		
-		Group group_1 = new Group(shell, SWT.NONE);
-		fd_tbl_AreaData.left = new FormAttachment(group_1, 6);
-		FormData fd_group_1 = new FormData();
-		fd_group_1.bottom = new FormAttachment(100, -72);
-		fd_group_1.top = new FormAttachment(group, 11);
-		fd_group_1.left = new FormAttachment(cv_1, 76);
-		fd_group_1.right = new FormAttachment(100, -178);
+		Group gr_Lable_AreaData = new Group(shell, SWT.NONE);
+		fd_tbl_AreaData.left = new FormAttachment(gr_Lable_AreaData, 6);
+		FormData fd_gr_Lable_AreaData = new FormData();
+		fd_gr_Lable_AreaData.top = new FormAttachment(group, 40);
+		fd_gr_Lable_AreaData.bottom = new FormAttachment(100, -18);
+		fd_gr_Lable_AreaData.left = new FormAttachment(cv_1, 76);
+		fd_gr_Lable_AreaData.right = new FormAttachment(100, -178);
 		
 		ti_H = new TableItem(tbl_AreaData, SWT.NONE);
 		ti_H.setText("Height");
@@ -746,28 +746,32 @@ public class Rect_D9 {
 		ti_Residue = new TableItem(tbl_AreaData, SWT.NONE);
 		ti_Residue.setText("Residue");
 		
-		group_1.setLayoutData(fd_group_1);
+		gr_Lable_AreaData.setLayoutData(fd_gr_Lable_AreaData);
 		
-		lbl_Width = new Label(group_1, SWT.NONE);
-		lbl_Width.setBounds(0, 30, 90, 27);
+		lbl_Width = new Label(gr_Lable_AreaData, SWT.NONE);
+		lbl_Width.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT));
+		lbl_Width.setBounds(0, 10, 90, 27);
 		lbl_Width.setText("Width");
 		
-		lbl_Height = new Label(group_1, SWT.NONE);
-		lbl_Height.setBounds(0, 62, 90, 27);
+		lbl_Height = new Label(gr_Lable_AreaData, SWT.NONE);
+		lbl_Height.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT));
+		lbl_Height.setBounds(0, 40, 90, 27);
 		lbl_Height.setText("Height");
 		
-		lbl_Area = new Label(group_1, SWT.NONE);
-		lbl_Area.setBounds(0, 94, 90, 27);
+		lbl_Area = new Label(gr_Lable_AreaData, SWT.NONE);
+		lbl_Area.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT));
+		lbl_Area.setBounds(0, 70, 90, 27);
 		lbl_Area.setText("Area");
 		
-		lbl_Residue = new Label(group_1, SWT.NONE);
-		lbl_Residue.setBounds(0, 125, 90, 27);
+		lbl_Residue = new Label(gr_Lable_AreaData, SWT.NONE);
+		lbl_Residue.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT));
+		lbl_Residue.setBounds(0, 100, 90, 27);
 		lbl_Residue.setText("Residue");
 		
 		lblRectC = new Label(shell, SWT.NONE);
 		FormData fd_lblRectC = new FormData();
-		fd_lblRectC.top = new FormAttachment(gr_navigate, 12);
 		fd_lblRectC.right = new FormAttachment(gr_ops, -23);
+		fd_lblRectC.top = new FormAttachment(gr_navigate, 12);
 		lblRectC.setLayoutData(fd_lblRectC);
 		lblRectC.setText("Rect C");
 		
@@ -803,8 +807,8 @@ public class Rect_D9 {
 		lbl_Status.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		lbl_Status.setBackground(SWTResourceManager.getColor(SWT.COLOR_LIST_SELECTION));
 		FormData fd_lbl_Status = new FormData();
+		fd_lbl_Status.top = new FormAttachment(lblRectB, 60);
 		fd_lbl_Status.left = new FormAttachment(cv_1, 27);
-		fd_lbl_Status.top = new FormAttachment(lblRectB, 39);
 		lbl_Status.setLayoutData(fd_lbl_Status);
 		lbl_Status.setText("  Status  ");
 		
@@ -829,14 +833,13 @@ public class Rect_D9 {
 		lbl_Val_Name_C.setText("val_name");
 		
 		lbl_Val_Orien_C = new Label(gr_Meta_Val_C, SWT.NONE);
-		lbl_Val_Orien_C.setBounds(0, 127, 90, 27);
+		lbl_Val_Orien_C.setBounds(0, 125, 90, 27);
 		lbl_Val_Orien_C.setText("val_orien");
 		
 		gr_Meta_Val_B = new Group(shell, SWT.NONE);
 		FormData fd_gr_Meta_Val_B = new FormData();
 		fd_gr_Meta_Val_B.top = new FormAttachment(lbl_Status, 0, SWT.TOP);
-		fd_gr_Meta_Val_B.left = new FormAttachment(gr_ops, 0, SWT.LEFT);
-		fd_gr_Meta_Val_B.bottom = new FormAttachment(60, -10);
+		fd_gr_Meta_Val_B.bottom = new FormAttachment(60, 10);
 		gr_Meta_Val_B.setLayoutData(fd_gr_Meta_Val_B);
 		
 		lbl_Val_Status_B = new Label(gr_Meta_Val_B, SWT.NONE);
@@ -848,7 +851,7 @@ public class Rect_D9 {
 		lbl_Val_Node_Num_B.setText("val_nodenum");
 		
 		lbl_Orien_B = new Label(gr_Meta_Val_B, SWT.NONE);
-		lbl_Orien_B.setBounds(0, 122, 90, 27);
+		lbl_Orien_B.setBounds(0, 125, 90, 27);
 		lbl_Orien_B.setText("val orien");
 		
 		lbl_Val_Name_B = new Label(gr_Meta_Val_B, SWT.NONE);
@@ -859,8 +862,8 @@ public class Rect_D9 {
 		lblRectC_1.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		lblRectC_1.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_YELLOW));
 		FormData fd_lblRectC_1 = new FormData();
-		fd_lblRectC_1.top = new FormAttachment(bt_Forward_B, 6);
-		fd_lblRectC_1.left = new FormAttachment(gr_ops, 0, SWT.LEFT);
+		fd_lblRectC_1.top = new FormAttachment(bt_Forward_B, 20);
+		fd_lblRectC_1.left = new FormAttachment(cv_1, 140);
 		lblRectC_1.setLayoutData(fd_lblRectC_1);
 		lblRectC_1.setText(" Rect B        Rect C ");
 		
@@ -876,6 +879,7 @@ public class Rect_D9 {
 		lbl_NodeNum.setText("Node num");
 		
 		Label lbl_NodeName = new Label(shell, SWT.NONE);
+		fd_gr_Meta_Val_B.left = new FormAttachment(lbl_NodeName, 9);
 		FormData fd_lbl_NodeName = new FormData();
 		fd_lbl_NodeName.top = new FormAttachment(lbl_NodeNum, 14);
 		fd_lbl_NodeName.left = new FormAttachment(lbl_NodeNum, 0, SWT.LEFT);
@@ -1631,8 +1635,8 @@ public class Rect_D9 {
 		gr_ops = new Group(shell, SWT.NONE);
 		fd_gr_navigate.bottom = new FormAttachment(100, -645);
 		fd_gr_ops = new FormData();
-		fd_gr_ops.top = new FormAttachment(gr_navigate, -20);
-		fd_gr_ops.right = new FormAttachment(100, -20);
+		fd_gr_ops.top = new FormAttachment(25, -30);
+		fd_gr_ops.right = new FormAttachment(100, -50);
 		fd_gr_ops.left = new FormAttachment(0, 1020);
 		gr_ops.setLayoutData(fd_gr_ops);
 		gr_ops.setLayout(new FillLayout(SWT.HORIZONTAL));
@@ -2603,7 +2607,7 @@ public class Rect_D9 {
 		fd_bt_Forward_B.top = new FormAttachment(bt_Back_B, 0, SWT.TOP);
 		fd_bt_Forward_B.left = new FormAttachment(bt_Back_B, 6);
 		FormData fd_bt_Back_B = new FormData();
-		fd_bt_Back_B.top = new FormAttachment(gr_ops, 13);
+		fd_bt_Back_B.top = new FormAttachment(gr_ops, 20);
 		fd_bt_Back_B.right = new FormAttachment(100, -139);
 		bt_Back_B.setLayoutData(fd_bt_Back_B);
 		bt_Back_B.setText("  <-  ");
@@ -4282,12 +4286,22 @@ public class Rect_D9 {
 //		this.lbl_Status.setText(CONS.Admin.str_Status + CONS.Admin.status_C);
 //		this.lbl_Status.setText(CONS.Admin.str_Status + CONS.Admin.status);
 		
+		////////////////////////////////
+
+		// status
+
+		////////////////////////////////
+		this.lbl_Val_Status_C.setText(String.valueOf(CONS.Admin.status_C));
+		
+		Object[] objs = Methods.get_NodeNameAndOrien_frmo_Status(CONS.Admin.status_C);
+		
+		this.lbl_Val_Name_C.setText((objs[0]).toString());
 	}
 
 	private void 
 	_init_Views__Labels
 	(Shell shell, Group group) {
-		fd_gr_ops.bottom = new FormAttachment(100, -590);
+		fd_gr_ops.bottom = new FormAttachment(100, -600);
 
 		////////////////////////////////
 
@@ -4297,7 +4311,8 @@ public class Rect_D9 {
 		lbl_Msg = new Label(shell, SWT.NONE);
 		lbl_Msg.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT));
 		fd_lbl_Msg = new FormData();
-		fd_lbl_Msg.right = new FormAttachment(100, -83);
+		fd_lbl_Msg.top = new FormAttachment(62);
+		fd_lbl_Msg.right = new FormAttachment(100, -40);
 		lbl_Msg.setLayoutData(fd_lbl_Msg);
 		lbl_Msg.setText("In");
 
