@@ -21,8 +21,10 @@ public class CONS {
 
 		public static final String format_Date = "yyyy/MM/dd HH:mm:ss.SSS";
 
+		// status
 		public static int status;
 		public static int status_C;
+		public static int status_B;
 		
 		public final static String str_Status = "Status = ";
 		
@@ -36,7 +38,8 @@ public class CONS {
 			
 		}
 		
-		public static Orien orien_Current;
+		public static Orien orien_Current_C;
+		public static Orien orien_Current_B;
 		
 		public static int node_Current;
 		

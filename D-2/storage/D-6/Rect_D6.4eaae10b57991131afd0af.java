@@ -590,7 +590,7 @@ public class Rect_D6 {
 		// initial status
 
 		////////////////////////////////
-		String initial_Status = this.prop.getProperty("initial_status", null);
+		String initial_Status = this.prop.getProperty("initial_status_C", null);
 		
 		if (initial_Status != null) {
 			

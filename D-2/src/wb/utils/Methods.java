@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 
 import org.apache.commons.lang.math.NumberUtils;
 
-import wb.main.Rect_D6;
+import wb.main.Rect_D9;
 import wb.utils.CONS.Admin.NodeNames;
 import wb.utils.CONS.Admin.Orien;
 
@@ -964,7 +964,7 @@ public class Methods {
 
 	public static void 
 	update_AttachedTo
-	(Rect_D6 rect_D6, Rect rect_C, NodeNames name) {
+	(Rect_D9 rect_D6, Rect rect_C, NodeNames name) {
 		// TODO Auto-generated method stub
 		
 		/*******************************
