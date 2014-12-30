@@ -2407,24 +2407,12 @@ public class Rect_D9 {
 					
 				}
 				
-				
-//				//log
-//				text = String.format(Locale.JAPAN, "overwrap => %s\n", res);
-//				
-//				fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//				
-//				line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//				
-//				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-//
-//
-//				if (res == true) {
-//					
-//					CONS.Admin.status_C = tmp_status;	// restore the previous status
-//					
-//					Rect_D9.this.move_C(CONS.Admin.status_C);	// move back to the previous
-//					
-//				}
+				////////////////////////////////
+
+				// update: rect C => attachedAt
+				//			==> done in move__C()
+
+				////////////////////////////////
 				
 				////////////////////////////////
 
@@ -6016,6 +6004,31 @@ public class Rect_D9 {
 
 		////////////////////////////////
 
+		// update: attachedAt
+
+		////////////////////////////////
+		Rect_D9.this.rect_C.setAttachedAt(name);
+
+		/*******************************
+
+			debug
+	
+		 *******************************/
+		//log
+		text = String.format(Locale.JAPAN, 
+				"attached to => %s / attached at => %s\n",
+				Rect_D9.this.rect_C.getAttachedTo().getRect_Name(),
+				Rect_D9.this.rect_C.getAttachedAt().toString()
+				);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		////////////////////////////////
+
 		// jump
 
 		////////////////////////////////
@@ -6227,6 +6240,31 @@ public class Rect_D9 {
 		
 		////////////////////////////////
 		Methods.update_AttachedTo(Rect_D9.this, Rect_D9.this.rect_C, name);
+		
+		////////////////////////////////
+
+		// update: attachedAt
+
+		////////////////////////////////
+		Rect_D9.this.rect_C.setAttachedAt(name);
+		
+		/*******************************
+
+			debug
+
+		 *******************************/
+		//log
+		text = String.format(Locale.JAPAN, 
+				"attached to => %s / attached at => %s\n",
+				Rect_D9.this.rect_C.getAttachedTo().getRect_Name(),
+				Rect_D9.this.rect_C.getAttachedAt().toString()
+				);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 		
 		////////////////////////////////
 		
