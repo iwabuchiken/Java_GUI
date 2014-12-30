@@ -2259,6 +2259,8 @@ public class Rect_D9 {
 //									Rect_D9.this.rect_A, 
 									CONS.Admin.status_C);
 				
+				int count_Skip = 0;
+				
 				while (res == true && (CONS.Admin.status_C < 25)) {
 
 					//log
@@ -2272,6 +2274,9 @@ public class Rect_D9 {
 
 					// increment status_C
 					CONS.Admin.status_C += 1;
+					
+					// count skip
+					count_Skip ++;
 					
 					// move rect C
 					Rect_D9.this.move_C(CONS.Admin.status_C);
@@ -2300,6 +2305,17 @@ public class Rect_D9 {
 					CONS.Admin.status_C = tmp_status;	// restore the previous status
 					
 					Rect_D9.this.move_C(CONS.Admin.status_C);	// move back to the previous
+					
+				}
+				
+				////////////////////////////////
+
+				// report: skip count
+
+				////////////////////////////////
+				if (count_Skip > 0) {
+					
+					Rect_D9.this.lbl_Msg.setText("status skipped => " + count_Skip);
 					
 				}
 				
