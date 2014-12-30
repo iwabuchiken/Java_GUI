@@ -1320,7 +1320,7 @@ public class Methods {
 
 	public static boolean 
 	overWrap_on_A
-	(Rect rect_A, Rect rect_C, int status_C) {
+	(Rect rect_A, Rect rect_B, Rect rect_C, int status_C) {
 		// TODO Auto-generated method stub
 		
 		////////////////////////////////
@@ -1336,8 +1336,18 @@ public class Methods {
 		int c_X2 = rect_C.getX_Cur() + rect_C.getW();
 		int c_Y2 = rect_C.getY_Cur() + rect_C.getH();
 		
+//		//log
+//		String text = String.format(Locale.JAPAN, "a_Y1 = %d, c_Y2 = %d\n", a_Y1, c_Y2);
+//		
+//		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//		
+//		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//		
+//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
 		//log
-		String text = String.format(Locale.JAPAN, "a_Y1 = %d, c_Y2 = %d\n", a_Y1, c_Y2);
+		String text = String.format(Locale.JAPAN, 
+							"Rect B: node name => %s\n", rect_B.getAttachedAt().toString());
 		
 		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
 		

@@ -2,6 +2,8 @@ package wb.utils;
 
 import org.eclipse.swt.graphics.Color;
 
+import wb.utils.CONS.Admin.NodeNames;
+
 public class Rect {
 
 	private int x_Cur, y_Cur;
@@ -16,10 +18,20 @@ public class Rect {
 	
 	Rect attachedTo;
 
+	NodeNames attachedAt;
+	
 	public Rect(String rect_Name) {
 		
 		this.rect_Name = rect_Name;
 		
+	}
+
+	public NodeNames getAttachedAt() {
+		return attachedAt;
+	}
+
+	public void setAttachedAt(NodeNames attachedAt) {
+		this.attachedAt = attachedAt;
 	}
 
 	public String getRect_Name() {

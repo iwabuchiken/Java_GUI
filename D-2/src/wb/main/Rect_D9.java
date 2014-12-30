@@ -210,9 +210,11 @@ public class Rect_D9 {
 		
 		this.instantiate_Rects();
 		
-		this.init_Sizes();
+		this.init_Rects();
 		
 		this.init_Vars();	// status_C, node name list
+		
+		this.init_Rects__AttachedData_and_Orien();
 		
 		////////////////////////////////
 
@@ -555,20 +557,20 @@ public class Rect_D9 {
 	private void 
 	init_Vars() {
 		// TODO Auto-generated method stub
-		////////////////////////////////
-
-		// status
-
-		////////////////////////////////
-		CONS.Admin.status = 1;
-		CONS.Admin.status_C = 1;
-		CONS.Admin.status_B = 1;
-		
-		CONS.Admin.orien_Current_C = CONS.Admin.Orien.HORI_VERTI;
-//		CONS.Admin.orien_Current = CONS.Admin.Orien.VERTICAL;
-		
-		CONS.Admin.node_Current = 1;
-		
+//		////////////////////////////////
+//
+//		// status
+//
+//		////////////////////////////////
+//		CONS.Admin.status = 1;
+//		CONS.Admin.status_C = 1;
+//		CONS.Admin.status_B = 1;
+//		
+//		CONS.Admin.orien_Current_C = CONS.Admin.Orien.HORI_VERTI;
+////		CONS.Admin.orien_Current = CONS.Admin.Orien.VERTICAL;
+//		
+//		CONS.Admin.node_Current = 1;
+//		
 		////////////////////////////////
 
 		// node name list: C
@@ -907,9 +909,27 @@ public class Rect_D9 {
 	}//createContents
 
 	private void 
-	init_Sizes() {
-		// TODO Auto-generated method stub
-	
+	init_Rects() {
+//		init_Sizes() {
+		
+//		////////////////////////////////
+//
+//		// status
+//
+//		////////////////////////////////
+//		CONS.Admin.status = 1;
+//		CONS.Admin.status_C = 1;
+//		CONS.Admin.status_B = 1;
+//		
+//		Object[] objs_C = Methods.get_NodeNameAndOrien_frmo_Status__C(CONS.Admin.status_C);
+//		Object[] objs_B = Methods.get_NodeNameAndOrien_frmo_Status__B(CONS.Admin.status_B);
+//		
+//		CONS.Admin.orien_Current_C = (Orien)objs_C[1];
+//		CONS.Admin.orien_Current_B = (Orien)objs_B[1];
+////		CONS.Admin.orien_Current_C = CONS.Admin.Orien.HORI_VERTI;
+//		
+//		CONS.Admin.node_Current = 1;
+		
 		/*******************************
 
 			validate
@@ -983,7 +1003,7 @@ public class Rect_D9 {
 		////////////////////////////////
 		CONS.Views.rect_B_W_orig = Integer.parseInt(this.prop.getProperty("rect_B_W_orig"));
 		CONS.Views.rect_B_H_orig = Integer.parseInt(this.prop.getProperty("rect_B_H_orig"));
-		
+
 		CONS.Views.rect_B_H_cur = CONS.Views.rect_B_H_orig;
 		CONS.Views.rect_B_W_cur = CONS.Views.rect_B_W_orig;
 		
@@ -1003,8 +1023,11 @@ public class Rect_D9 {
 		rect_B.setW_Orig(CONS.Views.rect_B_W_orig);
 		rect_B.setH_Orig(CONS.Views.rect_B_H_orig);
 
-		// attached to
-		rect_B.setAttachedTo(rect_A);
+//		// attached to
+//		rect_B.setAttachedTo(rect_A);
+//		
+//		// attached at
+//		rect_B.setAttachedAt((NodeNames)objs_B[0]);
 		
 		////////////////////////////////
 		
@@ -1035,8 +1058,64 @@ public class Rect_D9 {
 		rect_C.setH_Orig(CONS.Views.rect_C_H_orig);
 //		rect_C.setH_Orig(this.rect_C.getH_Orig());
 
+//		// attached to
+//		rect_C.setAttachedTo(rect_B);
+//
+//		// attached at
+//		rect_C.setAttachedAt((NodeNames)objs_C[0]);
+
+		
 	}//init_Sizes
 
+	private void 
+	init_Rects__AttachedData_and_Orien() {
+//		init_Sizes() {
+		
+		////////////////////////////////
+		
+		// status
+		
+		////////////////////////////////
+		CONS.Admin.status = 1;
+		CONS.Admin.status_C = 1;
+		CONS.Admin.status_B = 1;
+		
+		Object[] objs_C = Methods.get_NodeNameAndOrien_frmo_Status__C(CONS.Admin.status_C);
+		Object[] objs_B = Methods.get_NodeNameAndOrien_frmo_Status__B(CONS.Admin.status_B);
+		
+		CONS.Admin.orien_Current_C = (Orien)objs_C[1];
+		CONS.Admin.orien_Current_B = (Orien)objs_B[1];
+//		CONS.Admin.orien_Current_C = CONS.Admin.Orien.HORI_VERTI;
+		
+		CONS.Admin.node_Current = 1;
+		
+		
+		////////////////////////////////
+		
+		// rect: B
+		
+		////////////////////////////////
+		// attached to
+		rect_B.setAttachedTo(rect_A);
+		
+		// attached at
+		rect_B.setAttachedAt((NodeNames)objs_B[0]);
+		
+		////////////////////////////////
+		
+		// rect: C
+		
+		////////////////////////////////
+		// attached to
+		rect_C.setAttachedTo(rect_B);
+		
+		// attached at
+		rect_C.setAttachedAt((NodeNames)objs_C[0]);
+		
+		
+	}//init_Rects__AttachedData
+	
+	
 	private void 
 	init_Sizes__WandH() {
 		
@@ -2252,9 +2331,13 @@ public class Rect_D9 {
 				// validate: overwraps?
 
 				////////////////////////////////
+				Object[] objs = Methods.get_NodeNameAndOrien_frmo_Status__B(CONS.Admin.status_B);
+				
+				Rect_D9.this.rect_B.setAttachedAt((NodeNames)objs[0]);
 				
 				boolean res = Methods.overWrap_on_A(
 									Rect_D9.this.rect_A, 
+									Rect_D9.this.rect_B, 
 									Rect_D9.this.rect_C, 
 //									Rect_D9.this.rect_A, 
 									CONS.Admin.status_C);
@@ -2282,8 +2365,13 @@ public class Rect_D9 {
 					Rect_D9.this.move_C(CONS.Admin.status_C);
 					
 					// judge: overwrap
+					objs = Methods.get_NodeNameAndOrien_frmo_Status__B(CONS.Admin.status_B);
+					
+					Rect_D9.this.rect_B.setAttachedAt((NodeNames)objs[0]);
+					
 					res = Methods.overWrap_on_A(
 							Rect_D9.this.rect_A, 
+							Rect_D9.this.rect_B, 
 							Rect_D9.this.rect_C, 
 //							Rect_D9.this.rect_A, 
 							CONS.Admin.status_C);
@@ -2611,7 +2699,7 @@ public class Rect_D9 {
 		// update: w, h
 
 		////////////////////////////////
-		this.init_Sizes();
+		this.init_Rects();
 //		this.init_Sizes__WandH();
 		
 		////////////////////////////////
