@@ -1323,9 +1323,46 @@ public class Methods {
 	(Rect rect_A, Rect rect_C, int status_C) {
 		// TODO Auto-generated method stub
 		
+		////////////////////////////////
+
+		// when rect C overwraps on A from the upper edge
+
+		////////////////////////////////
+		int a_X1 = rect_A.getX_Cur();
+		int a_X2 = rect_A.getX_Cur() + rect_A.getW_Orig();
+		
+		int a_Y1 = rect_A.getY_Cur();
+		
+		int c_X2 = rect_C.getX_Cur() + rect_C.getW();
+		int c_Y2 = rect_C.getY_Cur() + rect_C.getH();
+		
+		//log
+		String text = String.format(Locale.JAPAN, "a_Y1 = %d, c_Y2 = %d\n", a_Y1, c_Y2);
+		
+		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+
+		// judge
+
+		////////////////////////////////
+		if ((a_X1 < c_X2 && c_X2 < a_X2)
+				&& (a_Y1 < c_Y2)) {
+			
+			return true;
+			
+		} else {
+			
+			return false;
+			
+		}
 		
 		
-		return true;
+//		return true;
 //		return false;
 		
 	}//overWrap_on_A

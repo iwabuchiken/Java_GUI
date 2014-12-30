@@ -2255,16 +2255,32 @@ public class Rect_D9 {
 				
 				boolean res = Methods.overWrap_on_A(
 									Rect_D9.this.rect_A, 
-									Rect_D9.this.rect_A, 
+									Rect_D9.this.rect_C, 
+//									Rect_D9.this.rect_A, 
 									CONS.Admin.status_C);
 				
 				while (res == true && (CONS.Admin.status_C < 25)) {
+
+					//log
+					text = String.format(Locale.JAPAN, "res => %s\n", res);
 					
+					fname = Thread.currentThread().getStackTrace()[1].getFileName();
+					
+					line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+					
+					System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+					// increment status_C
 					CONS.Admin.status_C += 1;
 					
+					// move rect C
+					Rect_D9.this.move_C(CONS.Admin.status_C);
+					
+					// judge: overwrap
 					res = Methods.overWrap_on_A(
 							Rect_D9.this.rect_A, 
-							Rect_D9.this.rect_A, 
+							Rect_D9.this.rect_C, 
+//							Rect_D9.this.rect_A, 
 							CONS.Admin.status_C);
 					
 				}
