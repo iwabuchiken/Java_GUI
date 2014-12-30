@@ -2216,7 +2216,14 @@ public class Rect_D9 {
 					
 				}
 				
-				// update
+				////////////////////////////////
+
+				// update: status
+
+				////////////////////////////////
+				int tmp_status = CONS.Admin.status_C;	// hold the current status
+														// => for use in Methods.overWrap_on_A()
+				
 				CONS.Admin.status_C += 1;
 
 				////////////////////////////////
@@ -2239,6 +2246,65 @@ public class Rect_D9 {
 				
 				////////////////////////////////
 				Rect_D9.this.move_C(CONS.Admin.status_C);
+				
+				////////////////////////////////
+
+				// validate: overwraps?
+
+				////////////////////////////////
+				
+				boolean res = Methods.overWrap_on_A(
+									Rect_D9.this.rect_A, 
+									Rect_D9.this.rect_A, 
+									CONS.Admin.status_C);
+				
+				while (res == true && (CONS.Admin.status_C < 25)) {
+					
+					CONS.Admin.status_C += 1;
+					
+					res = Methods.overWrap_on_A(
+							Rect_D9.this.rect_A, 
+							Rect_D9.this.rect_A, 
+							CONS.Admin.status_C);
+					
+				}
+
+				//log
+				text = String.format(Locale.JAPAN, "status_C => %d\n", CONS.Admin.status_C);
+				
+				fname = Thread.currentThread().getStackTrace()[1].getFileName();
+				
+				line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+				
+				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+				// if status gets to 25 => keep the current status
+				if (CONS.Admin.status_C >= 25) {
+					
+					CONS.Admin.status_C = tmp_status;	// restore the previous status
+					
+					Rect_D9.this.move_C(CONS.Admin.status_C);	// move back to the previous
+					
+				}
+				
+				
+//				//log
+//				text = String.format(Locale.JAPAN, "overwrap => %s\n", res);
+//				
+//				fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//				
+//				line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//				
+//				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//
+//
+//				if (res == true) {
+//					
+//					CONS.Admin.status_C = tmp_status;	// restore the previous status
+//					
+//					Rect_D9.this.move_C(CONS.Admin.status_C);	// move back to the previous
+//					
+//				}
 				
 				////////////////////////////////
 

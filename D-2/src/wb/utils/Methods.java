@@ -1317,5 +1317,17 @@ public class Methods {
 		return null;
 		
 	}
+
+	public static boolean 
+	overWrap_on_A
+	(Rect rect_A, Rect rect_C, int status_C) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		return true;
+//		return false;
+		
+	}//overWrap_on_A
 	
 }//public class Methods
