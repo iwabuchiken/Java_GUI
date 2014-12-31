@@ -1517,7 +1517,41 @@ public class Methods {
 			
 			case A_UR:
 			
-				switch(rect_C)
+				return overWrap_on_A__B_at_A_UL_C_at_A_UR(rect_B, rect_C);
+				
+//				switch(rect_C.getOrien()) {
+//				
+//				case HORI_VERTI:
+//					
+//					if (rect_C.getX_Cur() >= (rect_B.getX_Cur() + rect_B.getW())) {
+//						
+//						return false;
+//						
+//					} else {
+//						
+//						return true;
+//						
+//					}
+//					
+//				case HORI_HORI:
+//					
+//					if (rect_C.getX_Cur() >= (rect_B.getX_Cur() + rect_B.getW())) {
+//						
+//						return false;
+//						
+//					} else {
+//						
+//						return true;
+//						
+//					}
+//					
+//				case VERTI_HORI:
+//				case VERTI_VERTI:
+//				
+//					return false;
+//					
+//				}
+				
 			break;
 			
 			}
@@ -1672,5 +1706,48 @@ public class Methods {
 		}
 
 	}//overWrap_on_A__B_at_A_UL
+
+	private static boolean 
+	overWrap_on_A__B_at_A_UL_C_at_A_UR
+	(Rect rect_B, Rect rect_C) {
+		// TODO Auto-generated method stub
+		switch(rect_C.getOrien()) {
+		
+		case HORI_VERTI:
+			
+			if (rect_C.getX_Cur() >= (rect_B.getX_Cur() + rect_B.getW())) {
+				
+				return false;
+				
+			} else {
+				
+				return true;
+				
+			}
+			
+		case HORI_HORI:
+			
+			if (rect_C.getX_Cur() >= (rect_B.getX_Cur() + rect_B.getW())) {
+				
+				return false;
+				
+			} else {
+				
+				return true;
+				
+			}
+			
+		case VERTI_HORI:
+		case VERTI_VERTI:
+		
+			return false;
+		
+//		defalult: return false;
+			
+		}
+
+		return false;
+		
+	}//overWrap_on_A__B_at_A_UL_C_at_A_UR
 	
 }//public class Methods

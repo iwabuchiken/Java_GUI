@@ -3,6 +3,7 @@ package wb.utils;
 import org.eclipse.swt.graphics.Color;
 
 import wb.utils.CONS.Admin.NodeNames;
+import wb.utils.CONS.Admin.Orien;
 
 public class Rect {
 
@@ -26,6 +27,14 @@ public class Rect {
 		
 		this.rect_Name = rect_Name;
 		
+	}
+
+	public Orien getOrien() {
+		return orien;
+	}
+
+	public void setOrien(Orien orien) {
+		this.orien = orien;
 	}
 
 	public NodeNames getAttachedAt() {
