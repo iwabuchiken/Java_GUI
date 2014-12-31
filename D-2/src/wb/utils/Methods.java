@@ -245,6 +245,8 @@ public class Methods {
 	(NodeNames name, Orien orien) {
 		// TODO Auto-generated method stub
 		
+		int node_index;
+		
 		////////////////////////////////
 
 		// names
@@ -292,7 +294,29 @@ public class Methods {
 			}//switch(orien)
 			
 			break;
+
+		case B_LL://-----------------------------
 			
+			node_index = Methods.get_Node_Index__C(CONS.Admin.NodeNames.B_LL);
+			
+			
+			if (node_index == -1) {
+				
+				return 1;
+				
+			}
+			
+			switch(orien) {
+			
+			case HORI_VERTI: return node_index * CONS.Admin.numOf_Positions_per_Node + 1;
+			case HORI_HORI: return node_index * CONS.Admin.numOf_Positions_per_Node + 2;
+			case VERTI_HORI: return node_index * CONS.Admin.numOf_Positions_per_Node + 3;
+			case VERTI_VERTI: return node_index * CONS.Admin.numOf_Positions_per_Node + 4;
+			
+			}//switch(orien)
+			
+			break;
+
 		case A_UR://-----------------------------
 			
 			switch(orien) {
@@ -339,6 +363,31 @@ public class Methods {
 		return -1;
 		
 	}//get_Status_from_NodeAndPosition
+
+	/*******************************
+
+		@return
+		default => -1
+
+	 *******************************/
+	private static int 
+	get_Node_Index__C
+	(NodeNames name) {
+		// TODO Auto-generated method stub
+		
+		for (int i = 0; i < CONS.Admin.list_NodeNames_C.size(); i++) {
+			
+			if (name == CONS.Admin.list_NodeNames_C.get(i)) {
+				
+				return i;
+				
+			}
+			
+		}
+		
+		return -1;
+		
+	}
 
 	public static int 
 	get_Status_from_NodeAndPosition_B
@@ -861,6 +910,17 @@ public class Methods {
 		
 		if (index_Orien == 0) index_Orien = 4;
 
+		//log
+		String text = String.format(Locale.JAPAN, 
+							"name = %s / index_Orien = %d\n", 
+							name.toString(), index_Orien);
+		
+		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
 		CONS.Admin.Orien orien = null;
 		
 		////////////////////////////////
@@ -908,6 +968,19 @@ public class Methods {
 			}
 			
 			break;//case B_UL
+
+		case B_LL://----------------------------------
+			
+			switch(index_Orien) {
+			
+			case 1: orien = CONS.Admin.Orien.HORI_VERTI; break; 
+			case 2: orien = CONS.Admin.Orien.HORI_HORI; break; 
+			case 3: orien = CONS.Admin.Orien.VERTI_HORI; break; 
+			case 4: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			
+			}
+			
+			break;//case B_LL
 
 		case A_UR://----------------------------------
 			
@@ -1260,8 +1333,43 @@ public class Methods {
 		Point p_n1 = Methods.get_Node_Coordinates(n1, rect_A, rect_B);
 		Point p_n2 = Methods.get_Node_Coordinates(n2, rect_A, rect_B);
 		
+//		/*******************************
+//
+//			debug
+//
+//		 *******************************/
+//		//log
+//		String text = String.format(Locale.JAPAN, 
+//							"n1 = %s, n2 = %s / "
+//							+ "p_n1.x = %d, p_n1.y = %d / "
+//							+ "p_n2.x = %d, p_n2.y = %d\n",
+//							n1.toString(), n2.toString(),
+//							p_n1.x, p_n1.y,
+//							p_n2.x, p_n2.y
+//							
+//				);
+//		
+//		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//		
+//		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//		
+//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+
+		
 		if (p_n1.x == p_n2.x && p_n1.y == p_n2.y) {
-			
+
+//			//log
+//			text = String.format(Locale.JAPAN, 
+//								"same point\n"
+//					);
+//			
+//			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//			
+//			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//			
+//			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
 			return true;
 			
 		}
@@ -1285,13 +1393,21 @@ public class Methods {
 									rect_A.getY_Cur() + rect_A.getH_Orig());
 
 		case B_UL: return new Point(rect_B.getX_Cur(), rect_B.getY_Cur());
-		case B_UR: return new Point(rect_B.getX_Cur() + rect_B.getW_Orig(), 
+		case B_UR: return new Point(rect_B.getX_Cur() + rect_B.getW(), 
 				rect_B.getY_Cur());
 		case B_LL: return new Point(rect_B.getX_Cur(), 
-				rect_B.getY_Cur() + rect_B.getH_Orig());
-		case B_LR: return new Point(rect_B.getX_Cur() + rect_B.getW_Orig(), 
-				rect_B.getY_Cur() + rect_B.getH_Orig());
+				rect_B.getY_Cur() + rect_B.getH());
+		case B_LR: return new Point(rect_B.getX_Cur() + rect_B.getW(), 
+				rect_B.getY_Cur() + rect_B.getH());
 		
+//		case B_UL: return new Point(rect_B.getX_Cur(), rect_B.getY_Cur());
+//		case B_UR: return new Point(rect_B.getX_Cur() + rect_B.getW_Orig(), 
+//				rect_B.getY_Cur());
+//		case B_LL: return new Point(rect_B.getX_Cur(), 
+//				rect_B.getY_Cur() + rect_B.getH_Orig());
+//		case B_LR: return new Point(rect_B.getX_Cur() + rect_B.getW_Orig(), 
+//				rect_B.getY_Cur() + rect_B.getH_Orig());
+//		
 		}
 		
 		return null;
@@ -1338,6 +1454,10 @@ public class Methods {
 			return overWrap_on_A__B_at_A_UL(rect_A, rect_B, rect_C, status_C);
 //			break;
 		
+		case A_UR:
+			
+//			return overWrap_on_A__B_at_A_UR(rect_A, rect_B, rect_C, status_C);
+			
 		default:
 			
 			return false;
