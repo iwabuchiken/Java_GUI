@@ -19,6 +19,8 @@ public class Rect {
 	Rect attachedTo;
 
 	NodeNames attachedAt;
+
+	Orien orien;
 	
 	public Rect(String rect_Name) {
 		
