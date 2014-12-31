@@ -1519,6 +1519,9 @@ public class Methods {
 			
 				return overWrap_on_A__B_at_A_UL_C_at_A_UR(rect_B, rect_C);
 				
+			case A_LR:
+			case A_LL: return false;
+				
 			default: return false;//-------------------------
 				
 			}//switch(rect_C.getAttachedAt())
