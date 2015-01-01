@@ -1229,7 +1229,7 @@ public class Rect_D10 {
 		rect_C.setH(CONS.Views.rect_C_H_orig);
 //		rect_C.setH(this.rect_C.getH_Orig());
 		
-		rect_C.setW_Orig(CONS.Views.rect_C_W_orig);
+//		rect_C.setW_Orig(CONS.Views.rect_C_W_orig);
 		rect_C.setH_Orig(CONS.Views.rect_C_H_orig);
 //		rect_C.setH_Orig(this.rect_C.getH_Orig());
 
@@ -2346,6 +2346,7 @@ public class Rect_D10 {
 				Object[] objs = Methods.get_NodeNameAndOrien_frmo_Status__B(CONS.Admin.status_B);
 				
 				Rect_D10.this.rect_B.setAttachedAt((NodeNames)objs[0]);
+				Rect_D10.this.rect_B.setOrien((Orien) objs[1]);
 				
 				boolean res = Methods.overWrap_on_A(
 									Rect_D10.this.rect_A, 
@@ -2391,6 +2392,7 @@ public class Rect_D10 {
 					objs = Methods.get_NodeNameAndOrien_frmo_Status__B(CONS.Admin.status_B);
 					
 					Rect_D10.this.rect_B.setAttachedAt((NodeNames)objs[0]);
+					Rect_D10.this.rect_B.setOrien((Orien) objs[1]);
 					
 					res = Methods.overWrap_on_A(
 							Rect_D10.this.rect_A, 
