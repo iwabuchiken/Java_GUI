@@ -1954,6 +1954,10 @@ public class Methods {
 			
 			return Methods.overWrap_on_A__Bat_AUL_VH_Cat_BLR(rect_A, rect_B, rect_C);
 			
+		case A_LR:
+			
+			return Methods.overWrap_on_A__Bat_AUL_VH_Cat_ALR(rect_A, rect_B, rect_C);
+			
 		case A_UL:
 		case A_UR:
 		
@@ -2119,6 +2123,86 @@ public class Methods {
 		return false;
 		
 	}//overWrap_on_A__Bat_AUL_VH_Cat_BLR
+	
+	private static boolean 
+	overWrap_on_A__Bat_AUL_VH_Cat_ALR
+	(Rect rect_A, Rect rect_B, Rect rect_C) {
+		
+		String text, fname;
+		int line_Num;
+		
+		//log
+		text = String.format(Locale.JAPAN, "overWrap_on_A__Bat_AUL_VH_Cat_ALL\n");
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		
+		////////////////////////////////
+		
+		// prep data: rects
+		
+		////////////////////////////////
+		rect_A = rect_C.getAttachedTo().getAttachedTo();
+		rect_B = rect_C.getAttachedTo();
+		
+		////////////////////////////////
+		
+		// prep data: coordinates
+		
+		////////////////////////////////
+		// rect A
+		int a_X1 = rect_A.getX_Cur();
+		int a_Y1 = rect_A.getY_Cur();
+		
+		int a_X2 = rect_A.getX_Cur() + rect_A.getW_Orig();
+		
+		// rect B
+		int b_X1 = rect_B.getX_Cur();
+		int b_Y1 = rect_B.getY_Cur();
+		
+		int b_X2 = rect_B.getX_Cur() + rect_B.getW();
+		int b_Y2 = rect_B.getY_Cur() + rect_B.getH();
+//		int b_X2 = rect_B.getX_Cur() + rect_B.getW_Orig();
+		
+		// rect C
+		int c_X1 = rect_C.getX_Cur();
+		int c_Y1 = rect_C.getY_Cur();
+		int c_X2 = rect_C.getX_Cur() + rect_C.getW();
+		int c_Y2 = rect_C.getY_Cur() + rect_C.getH();
+		
+		////////////////////////////////
+		
+		// dispatch
+		
+		////////////////////////////////
+		switch(rect_C.getOrien()) {
+		
+		case VERTI_HORI:
+		case VERTI_VERTI: return false;
+		
+		case HORI_VERTI: return false;
+		case HORI_HORI: 
+			
+			if ((c_Y1 < b_Y2) && (c_X1 < b_X2)) {
+				
+				return true;
+				
+			} else {
+				
+				return false;
+				
+			}
+			
+		}
+		
+		return false;
+		
+	}//overWrap_on_A__Bat_AUL_VH_Cat_ALR
+	
 	
 	
 
