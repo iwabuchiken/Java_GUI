@@ -1678,7 +1678,8 @@ public class Methods {
 			
 			case A_UR://-------------------------
 			
-				return overWrap_on_A__B_at_A_UL_C_at_A_UR(rect_B, rect_C);
+				return overWrap_on_A__Bat_AUL_Cat_AUR(rect_B, rect_C);
+//				return overWrap_on_A__B_at_A_UL_C_at_A_UR(rect_B, rect_C);
 				
 			case A_LR:
 				
@@ -2784,6 +2785,24 @@ public class Methods {
 	}//overWrap_on_A__Bat_AUL_Cat_ALL
 	
 	private static boolean 
+	overWrap_on_A__Bat_AUL_Cat_AUR
+	(Rect rect_B, Rect rect_C) {
+		// TODO Auto-generated method stub
+		
+		switch(rect_B.getOrien()) {
+		
+		case VERTI_HORI:
+			
+			return overWrap_on_A__Bat_AUL_Cat_AUR_Borien_VH(rect_B, rect_C);
+			
+		}
+		
+		return false;
+		
+	}//overWrap_on_A__Bat_AUL_Cat_AUR
+	
+	
+	private static boolean 
 	overWrap_on_A__Bat_AUL_Cat_ALL_Borien_VH
 	(Rect rect_B, Rect rect_C) {
 		
@@ -2863,5 +2882,40 @@ public class Methods {
 		return false;
 		
 	}//overWrap_on_A__Bat_AUL_Cat_ALR_Borien_VH
+	
+	private static boolean 
+	overWrap_on_A__Bat_AUL_Cat_AUR_Borien_VH
+	(Rect rect_B, Rect rect_C) {
+		
+		String text, fname;
+		int line_Num;		
+		
+		//log
+		text = String.format(Locale.JAPAN, "overWrap_on_A__Bat_AUL_Cat_AUR_Borien_VH\n");
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+		
+		// dispatch
+		
+		////////////////////////////////
+		switch(rect_C.getOrien()) {
+		
+		case VERTI_HORI:
+		case VERTI_VERTI:
+		case HORI_VERTI:
+		case HORI_HORI: return false;
+		
+		
+		}//switch(rect_C.getOrien())
+		
+		return false;
+		
+	}//overWrap_on_A__Bat_AUL_Cat_AUR_Borien_VH
 	
 }//public class Methods
