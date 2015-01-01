@@ -1681,7 +1681,12 @@ public class Methods {
 				return overWrap_on_A__B_at_A_UL_C_at_A_UR(rect_B, rect_C);
 				
 			case A_LR:
-			case A_LL: return false;
+				
+				return overWrap_on_A__Bat_AUL_Cat_ALR(rect_B, rect_C);
+				
+			case A_LL: 
+				
+				return overWrap_on_A__Bat_AUL_Cat_ALL(rect_B, rect_C);
 				
 			default: return false;//-------------------------
 				
@@ -1954,13 +1959,17 @@ public class Methods {
 			
 			return Methods.overWrap_on_A__Bat_AUL_VH_Cat_BLR(rect_A, rect_B, rect_C);
 			
+		case A_UL:
+		case A_UR: return false;
+		
 		case A_LR:
 			
 			return Methods.overWrap_on_A__Bat_AUL_VH_Cat_ALR(rect_A, rect_B, rect_C);
 			
-		case A_UL:
-		case A_UR:
-		
+		case A_LL:
+			
+			return Methods.overWrap_on_A__Bat_AUL_VH_Cat_ALL(rect_A, rect_B, rect_C);
+			
 		}//switch(rect_C.getAttachedAt())
 		
 		return false;
@@ -2202,6 +2211,86 @@ public class Methods {
 		return false;
 		
 	}//overWrap_on_A__Bat_AUL_VH_Cat_ALR
+	
+	private static boolean 
+	overWrap_on_A__Bat_AUL_VH_Cat_ALL
+	(Rect rect_A, Rect rect_B, Rect rect_C) {
+		
+		String text, fname;
+		int line_Num;
+		
+		//log
+		text = String.format(Locale.JAPAN, "overWrap_on_A__Bat_AUL_VH_Cat_ALL\n");
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		
+		////////////////////////////////
+		
+		// prep data: rects
+		
+		////////////////////////////////
+		rect_A = rect_C.getAttachedTo().getAttachedTo();
+		rect_B = rect_C.getAttachedTo();
+		
+		////////////////////////////////
+		
+		// prep data: coordinates
+		
+		////////////////////////////////
+		// rect A
+		int a_X1 = rect_A.getX_Cur();
+		int a_Y1 = rect_A.getY_Cur();
+		
+		int a_X2 = rect_A.getX_Cur() + rect_A.getW_Orig();
+		
+		// rect B
+		int b_X1 = rect_B.getX_Cur();
+		int b_Y1 = rect_B.getY_Cur();
+		
+		int b_X2 = rect_B.getX_Cur() + rect_B.getW();
+		int b_Y2 = rect_B.getY_Cur() + rect_B.getH();
+//		int b_X2 = rect_B.getX_Cur() + rect_B.getW_Orig();
+		
+		// rect C
+		int c_X1 = rect_C.getX_Cur();
+		int c_Y1 = rect_C.getY_Cur();
+		int c_X2 = rect_C.getX_Cur() + rect_C.getW();
+		int c_Y2 = rect_C.getY_Cur() + rect_C.getH();
+		
+		////////////////////////////////
+		
+		// dispatch
+		
+		////////////////////////////////
+		switch(rect_C.getOrien()) {
+		
+		case HORI_VERTI:
+		case HORI_HORI: return false;
+		
+		case VERTI_HORI:
+		case VERTI_VERTI:
+			
+			if (c_Y1 < b_Y2) {
+				
+				return true;
+				
+			} else {
+				
+				return false;
+				
+			}
+		
+		}
+		
+		return false;
+		
+	}//overWrap_on_A__Bat_AUL_VH_Cat_ALL
+	
 	
 	
 	
@@ -2659,5 +2748,120 @@ public class Methods {
 		return false;
 		
 	}//overWrap_on_A__B_at_A_UL_C_at_A_UR
+	
+	private static boolean 
+	overWrap_on_A__Bat_AUL_Cat_ALL
+	(Rect rect_B, Rect rect_C) {
+		// TODO Auto-generated method stub
+
+		switch(rect_B.getOrien()) {
+		
+		case VERTI_HORI:
+			
+			return overWrap_on_A__Bat_AUL_Cat_ALL_Borien_VH(rect_B, rect_C);
+		
+		}
+		
+		return false;
+		
+	}//overWrap_on_A__Bat_AUL_Cat_ALL
+
+	private static boolean 
+	overWrap_on_A__Bat_AUL_Cat_ALR
+	(Rect rect_B, Rect rect_C) {
+		// TODO Auto-generated method stub
+		
+		switch(rect_B.getOrien()) {
+		
+		case VERTI_HORI:
+			
+			return overWrap_on_A__Bat_AUL_Cat_ALR_Borien_VH(rect_B, rect_C);
+			
+		}
+		
+		return false;
+		
+	}//overWrap_on_A__Bat_AUL_Cat_ALL
+	
+	private static boolean 
+	overWrap_on_A__Bat_AUL_Cat_ALL_Borien_VH
+	(Rect rect_B, Rect rect_C) {
+		
+		String text, fname;
+		int line_Num;		
+		
+		//log
+		text = String.format(Locale.JAPAN, "overWrap_on_A__Bat_AUL_Cat_ALL_Borien_VH\n");
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		////////////////////////////////
+
+		// dispatch
+
+		////////////////////////////////
+		switch(rect_C.getOrien()) {
+		
+		case HORI_VERTI:
+		case HORI_HORI: return false;
+		
+		case VERTI_HORI:
+		case VERTI_VERTI:
+		
+			if (rect_C.getY_Cur() < (rect_B.getY_Cur() + rect_B.getH())) {
+				
+				return true;
+				
+			} else {
+				
+				return false;
+				
+			}
+			
+		}//switch(rect_C.getOrien())
+		
+		return false;
+		
+	}//overWrap_on_A__Bat_AUL_Cat_ALL_Borien_VH
+	
+	private static boolean 
+	overWrap_on_A__Bat_AUL_Cat_ALR_Borien_VH
+	(Rect rect_B, Rect rect_C) {
+		
+		String text, fname;
+		int line_Num;		
+		
+		//log
+		text = String.format(Locale.JAPAN, "overWrap_on_A__Bat_AUL_Cat_ALL_Borien_VH\n");
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+		
+		// dispatch
+		
+		////////////////////////////////
+		switch(rect_C.getOrien()) {
+		
+		case VERTI_HORI:
+		case VERTI_VERTI: return false;
+			
+		case HORI_VERTI: return false;
+		case HORI_HORI: return false;
+		
+			
+		}//switch(rect_C.getOrien())
+		
+		return false;
+		
+	}//overWrap_on_A__Bat_AUL_Cat_ALR_Borien_VH
 	
 }//public class Methods

@@ -2368,7 +2368,8 @@ public class Rect_D10 {
 				
 				int count_Skip = 0;
 				
-				while (res == true && (CONS.Admin.status_C < 25)) {
+				while (res == true && (CONS.Admin.status_C < 24)) {
+//					while (res == true && (CONS.Admin.status_C < 25)) {
 
 					//log
 					text = String.format(Locale.JAPAN, "res => %s\n", res);
@@ -2413,7 +2414,8 @@ public class Rect_D10 {
 				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 
 				// if status gets to 25 => keep the current status
-				if (CONS.Admin.status_C >= 25) {
+				if (CONS.Admin.status_C >= 24) {
+//					if (CONS.Admin.status_C >= 25) {
 					
 					CONS.Admin.status_C = tmp_status;	// restore the previous status
 					
