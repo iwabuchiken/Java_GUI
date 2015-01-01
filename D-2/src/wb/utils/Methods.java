@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 
 import org.apache.commons.lang.math.NumberUtils;
 
-import wb.main.Rect_D9;
+import wb.main.Rect_D10;
 import wb.utils.CONS.Admin.NodeNames;
 import wb.utils.CONS.Admin.Orien;
 
@@ -1289,7 +1289,7 @@ public class Methods {
 
 	public static void 
 	update_AttachedTo
-	(Rect_D9 rect_D6, Rect rect_C, NodeNames name) {
+	(Rect_D10 rect_D6, Rect rect_C, NodeNames name) {
 		// TODO Auto-generated method stub
 		
 		/*******************************
@@ -1839,6 +1839,16 @@ public class Methods {
 		String text, fname;
 		int line_Num;
 
+//		//log
+//		text = String.format(Locale.JAPAN, "overWrap_on_A__B_at_A_UL_C_at_B\n");
+//		
+//		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//		
+//		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//		
+//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+
 		////////////////////////////////
 		
 		// prep data: rects
@@ -2034,8 +2044,18 @@ public class Methods {
 		switch(rect_C.getOrien()) {
 		
 		case HORI_VERTI:
-		case HORI_HORI:
-		case VERTI_HORI: return false;
+		case HORI_HORI: return false;
+		case VERTI_HORI: // if: C.w_Orig > B.h ---> return true
+			
+			if (rect_C.getW_Orig() > rect_B.getH()) {
+				
+				return true;
+				
+			} else {
+				
+				return false;
+				
+			}
 			
 		case VERTI_VERTI:
 			
