@@ -2507,6 +2507,9 @@ public class Rect_D9 {
 
 				////////////////////////////////
 //				Rect_D9.this.update_RectC();
+				CONS.Admin.status_C = 1;
+				
+				Rect_D9.this.move_C(CONS.Admin.status_C);
 				
 				////////////////////////////////
 				
@@ -2539,7 +2542,6 @@ public class Rect_D9 {
 
 	protected void 
 	exec_ReloadProperties() {
-		// TODO Auto-generated method stub
 	
 		////////////////////////////////
 
@@ -2608,7 +2610,6 @@ public class Rect_D9 {
 
 	protected void 
 	reset_Canvas() {
-		// TODO Auto-generated method stub
 	
 		////////////////////////////////
 
