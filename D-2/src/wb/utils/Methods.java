@@ -245,7 +245,21 @@ public class Methods {
 	(NodeNames name, Orien orien) {
 		// TODO Auto-generated method stub
 		
-		int node_index;
+//		int node_index;
+		int node_index = Methods.get_Node_Index__C(name);
+		
+		//log
+		String text = String.format(Locale.JAPAN, 
+							"name = %s, orien = %s / node_index = %d\n", 
+							name.toString(), orien.toString(), node_index);
+		
+		String fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		int line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+
 		
 		////////////////////////////////
 
@@ -255,13 +269,18 @@ public class Methods {
 		switch(name) {
 		
 		case B_UL://-----------------------------
+		case A_UL://-----------------------------
 			
 			switch(orien) {
 			
-			case HORI_VERTI: return 1;
-			case HORI_HORI: return 2;
-			case VERTI_HORI: return 3;
-			case VERTI_VERTI: return 4;
+			case HORI_VERTI: return node_index * CONS.Admin.numOf_Positions_per_Node + 1;
+			case HORI_HORI: return node_index * CONS.Admin.numOf_Positions_per_Node + 2;
+			case VERTI_HORI: return node_index * CONS.Admin.numOf_Positions_per_Node + 3;
+			case VERTI_VERTI: return node_index * CONS.Admin.numOf_Positions_per_Node + 4;
+//			case HORI_VERTI: return 1;
+//			case HORI_HORI: return 2;
+//			case VERTI_HORI: return 3;
+//			case VERTI_VERTI: return 4;
 			
 			}//switch(orien)
 			
@@ -297,7 +316,7 @@ public class Methods {
 
 		case B_LL://-----------------------------
 			
-			node_index = Methods.get_Node_Index__C(CONS.Admin.NodeNames.B_LL);
+//			node_index = Methods.get_Node_Index__C(CONS.Admin.NodeNames.B_LL);
 			
 			
 			if (node_index == -1) {
@@ -931,6 +950,7 @@ public class Methods {
 		switch(name) {
 		
 		case B_UL://----------------------------------
+		case A_UL://----------------------------------
 			
 			switch(index_Orien) {
 			

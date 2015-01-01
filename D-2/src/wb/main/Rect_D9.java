@@ -3474,7 +3474,8 @@ public class Rect_D9 {
 			// x, y
 			rect.setX_Cur(
 					rect.getAttachedTo().getX_Cur() 
-					+ rect.getAttachedTo().getW_Orig() 
+					+ rect.getAttachedTo().getW() 
+//					+ rect.getAttachedTo().getW_Orig() 
 					- rect.getW_Orig());
 			
 			rect.setY_Cur(
@@ -3492,7 +3493,8 @@ public class Rect_D9 {
 			// x, y
 			rect.setX_Cur(
 					rect.getAttachedTo().getX_Cur() 
-					+ rect.getAttachedTo().getW_Orig() 
+					+ rect.getAttachedTo().getW() 
+//					+ rect.getAttachedTo().getW_Orig() 
 					- rect.getH_Orig());
 			
 			rect.setY_Cur(
@@ -3510,7 +3512,8 @@ public class Rect_D9 {
 			// x, y
 			rect.setX_Cur(
 					rect.getAttachedTo().getX_Cur() 
-					+ rect.getAttachedTo().getW_Orig() 
+					+ rect.getAttachedTo().getW() 
+//					+ rect.getAttachedTo().getW_Orig() 
 					);
 			
 			rect.setY_Cur(
@@ -3528,7 +3531,8 @@ public class Rect_D9 {
 			// x, y
 			rect.setX_Cur(
 					rect.getAttachedTo().getX_Cur() 
-					+ rect.getAttachedTo().getW_Orig() 
+					+ rect.getAttachedTo().getW() 
+//					+ rect.getAttachedTo().getW_Orig() 
 					);
 			
 			rect.setY_Cur(
@@ -3743,11 +3747,11 @@ public class Rect_D9 {
 			// x, y
 			rect.setX_Cur(
 					rect.getAttachedTo().getX_Cur() 
-					+ rect.getAttachedTo().getW_Orig());
+					+ rect.getAttachedTo().getW());
 			
 			rect.setY_Cur(
 					rect.getAttachedTo().getY_Cur()
-					+ rect.getAttachedTo().getH_Orig()
+					+ rect.getAttachedTo().getH()
 					- rect.getW_Orig());
 			
 			break;	// case 1:	// VV
@@ -3761,12 +3765,12 @@ public class Rect_D9 {
 			// x, y
 			rect.setX_Cur(
 					rect.getAttachedTo().getX_Cur() 
-					+ rect.getAttachedTo().getW_Orig() 
+					+ rect.getAttachedTo().getW() 
 					);
 			
 			rect.setY_Cur(
 					rect.getAttachedTo().getY_Cur()
-					+ rect.getAttachedTo().getH_Orig()
+					+ rect.getAttachedTo().getH()
 					- rect.getH_Orig()
 //					- rect.getW_Orig()
 					);
@@ -3782,14 +3786,14 @@ public class Rect_D9 {
 			// x, y
 			rect.setX_Cur(
 					rect.getAttachedTo().getX_Cur() 
-					+ rect.getAttachedTo().getW_Orig()
+					+ rect.getAttachedTo().getW()
 					- rect.getW_Orig()
 //					- rect.getX_Cur()
 					);
 			
 			rect.setY_Cur(
 					rect.getAttachedTo().getY_Cur()
-					+ rect.getAttachedTo().getH_Orig()
+					+ rect.getAttachedTo().getH()
 					);
 			
 			break;	// case 3:	// HV
@@ -3803,13 +3807,13 @@ public class Rect_D9 {
 			// x, y
 			rect.setX_Cur(
 					rect.getAttachedTo().getX_Cur() 
-					+ rect.getAttachedTo().getW_Orig()
+					+ rect.getAttachedTo().getW()
 					- rect.getH_Orig()
 					);
 			
 			rect.setY_Cur(
 					rect.getAttachedTo().getY_Cur() 
-					+ rect.getAttachedTo().getH_Orig()
+					+ rect.getAttachedTo().getH()
 					);
 			
 			break;	// case 4:	// HH
@@ -4603,6 +4607,13 @@ public class Rect_D9 {
 			
 			break;//case B_UL:
 			
+		case B_LL://--------------------------------------
+			
+			_move_Right__B_LL(node_Name, orien);
+			
+			
+			break;//case B_UL:
+			
 		}//switch(CONS.Admin.status)
 		
 		////////////////////////////////
@@ -4764,6 +4775,114 @@ public class Rect_D9 {
 
 	}//_move_Right__B_LR(NodeNames node_Name, Orien orien)
 
+	private void 
+	_move_Right__B_LL(NodeNames node_Name, Orien orien) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// coordinates
+		
+		////////////////////////////////
+		switch(orien) {
+		
+		case INITIAL://--------------------------------------
+		case HORI_VERTI://--------------------------------------
+			
+			this.rect_C.setX_Cur(this.rect_C.getAttachedTo().getX_Cur());
+//			this.rect_C.setX_Cur(CONS.Views.rect_B_X 
+//					+ CONS.Views.rect_B_W_cur 
+//					- this.rect_C.getW_Orig());
+			
+			this.rect_C.setY_Cur(
+							this.rect_C.getAttachedTo().getY_Cur() 
+							+ this.rect_C.getAttachedTo().getH()
+							);
+//			this.rect_C.setY_Cur(this.rect_B.getY_Cur() + rect_B.getH_Orig());
+			
+			this.rect_C.setH(this.rect_C.getH_Orig());
+			
+			this.rect_C.setW(this.rect_C.getW_Orig());
+			
+			break;//case HORI_VERTI
+			
+		case HORI_HORI://--------------------------------------
+			
+			////////////////////////////////
+			
+			// coordinates
+			
+			////////////////////////////////
+			// X
+			this.rect_C.setX_Cur(this.rect_C.getAttachedTo().getX_Cur());
+			
+			// Y
+			this.rect_C.setY_Cur(
+							this.rect_C.getAttachedTo().getY_Cur() 
+							+ this.rect_C.getAttachedTo().getH());
+			
+			// W
+			this.rect_C.setW(this.rect_C.getH_Orig());
+			
+			// H
+			this.rect_C.setH(this.rect_C.getW_Orig());
+			
+			break;//case HORI_HORI
+			
+		case VERTI_HORI://--------------------------------------
+			
+			this.rect_C.setX_Cur(
+							this.rect_C.getAttachedTo().getX_Cur() 
+							- this.rect_C.getH()
+							); 
+			
+			this.rect_C.setY_Cur(
+							this.rect_C.getAttachedTo().getY_Cur() 
+							+ this.rect_C.getAttachedTo().getH() 
+							- this.rect_C.getW()
+							);
+			
+			this.rect_C.setH(this.rect_C.getW_Orig());
+			this.rect_C.setW(this.rect_C.getH_Orig());
+			
+			break;//case VERTI_VERTI
+			
+		case VERTI_VERTI://--------------------------------------
+			
+			this.rect_C.setX_Cur(
+							this.rect_C.getAttachedTo().getX_Cur()
+							- this.rect_C.getW()
+							); 
+			
+			this.rect_C.setY_Cur(
+							this.rect_C.getAttachedTo().getY_Cur()
+							+ this.rect_C.getAttachedTo().getH()
+							- this.rect_C.getH_Orig());
+			
+			this.rect_C.setH(this.rect_C.getH_Orig());
+			this.rect_C.setW(this.rect_C.getW_Orig());
+			
+			break;//case VERTI_VERTI
+			
+		}//switch(orien)
+		
+		////////////////////////////////
+		
+		// meta
+		
+		////////////////////////////////
+		// status
+		CONS.Admin.status_C = 
+				Methods.get_Status_from_NodeAndPosition(
+						node_Name, 
+						orien);
+		
+		// current node number
+		CONS.Admin.node_Current = 
+				Methods.get_NodeNumber_frmo_Status(CONS.Admin.status_C);
+		
+	}//_move_Right__B_LL
+	
 	private void 
 	_move_Right__B_UR(NodeNames node_Name, Orien orien) {
 		// TODO Auto-generated method stub
