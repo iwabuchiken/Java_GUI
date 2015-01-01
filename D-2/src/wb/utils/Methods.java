@@ -287,34 +287,37 @@ public class Methods {
 			break;
 			
 		case B_UR://-----------------------------
+		case A_UR://-----------------------------
 			
 			switch(orien) {
 			
 			case INITIAL: 
-			case HORI_VERTI: return 5;
-			case HORI_HORI: return 6;
-			case VERTI_HORI: return 7;
-			case VERTI_VERTI: return 8;
+			case HORI_VERTI: return node_index * CONS.Admin.numOf_Positions_per_Node + 1;
+			case HORI_HORI: return node_index * CONS.Admin.numOf_Positions_per_Node + 2;
+			case VERTI_HORI: return node_index * CONS.Admin.numOf_Positions_per_Node + 3;
+			case VERTI_VERTI: return node_index * CONS.Admin.numOf_Positions_per_Node + 4;
 			
 			}//switch(orien)
 			
 			break;
 			
 		case B_LR://-----------------------------
+		case A_LR://-----------------------------
 			
 			switch(orien) {
 			
 			case INITIAL: 
-			case VERTI_HORI: return 9;
-			case VERTI_VERTI: return 10;
-			case HORI_VERTI: return 11;
-			case HORI_HORI: return 12;
+			case VERTI_HORI: return node_index * CONS.Admin.numOf_Positions_per_Node + 1;
+			case VERTI_VERTI: return node_index * CONS.Admin.numOf_Positions_per_Node + 2;
+			case HORI_VERTI: return node_index * CONS.Admin.numOf_Positions_per_Node + 3;
+			case HORI_HORI: return node_index * CONS.Admin.numOf_Positions_per_Node + 4;
 			
 			}//switch(orien)
 			
 			break;
 
 		case B_LL://-----------------------------
+		case A_LL://-----------------------------
 			
 //			node_index = Methods.get_Node_Index__C(CONS.Admin.NodeNames.B_LL);
 			
@@ -336,46 +339,46 @@ public class Methods {
 			
 			break;
 
-		case A_UR://-----------------------------
-			
-			switch(orien) {
-			
-			case INITIAL: 
-			case HORI_VERTI: return 13;
-			case HORI_HORI: return 14;
-			case VERTI_HORI: return 15;
-			case VERTI_VERTI: return 16;
-			
-			}//switch(orien)
-			
-			break;
-			
-		case A_LR://-----------------------------
-			
-			switch(orien) {
-			
-			case INITIAL: 
-			case VERTI_HORI: return 17;
-			case VERTI_VERTI: return 18;
-			case HORI_VERTI: return 19;
-			case HORI_HORI: return 20;
-			
-			}//switch(orien)
-			
-			break;
-			
-		case A_LL://-----------------------------
-			
-			switch(orien) {
-			
-			case HORI_VERTI: return 21;
-			case HORI_HORI: return 22;
-			case VERTI_HORI: return 23;
-			case VERTI_VERTI: return 24;
-			
-			}//switch(orien)
-			
-			break;
+//		case A_UR://-----------------------------
+//			
+//			switch(orien) {
+//			
+//			case INITIAL: 
+//			case HORI_VERTI: return 13;
+//			case HORI_HORI: return 14;
+//			case VERTI_HORI: return 15;
+//			case VERTI_VERTI: return 16;
+//			
+//			}//switch(orien)
+//			
+//			break;
+//			
+//		case A_LR://-----------------------------
+//			
+//			switch(orien) {
+//			
+//			case INITIAL: 
+//			case VERTI_HORI: return 17;
+//			case VERTI_VERTI: return 18;
+//			case HORI_VERTI: return 19;
+//			case HORI_HORI: return 20;
+//			
+//			}//switch(orien)
+//			
+//			break;
+//			
+//		case A_LL://-----------------------------
+//			
+//			switch(orien) {
+//			
+//			case HORI_VERTI: return 21;
+//			case HORI_HORI: return 22;
+//			case VERTI_HORI: return 23;
+//			case VERTI_VERTI: return 24;
+//			
+//			}//switch(orien)
+//			
+//			break;
 			
 		}//switch(name)
 		

@@ -519,26 +519,38 @@ public class Rect_D9 {
 			
 			CONS.Admin.list_NodeNames_C.addAll(tmp_List_Names);
 
-//			////////////////////////////////
-//			
-//			// report
-//			
-//			////////////////////////////////
-//			for (int j = 0; j < CONS.Admin.list_NodeNames_C.size(); j++) {
-//				
-//				//log
-//				text = String.format(Locale.JAPAN, 
-//									"CONS.Admin.list_NodeNames_C(%d) => %s\n", 
-//									j, CONS.Admin.list_NodeNames_C.get(j));
-//				
-//				fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//				
-//				line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//				
-//				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-//				
-//			}
+			////////////////////////////////
+			
+			// report
+			
+			////////////////////////////////
+			for (int j = 0; j < CONS.Admin.list_NodeNames_C.size(); j++) {
+				
+				//log
+				text = String.format(Locale.JAPAN, 
+									"CONS.Admin.list_NodeNames_C(%d) => %s\n", 
+									j, CONS.Admin.list_NodeNames_C.get(j));
+				
+				fname = Thread.currentThread().getStackTrace()[1].getFileName();
+				
+				line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+				
+				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+				
+			}
 
+		} else {
+
+			//log
+			text = String.format(Locale.JAPAN, 
+								"tmp_List_Names => size = 0\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
 		}
 		
 	}//move_B__update_NodeNameList
@@ -2342,6 +2354,17 @@ public class Rect_D9 {
 //									Rect_D9.this.rect_A, 
 									CONS.Admin.status_C);
 				
+				//log
+				text = String.format(Locale.JAPAN, "overwrap result => %s\n", res);
+				
+				fname = Thread.currentThread().getStackTrace()[1].getFileName();
+				
+				line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+				
+				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+
+				
 				int count_Skip = 0;
 				
 				while (res == true && (CONS.Admin.status_C < 25)) {
@@ -2610,7 +2633,14 @@ public class Rect_D9 {
 		this._move_Rect_C_RIGHT(name, CONS.Admin.orien_Current_C);
 //		this._move_Rect_C_RIGHT(CONS.Admin.NodeNames.B_UL, CONS.Admin.Orien.HORI_VERTI);
 		
-	}
+		////////////////////////////////
+
+		// clear: message text
+
+		////////////////////////////////
+		this.lbl_Msg.setText("");
+		
+	}//reset_Canvas
 	
 
 	private void 
@@ -4013,7 +4043,7 @@ public class Rect_D9 {
 			
 			rect.setY_Cur(
 					rect.getAttachedTo().getY_Cur()
-					+ rect.getAttachedTo().getH_Orig()
+					+ rect.getAttachedTo().getH()
 					);
 			
 			break;	// case 1:	// VV
@@ -4031,7 +4061,7 @@ public class Rect_D9 {
 			
 			rect.setY_Cur(
 					rect.getAttachedTo().getY_Cur()
-					+ rect.getAttachedTo().getH_Orig()
+					+ rect.getAttachedTo().getH()
 					);
 			
 			break;	// case 2:	// VH
@@ -4051,7 +4081,7 @@ public class Rect_D9 {
 			
 			rect.setY_Cur(
 					rect.getAttachedTo().getY_Cur()
-					+ rect.getAttachedTo().getH_Orig()
+					+ rect.getAttachedTo().getH()
 					- rect.getW_Orig()
 					);
 			
@@ -4071,7 +4101,7 @@ public class Rect_D9 {
 			
 			rect.setY_Cur(
 					rect.getAttachedTo().getY_Cur()
-					+ rect.getAttachedTo().getH_Orig()
+					+ rect.getAttachedTo().getH()
 					- rect.getH_Orig()
 					);
 			
