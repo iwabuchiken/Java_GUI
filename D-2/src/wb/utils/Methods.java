@@ -19,7 +19,9 @@ import javax.swing.JOptionPane;
 
 import org.apache.commons.lang.math.NumberUtils;
 
-import wb.main.Rect_D10;
+import wb.main.Rect_D11;
+import wb.utils.CONS.Admin.LineStatus;
+import wb.utils.CONS.Admin.Lines;
 import wb.utils.CONS.Admin.NodeNames;
 import wb.utils.CONS.Admin.Orien;
 
@@ -1289,7 +1291,7 @@ public class Methods {
 
 	public static void 
 	update_AttachedTo
-	(Rect_D10 rect_D6, Rect rect_C, NodeNames name) {
+	(Rect_D11 rect_D6, Rect rect_C, NodeNames name) {
 		// TODO Auto-generated method stub
 		
 		/*******************************
@@ -3348,5 +3350,68 @@ public class Methods {
 		return false;
 		
 	}//overWrap_on_A__Bat_AUL_Cat_AUR_Borien_VH
+
+	public static Rect 
+	get_Rect_Z
+	(Rect rect_A, Rect rect_B, Rect rect_C) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// get: sizes
+
+		////////////////////////////////
+		int x1 = Methods.smallest(
+					new int[]{rect_A.getX_Cur(), rect_B.getX_Cur(), rect_C.getX_Cur()});
+		
+		int y1 = Methods.smallest(
+					new int[]{rect_A.getY_Cur(), rect_B.getY_Cur(), rect_C.getY_Cur()});
+		
+		int x2 = Methods.largest(new int[]{
+						rect_A.getX_Cur() + rect_A.getW(), 
+						rect_B.getX_Cur() + rect_B.getW(), 
+						rect_C.getX_Cur() + rect_C.getW()
+				});
+		
+		int y2 = Methods.largest(new int[]{
+						rect_A.getY_Cur() + rect_A.getW(), 
+						rect_B.getY_Cur() + rect_B.getW(), 
+						rect_C.getY_Cur() + rect_C.getW()
+				});
+
+		int w = x2 - x1;
+		int h = y2 - y1;
+		
+		////////////////////////////////
+
+		// rect
+
+		////////////////////////////////
+		Rect r = new Rect("rect_Z");
+		
+		r.setX_Cur(x1);
+		r.setY_Cur(y1);
+		
+		r.setW(w);
+		r.setW_Orig(w);
+		
+		r.setH(h);
+		r.setH_Orig(h);
+		
+		return r;
+		
+	}//get_Rect_Z
+
+	
+	public static LineStatus
+	get_LineStatus
+	(Rect rect_Z, Rect rect_A, Rect rect_B, Rect rect_C, Lines line) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		return null;
+		
+	}//get_LineStatus
 	
 }//public class Methods

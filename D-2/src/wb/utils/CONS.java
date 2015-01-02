@@ -55,11 +55,26 @@ public class CONS {
 			A_UL, A_UR, A_LL, A_LR,
 		}
 		
+		public static enum LineStatus {
+			
+			MIDDLE, UPPPER, LOWER,
+			LEFT, RIGHT,
+			NONE,
+			
+		}
+		
+		public static enum Lines {
+		
+			LX1, LX2, LY1, LY2,
+			
+		}
+		
 		public static List<NodeNames> list_NodeNames_C;
 		
 		public static List<NodeNames> list_NodeNames_B;
 		
 		public static final int numOf_Positions_per_Node = 4;
+		
 		
 	}
 	
