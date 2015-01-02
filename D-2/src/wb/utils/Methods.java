@@ -1640,6 +1640,69 @@ public class Methods {
 		
 	}//overWrap_on_A
 
+	public static boolean 
+	overWrap_V2
+	(Rect rect_A, Rect rect_B, Rect rect_C, int status_C) {
+		// TODO Auto-generated method stub
+		
+		String text, fname;
+		int line_Num;
+		
+		////////////////////////////////
+		
+		// dispatch: cases
+		
+		////////////////////////////////
+		switch(rect_B.getOrien()) {
+		
+		case HORI_VERTI:
+		case HORI_HORI:
+		case VERTI_HORI: return false;
+			
+		case VERTI_VERTI:
+			
+			return overWrap_V2_Borien_VH(rect_A, rect_B, rect_C);
+			
+		default:
+			
+			return false;
+			
+		}
+		
+	}//overWrap_V2
+	
+	private static boolean 
+	overWrap_V2_Borien_VH
+	(Rect rect_A, Rect rect_B, Rect rect_C) {
+		// TODO Auto-generated method stub
+		
+		switch(rect_B.getAttachedAt()) {
+		
+		case A_UL:
+			
+			return overWrap_V2_Borien_VH__atAUL(rect_A, rect_B, rect_C);
+			
+		case A_LL:
+		case A_UR:
+		case A_LR:
+			
+		}
+		
+		
+		return false;
+		
+	}//overWrap_V2_Borien_VH
+
+	private static boolean 
+	overWrap_V2_Borien_VH__atAUL
+	(Rect rect_A, Rect rect_B, Rect rect_C) {
+		// TODO Auto-generated method stub
+		
+		
+		return false;
+		
+	}//overWrap_V2_Borien_VH__atAUL
+
 	private static boolean 
 	overWrap_on_A__B_at_AUL
 	(Rect rect_A, Rect rect_B, Rect rect_C, int status_C) {

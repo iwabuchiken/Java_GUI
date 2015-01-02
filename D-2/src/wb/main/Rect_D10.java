@@ -1484,6 +1484,17 @@ public class Rect_D10 {
 		else if (prop_col.equals("yellow")) col = yellow;
 		else col = yellow;
 		
+		////////////////////////////////
+
+		// if color set for rect C => use that color
+
+		////////////////////////////////
+		if (rect_C.getColor() != null) {
+			
+			col = rect_C.getColor();
+			
+		}
+		
 		gc.setBackground(col); 
 
 //		gc.setBackground(this.green); 
@@ -2368,41 +2379,41 @@ public class Rect_D10 {
 				
 				int count_Skip = 0;
 				
-				while (res == true && (CONS.Admin.status_C < 24)) {
-//					while (res == true && (CONS.Admin.status_C < 25)) {
-
-					//log
-					text = String.format(Locale.JAPAN, "res => %s\n", res);
-					
-					fname = Thread.currentThread().getStackTrace()[1].getFileName();
-					
-					line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-					
-					System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-
-					// increment status_C
-					CONS.Admin.status_C += 1;
-					
-					// count skip
-					count_Skip ++;
-					
-					// move rect C
-					Rect_D10.this.move_C(CONS.Admin.status_C);
-					
-					// judge: overwrap
-					objs = Methods.get_NodeNameAndOrien_frmo_Status__B(CONS.Admin.status_B);
-					
-					Rect_D10.this.rect_B.setAttachedAt((NodeNames)objs[0]);
-					Rect_D10.this.rect_B.setOrien((Orien) objs[1]);
-					
-					res = Methods.overWrap_on_A(
-							Rect_D10.this.rect_A, 
-							Rect_D10.this.rect_B, 
-							Rect_D10.this.rect_C, 
-//							Rect_D9.this.rect_A, 
-							CONS.Admin.status_C);
-					
-				}
+//				while (res == true && (CONS.Admin.status_C < 24)) {
+////					while (res == true && (CONS.Admin.status_C < 25)) {
+//
+//					//log
+//					text = String.format(Locale.JAPAN, "res => %s\n", res);
+//					
+//					fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//					
+//					line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//					
+//					System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//
+//					// increment status_C
+//					CONS.Admin.status_C += 1;
+//					
+//					// count skip
+//					count_Skip ++;
+//					
+//					// move rect C
+//					Rect_D10.this.move_C(CONS.Admin.status_C);
+//					
+//					// judge: overwrap
+//					objs = Methods.get_NodeNameAndOrien_frmo_Status__B(CONS.Admin.status_B);
+//					
+//					Rect_D10.this.rect_B.setAttachedAt((NodeNames)objs[0]);
+//					Rect_D10.this.rect_B.setOrien((Orien) objs[1]);
+//					
+//					res = Methods.overWrap_on_A(
+//							Rect_D10.this.rect_A, 
+//							Rect_D10.this.rect_B, 
+//							Rect_D10.this.rect_C, 
+////							Rect_D9.this.rect_A, 
+//							CONS.Admin.status_C);
+//					
+//				}
 
 				//log
 				text = String.format(Locale.JAPAN, "status_C => %d\n", CONS.Admin.status_C);
@@ -2413,15 +2424,33 @@ public class Rect_D10 {
 				
 				System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 
-				// if status gets to 25 => keep the current status
-				if (CONS.Admin.status_C >= 24) {
-//					if (CONS.Admin.status_C >= 25) {
+				////////////////////////////////
+
+				// change color
+
+				////////////////////////////////
+				if (res == true) {
 					
-					CONS.Admin.status_C = tmp_status;	// restore the previous status
+					Rect_D10.this.rect_C.setColor(red);
 					
-					Rect_D10.this.move_C(CONS.Admin.status_C);	// move back to the previous
+				} else {
+					
+					Rect_D10.this.rect_C.setColor(yellow);
 					
 				}
+				
+				
+				// if status gets to 25 => keep the current status
+//				if (CONS.Admin.status_C >= 24) {
+////					if (CONS.Admin.status_C >= 25) {
+//					
+//					CONS.Admin.status_C = tmp_status;	// restore the previous status
+//					
+//					Rect_D10.this.move_C(CONS.Admin.status_C);	// move back to the previous
+//					
+//					Rect_D10.lbl_Msg.setText("Skipped to the last");
+//					
+//				}
 				
 				////////////////////////////////
 
