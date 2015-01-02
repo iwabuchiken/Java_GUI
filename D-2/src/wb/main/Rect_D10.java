@@ -2359,7 +2359,8 @@ public class Rect_D10 {
 				Rect_D10.this.rect_B.setAttachedAt((NodeNames)objs[0]);
 				Rect_D10.this.rect_B.setOrien((Orien) objs[1]);
 				
-				boolean res = Methods.overWrap_on_A(
+				boolean res = Methods.overWrap_V3(
+//						boolean res = Methods.overWrap_on_A(
 									Rect_D10.this.rect_A, 
 									Rect_D10.this.rect_B, 
 									Rect_D10.this.rect_C, 

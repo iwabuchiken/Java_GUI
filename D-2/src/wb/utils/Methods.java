@@ -1671,6 +1671,243 @@ public class Methods {
 		
 	}//overWrap_V2
 	
+	/*******************************
+
+		use => crossing-edge method
+
+	 *******************************/
+	public static boolean 
+	overWrap_V3
+	(Rect rect_A, Rect rect_B, Rect rect_C, int status_C) {
+		// TODO Auto-generated method stub
+		
+		String text, fname;
+		int line_Num;
+
+		////////////////////////////////
+
+		// get: rectangle NOT attached by rect C
+
+		////////////////////////////////
+		Rect rect_NotAttached = Methods.get_NotAttachedRect(rect_A, rect_B, rect_C);
+
+		/*******************************
+
+			validater: if null => return false (not overwrapping)
+
+		 *******************************/
+		if (rect_NotAttached == null) {
+		
+			//log
+			text = String.format(Locale.JAPAN, "rect_NotAttached => null\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+			return false;
+			
+		}
+
+		//log
+		text = String.format(Locale.JAPAN, 
+						"rect_NotAttached => %s\n", rect_NotAttached.getRect_Name());
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		////////////////////////////////
+
+		// detect: crossing edges
+
+		////////////////////////////////
+		boolean crossing = Methods.isEdges_Crossing(rect_C, rect_NotAttached);
+		
+		return crossing;
+//		return false;
+		
+	}//overWrap_V2
+	
+	////////////////////////////////
+
+	// caller => overWrap_V3()
+
+	////////////////////////////////
+	private static boolean 
+	isEdges_Crossing
+	(Rect rect_C, Rect rect_NotAttached) {
+		// TODO Auto-generated method stub
+
+		////////////////////////////////
+
+		// prep: vars
+
+		////////////////////////////////
+		int c_X1 = rect_C.getX_Cur();
+		int c_Y1 = rect_C.getY_Cur();
+		int c_X2 = rect_C.getX_Cur() + rect_C.getW();
+		int c_Y2 = rect_C.getY_Cur() + rect_C.getH();
+		
+		int b_X1 = rect_NotAttached.getX_Cur();
+		int b_Y1 = rect_NotAttached.getY_Cur();
+		int b_X2 = rect_NotAttached.getX_Cur() + rect_NotAttached.getW();
+		int b_Y2 = rect_NotAttached.getY_Cur() + rect_NotAttached.getH();
+		
+		//////////////////////////////////////////////////////////////
+
+		// edge: c_Lx1 => C.x1,y1 -- C.x2,y1
+		// with: r.Ly1
+
+		////////////////////////////////
+//		boolean crossing = false;
+		
+		if ((c_X1 < b_X1 && b_X1 < c_X2)
+				&& (b_Y1 < c_Y1 && c_Y1 < b_Y2)) {
+			
+//			crossing = true;
+			return true;
+			
+		}
+		
+		////////////////////////////////
+		
+		// edge: c_Lx1 => C.x1,y1 -- C.x2,y1
+		// with: r.Ly2
+		
+		////////////////////////////////
+		if ((c_X1 < b_X2 && b_X2 < c_X2)
+				&& (b_Y1 < c_Y1 && c_Y1 < b_Y2)) {
+			
+			return true;
+			
+		}
+		
+		//////////////////////////////////////////////////////////////
+		
+		// edge: c_Ly1 => C.x1,y1 -- C.x1,y2
+		// with: r.Lx1
+		
+		////////////////////////////////
+		if ((b_X1 < c_X1 && c_X1 < b_X2)
+				&& (c_Y1 < b_Y1 && b_Y1 < c_Y2)) {
+			
+			return true;
+			
+		}
+		
+		/////////////////////////////////
+		
+		// edge: c_Ly1 => C.x1,y1 -- C.x1,y2
+		// with: r.Lx2
+		
+		////////////////////////////////
+		if ((b_X1 < c_X1 && c_X1 < b_X2)
+				&& (c_Y1 < b_Y2 && b_Y2 < c_Y2)) {
+			
+			return true;
+			
+		}
+		
+		//////////////////////////////////////////////////////////////
+		
+		// edge: c_Lx2 => C.x1,y2 -- C.x2,y2
+		// with: r.Ly1
+		
+		////////////////////////////////
+		boolean Bx1_bet_Cx1Cx2 = c_X1 < b_X1 && b_X1 < c_X2;
+		boolean Cy2_bet_By1By2 = b_Y1 < c_Y2 && c_Y2 < b_Y2;
+		
+		if (Bx1_bet_Cx1Cx2 && Cy2_bet_By1By2) {
+			
+//			crossing = true;
+			return true;
+			
+		}
+
+		////////////////////////////////
+		
+		// edge: c_Lx2 => C.x1,y2 -- C.x2,y2
+		// with: r.Ly2
+		
+		////////////////////////////////
+		boolean Bx2_bet_Cx1Cx2 = c_X1 < b_X2 && b_X2 < c_X2;
+//		boolean Cy2_bet_By1By2 = b_Y1 < c_Y2 && c_Y2 < b_Y2;
+		
+		if (Bx2_bet_Cx1Cx2 && Cy2_bet_By1By2) {
+			
+//			crossing = true;
+			return true;
+			
+		}
+		
+		//////////////////////////////////////////////////////////////
+		
+		// edge: c_Ly2 => C.x1,y1 -- C.x1,y2
+		// with: r.Lx1
+		
+		////////////////////////////////
+		boolean Cx2_bet_Bx1Bx2 = b_X1 < c_X2 && c_X2 < b_X2;
+		boolean By1_bet_Cy1Cy2 = c_Y1 < b_Y1 && b_Y1 < c_Y2;
+		
+		if (Cx2_bet_Bx1Bx2 && By1_bet_Cy1Cy2) {
+			
+			return true;
+			
+		}
+
+		/////////////////////////////////
+		
+		// edge: c_Ly2 => C.x1,y1 -- C.x1,y2
+		// with: r.Lx2
+		
+		////////////////////////////////
+		boolean By2_bet_Cy1Cy2 = c_Y1 < b_Y2 && b_Y2 < c_Y2;
+		
+		if (Cx2_bet_Bx1Bx2
+				&& By2_bet_Cy1Cy2) {
+			
+			return true;
+			
+		}
+		
+		////////////////////////////////
+
+		// default => false
+
+		////////////////////////////////
+		return false;
+//		return crossing;
+		
+	}//isEdges_Crossing
+	
+
+	private static Rect 
+	get_NotAttachedRect(Rect rect_A, Rect rect_B, Rect rect_C) {
+		// TODO Auto-generated method stub
+		
+		Rect rect_Attachee = rect_C.getAttachedTo();
+		
+		if (rect_Attachee == rect_A) {
+			
+			return rect_B;
+			
+		} else if (rect_Attachee == rect_B) {
+				
+				return rect_A;
+				
+		} else {
+			
+			return null;
+			
+		}
+		
+	}//get_NotAttachedRect
+
 	private static boolean 
 	overWrap_V2_Borien_VH
 	(Rect rect_A, Rect rect_B, Rect rect_C) {
