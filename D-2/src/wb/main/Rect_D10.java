@@ -2380,41 +2380,42 @@ public class Rect_D10 {
 				
 				int count_Skip = 0;
 				
-//				while (res == true && (CONS.Admin.status_C < 24)) {
-////					while (res == true && (CONS.Admin.status_C < 25)) {
-//
-//					//log
-//					text = String.format(Locale.JAPAN, "res => %s\n", res);
-//					
-//					fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//					
-//					line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//					
-//					System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-//
-//					// increment status_C
-//					CONS.Admin.status_C += 1;
-//					
-//					// count skip
-//					count_Skip ++;
-//					
-//					// move rect C
-//					Rect_D10.this.move_C(CONS.Admin.status_C);
-//					
-//					// judge: overwrap
-//					objs = Methods.get_NodeNameAndOrien_frmo_Status__B(CONS.Admin.status_B);
-//					
-//					Rect_D10.this.rect_B.setAttachedAt((NodeNames)objs[0]);
-//					Rect_D10.this.rect_B.setOrien((Orien) objs[1]);
-//					
-//					res = Methods.overWrap_on_A(
-//							Rect_D10.this.rect_A, 
-//							Rect_D10.this.rect_B, 
-//							Rect_D10.this.rect_C, 
-////							Rect_D9.this.rect_A, 
-//							CONS.Admin.status_C);
-//					
-//				}
+				while (res == true && (CONS.Admin.status_C < 24)) {
+//					while (res == true && (CONS.Admin.status_C < 25)) {
+
+					//log
+					text = String.format(Locale.JAPAN, "res => %s\n", res);
+					
+					fname = Thread.currentThread().getStackTrace()[1].getFileName();
+					
+					line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+					
+					System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+					// increment status_C
+					CONS.Admin.status_C += 1;
+					
+					// count skip
+					count_Skip ++;
+					
+					// move rect C
+					Rect_D10.this.move_C(CONS.Admin.status_C);
+					
+					// judge: overwrap
+					objs = Methods.get_NodeNameAndOrien_frmo_Status__B(CONS.Admin.status_B);
+					
+					Rect_D10.this.rect_B.setAttachedAt((NodeNames)objs[0]);
+					Rect_D10.this.rect_B.setOrien((Orien) objs[1]);
+					
+					res = Methods.overWrap_V3(
+//							res = Methods.overWrap_on_A(
+							Rect_D10.this.rect_A, 
+							Rect_D10.this.rect_B, 
+							Rect_D10.this.rect_C, 
+//							Rect_D9.this.rect_A, 
+							CONS.Admin.status_C);
+					
+				}
 
 				//log
 				text = String.format(Locale.JAPAN, "status_C => %d\n", CONS.Admin.status_C);
@@ -2442,16 +2443,16 @@ public class Rect_D10 {
 				
 				
 				// if status gets to 25 => keep the current status
-//				if (CONS.Admin.status_C >= 24) {
-////					if (CONS.Admin.status_C >= 25) {
-//					
-//					CONS.Admin.status_C = tmp_status;	// restore the previous status
-//					
-//					Rect_D10.this.move_C(CONS.Admin.status_C);	// move back to the previous
-//					
-//					Rect_D10.lbl_Msg.setText("Skipped to the last");
-//					
-//				}
+				if (CONS.Admin.status_C >= 24) {
+//					if (CONS.Admin.status_C >= 25) {
+					
+					CONS.Admin.status_C = tmp_status;	// restore the previous status
+					
+					Rect_D10.this.move_C(CONS.Admin.status_C);	// move back to the previous
+					
+					Rect_D10.lbl_Msg.setText("Skipped to the last");
+					
+				}
 				
 				////////////////////////////////
 
