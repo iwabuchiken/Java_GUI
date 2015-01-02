@@ -1727,15 +1727,130 @@ public class Methods {
 
 		////////////////////////////////
 		boolean crossing = Methods.isEdges_Crossing(rect_C, rect_NotAttached);
+
+		if (crossing == true) {
+			
+			//log
+			text = String.format(Locale.JAPAN, "edges => crossing\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+
+			return true;
+			
+		}
 		
-		return crossing;
-//		return false;
+		////////////////////////////////
+
+		// detect: nodes in the rect
+
+		////////////////////////////////
+		boolean within = Methods.isNodes_Within(rect_C, rect_NotAttached);
 		
-	}//overWrap_V2
+		if (within == true) {
+			
+			//log
+			text = String.format(Locale.JAPAN, "nodes => within\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+			return true;
+			
+		}
+		
+//		return crossing;
+		return false;
+		
+	}//overWrap_V3
 	
 	////////////////////////////////
 
 	// caller => overWrap_V3()
+
+	private static boolean 
+	isNodes_Within
+	(Rect rect_C, Rect rect_NotAttached) {
+		
+		////////////////////////////////
+
+		// prep: vars
+
+		////////////////////////////////
+		int c_X1 = rect_C.getX_Cur();
+		int c_Y1 = rect_C.getY_Cur();
+		int c_X2 = rect_C.getX_Cur() + rect_C.getW();
+		int c_Y2 = rect_C.getY_Cur() + rect_C.getH();
+		
+		int b_X1 = rect_NotAttached.getX_Cur();
+		int b_Y1 = rect_NotAttached.getY_Cur();
+		int b_X2 = rect_NotAttached.getX_Cur() + rect_NotAttached.getW();
+		int b_Y2 = rect_NotAttached.getY_Cur() + rect_NotAttached.getH();
+		
+		////////////////////////////////////////////////////////////////
+
+		// nodes in C => included in B
+
+		////////////////////////////////
+		////////////////////////////////
+		
+		// x1, y1
+		
+		////////////////////////////////
+		boolean included = Methods.is_WithinRect(
+								rect_NotAttached, 
+								new Point(c_X1, c_Y1));
+		
+		if (included == true) return true;
+		
+		////////////////////////////////
+		
+		// x2, y1
+		
+		////////////////////////////////
+		included = Methods.is_WithinRect(
+				rect_NotAttached, 
+				new Point(c_X2, c_Y1));
+		
+		if (included == true) return true;
+		
+		////////////////////////////////
+		
+		// x1, y2
+		
+		////////////////////////////////
+		included = Methods.is_WithinRect(
+				rect_NotAttached, 
+				new Point(c_X1, c_Y2));
+		
+		if (included == true) return true;
+		
+		////////////////////////////////
+		
+		// x2, y2
+		
+		////////////////////////////////
+		included = Methods.is_WithinRect(
+				rect_NotAttached, 
+				new Point(c_X2, c_Y2));
+		
+		if (included == true) return true;
+
+		////////////////////////////////
+
+		// default: false
+
+		////////////////////////////////
+		return false;
+		
+	}//isNodes_Within
 
 	////////////////////////////////
 	private static boolean 
@@ -1874,7 +1989,7 @@ public class Methods {
 			return true;
 			
 		}
-		
+
 		////////////////////////////////
 
 		// default => false
@@ -1885,6 +2000,22 @@ public class Methods {
 		
 	}//isEdges_Crossing
 	
+
+	private static boolean 
+	is_WithinRect(Rect rect, Point point) {
+		// TODO Auto-generated method stub
+		
+		int rect_X1 = rect.getX_Cur();
+		int rect_Y1 = rect.getY_Cur();
+		int rect_X2 = rect.getX_Cur() + rect.getW();
+		int rect_Y2 = rect.getY_Cur() + rect.getH();
+
+		boolean bet_X1X2 = (rect_X1 < point.x) && (point.x < rect_X2);
+		boolean bet_Y1Y2 = (rect_Y1 < point.y) && (point.y < rect_Y2);
+		
+		return bet_X1X2 && bet_Y1Y2;
+		
+	}//is_WithinRect
 
 	private static Rect 
 	get_NotAttachedRect(Rect rect_A, Rect rect_B, Rect rect_C) {
