@@ -55,11 +55,12 @@ public class CONS {
 			A_UL, A_UR, A_LL, A_LR,
 		}
 		
-		public static enum LineStatus {
+		public static enum LineStates {
 			
-			MIDDLE, UPPPER, LOWER,
+			MIDDLE_X, MIDDLE_Y,
+			UPPPER, LOWER,
 			LEFT, RIGHT,
-			NONE,
+			NONE, MATCH, UNKNOWN,
 			
 		}
 		

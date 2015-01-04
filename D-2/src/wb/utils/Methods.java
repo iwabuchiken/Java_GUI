@@ -10,8 +10,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 
@@ -20,7 +22,7 @@ import javax.swing.JOptionPane;
 import org.apache.commons.lang.math.NumberUtils;
 
 import wb.main.Rect_D11;
-import wb.utils.CONS.Admin.LineStatus;
+import wb.utils.CONS.Admin.LineStates;
 import wb.utils.CONS.Admin.Lines;
 import wb.utils.CONS.Admin.NodeNames;
 import wb.utils.CONS.Admin.Orien;
@@ -3403,15 +3405,90 @@ public class Methods {
 	}//get_Rect_Z
 
 	
-	public static LineStatus
-	get_LineStatus
-	(Rect rect_Z, Rect rect_A, Rect rect_B, Rect rect_C, Lines line) {
+	public static LineStates
+	get_LineStates
+	(Rect rect_Z, Rect[] rects, Lines line) {
 		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// dispatch
+
+		////////////////////////////////
+		switch(line) {
 		
+		case LX1: return Methods._get_LineStates__LX1(rect_Z, rects);
+						
+		default: return CONS.Admin.LineStates.NONE;
+			
+		}
 		
-		
-		return null;
+//		return null;
 		
 	}//get_LineStatus
+
+	private static LineStates 
+	_get_LineStates__LX1
+	(Rect rect_Z, Rect[] rects) {
+		// TODO Auto-generated method stub
+
+		String text, fname;
+		int line_Num;
+		
+		////////////////////////////////
+
+		// get: rects whose y1 is equal to that of rect Z
+
+		////////////////////////////////
+		List<Rect> list_Rects = new ArrayList<Rect>();
+		
+		int z_Y1 = rect_Z.getY_Cur();
+		
+		for (Rect rect : rects) {
+			
+			if (rect.getY_Cur() == z_Y1) {
+				
+				list_Rects.add(rect);
+				
+			}
+			
+		}
+		
+		//log
+		text = String.format(Locale.JAPAN, "list_Rects.size => %d\n", list_Rects.size());
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+
+		// dispatch
+
+		////////////////////////////////
+		int numOf_Rects = list_Rects.size();
+		
+		//log
+		text = String.format(Locale.JAPAN, "numOf_Rects => %d\n", numOf_Rects);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		switch(numOf_Rects) {
+		
+		case 0: return CONS.Admin.LineStates.NONE;
+		case 1: return CONS.Admin.LineStates.UNKNOWN;
+		case 2: return CONS.Admin.LineStates.UNKNOWN;
+		case 3: return CONS.Admin.LineStates.MATCH;
+		
+		default: return CONS.Admin.LineStates.UNKNOWN;
+		
+		}
+		
+	}//_get_LineStates__LX1
 	
 }//public class Methods
