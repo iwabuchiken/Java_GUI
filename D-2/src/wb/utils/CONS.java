@@ -43,12 +43,6 @@ public class CONS {
 			
 		}
 		
-		public static Orien orien_Current_C;
-		public static Orien orien_Current_B;
-		
-		public static int node_Current;
-		public static int node_Current_B;
-		
 		public static enum NodeNames {
 			
 			B_UL, B_UR, B_LL, B_LR,
@@ -65,10 +59,22 @@ public class CONS {
 		}
 		
 		public static enum Lines {
-		
+			
 			LX1, LX2, LY1, LY2,
 			
 		}
+		
+		public static enum CornerTypes {
+			
+			IN_CORNER, OUT_CORNER,
+			
+		}
+		
+		public static Orien orien_Current_C;
+		public static Orien orien_Current_B;
+		
+		public static int node_Current;
+		public static int node_Current_B;
 		
 		public static List<NodeNames> list_NodeNames_C;
 		

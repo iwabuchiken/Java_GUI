@@ -13,8 +13,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
@@ -22,6 +24,7 @@ import javax.swing.JOptionPane;
 import org.apache.commons.lang.math.NumberUtils;
 
 import wb.main.Rect_D11;
+import wb.utils.CONS.Admin.CornerTypes;
 import wb.utils.CONS.Admin.LineStates;
 import wb.utils.CONS.Admin.Lines;
 import wb.utils.CONS.Admin.NodeNames;
@@ -3559,5 +3562,131 @@ public class Methods {
 		}
 		
 	}//_get_LineStates__LX1__Case_1
+
+	public static Map<NodeNames, CornerTypes> 
+	get_CornerTypes
+	(List<NodeNames> list_NodeNames, Rect rect_A, Rect rect_B, Rect rect_C) {
+		// TODO Auto-generated method stub
+		
+		NodeNames name = null;
+		
+		Point nodePoints_XY = null;
+		
+		Map<NodeNames, Point> map_Node_XY = new HashMap<NodeNames, Point>();
+		
+		////////////////////////////////
+
+		// build: map of the node name and the point
+
+		////////////////////////////////
+		for (int i = 0; i < list_NodeNames.size(); i++) {
+		
+			name = list_NodeNames.get(i);
+			
+			nodePoints_XY = Methods.get_XY_from_NodeName__NodesOn_AB(name, rect_A, rect_B);
+			
+			map_Node_XY.put(name, nodePoints_XY);
+			
+		}
+		
+//		//log
+//		String text, fname; int line_Num;
+//		
+//		text = String.format(Locale.JAPAN, "map_Node_XY.size => %d\n", map_Node_XY.size());
+//		
+//		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//		
+//		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//		
+//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//
+//		////////////////////////////////
+//
+//		// report
+//
+//		////////////////////////////////
+//		
+//		for (int i = 0; i < list_NodeNames.size(); i++) {
+//			
+//			name = list_NodeNames.get(i);
+//			
+//			nodePoints_XY = map_Node_XY.get(name);
+//			
+//			//log
+//			text = String.format(Locale.JAPAN, 
+//						"name => %s / points => %d,%d\n", 
+//						name.toString(), 
+//						nodePoints_XY.x, 
+//						nodePoints_XY.y);
+//			
+//			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//			
+//			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//			
+//			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//			
+//		}
+		
+		return null;
+		
+	}//get_CornerTypes
+
+	private static Point 
+	get_XY_from_NodeName__NodesOn_AB
+	(NodeNames name, Rect rect_A, Rect rect_B) {
+		
+		////////////////////////////////
+
+		// prep: data: coordinates
+
+		////////////////////////////////
+		// rect A
+		int a_X1 = rect_A.getX_Cur();
+		int a_Y1 = rect_A.getY_Cur();
+		
+		int a_X2 = rect_A.getX_Cur() + rect_A.getW();
+		int a_Y2 = rect_A.getY_Cur() + rect_A.getH();
+		
+		// rect B
+		int b_X1 = rect_B.getX_Cur();
+		int b_Y1 = rect_B.getY_Cur();
+		
+		int b_X2 = rect_B.getX_Cur() + rect_B.getW();
+		int b_Y2 = rect_B.getY_Cur() + rect_B.getH();
+		
+		////////////////////////////////
+
+		// dispatch
+
+		////////////////////////////////
+		String name_String = name.toString();
+		
+		if (name_String.startsWith("A")) {
+			
+			switch(name) {
+			
+			case A_UL: return new Point(a_X1, a_Y1);
+			case A_UR: return new Point(a_X2, a_Y1);
+			case A_LL: return new Point(a_X1, a_Y2);
+			case A_LR: return new Point(a_X2, a_Y2);
+			
+			}//switch(name)
+			
+		} else if (name_String.startsWith("B")) {
+			
+			switch(name) {
+			
+			case B_UL: return new Point(b_X1, b_Y1);
+			case B_UR: return new Point(b_X2, b_Y1);
+			case B_LL: return new Point(b_X1, b_Y2);
+			case B_LR: return new Point(b_X2, b_Y2);
+			
+			}//switch(name)
+			
+		}
+		
+		return null;
+		
+	}//get_XY_from_NodeName
 	
 }//public class Methods

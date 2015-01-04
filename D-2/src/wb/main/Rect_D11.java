@@ -51,7 +51,9 @@ import org.eclipse.swt.widgets.Group;
 
 
 
+
 import wb.utils.CONS;
+import wb.utils.CONS.Admin.CornerTypes;
 import wb.utils.CONS.Admin.LineStates;
 import wb.utils.CONS.Admin.Lines;
 import wb.utils.CONS.Admin.NodeNames;
@@ -2595,69 +2597,70 @@ public class Rect_D11 {
 		
 		////////////////////////////////
 
-		// build: rect Z
+		// detect: corner types
 
 		////////////////////////////////
-		Rect rect_Z = Methods.get_Rect_Z(this.rect_A, this.rect_B, this.rect_C);
-
-		Lines line = CONS.Admin.Lines.LX1;
-
-		////////////////////////////////
-
-		// get: states
-
-		////////////////////////////////
-		LineStates state = Methods.get_LineStates(
-								rect_Z, 
-								new Rect[]{rect_A, rect_B, rect_C},
-//								rect_A, rect_B, rect_C,
-								line);
-//		CONS.Admin.Lines.LX1);
+		Map<NodeNames, CornerTypes> corners_Map = 
+							Methods.get_CornerTypes(
+										CONS.Admin.list_NodeNames_C, 
+										this.rect_A, this.rect_B, this.rect_C);
 		
-		//log
-		String text, fname; int line_Num;
+//		////////////////////////////////
+//
+//		// build: rect Z
+//
+//		////////////////////////////////
+//		Rect rect_Z = Methods.get_Rect_Z(this.rect_A, this.rect_B, this.rect_C);
+//
+//		Lines line = CONS.Admin.Lines.LX1;
+//
+//		////////////////////////////////
+//
+//		// get: states
+//
+//		////////////////////////////////
+//		LineStates state = Methods.get_LineStates(
+//								rect_Z, 
+//								new Rect[]{rect_A, rect_B, rect_C},
+////								rect_A, rect_B, rect_C,
+//								line);
+////		CONS.Admin.Lines.LX1);
 		
-		text = String.format(Locale.JAPAN, "line = %s / state = %s\n", line.toString(), state.toString());
-		
-		fname = Thread.currentThread().getStackTrace()[1].getFileName();
-		
-		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-		
-		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-
-		////////////////////////////////
-
-		// build: hashmap
-
-		////////////////////////////////
-		Map<Lines, LineStates> map = new HashMap<Lines, LineStates>();
-		
-		map.put(CONS.Admin.Lines.LX1, state);
-		
-		for (Lines l : map.keySet()) {
-			
-			//log
-			text = String.format(Locale.JAPAN, "line %s => state is %s\n", l.toString(), map.get(l));
-			
-			fname = Thread.currentThread().getStackTrace()[1].getFileName();
-			
-			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-			
-			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-
-			
-		}
 //		//log
-//text = String.format(Locale.JAPAN, "line %s => state is %s\n", );
+//		String text, fname; int line_Num;
+//		
+//		text = String.format(Locale.JAPAN, "line = %s / state = %s\n", line.toString(), state.toString());
+//		
+//		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//		
+//		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//		
+//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 //
-//fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//		////////////////////////////////
 //
-//line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//		// build: hashmap
 //
-//System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-
+//		////////////////////////////////
+//		Map<Lines, LineStates> map = new HashMap<Lines, LineStates>();
+//		
+//		map.put(CONS.Admin.Lines.LX1, state);
+//		
+//		for (Lines l : map.keySet()) {
+//			
+//			//log
+//			text = String.format(Locale.JAPAN, "line %s => state is %s\n", l.toString(), map.get(l));
+//			
+//			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//			
+//			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//			
+//			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//
+//			
+//		}
 		
-	}
+	}//detect_Residues
 
 	protected void 
 	exec_ReloadProperties() {
