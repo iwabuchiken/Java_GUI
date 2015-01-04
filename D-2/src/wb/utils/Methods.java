@@ -3481,7 +3481,7 @@ public class Methods {
 		switch(numOf_Rects) {
 		
 		case 0: return CONS.Admin.LineStates.NONE;
-		case 1: return CONS.Admin.LineStates.UNKNOWN;
+		case 1: return Methods._get_LineStates__LX1__Case_1(rect_Z, list_Rects.get(0));
 		case 2: return CONS.Admin.LineStates.UNKNOWN;
 		case 3: return CONS.Admin.LineStates.MATCH;
 		
@@ -3490,5 +3490,30 @@ public class Methods {
 		}
 		
 	}//_get_LineStates__LX1
+
+	private static LineStates 
+	_get_LineStates__LX1__Case_1
+	(Rect rect_Z, Rect rect) {
+		// TODO Auto-generated method stub
+
+		////////////////////////////////
+
+		// width => same?
+
+		////////////////////////////////
+		int z_W = rect_Z.getW();
+		int r_W = rect.getW();
+		
+		if (z_W == r_W) {
+			
+			return CONS.Admin.LineStates.MATCH;
+			
+		} else {
+			
+			return CONS.Admin.LineStates.UNKNOWN;
+			
+		}
+		
+	}//_get_LineStates__LX1__Case_1
 	
 }//public class Methods
