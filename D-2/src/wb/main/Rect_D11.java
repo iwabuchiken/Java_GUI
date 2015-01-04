@@ -11,8 +11,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.swing.JFrame;
@@ -42,6 +44,8 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Group;
 //import org.eclipse.wb.swt.SWTResourceManager;
+
+
 
 
 
@@ -2597,7 +2601,12 @@ public class Rect_D11 {
 		Rect rect_Z = Methods.get_Rect_Z(this.rect_A, this.rect_B, this.rect_C);
 
 		Lines line = CONS.Admin.Lines.LX1;
-		
+
+		////////////////////////////////
+
+		// get: states
+
+		////////////////////////////////
 		LineStates state = Methods.get_LineStates(
 								rect_Z, 
 								new Rect[]{rect_A, rect_B, rect_C},
@@ -2616,6 +2625,38 @@ public class Rect_D11 {
 		
 		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 
+		////////////////////////////////
+
+		// build: hashmap
+
+		////////////////////////////////
+		Map<Lines, LineStates> map = new HashMap<Lines, LineStates>();
+		
+		map.put(CONS.Admin.Lines.LX1, state);
+		
+		for (Lines l : map.keySet()) {
+			
+			//log
+			text = String.format(Locale.JAPAN, "line %s => state is %s\n", l.toString(), map.get(l));
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+			
+		}
+//		//log
+//text = String.format(Locale.JAPAN, "line %s => state is %s\n", );
+//
+//fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//
+//line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//
+//System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		
 	}
 
 	protected void 

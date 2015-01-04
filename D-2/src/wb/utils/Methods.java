@@ -3482,7 +3482,7 @@ public class Methods {
 		
 		case 0: return CONS.Admin.LineStates.NONE;
 		case 1: return Methods._get_LineStates__LX1__Case_1(rect_Z, list_Rects.get(0));
-		case 2: return CONS.Admin.LineStates.UNKNOWN;
+		case 2: return Methods._get_LineStates__LX1__Case_2(rect_Z, list_Rects);
 		case 3: return CONS.Admin.LineStates.MATCH;
 		
 		default: return CONS.Admin.LineStates.UNKNOWN;
@@ -3491,6 +3491,50 @@ public class Methods {
 		
 	}//_get_LineStates__LX1
 
+	private static LineStates 
+	_get_LineStates__LX1__Case_2
+	(Rect rect_Z, List<Rect> list_Rects) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// width => same?
+
+		////////////////////////////////
+		int z_W = rect_Z.getW();
+		int r1_W = list_Rects.get(0).getW();
+		int r2_W = list_Rects.get(1).getW();
+
+		//log
+		String text, fname; int line_Num;
+		
+		text = String.format(Locale.JAPAN, 
+						"r1 => %s / r2 => %s\n", 
+						list_Rects.get(0).getRect_Name(), 
+						list_Rects.get(1).getRect_Name());
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		
+		int sum_W = r1_W + r2_W;
+		
+		if (z_W == sum_W) {
+			
+			return CONS.Admin.LineStates.MATCH;
+			
+		} else {
+			
+			return CONS.Admin.LineStates.UNKNOWN;
+			
+		}
+		
+	}//_get_LineStates__LX1__Case_2
+
+	
 	private static LineStates 
 	_get_LineStates__LX1__Case_1
 	(Rect rect_Z, Rect rect) {
