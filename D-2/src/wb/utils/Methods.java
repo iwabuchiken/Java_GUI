@@ -3831,6 +3831,8 @@ public class Methods {
 		
 		case C_LR: return Methods._get_CornerTypes__Node_C__CLR(point, name, rect_A, rect_B);
 		case C_LL: return Methods._get_CornerTypes__Node_C__CLL(point, name, rect_A, rect_B);
+		case C_UR: return Methods._get_CornerTypes__Node_C__CUR(point, name, rect_A, rect_B);
+		case C_UL: return Methods._get_CornerTypes__Node_C__CUL(point, name, rect_A, rect_B);
 		
 		
 		}
@@ -4010,6 +4012,77 @@ public class Methods {
 		
 	}//_get_CornerTypes__Node_C__CLR
 	
+	private static CornerTypes 
+	_get_CornerTypes__Node_C__CUR
+	(Point point, NodeNames name, Rect rect_A, Rect rect_B) {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+		
+		// Y - 1
+		
+		////////////////////////////////
+		CornerTypes type = Methods._get_CornerTypes__Node_C__Yminus1(point, rect_A, rect_B);
+		
+		// is in?
+		if (type != null) {
+			
+			return type;
+			
+//			Map<NodeNames, Object[]> map = new HashMap<NodeNames, Object[]>();
+//			
+//			map.put(name, new Object[]{point, type});
+//			
+//			return map;
+			
+//			return (new HashMap<name, Object[]>());
+			
+		}
+		
+		////////////////////////////////
+		
+		// X + 1
+		
+		////////////////////////////////
+		type = Methods._get_CornerTypes__Node_C__Xplus1(point, rect_A, rect_B);
+		
+		// is in?
+		if (type != null) {
+			
+			return type;
+			
+//			Map<NodeNames, Object[]> map = new HashMap<NodeNames, Object[]>();
+//			
+//			map.put(name, new Object[]{point, type});
+//			
+//			return map;
+			
+//			return (new HashMap<name, Object[]>());
+			
+		}
+		
+		//log
+		String text, fname; int line_Num;
+		
+		if (type != null) {
+			
+			text = String.format(Locale.JAPAN, "type => %s\n", type.toString());
+			
+		} else {
+			
+			text = String.format(Locale.JAPAN, "type => null\n");
+			
+		}
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		return null;
+		
+	}//_get_CornerTypes__Node_C__CLR
+	
 //	private static Map<NodeNames, Object[]> 
 	private static CornerTypes 
 	_get_CornerTypes__Node_C__CLL
@@ -4021,6 +4094,77 @@ public class Methods {
 		
 		////////////////////////////////
 		CornerTypes type = Methods._get_CornerTypes__Node_C__Yplus1(point, rect_A, rect_B);
+		
+		// is in?
+		if (type != null) {
+			
+			return type;
+			
+//			Map<NodeNames, Object[]> map = new HashMap<NodeNames, Object[]>();
+//			
+//			map.put(name, new Object[]{point, type});
+//			
+//			return map;
+			
+//			return (new HashMap<name, Object[]>());
+			
+		}
+		
+		////////////////////////////////
+		
+		// X - 1
+		
+		////////////////////////////////
+		type = Methods._get_CornerTypes__Node_C__Xminus1(point, rect_A, rect_B);
+		
+		// is in?
+		if (type != null) {
+			
+			return type;
+			
+//			Map<NodeNames, Object[]> map = new HashMap<NodeNames, Object[]>();
+//			
+//			map.put(name, new Object[]{point, type});
+//			
+//			return map;
+			
+//			return (new HashMap<name, Object[]>());
+			
+		}
+		
+		//log
+		String text, fname; int line_Num;
+		
+		if (type != null) {
+			
+			text = String.format(Locale.JAPAN, "type => %s\n", type.toString());
+			
+		} else {
+			
+			text = String.format(Locale.JAPAN, "type => null\n");
+			
+		}
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		return null;
+		
+	}//_get_CornerTypes__Node_C__CLR
+	
+	private static CornerTypes 
+	_get_CornerTypes__Node_C__CUL
+	(Point point, NodeNames name, Rect rect_A, Rect rect_B) {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+		
+		// Y - 1
+		
+		////////////////////////////////
+		CornerTypes type = Methods._get_CornerTypes__Node_C__Yminus1(point, rect_A, rect_B);
 		
 		// is in?
 		if (type != null) {
@@ -4167,6 +4311,89 @@ public class Methods {
 		
 	}//_get_CornerTypes__Node_C__Yplus1
 
+	private static CornerTypes 
+	_get_CornerTypes__Node_C__Yminus1
+	(Point point, Rect rect_A, Rect rect_B) {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+		
+		// point.y + 1
+		
+		////////////////////////////////
+		int node_X = point.x;
+		int node_Y = point.y - 1;
+		
+		
+		////////////////////////////////
+		
+		// Rect A
+		
+		////////////////////////////////
+		boolean isIn = Methods.is_WithinRect(rect_A, new Point(node_X, node_Y));
+		
+		if (isIn == true) {
+			
+			String text, fname; int line_Num;
+			
+			text = String.format(Locale.JAPAN, 
+					"Point: %d, %d: [y - 1] isIn => %s (rect_A, Y minus 1)\n",
+					point.x, point.y,
+					isIn);
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			return CONS.Admin.CornerTypes.IN_CORNER_A;
+			
+		}
+		
+		////////////////////////////////
+		
+		// Rect B
+		
+		////////////////////////////////
+		isIn = Methods.is_WithinRect(rect_B, new Point(node_X, node_Y));
+		
+		if (isIn == true) {
+			
+			String text, fname; int line_Num;
+			
+			text = String.format(Locale.JAPAN, 
+					"Point: %d, %d: [y - 1] isIn => %s (rect_B, Y minus 1))\n",
+					point.x, point.y,
+					isIn);
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			return CONS.Admin.CornerTypes.IN_CORNER_B;
+			
+		}
+		
+		//log
+		String text, fname; int line_Num;
+		
+		text = String.format(Locale.JAPAN, 
+				"Point: %d, %d: [y + 1] isIn => %s\n",
+				point.x, point.y,
+				isIn);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		return null;
+		
+	}//_get_CornerTypes__Node_C__Yplus1
+	
 	private static CornerTypes 
 	_get_CornerTypes__Node_C__Xplus1
 	(Point point, Rect rect_A, Rect rect_B) {
