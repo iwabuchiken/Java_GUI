@@ -14,10 +14,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.swing.JOptionPane;
 
@@ -3589,6 +3591,130 @@ public class Methods {
 			
 		}
 		
+		////////////////////////////////
+
+		// build: all nodes map
+
+		////////////////////////////////
+		Map<NodeNames, Point> map_AllNodes_XY = new HashMap<NodeNames, Point>();
+		
+		map_AllNodes_XY.putAll(map_Node_XY);
+		
+		int c_X1 = rect_C.getX_Cur();
+		int c_X2 = rect_C.getX_Cur() + rect_C.getW();
+		int c_Y1 = rect_C.getY_Cur();
+		int c_Y2 = rect_C.getY_Cur() + rect_C.getH();
+		
+		Point c_UL = new Point(c_X1, c_Y1);
+		Point c_UR = new Point(c_X2, c_Y1);
+		Point c_LL = new Point(c_X1, c_Y2);
+		Point c_LR = new Point(c_X2, c_Y2);
+		
+		Point[] c_Points = new Point[]{c_UL, c_UR, c_LL, c_LR};
+		NodeNames[] c_NodeNames = new NodeNames[]{
+						CONS.Admin.NodeNames.C_UL, 
+						CONS.Admin.NodeNames.C_UR, 
+						CONS.Admin.NodeNames.C_LL, 
+						CONS.Admin.NodeNames.C_LR, 
+						};
+				
+		int c_X, c_Y;
+		
+		Point node_AB = null;
+		
+		NodeNames name_AB = null;
+		
+		boolean f_IsSame = false;
+		
+		for (int i = 0; i < c_Points.length; i++) {
+			
+			c_X = c_Points[i].x; c_Y = c_Points[i].y;
+			
+			for (int j = 0; j < list_NodeNames.size(); j++) {
+
+				name_AB = list_NodeNames.get(j);
+				
+				node_AB = map_AllNodes_XY.get(name_AB);
+				
+				// validate: null
+				if (node_AB == null) {
+					
+					continue;
+					
+				}
+				
+				// compare: same point?
+				if(node_AB.x == c_X && node_AB.y == c_Y) {
+					
+					f_IsSame = true;
+					
+					break;
+					
+				}
+				
+			}//for (int j = 0; j < list_NodeNames.size(); j++)
+			
+			// if f_IsSame is still false, then put the rect C node
+			if (f_IsSame == false) {
+				
+				map_AllNodes_XY.put(c_NodeNames[i], c_Points[i]);
+				
+			} else if (f_IsSame == true) {
+				
+				// remove the node_AB under comparison
+				map_AllNodes_XY.remove(name_AB);
+				
+				f_IsSame = false;	// reset the flag
+				
+			}//if (f_IsSame == false)
+			
+		}//for (int i = 0; i < c_Points.length; i++)
+		
+		//log
+		String text, fname; int line_Num;
+		
+		text = String.format(Locale.JAPAN, "map_AllNodes_XY.size => %d\n", map_AllNodes_XY.size());
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		////////////////////////////////
+
+		// report
+
+		////////////////////////////////
+		Set<NodeNames> set = map_AllNodes_XY.keySet();
+		
+		Iterator it = null;
+		
+		it = set.iterator();
+
+		NodeNames n;
+		
+		while (it.hasNext()) {
+			
+			n = (NodeNames) it.next();
+			
+			//log
+			text = String.format(Locale.JAPAN, 
+						"node name => %s (x = %d, y = %d)\n", 
+						n.toString(),
+						map_AllNodes_XY.get(n).x,
+						map_AllNodes_XY.get(n).y
+						);
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+		}
+		
+
 //		//log
 //		String text, fname; int line_Num;
 //		

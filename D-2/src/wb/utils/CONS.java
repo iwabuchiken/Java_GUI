@@ -47,6 +47,7 @@ public class CONS {
 			
 			B_UL, B_UR, B_LL, B_LR,
 			A_UL, A_UR, A_LL, A_LR,
+			C_UL, C_UR, C_LL, C_LR,
 		}
 		
 		public static enum LineStates {
