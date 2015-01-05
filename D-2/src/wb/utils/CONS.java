@@ -30,16 +30,16 @@ public class CONS {
 		
 		public static enum Orien {
 			
-//			HORIZONTAL, VERTICAL
-			HORI_HORI, HORI_VERTI,
-			VERTI_VERTI, VERTI_HORI,
+			HH, HV, VH, VV,
+//			HORI_HORI, HORI_VERTI,
+//			VERTI_VERTI, VERTI_HORI,
 			
 			INITIAL, NEXT_NODE, PREV_NODE,
 			
-			HH, HV,
-			VV, VH,
+			HH_, HV_,
+			VV_, VH_,
 			
-			INIT, NN, PN,
+			INIT, NN, PN,	// NN => next node; PN => prev node
 			
 		}
 		
@@ -68,6 +68,7 @@ public class CONS {
 		public static enum CornerTypes {
 			
 			IN_CORNER, OUT_CORNER,
+			IN_CORNER_A, IN_CORNER_B,
 			
 		}
 		

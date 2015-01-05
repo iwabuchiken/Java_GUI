@@ -282,10 +282,10 @@ public class Methods {
 			
 			switch(orien) {
 			
-			case HORI_VERTI: return node_index * CONS.Admin.numOf_Positions_per_Node + 1;
-			case HORI_HORI: return node_index * CONS.Admin.numOf_Positions_per_Node + 2;
-			case VERTI_HORI: return node_index * CONS.Admin.numOf_Positions_per_Node + 3;
-			case VERTI_VERTI: return node_index * CONS.Admin.numOf_Positions_per_Node + 4;
+			case HV: return node_index * CONS.Admin.numOf_Positions_per_Node + 1;
+			case HH: return node_index * CONS.Admin.numOf_Positions_per_Node + 2;
+			case VH: return node_index * CONS.Admin.numOf_Positions_per_Node + 3;
+			case VV: return node_index * CONS.Admin.numOf_Positions_per_Node + 4;
 //			case HORI_VERTI: return 1;
 //			case HORI_HORI: return 2;
 //			case VERTI_HORI: return 3;
@@ -301,10 +301,10 @@ public class Methods {
 			switch(orien) {
 			
 			case INITIAL: 
-			case HORI_VERTI: return node_index * CONS.Admin.numOf_Positions_per_Node + 1;
-			case HORI_HORI: return node_index * CONS.Admin.numOf_Positions_per_Node + 2;
-			case VERTI_HORI: return node_index * CONS.Admin.numOf_Positions_per_Node + 3;
-			case VERTI_VERTI: return node_index * CONS.Admin.numOf_Positions_per_Node + 4;
+			case HV: return node_index * CONS.Admin.numOf_Positions_per_Node + 1;
+			case HH: return node_index * CONS.Admin.numOf_Positions_per_Node + 2;
+			case VH: return node_index * CONS.Admin.numOf_Positions_per_Node + 3;
+			case VV: return node_index * CONS.Admin.numOf_Positions_per_Node + 4;
 			
 			}//switch(orien)
 			
@@ -316,10 +316,10 @@ public class Methods {
 			switch(orien) {
 			
 			case INITIAL: 
-			case VERTI_HORI: return node_index * CONS.Admin.numOf_Positions_per_Node + 1;
-			case VERTI_VERTI: return node_index * CONS.Admin.numOf_Positions_per_Node + 2;
-			case HORI_VERTI: return node_index * CONS.Admin.numOf_Positions_per_Node + 3;
-			case HORI_HORI: return node_index * CONS.Admin.numOf_Positions_per_Node + 4;
+			case VH: return node_index * CONS.Admin.numOf_Positions_per_Node + 1;
+			case VV: return node_index * CONS.Admin.numOf_Positions_per_Node + 2;
+			case HV: return node_index * CONS.Admin.numOf_Positions_per_Node + 3;
+			case HH: return node_index * CONS.Admin.numOf_Positions_per_Node + 4;
 			
 			}//switch(orien)
 			
@@ -339,10 +339,10 @@ public class Methods {
 			
 			switch(orien) {
 			
-			case HORI_VERTI: return node_index * CONS.Admin.numOf_Positions_per_Node + 1;
-			case HORI_HORI: return node_index * CONS.Admin.numOf_Positions_per_Node + 2;
-			case VERTI_HORI: return node_index * CONS.Admin.numOf_Positions_per_Node + 3;
-			case VERTI_VERTI: return node_index * CONS.Admin.numOf_Positions_per_Node + 4;
+			case HV: return node_index * CONS.Admin.numOf_Positions_per_Node + 1;
+			case HH: return node_index * CONS.Admin.numOf_Positions_per_Node + 2;
+			case VH: return node_index * CONS.Admin.numOf_Positions_per_Node + 3;
+			case VV: return node_index * CONS.Admin.numOf_Positions_per_Node + 4;
 			
 			}//switch(orien)
 			
@@ -436,10 +436,10 @@ public class Methods {
 			
 			switch(orien) {
 			
-			case HORI_VERTI: return 1;
-			case HORI_HORI: return 2;
-			case VERTI_HORI: return 3;
-			case VERTI_VERTI: return 4;
+			case HV: return 1;
+			case HH: return 2;
+			case VH: return 3;
+			case VV: return 4;
 			
 			}//switch(orien)
 			
@@ -450,10 +450,10 @@ public class Methods {
 			switch(orien) {
 			
 			case INITIAL: 
-			case HORI_VERTI: return 5;
-			case HORI_HORI: return 6;
-			case VERTI_HORI: return 7;
-			case VERTI_VERTI: return 8;
+			case HV: return 5;
+			case HH: return 6;
+			case VH: return 7;
+			case VV: return 8;
 			
 			}//switch(orien)
 			
@@ -464,10 +464,10 @@ public class Methods {
 			switch(orien) {
 			
 			case INITIAL: 
-			case VERTI_HORI: return 9;
-			case VERTI_VERTI: return 10;
-			case HORI_VERTI: return 11;
-			case HORI_HORI: return 12;
+			case VH: return 9;
+			case VV: return 10;
+			case HV: return 11;
+			case HH: return 12;
 			
 			}//switch(orien)
 			
@@ -477,10 +477,10 @@ public class Methods {
 			
 			switch(orien) {
 			
-			case HORI_VERTI: return 13;
-			case HORI_HORI: return 14;
-			case VERTI_HORI: return 15;
-			case VERTI_VERTI: return 16;
+			case HV: return 13;
+			case HH: return 14;
+			case VH: return 15;
+			case VV: return 16;
 			
 			}//switch(orien)
 			
@@ -530,15 +530,15 @@ public class Methods {
 			
 			switch(orien_Current) {
 			
-			case HORI_VERTI: return CONS.Admin.Orien.HORI_HORI;
+			case HV: return CONS.Admin.Orien.HH;
 				
-			case HORI_HORI: return CONS.Admin.Orien.VERTI_HORI;
+			case HH: return CONS.Admin.Orien.VH;
 				
-			case VERTI_HORI: return CONS.Admin.Orien.VERTI_VERTI;
+			case VH: return CONS.Admin.Orien.VV;
 				
-			case VERTI_VERTI: return CONS.Admin.Orien.NEXT_NODE;
+			case VV: return CONS.Admin.Orien.NEXT_NODE;
 				
-			case INITIAL: return CONS.Admin.Orien.HORI_VERTI;
+			case INITIAL: return CONS.Admin.Orien.HV;
 				
 			}
 			
@@ -548,15 +548,15 @@ public class Methods {
 			
 			switch(orien_Current) {
 			
-			case HORI_VERTI: return CONS.Admin.Orien.HORI_HORI;
+			case HV: return CONS.Admin.Orien.HH;
 			
-			case HORI_HORI: return CONS.Admin.Orien.VERTI_HORI;
+			case HH: return CONS.Admin.Orien.VH;
 			
-			case VERTI_HORI: return CONS.Admin.Orien.VERTI_VERTI;
+			case VH: return CONS.Admin.Orien.VV;
 			
-			case VERTI_VERTI: return CONS.Admin.Orien.NEXT_NODE;
+			case VV: return CONS.Admin.Orien.NEXT_NODE;
 			
-			case INITIAL: return CONS.Admin.Orien.HORI_VERTI;
+			case INITIAL: return CONS.Admin.Orien.HV;
 			
 			}
 			
@@ -566,15 +566,15 @@ public class Methods {
 			
 			switch(orien_Current) {
 			
-			case VERTI_HORI: return CONS.Admin.Orien.VERTI_VERTI;
+			case VH: return CONS.Admin.Orien.VV;
 			
-			case VERTI_VERTI: return CONS.Admin.Orien.HORI_VERTI;
+			case VV: return CONS.Admin.Orien.HV;
 			
-			case HORI_VERTI: return CONS.Admin.Orien.HORI_HORI;
+			case HV: return CONS.Admin.Orien.HH;
 			
-			case HORI_HORI: return CONS.Admin.Orien.NEXT_NODE;
+			case HH: return CONS.Admin.Orien.NEXT_NODE;
 			
-			case INITIAL: return CONS.Admin.Orien.VERTI_HORI;
+			case INITIAL: return CONS.Admin.Orien.VH;
 			
 			}
 			
@@ -584,15 +584,15 @@ public class Methods {
 			
 			switch(orien_Current) {
 			
-			case HORI_VERTI: return CONS.Admin.Orien.HORI_HORI;
+			case HV: return CONS.Admin.Orien.HH;
 			
-			case HORI_HORI: return CONS.Admin.Orien.VERTI_HORI;
+			case HH: return CONS.Admin.Orien.VH;
 			
-			case VERTI_HORI: return CONS.Admin.Orien.VERTI_VERTI;
+			case VH: return CONS.Admin.Orien.VV;
 			
-			case VERTI_VERTI: return CONS.Admin.Orien.NEXT_NODE;
+			case VV: return CONS.Admin.Orien.NEXT_NODE;
 			
-			case INITIAL: return CONS.Admin.Orien.HORI_VERTI;
+			case INITIAL: return CONS.Admin.Orien.HV;
 			
 			}
 			
@@ -602,15 +602,15 @@ public class Methods {
 			
 			switch(orien_Current) {
 			
-			case VERTI_HORI: return CONS.Admin.Orien.VERTI_VERTI;
+			case VH: return CONS.Admin.Orien.VV;
 			
-			case VERTI_VERTI: return CONS.Admin.Orien.HORI_VERTI;
+			case VV: return CONS.Admin.Orien.HV;
 			
-			case HORI_VERTI: return CONS.Admin.Orien.HORI_HORI;
+			case HV: return CONS.Admin.Orien.HH;
 			
-			case HORI_HORI: return CONS.Admin.Orien.NEXT_NODE;
+			case HH: return CONS.Admin.Orien.NEXT_NODE;
 			
-			case INITIAL: return CONS.Admin.Orien.VERTI_HORI;
+			case INITIAL: return CONS.Admin.Orien.VH;
 			
 			}
 			
@@ -620,15 +620,15 @@ public class Methods {
 			
 			switch(orien_Current) {
 			
-			case HORI_VERTI: return CONS.Admin.Orien.HORI_HORI;
+			case HV: return CONS.Admin.Orien.HH;
 				
-			case HORI_HORI: return CONS.Admin.Orien.VERTI_HORI;
+			case HH: return CONS.Admin.Orien.VH;
 				
-			case VERTI_HORI: return CONS.Admin.Orien.VERTI_VERTI;
+			case VH: return CONS.Admin.Orien.VV;
 				
-			case VERTI_VERTI: return CONS.Admin.Orien.NEXT_NODE;
+			case VV: return CONS.Admin.Orien.NEXT_NODE;
 				
-			case INITIAL: return CONS.Admin.Orien.HORI_VERTI;
+			case INITIAL: return CONS.Admin.Orien.HV;
 				
 			}
 			
@@ -651,15 +651,15 @@ public class Methods {
 			
 			switch(orien_Current) {
 			
-			case HORI_VERTI: return CONS.Admin.Orien.PREV_NODE;
+			case HV: return CONS.Admin.Orien.PREV_NODE;
 				
-			case HORI_HORI: return CONS.Admin.Orien.HORI_VERTI;
+			case HH: return CONS.Admin.Orien.HV;
 				
-			case VERTI_HORI: return CONS.Admin.Orien.HORI_HORI;
+			case VH: return CONS.Admin.Orien.HH;
 				
-			case VERTI_VERTI: return CONS.Admin.Orien.VERTI_HORI;
+			case VV: return CONS.Admin.Orien.VH;
 				
-			case INITIAL: return CONS.Admin.Orien.HORI_VERTI;
+			case INITIAL: return CONS.Admin.Orien.HV;
 				
 			}//switch(orien_Current)
 			
@@ -669,15 +669,15 @@ public class Methods {
 			
 			switch(orien_Current) {
 			
-			case HORI_VERTI: return CONS.Admin.Orien.PREV_NODE;
+			case HV: return CONS.Admin.Orien.PREV_NODE;
 				
-			case HORI_HORI: return CONS.Admin.Orien.HORI_VERTI;
+			case HH: return CONS.Admin.Orien.HV;
 				
-			case VERTI_HORI: return CONS.Admin.Orien.HORI_HORI;
+			case VH: return CONS.Admin.Orien.HH;
 				
-			case VERTI_VERTI: return CONS.Admin.Orien.VERTI_HORI;
+			case VV: return CONS.Admin.Orien.VH;
 				
-			case INITIAL: return CONS.Admin.Orien.HORI_VERTI;
+			case INITIAL: return CONS.Admin.Orien.HV;
 				
 			}//switch(orien_Current)
 			
@@ -687,13 +687,13 @@ public class Methods {
 			
 			switch(orien_Current) {
 			
-			case HORI_HORI: return CONS.Admin.Orien.HORI_VERTI;
+			case HH: return CONS.Admin.Orien.HV;
 				
-			case HORI_VERTI: return CONS.Admin.Orien.VERTI_VERTI;
+			case HV: return CONS.Admin.Orien.VV;
 				
-			case VERTI_VERTI: return CONS.Admin.Orien.VERTI_HORI;
+			case VV: return CONS.Admin.Orien.VH;
 				
-			case VERTI_HORI: return CONS.Admin.Orien.PREV_NODE;
+			case VH: return CONS.Admin.Orien.PREV_NODE;
 				
 			case INITIAL: return CONS.Admin.Orien.PREV_NODE;
 				
@@ -705,15 +705,15 @@ public class Methods {
 			
 			switch(orien_Current) {
 			
-			case HORI_VERTI: return CONS.Admin.Orien.PREV_NODE;
+			case HV: return CONS.Admin.Orien.PREV_NODE;
 				
-			case HORI_HORI: return CONS.Admin.Orien.HORI_VERTI;
+			case HH: return CONS.Admin.Orien.HV;
 				
-			case VERTI_HORI: return CONS.Admin.Orien.HORI_HORI;
+			case VH: return CONS.Admin.Orien.HH;
 				
-			case VERTI_VERTI: return CONS.Admin.Orien.VERTI_HORI;
+			case VV: return CONS.Admin.Orien.VH;
 				
-			case INITIAL: return CONS.Admin.Orien.HORI_VERTI;
+			case INITIAL: return CONS.Admin.Orien.HV;
 				
 			}//switch(orien_Current)
 			
@@ -723,13 +723,13 @@ public class Methods {
 			
 			switch(orien_Current) {
 			
-			case HORI_HORI: return CONS.Admin.Orien.HORI_VERTI;
+			case HH: return CONS.Admin.Orien.HV;
 				
-			case HORI_VERTI: return CONS.Admin.Orien.VERTI_VERTI;
+			case HV: return CONS.Admin.Orien.VV;
 				
-			case VERTI_VERTI: return CONS.Admin.Orien.VERTI_HORI;
+			case VV: return CONS.Admin.Orien.VH;
 				
-			case VERTI_HORI: return CONS.Admin.Orien.PREV_NODE;
+			case VH: return CONS.Admin.Orien.PREV_NODE;
 				
 			case INITIAL: return CONS.Admin.Orien.PREV_NODE;
 				
@@ -741,15 +741,15 @@ public class Methods {
 			
 			switch(orien_Current) {
 			
-			case HORI_VERTI: return CONS.Admin.Orien.PREV_NODE;
+			case HV: return CONS.Admin.Orien.PREV_NODE;
 				
-			case HORI_HORI: return CONS.Admin.Orien.HORI_VERTI;
+			case HH: return CONS.Admin.Orien.HV;
 				
-			case VERTI_HORI: return CONS.Admin.Orien.HORI_HORI;
+			case VH: return CONS.Admin.Orien.HH;
 				
-			case VERTI_VERTI: return CONS.Admin.Orien.VERTI_HORI;
+			case VV: return CONS.Admin.Orien.VH;
 				
-			case INITIAL: return CONS.Admin.Orien.HORI_VERTI;
+			case INITIAL: return CONS.Admin.Orien.HV;
 				
 			}//switch(orien_Current)
 			
@@ -865,17 +865,17 @@ public class Methods {
 		
 		switch(name) {
 		
-		case B_UL: return CONS.Admin.Orien.HORI_VERTI;
-		case B_UR: return CONS.Admin.Orien.HORI_VERTI;
-		case B_LR: return CONS.Admin.Orien.VERTI_HORI;
+		case B_UL: return CONS.Admin.Orien.HV;
+		case B_UR: return CONS.Admin.Orien.HV;
+		case B_LR: return CONS.Admin.Orien.VH;
 		
-		case A_UR: return CONS.Admin.Orien.HORI_VERTI;
-		case A_LR: return CONS.Admin.Orien.VERTI_HORI;
-		case A_LL: return CONS.Admin.Orien.HORI_VERTI;
+		case A_UR: return CONS.Admin.Orien.HV;
+		case A_LR: return CONS.Admin.Orien.VH;
+		case A_LL: return CONS.Admin.Orien.HV;
 		
 		}
 		
-		return CONS.Admin.Orien.HORI_VERTI;
+		return CONS.Admin.Orien.HV;
 		
 	}//get_InitialOrien(NodeNames name)
 
@@ -891,17 +891,17 @@ public class Methods {
 		
 		switch(name) {
 		
-		case B_UL: return CONS.Admin.Orien.VERTI_VERTI;
-		case B_UR: return CONS.Admin.Orien.VERTI_VERTI;
-		case B_LR: return CONS.Admin.Orien.HORI_HORI;
+		case B_UL: return CONS.Admin.Orien.VV;
+		case B_UR: return CONS.Admin.Orien.VV;
+		case B_LR: return CONS.Admin.Orien.HH;
 		
-		case A_UR: return CONS.Admin.Orien.VERTI_VERTI;
-		case A_LR: return CONS.Admin.Orien.HORI_HORI;
-		case A_LL: return CONS.Admin.Orien.VERTI_VERTI;
+		case A_UR: return CONS.Admin.Orien.VV;
+		case A_LR: return CONS.Admin.Orien.HH;
+		case A_LL: return CONS.Admin.Orien.VV;
 		
 		}
 		
-		return CONS.Admin.Orien.HORI_VERTI;
+		return CONS.Admin.Orien.HV;
 		
 	}//get_InitialOrien(NodeNames name)
 	
@@ -966,10 +966,10 @@ public class Methods {
 			
 			switch(index_Orien) {
 			
-			case 1: orien = CONS.Admin.Orien.HORI_VERTI; break; 
-			case 2: orien = CONS.Admin.Orien.HORI_HORI; break; 
-			case 3: orien = CONS.Admin.Orien.VERTI_HORI; break; 
-			case 4: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			case 1: orien = CONS.Admin.Orien.HV; break; 
+			case 2: orien = CONS.Admin.Orien.HH; break; 
+			case 3: orien = CONS.Admin.Orien.VH; break; 
+			case 4: orien = CONS.Admin.Orien.VV; break; 
 			
 			}
 			
@@ -979,10 +979,10 @@ public class Methods {
 			
 			switch(index_Orien) {
 			
-			case 1: orien = CONS.Admin.Orien.HORI_VERTI; break; 
-			case 2: orien = CONS.Admin.Orien.HORI_HORI; break; 
-			case 3: orien = CONS.Admin.Orien.VERTI_HORI; break; 
-			case 4: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			case 1: orien = CONS.Admin.Orien.HV; break; 
+			case 2: orien = CONS.Admin.Orien.HH; break; 
+			case 3: orien = CONS.Admin.Orien.VH; break; 
+			case 4: orien = CONS.Admin.Orien.VV; break; 
 			
 			}
 			
@@ -992,10 +992,10 @@ public class Methods {
 			
 			switch(index_Orien) {
 			
-			case 1: orien = CONS.Admin.Orien.VERTI_HORI; break; 
-			case 2: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
-			case 3: orien = CONS.Admin.Orien.HORI_VERTI; break; 
-			case 4: orien = CONS.Admin.Orien.HORI_HORI; break; 
+			case 1: orien = CONS.Admin.Orien.VH; break; 
+			case 2: orien = CONS.Admin.Orien.VV; break; 
+			case 3: orien = CONS.Admin.Orien.HV; break; 
+			case 4: orien = CONS.Admin.Orien.HH; break; 
 			
 			}
 			
@@ -1005,10 +1005,10 @@ public class Methods {
 			
 			switch(index_Orien) {
 			
-			case 1: orien = CONS.Admin.Orien.HORI_VERTI; break; 
-			case 2: orien = CONS.Admin.Orien.HORI_HORI; break; 
-			case 3: orien = CONS.Admin.Orien.VERTI_HORI; break; 
-			case 4: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			case 1: orien = CONS.Admin.Orien.HV; break; 
+			case 2: orien = CONS.Admin.Orien.HH; break; 
+			case 3: orien = CONS.Admin.Orien.VH; break; 
+			case 4: orien = CONS.Admin.Orien.VV; break; 
 			
 			}
 			
@@ -1018,10 +1018,10 @@ public class Methods {
 			
 			switch(index_Orien) {
 			
-			case 1: orien = CONS.Admin.Orien.HORI_VERTI; break; 
-			case 2: orien = CONS.Admin.Orien.HORI_HORI; break; 
-			case 3: orien = CONS.Admin.Orien.VERTI_HORI; break; 
-			case 4: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			case 1: orien = CONS.Admin.Orien.HV; break; 
+			case 2: orien = CONS.Admin.Orien.HH; break; 
+			case 3: orien = CONS.Admin.Orien.VH; break; 
+			case 4: orien = CONS.Admin.Orien.VV; break; 
 			
 			}
 			
@@ -1031,10 +1031,10 @@ public class Methods {
 			
 			switch(index_Orien) {
 			
-			case 1: orien = CONS.Admin.Orien.VERTI_HORI; break; 
-			case 2: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
-			case 3: orien = CONS.Admin.Orien.HORI_VERTI; break; 
-			case 4: orien = CONS.Admin.Orien.HORI_HORI; break; 
+			case 1: orien = CONS.Admin.Orien.VH; break; 
+			case 2: orien = CONS.Admin.Orien.VV; break; 
+			case 3: orien = CONS.Admin.Orien.HV; break; 
+			case 4: orien = CONS.Admin.Orien.HH; break; 
 			
 			}
 			
@@ -1044,10 +1044,10 @@ public class Methods {
 			
 			switch(index_Orien) {
 			
-			case 1: orien = CONS.Admin.Orien.HORI_VERTI; break; 
-			case 2: orien = CONS.Admin.Orien.HORI_HORI; break; 
-			case 3: orien = CONS.Admin.Orien.VERTI_HORI; break; 
-			case 4: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			case 1: orien = CONS.Admin.Orien.HV; break; 
+			case 2: orien = CONS.Admin.Orien.HH; break; 
+			case 3: orien = CONS.Admin.Orien.VH; break; 
+			case 4: orien = CONS.Admin.Orien.VV; break; 
 			
 			}
 			
@@ -1108,10 +1108,10 @@ public class Methods {
 			
 			switch(index_Orien) {
 			
-			case 1: orien = CONS.Admin.Orien.HORI_VERTI; break; 
-			case 2: orien = CONS.Admin.Orien.HORI_HORI; break; 
-			case 3: orien = CONS.Admin.Orien.VERTI_HORI; break; 
-			case 4: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			case 1: orien = CONS.Admin.Orien.HV; break; 
+			case 2: orien = CONS.Admin.Orien.HH; break; 
+			case 3: orien = CONS.Admin.Orien.VH; break; 
+			case 4: orien = CONS.Admin.Orien.VV; break; 
 			
 			}
 			
@@ -1147,10 +1147,10 @@ public class Methods {
 			
 			switch(index_Orien) {
 			
-			case 1: orien = CONS.Admin.Orien.HORI_VERTI; break; 
-			case 2: orien = CONS.Admin.Orien.HORI_HORI; break; 
-			case 3: orien = CONS.Admin.Orien.VERTI_HORI; break; 
-			case 4: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			case 1: orien = CONS.Admin.Orien.HV; break; 
+			case 2: orien = CONS.Admin.Orien.HH; break; 
+			case 3: orien = CONS.Admin.Orien.VH; break; 
+			case 4: orien = CONS.Admin.Orien.VV; break; 
 			
 			}
 			
@@ -1160,10 +1160,10 @@ public class Methods {
 			
 			switch(index_Orien) {
 			
-			case 1: orien = CONS.Admin.Orien.HORI_VERTI; break; 
-			case 2: orien = CONS.Admin.Orien.HORI_HORI; break; 
-			case 3: orien = CONS.Admin.Orien.VERTI_HORI; break; 
-			case 4: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
+			case 1: orien = CONS.Admin.Orien.HV; break; 
+			case 2: orien = CONS.Admin.Orien.HH; break; 
+			case 3: orien = CONS.Admin.Orien.VH; break; 
+			case 4: orien = CONS.Admin.Orien.VV; break; 
 			
 			}
 			
@@ -1173,10 +1173,10 @@ public class Methods {
 			
 			switch(index_Orien) {
 			
-			case 1: orien = CONS.Admin.Orien.VERTI_HORI; break; 
-			case 2: orien = CONS.Admin.Orien.VERTI_VERTI; break; 
-			case 3: orien = CONS.Admin.Orien.HORI_VERTI; break; 
-			case 4: orien = CONS.Admin.Orien.HORI_HORI; break; 
+			case 1: orien = CONS.Admin.Orien.VH; break; 
+			case 2: orien = CONS.Admin.Orien.VV; break; 
+			case 3: orien = CONS.Admin.Orien.HV; break; 
+			case 4: orien = CONS.Admin.Orien.HH; break; 
 			
 			}
 			
@@ -1453,10 +1453,10 @@ public class Methods {
 		
 		switch(orien) {
 		
-		case HORI_HORI: return CONS.Admin.Orien.HH;
-		case HORI_VERTI: return CONS.Admin.Orien.HV;
-		case VERTI_VERTI: return CONS.Admin.Orien.VV;
-		case VERTI_HORI: return CONS.Admin.Orien.VH;
+		case HH: return CONS.Admin.Orien.HH_;
+		case HV: return CONS.Admin.Orien.HV_;
+		case VV: return CONS.Admin.Orien.VV_;
+		case VH: return CONS.Admin.Orien.VH_;
 		
 //		VERTI_VERTI, VERTI_HORI,
 		
@@ -1664,11 +1664,11 @@ public class Methods {
 		////////////////////////////////
 		switch(rect_B.getOrien()) {
 		
-		case HORI_VERTI:
-		case HORI_HORI:
-		case VERTI_HORI: return false;
+		case HV:
+		case HH:
+		case VH: return false;
 			
-		case VERTI_VERTI:
+		case VV:
 			
 			return overWrap_V2_Borien_VH(rect_A, rect_B, rect_C);
 			
@@ -2147,16 +2147,16 @@ public class Methods {
 
 			switch(rect_B.getOrien()) {
 			
-			case HORI_VERTI:
-			case HORI_HORI:
+			case HV:
+			case HH:
 				
 				return overWrap_on_A__Bat_AUL_HV_Cat_B(rect_A, rect_B, rect_C);
 			
-			case VERTI_HORI:
+			case VH:
 				
 				return overWrap_on_A__Bat_AUL_VH(rect_A, rect_B, rect_C);
 				
-			case VERTI_VERTI:
+			case VV:
 				
 				return false;
 				
@@ -2473,10 +2473,10 @@ public class Methods {
 		////////////////////////////////
 		switch(rect_C.getOrien()) {
 		
-		case VERTI_HORI:
-		case VERTI_VERTI: return false;
+		case VH:
+		case VV: return false;
 		
-		case HORI_VERTI:
+		case HV:
 			
 			if (rect_C.getW() < rect_B.getW()) {
 				
@@ -2488,7 +2488,7 @@ public class Methods {
 				
 			}
 			
-		case HORI_HORI:
+		case HH:
 			
 			if (rect_C.getW() < rect_B.getW()) {
 				
@@ -2562,11 +2562,11 @@ public class Methods {
 		////////////////////////////////
 		switch(rect_C.getOrien()) {
 		
-		case VERTI_HORI:
-		case VERTI_VERTI: return true;
+		case VH:
+		case VV: return true;
 		
-		case HORI_VERTI:
-		case HORI_HORI: return false;
+		case HV:
+		case HH: return false;
 			
 		}
 		
@@ -2631,11 +2631,11 @@ public class Methods {
 		////////////////////////////////
 		switch(rect_C.getOrien()) {
 		
-		case VERTI_HORI:
-		case VERTI_VERTI: return false;
+		case VH:
+		case VV: return false;
 		
-		case HORI_VERTI: return false;
-		case HORI_HORI: 
+		case HV: return false;
+		case HH: 
 			
 			if ((c_Y1 < b_Y2) && (c_X1 < b_X2)) {
 				
@@ -2710,11 +2710,11 @@ public class Methods {
 		////////////////////////////////
 		switch(rect_C.getOrien()) {
 		
-		case HORI_VERTI:
-		case HORI_HORI: return false;
+		case HV:
+		case HH: return false;
 		
-		case VERTI_HORI:
-		case VERTI_VERTI:
+		case VH:
+		case VV:
 			
 			if (c_Y1 < b_Y2) {
 				
@@ -2799,9 +2799,9 @@ public class Methods {
 		
 		case B_LL: 
 			
-			if (rect_B.getOrien() == Orien.VERTI_HORI) return false;
-			else if (rect_B.getOrien() == Orien.VERTI_VERTI) return false;
-			else if (rect_B.getOrien() == Orien.HORI_VERTI) return false;
+			if (rect_B.getOrien() == Orien.VH) return false;
+			else if (rect_B.getOrien() == Orien.VV) return false;
+			else if (rect_B.getOrien() == Orien.HV) return false;
 //			else if (rect_B.getOrien() == Orien.HORI_HORI) {
 //				
 //				return Methods.overWrap_on_A__B_at_A_UL_C_at_B_LL_B_Orien_HH(
@@ -2966,14 +2966,14 @@ public class Methods {
 		
 		switch(orien_B) {
 		
-		case HORI_VERTI:// B.orien --------------------------
-		case HORI_HORI:// B.orien --------------------------
+		case HV:// B.orien --------------------------
+		case HH:// B.orien --------------------------
 			
 			switch(orien_C) {
 			
-			case HORI_VERTI:
-			case HORI_HORI: return false;
-			case VERTI_HORI: // if: C.w_Orig > B.h ---> return true
+			case HV:
+			case HH: return false;
+			case VH: // if: C.w_Orig > B.h ---> return true
 				
 				if (rect_C.getW_Orig() > rect_B.getH()) {
 					
@@ -2985,7 +2985,7 @@ public class Methods {
 					
 				}
 				
-			case VERTI_VERTI:
+			case VV:
 				
 				if ((c_X2 >= a_X1 && c_X2 <= a_X2)
 						&& (c_Y2 > a_Y1)) {
@@ -3075,14 +3075,14 @@ public class Methods {
 		
 		switch(orien_B) {
 		
-		case HORI_VERTI:// B.orien --------------------------
-		case HORI_HORI:// B.orien --------------------------
+		case HV:// B.orien --------------------------
+		case HH:// B.orien --------------------------
 			
 			switch(orien_C) {
 			
-			case HORI_VERTI:
-			case HORI_HORI: return false;
-			case VERTI_HORI: // if: C.w_Orig > B.h ---> return true
+			case HV:
+			case HH: return false;
+			case VH: // if: C.w_Orig > B.h ---> return true
 				
 				if (rect_C.getW_Orig() > rect_B.getH()) {
 					
@@ -3094,7 +3094,7 @@ public class Methods {
 					
 				}
 				
-			case VERTI_VERTI:
+			case VV:
 				
 				if ((c_X2 >= a_X1 && c_X2 <= a_X2)
 						&& (c_Y2 > a_Y1)) {
@@ -3153,7 +3153,7 @@ public class Methods {
 		// TODO Auto-generated method stub
 		switch(rect_C.getOrien()) {
 		
-		case HORI_VERTI:
+		case HV:
 			
 			if (rect_C.getX_Cur() >= (rect_B.getX_Cur() + rect_B.getW())) {
 				
@@ -3165,7 +3165,7 @@ public class Methods {
 				
 			}
 			
-		case HORI_HORI:
+		case HH:
 			
 			if (rect_C.getX_Cur() >= (rect_B.getX_Cur() + rect_B.getW())) {
 				
@@ -3177,8 +3177,8 @@ public class Methods {
 				
 			}
 			
-		case VERTI_HORI:
-		case VERTI_VERTI:
+		case VH:
+		case VV:
 		
 			return false;
 		
@@ -3197,7 +3197,7 @@ public class Methods {
 
 		switch(rect_B.getOrien()) {
 		
-		case VERTI_HORI:
+		case VH:
 			
 			return overWrap_on_A__Bat_AUL_Cat_ALL_Borien_VH(rect_B, rect_C);
 		
@@ -3214,7 +3214,7 @@ public class Methods {
 		
 		switch(rect_B.getOrien()) {
 		
-		case VERTI_HORI:
+		case VH:
 			
 			return overWrap_on_A__Bat_AUL_Cat_ALR_Borien_VH(rect_B, rect_C);
 			
@@ -3231,7 +3231,7 @@ public class Methods {
 		
 		switch(rect_B.getOrien()) {
 		
-		case VERTI_HORI:
+		case VH:
 			
 			return overWrap_on_A__Bat_AUL_Cat_AUR_Borien_VH(rect_B, rect_C);
 			
@@ -3265,11 +3265,11 @@ public class Methods {
 		////////////////////////////////
 		switch(rect_C.getOrien()) {
 		
-		case HORI_VERTI:
-		case HORI_HORI: return false;
+		case HV:
+		case HH: return false;
 		
-		case VERTI_HORI:
-		case VERTI_VERTI:
+		case VH:
+		case VV:
 		
 			if (rect_C.getY_Cur() < (rect_B.getY_Cur() + rect_B.getH())) {
 				
@@ -3310,11 +3310,11 @@ public class Methods {
 		////////////////////////////////
 		switch(rect_C.getOrien()) {
 		
-		case VERTI_HORI:
-		case VERTI_VERTI: return false;
+		case VH:
+		case VV: return false;
 			
-		case HORI_VERTI: return false;
-		case HORI_HORI: return false;
+		case HV: return false;
+		case HH: return false;
 		
 			
 		}//switch(rect_C.getOrien())
@@ -3346,10 +3346,10 @@ public class Methods {
 		////////////////////////////////
 		switch(rect_C.getOrien()) {
 		
-		case VERTI_HORI:
-		case VERTI_VERTI:
-		case HORI_VERTI:
-		case HORI_HORI: return false;
+		case VH:
+		case VV:
+		case HV:
+		case HH: return false;
 		
 		
 		}//switch(rect_C.getOrien())
@@ -3565,8 +3565,153 @@ public class Methods {
 		
 	}//_get_LineStates__LX1__Case_1
 
-	public static Map<NodeNames, CornerTypes> 
-	get_CornerTypes
+	/*******************************
+
+		@return
+		Object[] => {Point, NodeTypes}
+
+	 *******************************/
+	public static Map<NodeNames, Object[]> 
+//	public static Map<NodeNames, CornerTypes> 
+	get_Map_AllNodes_XY_and_CornerTypes
+	(List<NodeNames> list_NodeNames, Rect rect_A, Rect rect_B, Rect rect_C) {
+		// TODO Auto-generated method stub
+		
+		//log
+		String text, fname; int line_Num;
+
+		////////////////////////////////
+
+		// get: all nodes map
+
+		////////////////////////////////
+		Map<NodeNames, Point> map_AllNodes_XY = 
+						Methods.get_Map_AllNodes(list_NodeNames, rect_A, rect_B, rect_C);
+
+		////////////////////////////////
+
+		// get: map => all nodes and corner types
+
+		////////////////////////////////
+		Map<NodeNames, Object[]> map_AllNodes_XY_CornerTypes = 
+						Methods.get_Map_AllNodes_CornerTypes(
+									map_AllNodes_XY, rect_A, rect_B, rect_C);
+		
+		//log
+		text = String.format(Locale.JAPAN, "get_Map_AllNodes_XY_CornerTypes => done\n");
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		return null;
+		
+	}//get_Map_AllNodes_XY_CornerTypes
+
+	private static Map<NodeNames, Object[]> 
+	get_Map_AllNodes_CornerTypes
+	(Map<NodeNames, Point> map_AllNodes_XY, 
+			Rect rect_A, Rect rect_B, Rect rect_C) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// try: node at index 0
+
+		////////////////////////////////
+		Iterator it = map_AllNodes_XY.keySet().iterator();
+//		NodeNames name = (NodeNames)it.next();
+		
+		// test
+		NodeNames name = null;
+		if (map_AllNodes_XY.keySet().contains(CONS.Admin.NodeNames.C_LR)) {
+			
+			name = CONS.Admin.NodeNames.C_LR;;
+			
+		} else {
+			
+			name = (NodeNames)it.next();
+			
+		}
+		
+		
+		
+//		NodeNames name = CONS.Admin.NodeNames.C_LR;
+//		NodeNames name = map_AllNodes_XY.keySet().iterator();
+
+		//log
+		String text, fname; int line_Num;
+		
+		text = String.format(Locale.JAPAN, "name => %s\n", name.toString());
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		////////////////////////////////
+
+		// dispatch
+
+		////////////////////////////////
+		String name_String = name.toString();
+		
+		if (name_String.startsWith("C")) {
+			
+			switch(name) {
+			
+			case C_UL: 
+			case C_UR: 
+			case C_LL: //return null;
+			
+			case C_LR: return Methods.get_CornerTypes__Node_C(
+										map_AllNodes_XY.get(name), rect_A, rect_B);
+			
+			}
+			
+		} else {
+			
+			
+		}
+		
+		return null;
+		
+	}//get_Map_AllNodes
+	
+
+	private static Map<NodeNames, Object[]> 
+	get_CornerTypes__Node_C
+	(Point point, Rect rect_A, Rect rect_B) {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// test
+
+		////////////////////////////////
+		// Rect A
+		boolean isIn = Methods.is_WithinRect(rect_A, point);
+		
+		//log
+		String text, fname; int line_Num;
+		
+		text = String.format(Locale.JAPAN, "isIn => %s\n", isIn);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		
+		return null;
+		
+	}//get_CornerTypes
+
+	public static Map<NodeNames, Point> 
+	get_Map_AllNodes
 	(List<NodeNames> list_NodeNames, Rect rect_A, Rect rect_B, Rect rect_C) {
 		// TODO Auto-generated method stub
 		
@@ -3577,12 +3722,12 @@ public class Methods {
 		Map<NodeNames, Point> map_Node_XY = new HashMap<NodeNames, Point>();
 		
 		////////////////////////////////
-
+		
 		// build: map of the node name and the point
-
+		
 		////////////////////////////////
 		for (int i = 0; i < list_NodeNames.size(); i++) {
-		
+			
 			name = list_NodeNames.get(i);
 			
 			nodePoints_XY = Methods.get_XY_from_NodeName__NodesOn_AB(name, rect_A, rect_B);
@@ -3592,9 +3737,9 @@ public class Methods {
 		}
 		
 		////////////////////////////////
-
+		
 		// build: all nodes map
-
+		
 		////////////////////////////////
 		Map<NodeNames, Point> map_AllNodes_XY = new HashMap<NodeNames, Point>();
 		
@@ -3612,12 +3757,12 @@ public class Methods {
 		
 		Point[] c_Points = new Point[]{c_UL, c_UR, c_LL, c_LR};
 		NodeNames[] c_NodeNames = new NodeNames[]{
-						CONS.Admin.NodeNames.C_UL, 
-						CONS.Admin.NodeNames.C_UR, 
-						CONS.Admin.NodeNames.C_LL, 
-						CONS.Admin.NodeNames.C_LR, 
-						};
-				
+				CONS.Admin.NodeNames.C_UL, 
+				CONS.Admin.NodeNames.C_UR, 
+				CONS.Admin.NodeNames.C_LL, 
+				CONS.Admin.NodeNames.C_LR, 
+		};
+		
 		int c_X, c_Y;
 		
 		Point node_AB = null;
@@ -3631,7 +3776,7 @@ public class Methods {
 			c_X = c_Points[i].x; c_Y = c_Points[i].y;
 			
 			for (int j = 0; j < list_NodeNames.size(); j++) {
-
+				
 				name_AB = list_NodeNames.get(j);
 				
 				node_AB = map_AllNodes_XY.get(name_AB);
@@ -3670,80 +3815,30 @@ public class Methods {
 			
 		}//for (int i = 0; i < c_Points.length; i++)
 		
-		//log
-		String text, fname; int line_Num;
-		
-		text = String.format(Locale.JAPAN, "map_AllNodes_XY.size => %d\n", map_AllNodes_XY.size());
-		
-		fname = Thread.currentThread().getStackTrace()[1].getFileName();
-		
-		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-		
-		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-
-		////////////////////////////////
-
-		// report
-
-		////////////////////////////////
-		Set<NodeNames> set = map_AllNodes_XY.keySet();
-		
-		Iterator it = null;
-		
-		it = set.iterator();
-
-		NodeNames n;
-		
-		while (it.hasNext()) {
-			
-			n = (NodeNames) it.next();
-			
-			//log
-			text = String.format(Locale.JAPAN, 
-						"node name => %s (x = %d, y = %d)\n", 
-						n.toString(),
-						map_AllNodes_XY.get(n).x,
-						map_AllNodes_XY.get(n).y
-						);
-			
-			fname = Thread.currentThread().getStackTrace()[1].getFileName();
-			
-			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-			
-			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-			
-		}
-		
-
-//		//log
-//		String text, fname; int line_Num;
-//		
-//		text = String.format(Locale.JAPAN, "map_Node_XY.size => %d\n", map_Node_XY.size());
-//		
-//		fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//		
-//		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//		
-//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-//
 //		////////////////////////////////
-//
+//		
 //		// report
-//
-//		////////////////////////////////
 //		
-//		for (int i = 0; i < list_NodeNames.size(); i++) {
+//		////////////////////////////////
+//		Set<NodeNames> set = map_AllNodes_XY.keySet();
+//		
+//		Iterator it = null;
+//		
+//		it = set.iterator();
+//		
+//		NodeNames n;
+//		
+//		while (it.hasNext()) {
 //			
-//			name = list_NodeNames.get(i);
-//			
-//			nodePoints_XY = map_Node_XY.get(name);
+//			n = (NodeNames) it.next();
 //			
 //			//log
 //			text = String.format(Locale.JAPAN, 
-//						"name => %s / points => %d,%d\n", 
-//						name.toString(), 
-//						nodePoints_XY.x, 
-//						nodePoints_XY.y);
+//					"node name => %s (x = %d, y = %d)\n", 
+//					n.toString(),
+//					map_AllNodes_XY.get(n).x,
+//					map_AllNodes_XY.get(n).y
+//					);
 //			
 //			fname = Thread.currentThread().getStackTrace()[1].getFileName();
 //			
@@ -3753,10 +3848,10 @@ public class Methods {
 //			
 //		}
 		
-		return null;
+		return map_AllNodes_XY;
 		
 	}//get_CornerTypes
-
+	
 	private static Point 
 	get_XY_from_NodeName__NodesOn_AB
 	(NodeNames name, Rect rect_A, Rect rect_B) {

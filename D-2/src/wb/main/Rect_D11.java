@@ -2600,8 +2600,8 @@ public class Rect_D11 {
 		// detect: corner types
 
 		////////////////////////////////
-		Map<NodeNames, CornerTypes> corners_Map = 
-							Methods.get_CornerTypes(
+		Map<NodeNames, Object[]> corners_Map = 
+							Methods.get_Map_AllNodes_XY_and_CornerTypes(
 										CONS.Admin.list_NodeNames_C, 
 										this.rect_A, this.rect_B, this.rect_C);
 		
@@ -2747,7 +2747,7 @@ public class Rect_D11 {
 		// rect: C
 		
 		////////////////////////////////
-		CONS.Admin.orien_Current_C = CONS.Admin.Orien.HORI_VERTI;
+		CONS.Admin.orien_Current_C = CONS.Admin.Orien.HV;
 		
 		this.rect_C.setOrien(CONS.Admin.orien_Current_C);
 		
@@ -4812,7 +4812,7 @@ public class Rect_D11 {
 			CONS.Admin.node_Current += CONS.Admin.status_C % 2;
 			
 			// orientation
-			CONS.Admin.orien_Current_C = CONS.Admin.Orien.HORI_HORI;
+			CONS.Admin.orien_Current_C = CONS.Admin.Orien.HH;
 			
 			this.rect_C.setOrien(CONS.Admin.orien_Current_C);
 			
@@ -4987,7 +4987,7 @@ public class Rect_D11 {
 		switch(orien) {
 
 		case INITIAL://--------------------------------------
-		case VERTI_HORI://--------------------------------------
+		case VH://--------------------------------------
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig()); 
 			this.rect_C.setY_Cur(this.rect_B.getY_Cur() + rect_B.getH_Orig() - this.rect_C.getW_Orig());
@@ -4997,7 +4997,7 @@ public class Rect_D11 {
 			
 			break;//case VERTI_VERTI
 			
-		case HORI_VERTI://--------------------------------------
+		case HV://--------------------------------------
 
 			this.rect_C.setX_Cur(CONS.Views.rect_B_X 
 									+ CONS.Views.rect_B_W_cur 
@@ -5015,7 +5015,7 @@ public class Rect_D11 {
 			
 			break;//case HORI_VERTI
 
-		case HORI_HORI://--------------------------------------
+		case HH://--------------------------------------
 			
 			////////////////////////////////
 			
@@ -5041,7 +5041,7 @@ public class Rect_D11 {
 			
 			break;//case HORI_HORI
 			
-		case VERTI_VERTI://--------------------------------------
+		case VV://--------------------------------------
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig()); 
 			this.rect_C.setY_Cur(this.rect_B.getY_Cur() + rect_B.getH_Orig() - this.rect_C.getH_Orig());
@@ -5082,7 +5082,7 @@ public class Rect_D11 {
 		switch(orien) {
 		
 		case INITIAL://--------------------------------------
-		case HORI_VERTI://--------------------------------------
+		case HV://--------------------------------------
 			
 			this.rect_C.setX_Cur(this.rect_C.getAttachedTo().getX_Cur());
 //			this.rect_C.setX_Cur(CONS.Views.rect_B_X 
@@ -5101,7 +5101,7 @@ public class Rect_D11 {
 			
 			break;//case HORI_VERTI
 			
-		case HORI_HORI://--------------------------------------
+		case HH://--------------------------------------
 			
 			////////////////////////////////
 			
@@ -5124,7 +5124,7 @@ public class Rect_D11 {
 			
 			break;//case HORI_HORI
 			
-		case VERTI_HORI://--------------------------------------
+		case VH://--------------------------------------
 			
 			this.rect_C.setX_Cur(
 							this.rect_C.getAttachedTo().getX_Cur() 
@@ -5142,7 +5142,7 @@ public class Rect_D11 {
 			
 			break;//case VERTI_VERTI
 			
-		case VERTI_VERTI://--------------------------------------
+		case VV://--------------------------------------
 			
 			this.rect_C.setX_Cur(
 							this.rect_C.getAttachedTo().getX_Cur()
@@ -5190,7 +5190,7 @@ public class Rect_D11 {
 		switch(orien) {
 		
 		case INITIAL://--------------------------------------
-		case HORI_VERTI://--------------------------------------
+		case HV://--------------------------------------
 			
 			this.rect_C.setH(this.rect_C.getH_Orig());
 			
@@ -5226,7 +5226,7 @@ public class Rect_D11 {
 			
 			break;//case HORI_VERTI
 			
-		case HORI_HORI://--------------------------------------
+		case HH://--------------------------------------
 			
 			////////////////////////////////
 			
@@ -5269,7 +5269,7 @@ public class Rect_D11 {
 			
 			break;//case HORI_HORI
 			
-		case VERTI_HORI://--------------------------------------
+		case VH://--------------------------------------
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig()); 
 			this.rect_C.setY_Cur(this.rect_B.getY_Cur());
@@ -5279,7 +5279,7 @@ public class Rect_D11 {
 			
 			break;//case VERTI_VERTI
 			
-		case VERTI_VERTI://--------------------------------------
+		case VV://--------------------------------------
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig()); 
 			this.rect_C.setY_Cur(this.rect_B.getY_Cur());
@@ -5315,7 +5315,7 @@ public class Rect_D11 {
 		
 		switch(orien) {
 
-		case HORI_VERTI://--------------------------------------
+		case HV://--------------------------------------
 
 			this.rect_C.setH(this.rect_C.getH_Orig());
 			this.rect_C.setW(this.rect_C.getW_Orig());
@@ -5340,7 +5340,7 @@ public class Rect_D11 {
 
 			break;//case HORI_VERTI
 
-		case HORI_HORI://--------------------------------------
+		case HH://--------------------------------------
 			
 			////////////////////////////////
 			
@@ -5378,7 +5378,7 @@ public class Rect_D11 {
 			
 			break;//case HORI_HORI
 			
-		case VERTI_HORI://--------------------------------------
+		case VH://--------------------------------------
 			
 			this.rect_C.setH(this.rect_C.getW_Orig());
 			this.rect_C.setW(this.rect_C.getH_Orig());
@@ -5405,7 +5405,7 @@ public class Rect_D11 {
 			
 			break;//case VERTI_VERTI
 			
-		case VERTI_VERTI://--------------------------------------
+		case VV://--------------------------------------
 			
 			this.rect_C.setH(this.rect_C.getH_Orig());
 			this.rect_C.setW(this.rect_C.getW_Orig());
@@ -5422,7 +5422,7 @@ public class Rect_D11 {
 			CONS.Admin.status_C = 
 							Methods.get_Status_from_NodeAndPosition(
 										CONS.Admin.NodeNames.B_UL, 
-										CONS.Admin.Orien.VERTI_VERTI);
+										CONS.Admin.Orien.VV);
 			
 			// current node number
 			CONS.Admin.node_Current = 
@@ -5502,7 +5502,7 @@ public class Rect_D11 {
 	
 		switch(orien) {
 		
-		case HORI_VERTI://-------------------------------------- status = 5
+		case HV://-------------------------------------- status = 5
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig() - this.rect_C.getW_Orig()); 
 			this.rect_C.setY_Cur(this.rect_B.getY_Cur() + rect_B.getH_Orig());
@@ -5512,7 +5512,7 @@ public class Rect_D11 {
 			
 			break;//case HORI_VERTI
 			
-		case HORI_HORI://-------------------------------------- status = 6
+		case HH://-------------------------------------- status = 6
 
 			////////////////////////////////
 			
@@ -5527,7 +5527,7 @@ public class Rect_D11 {
 			
 			break;//case HORI_HORI
 			
-		case VERTI_HORI://-------------------------------------- status = 7
+		case VH://-------------------------------------- status = 7
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig()); 
 			this.rect_C.setY_Cur(this.rect_B.getY_Cur() + rect_B.getH_Orig() - this.rect_C.getW_Orig());
@@ -5537,7 +5537,7 @@ public class Rect_D11 {
 			
 			break;//case VERTI_VERTI
 			
-		case VERTI_VERTI://--------------------------------------
+		case VV://--------------------------------------
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig()); 
 			this.rect_C.setY_Cur(this.rect_B.getY_Cur() + rect_B.getH_Orig() - this.rect_C.getH_Orig());
@@ -5573,7 +5573,7 @@ public class Rect_D11 {
 		
 		switch(orien) {
 		
-		case HORI_VERTI://-------------------------------------- status = 5
+		case HV://-------------------------------------- status = 5
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig() - this.rect_C.getW_Orig()); 
 			this.rect_C.setY_Cur(this.rect_B.getY_Cur() - this.rect_C.getH_Orig());
@@ -5583,7 +5583,7 @@ public class Rect_D11 {
 			
 			break;//case HORI_VERTI
 			
-		case HORI_HORI://-------------------------------------- status = 6
+		case HH://-------------------------------------- status = 6
 			
 			////////////////////////////////
 			
@@ -5598,7 +5598,7 @@ public class Rect_D11 {
 			
 			break;//case HORI_HORI
 			
-		case VERTI_HORI://-------------------------------------- status = 7
+		case VH://-------------------------------------- status = 7
 			
 			// => to HORI_HORI
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig()); 
@@ -5609,7 +5609,7 @@ public class Rect_D11 {
 			
 			break;//case VERTI_VERTI
 			
-		case VERTI_VERTI://--------------------------------------
+		case VV://--------------------------------------
 			
 			this.rect_C.setX_Cur(this.rect_B.getX_Cur() + rect_B.getW_Orig()); 
 			this.rect_C.setY_Cur(this.rect_B.getY_Cur());
@@ -5645,7 +5645,7 @@ public class Rect_D11 {
 		
 		switch(orien) {
 		
-		case HORI_VERTI://--------------------------------------
+		case HV://--------------------------------------
 			
 			this.rect_C.setH(this.rect_C.getH_Orig());
 			this.rect_C.setW(this.rect_C.getW_Orig());
@@ -5670,7 +5670,7 @@ public class Rect_D11 {
 			
 			break;//case HORI_VERTI
 			
-		case HORI_HORI://--------------------------------------
+		case HH://--------------------------------------
 			
 			////////////////////////////////
 			
@@ -5699,7 +5699,7 @@ public class Rect_D11 {
 			
 			break;//case HORI_HORI
 			
-		case VERTI_HORI://--------------------------------------
+		case VH://--------------------------------------
 			
 			// => to HORI_HORI
 			this.rect_C.setH(this.rect_C.getW_Orig());
@@ -5740,7 +5740,7 @@ public class Rect_D11 {
 			
 			break;//case VERTI_VERTI
 			
-		case VERTI_VERTI://--------------------------------------
+		case VV://--------------------------------------
 			
 			this.rect_C.setH(this.rect_C.getH_Orig());
 			this.rect_C.setW(this.rect_C.getW_Orig());
@@ -5757,7 +5757,7 @@ public class Rect_D11 {
 			CONS.Admin.status_C = 
 					Methods.get_Status_from_NodeAndPosition(
 							CONS.Admin.NodeNames.B_UL, 
-							CONS.Admin.Orien.VERTI_VERTI);
+							CONS.Admin.Orien.VV);
 			
 			// current node number
 			CONS.Admin.node_Current = 
