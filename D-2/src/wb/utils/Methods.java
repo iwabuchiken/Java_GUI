@@ -3640,6 +3640,17 @@ public class Methods {
 		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 
 		
+		////////////////////////////////
+
+		// build: list
+
+		////////////////////////////////
+		Map<NodeNames, Object[]> map = new HashMap<NodeNames, Object[]>();
+
+		CornerTypes type = null;
+		
+		Point point = null;
+
 		while(it.hasNext()) {
 
 			// get name
@@ -3659,6 +3670,12 @@ public class Methods {
 			// dispatch
 
 			////////////////////////////////
+//			Map<NodeNames, Object[]> map = new HashMap<NodeNames, Object[]>();
+			
+//			CornerTypes type = null;
+//			
+//			Point point = null;
+			
 			name_String = name.toString();
 			
 			if (name_String.startsWith("C")) {
@@ -3669,17 +3686,73 @@ public class Methods {
 				case C_UR: 
 				case C_LL: //return null;
 				
-				case C_LR: return Methods.get_CornerTypes__Node_C(
+				case C_LR: 
+					
+					type = Methods.get_CornerTypes__Node_C(
 											map_AllNodes_XY.get(name), name, rect_A, rect_B);
+//				case C_LR: return Methods.get_CornerTypes__Node_C(
+//						map_AllNodes_XY.get(name), name, rect_A, rect_B);
+					
+					point = map_AllNodes_XY.get(name);
+					
+					map.put(name, new Object[]{point, type});
+					
 				
 				}
 				
 			} else {
 				
+				point = map_AllNodes_XY.get(name);
+
+				type = null;
+				
+				map.put(name, new Object[]{point, type});
 				
 			}
 			
 		}//while(it.hasNext())
+		
+		//log
+		text = String.format(Locale.JAPAN, "map.size() => %d\n", map.size());
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		it = map_AllNodes_XY.keySet().iterator();
+		
+		while(it.hasNext()) {
+
+			// get name
+			name = (NodeNames)it.next();
+			
+			type = (CornerTypes) map.get(name)[1];
+			
+			if (type != null) {
+				
+				text = String.format(Locale.JAPAN, 
+						"name => %s, corner type => %s\n", 
+						name, type.toString());
+				
+			} else {
+				
+				text = String.format(Locale.JAPAN, 
+						"name => %s, corner type => null\n", 
+						name);
+				
+			}
+			
+			//log
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+		}		
 		
 		// test
 //		NodeNames name = null;
@@ -3744,7 +3817,8 @@ public class Methods {
 	}//get_Map_AllNodes
 	
 
-	private static Map<NodeNames, Object[]> 
+//	private static Map<NodeNames, Object[]> 
+	private static CornerTypes 
 	get_CornerTypes__Node_C
 	(Point point, NodeNames name, Rect rect_A, Rect rect_B) {
 		// TODO Auto-generated method stub
@@ -3864,7 +3938,8 @@ public class Methods {
 		
 	}//get_CornerTypes
 
-	private static Map<NodeNames, Object[]> 
+//	private static Map<NodeNames, Object[]> 
+	private static CornerTypes 
 	_get_CornerTypes__Node_C__CLR
 	(Point point, NodeNames name, Rect rect_A, Rect rect_B) {
 		// TODO Auto-generated method stub
@@ -3877,12 +3952,14 @@ public class Methods {
 		
 		// is in?
 		if (type != null) {
+
+			return type;
 			
-			Map<NodeNames, Object[]> map = new HashMap<NodeNames, Object[]>();
-			
-			map.put(name, new Object[]{point, type});
-			
-			return map;
+//			Map<NodeNames, Object[]> map = new HashMap<NodeNames, Object[]>();
+//			
+//			map.put(name, new Object[]{point, type});
+//			
+//			return map;
 			
 //			return (new HashMap<name, Object[]>());
 			
@@ -3898,11 +3975,13 @@ public class Methods {
 		// is in?
 		if (type != null) {
 			
-			Map<NodeNames, Object[]> map = new HashMap<NodeNames, Object[]>();
+			return type;
 			
-			map.put(name, new Object[]{point, type});
-			
-			return map;
+//			Map<NodeNames, Object[]> map = new HashMap<NodeNames, Object[]>();
+//			
+//			map.put(name, new Object[]{point, type});
+//			
+//			return map;
 			
 //			return (new HashMap<name, Object[]>());
 			
@@ -3931,7 +4010,8 @@ public class Methods {
 		
 	}//_get_CornerTypes__Node_C__CLR
 	
-	private static Map<NodeNames, Object[]> 
+//	private static Map<NodeNames, Object[]> 
+	private static CornerTypes 
 	_get_CornerTypes__Node_C__CLL
 	(Point point, NodeNames name, Rect rect_A, Rect rect_B) {
 		// TODO Auto-generated method stub
@@ -3945,11 +4025,13 @@ public class Methods {
 		// is in?
 		if (type != null) {
 			
-			Map<NodeNames, Object[]> map = new HashMap<NodeNames, Object[]>();
+			return type;
 			
-			map.put(name, new Object[]{point, type});
-			
-			return map;
+//			Map<NodeNames, Object[]> map = new HashMap<NodeNames, Object[]>();
+//			
+//			map.put(name, new Object[]{point, type});
+//			
+//			return map;
 			
 //			return (new HashMap<name, Object[]>());
 			
@@ -3965,11 +4047,13 @@ public class Methods {
 		// is in?
 		if (type != null) {
 			
-			Map<NodeNames, Object[]> map = new HashMap<NodeNames, Object[]>();
+			return type;
 			
-			map.put(name, new Object[]{point, type});
-			
-			return map;
+//			Map<NodeNames, Object[]> map = new HashMap<NodeNames, Object[]>();
+//			
+//			map.put(name, new Object[]{point, type});
+//			
+//			return map;
 			
 //			return (new HashMap<name, Object[]>());
 			
