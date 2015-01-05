@@ -3624,32 +3624,14 @@ public class Methods {
 		Iterator it = map_AllNodes_XY.keySet().iterator();
 //		NodeNames name = (NodeNames)it.next();
 		
-		// test
+		// iterate
 		NodeNames name = null;
 		
-		if (map_AllNodes_XY.keySet().contains(CONS.Admin.NodeNames.C_LR)) {
-			
-			name = CONS.Admin.NodeNames.C_LR;
-			
-		} else if (map_AllNodes_XY.keySet().contains(CONS.Admin.NodeNames.C_LL)) {
-				
-				name = CONS.Admin.NodeNames.C_LL;
-				
-		} else {
-			
-			name = (NodeNames)it.next();
-			
-		}
-		
-		
-		
-//		NodeNames name = CONS.Admin.NodeNames.C_LR;
-//		NodeNames name = map_AllNodes_XY.keySet().iterator();
-
-		//log
 		String text, fname; int line_Num;
+		String name_String;
 		
-		text = String.format(Locale.JAPAN, "name => %s\n", name.toString());
+		//log
+		text = String.format(Locale.JAPAN, "map_AllNodes_XY.size => %d\n", map_AllNodes_XY.keySet().size());
 		
 		fname = Thread.currentThread().getStackTrace()[1].getFileName();
 		
@@ -3657,30 +3639,105 @@ public class Methods {
 		
 		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 
-		////////////////////////////////
-
-		// dispatch
-
-		////////////////////////////////
-		String name_String = name.toString();
 		
-		if (name_String.startsWith("C")) {
+		while(it.hasNext()) {
+
+			// get name
+			name = (NodeNames)it.next();
 			
-			switch(name) {
+			//log
+			text = String.format(Locale.JAPAN, "name => %s\n", name.toString());
 			
-			case C_UL: 
-			case C_UR: 
-			case C_LL: //return null;
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
 			
-			case C_LR: return Methods.get_CornerTypes__Node_C(
-										map_AllNodes_XY.get(name), name, rect_A, rect_B);
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
 			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+			////////////////////////////////
+
+			// dispatch
+
+			////////////////////////////////
+			name_String = name.toString();
+			
+			if (name_String.startsWith("C")) {
+				
+				switch(name) {
+				
+				case C_UL: 
+				case C_UR: 
+				case C_LL: //return null;
+				
+				case C_LR: return Methods.get_CornerTypes__Node_C(
+											map_AllNodes_XY.get(name), name, rect_A, rect_B);
+				
+				}
+				
+			} else {
+				
+				
 			}
 			
-		} else {
-			
-			
-		}
+		}//while(it.hasNext())
+		
+		// test
+//		NodeNames name = null;
+//		
+//		if (map_AllNodes_XY.keySet().contains(CONS.Admin.NodeNames.C_LR)) {
+//			
+//			name = CONS.Admin.NodeNames.C_LR;
+//			
+//		} else if (map_AllNodes_XY.keySet().contains(CONS.Admin.NodeNames.C_LL)) {
+//				
+//				name = CONS.Admin.NodeNames.C_LL;
+//				
+//		} else {
+//			
+//			name = (NodeNames)it.next();
+//			
+//		}
+		
+		
+		
+//		NodeNames name = CONS.Admin.NodeNames.C_LR;
+//		NodeNames name = map_AllNodes_XY.keySet().iterator();
+
+//		//log
+//		String text, fname; int line_Num;
+//		
+//		text = String.format(Locale.JAPAN, "name => %s\n", name.toString());
+//		
+//		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//		
+//		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//		
+//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+//		////////////////////////////////
+//
+//		// dispatch
+//
+//		////////////////////////////////
+//		String name_String = name.toString();
+//		
+//		if (name_String.startsWith("C")) {
+//			
+//			switch(name) {
+//			
+//			case C_UL: 
+//			case C_UR: 
+//			case C_LL: //return null;
+//			
+//			case C_LR: return Methods.get_CornerTypes__Node_C(
+//										map_AllNodes_XY.get(name), name, rect_A, rect_B);
+//			
+//			}
+//			
+//		} else {
+//			
+//			
+//		}
 		
 		return null;
 		
