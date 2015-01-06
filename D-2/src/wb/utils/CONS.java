@@ -68,7 +68,7 @@ public class CONS {
 		public static enum CornerTypes {
 			
 			IN_CORNER, OUT_CORNER,
-			IN_CORNER_A, IN_CORNER_B,
+			IN_CORNER_A, IN_CORNER_B, IN_CORNER_C, IN_CORNER_X,
 			
 		}
 		

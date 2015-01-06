@@ -3684,7 +3684,10 @@ public class Methods {
 				
 //					type = Methods.get_CornerTypes__Node_C(
 				type = Methods.get_CornerTypes__Node_ABC(
-										map_AllNodes_XY, name, rect_A, rect_B);
+										map_AllNodes_XY, 
+										name, 
+										rect_A, rect_B 
+										);
 //				map_AllNodes_XY.get(name), name, rect_A, rect_B);
 				
 				point = map_AllNodes_XY.get(name);
@@ -3818,7 +3821,9 @@ public class Methods {
 
 	private static CornerTypes 
 	get_CornerTypes__Node_ABC
-	(Map<NodeNames, Point> map_AllNodes_XY, NodeNames name, Rect rect_1, Rect rect_2) {
+	(Map<NodeNames, Point> map_AllNodes_XY, 
+			NodeNames name, 
+			Rect rect_1, Rect rect_2) {
 		// TODO Auto-generated method stub
 		
 		Point point = map_AllNodes_XY.get(name);
@@ -3867,14 +3872,14 @@ public class Methods {
 //	private static Map<NodeNames, Object[]> 
 	private static CornerTypes 
 	_get_CornerTypes__Node_C__CLR
-	(Point point, NodeNames name, Rect rect_A, Rect rect_B) {
+	(Point point, NodeNames name, Rect rect_1, Rect rect_2) {
 		// TODO Auto-generated method stub
 		////////////////////////////////
 
 		// Y + 1
 
 		////////////////////////////////
-		CornerTypes type = Methods._get_CornerTypes__Node_C__Yplus1(point, rect_A, rect_B);
+		CornerTypes type = Methods._get_CornerTypes__Node_C__Yplus1(point, rect_1, rect_2);
 		
 		// is in?
 		if (type != null) {
@@ -3907,7 +3912,7 @@ public class Methods {
 		// X - 1
 		
 		////////////////////////////////
-		type = Methods._get_CornerTypes__Node_C__Xplus1(point, rect_A, rect_B);
+		type = Methods._get_CornerTypes__Node_C__Xplus1(point, rect_1, rect_2);
 		
 		// is in?
 		if (type != null) {
@@ -4199,7 +4204,7 @@ public class Methods {
 	
 	private static CornerTypes 
 	_get_CornerTypes__Node_C__Yplus1
-	(Point point, Rect rect_A, Rect rect_B) {
+	(Point point, Rect rect_1, Rect rect_2) {
 		// TODO Auto-generated method stub
 		////////////////////////////////
 
@@ -4215,7 +4220,7 @@ public class Methods {
 		// Rect A
 
 		////////////////////////////////
-		boolean isIn = Methods.is_WithinRect(rect_A, new Point(node_X, node_Y));
+		boolean isIn = Methods.is_WithinRect(rect_1, new Point(node_X, node_Y));
 
 		if (isIn == true) {
 		
@@ -4232,16 +4237,26 @@ public class Methods {
 			
 			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 			
-			return CONS.Admin.CornerTypes.IN_CORNER_A;
+			////////////////////////////////
+
+			// return
+
+			////////////////////////////////
+			String rect_Name = rect_1.getRect_Name();
 			
-		}
+			if (rect_Name.equals("rect_A")) return CONS.Admin.CornerTypes.IN_CORNER_A;
+			else if (rect_Name.equals("rect_B")) return CONS.Admin.CornerTypes.IN_CORNER_B;
+			else if (rect_Name.equals("rect_C")) return CONS.Admin.CornerTypes.IN_CORNER_C;
+			else return CONS.Admin.CornerTypes.IN_CORNER_X;
+			
+		}//if (isIn == true)
 		
 		////////////////////////////////
 		
 		// Rect B
 		
 		////////////////////////////////
-		isIn = Methods.is_WithinRect(rect_B, new Point(node_X, node_Y));
+		isIn = Methods.is_WithinRect(rect_2, new Point(node_X, node_Y));
 		
 		if (isIn == true) {
 			
@@ -4257,8 +4272,20 @@ public class Methods {
 			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
 			
 			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+	
+			////////////////////////////////
+
+			// return
+
+			////////////////////////////////
+			String rect_Name = rect_2.getRect_Name();
 			
-			return CONS.Admin.CornerTypes.IN_CORNER_B;
+			if (rect_Name.equals("rect_A")) return CONS.Admin.CornerTypes.IN_CORNER_A;
+			else if (rect_Name.equals("rect_B")) return CONS.Admin.CornerTypes.IN_CORNER_B;
+			else if (rect_Name.equals("rect_C")) return CONS.Admin.CornerTypes.IN_CORNER_C;
+			else return CONS.Admin.CornerTypes.IN_CORNER_X;
+
+//			return CONS.Admin.CornerTypes.IN_CORNER_B;
 			
 		}
 		
@@ -4282,7 +4309,7 @@ public class Methods {
 
 	private static CornerTypes 
 	_get_CornerTypes__Node_C__Yminus1
-	(Point point, Rect rect_A, Rect rect_B) {
+	(Point point, Rect rect_1, Rect rect_2) {
 		// TODO Auto-generated method stub
 		////////////////////////////////
 		
@@ -4298,7 +4325,7 @@ public class Methods {
 		// Rect A
 		
 		////////////////////////////////
-		boolean isIn = Methods.is_WithinRect(rect_A, new Point(node_X, node_Y));
+		boolean isIn = Methods.is_WithinRect(rect_1, new Point(node_X, node_Y));
 		
 		if (isIn == true) {
 			
@@ -4315,7 +4342,19 @@ public class Methods {
 			
 			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 			
-			return CONS.Admin.CornerTypes.IN_CORNER_A;
+			////////////////////////////////
+
+			// return
+
+			////////////////////////////////
+			String rect_Name = rect_1.getRect_Name();
+			
+			if (rect_Name.equals("rect_A")) return CONS.Admin.CornerTypes.IN_CORNER_A;
+			else if (rect_Name.equals("rect_B")) return CONS.Admin.CornerTypes.IN_CORNER_B;
+			else if (rect_Name.equals("rect_C")) return CONS.Admin.CornerTypes.IN_CORNER_C;
+			else return CONS.Admin.CornerTypes.IN_CORNER_X;
+			
+//			return CONS.Admin.CornerTypes.IN_CORNER_A;
 			
 		}
 		
@@ -4324,7 +4363,7 @@ public class Methods {
 		// Rect B
 		
 		////////////////////////////////
-		isIn = Methods.is_WithinRect(rect_B, new Point(node_X, node_Y));
+		isIn = Methods.is_WithinRect(rect_2, new Point(node_X, node_Y));
 		
 		if (isIn == true) {
 			
@@ -4341,7 +4380,19 @@ public class Methods {
 			
 			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 			
-			return CONS.Admin.CornerTypes.IN_CORNER_B;
+			////////////////////////////////
+
+			// return
+
+			////////////////////////////////
+			String rect_Name = rect_2.getRect_Name();
+			
+			if (rect_Name.equals("rect_A")) return CONS.Admin.CornerTypes.IN_CORNER_A;
+			else if (rect_Name.equals("rect_B")) return CONS.Admin.CornerTypes.IN_CORNER_B;
+			else if (rect_Name.equals("rect_C")) return CONS.Admin.CornerTypes.IN_CORNER_C;
+			else return CONS.Admin.CornerTypes.IN_CORNER_X;
+
+//			return CONS.Admin.CornerTypes.IN_CORNER_B;
 			
 		}
 		
@@ -4365,7 +4416,7 @@ public class Methods {
 	
 	private static CornerTypes 
 	_get_CornerTypes__Node_C__Xplus1
-	(Point point, Rect rect_A, Rect rect_B) {
+	(Point point, Rect rect_1, Rect rect_2) {
 		// TODO Auto-generated method stub
 		////////////////////////////////
 		
@@ -4381,7 +4432,7 @@ public class Methods {
 		// Rect A
 		
 		////////////////////////////////
-		boolean isIn = Methods.is_WithinRect(rect_A, new Point(node_X, node_Y));
+		boolean isIn = Methods.is_WithinRect(rect_1, new Point(node_X, node_Y));
 		
 		if (isIn == true) {
 			
@@ -4398,7 +4449,19 @@ public class Methods {
 			
 			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 			
-			return CONS.Admin.CornerTypes.IN_CORNER_A;
+			////////////////////////////////
+
+			// return
+
+			////////////////////////////////
+			String rect_Name = rect_1.getRect_Name();
+			
+			if (rect_Name.equals("rect_A")) return CONS.Admin.CornerTypes.IN_CORNER_A;
+			else if (rect_Name.equals("rect_B")) return CONS.Admin.CornerTypes.IN_CORNER_B;
+			else if (rect_Name.equals("rect_C")) return CONS.Admin.CornerTypes.IN_CORNER_C;
+			else return CONS.Admin.CornerTypes.IN_CORNER_X;
+
+//			return CONS.Admin.CornerTypes.IN_CORNER_A;
 			
 		}
 		
@@ -4407,7 +4470,7 @@ public class Methods {
 		// Rect B
 		
 		////////////////////////////////
-		isIn = Methods.is_WithinRect(rect_B, new Point(node_X, node_Y));
+		isIn = Methods.is_WithinRect(rect_2, new Point(node_X, node_Y));
 		
 		if (isIn == true) {
 			
@@ -4424,7 +4487,29 @@ public class Methods {
 			
 			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 			
-			return CONS.Admin.CornerTypes.IN_CORNER_B;
+			////////////////////////////////
+
+			// return
+
+			////////////////////////////////
+			String rect_Name = rect_2.getRect_Name();
+			
+			//log
+			text = String.format(Locale.JAPAN, "rect_Name => %s\n", rect_Name);
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+			
+			if (rect_Name.equals("rect_A")) return CONS.Admin.CornerTypes.IN_CORNER_A;
+			else if (rect_Name.equals("rect_B")) return CONS.Admin.CornerTypes.IN_CORNER_B;
+			else if (rect_Name.equals("rect_C")) return CONS.Admin.CornerTypes.IN_CORNER_C;
+			else return CONS.Admin.CornerTypes.IN_CORNER_X;
+
+//			return CONS.Admin.CornerTypes.IN_CORNER_B;
 			
 		}
 		
