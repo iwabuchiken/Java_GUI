@@ -3845,9 +3845,9 @@ public class Methods {
 		// width => same?
 		
 		////////////////////////////////
-		int z_H = rect_Z.getH();
-		int r1_H = list_Rects.get(0).getH();
-		int r2_H = list_Rects.get(1).getH();
+		int z_H = rect_Z.getW();
+		int r1_H = list_Rects.get(0).getW();
+		int r2_H = list_Rects.get(1).getW();
 		
 		//log
 		String text, fname; int line_Num;
@@ -3900,7 +3900,7 @@ public class Methods {
 		int r1_X2 = r1.getX_Cur() + r1.getW();
 		int r2_X2 = r2.getX_Cur() + r2.getW();
 		
-		// Y1
+		// Y2
 		int z_Y2 = rect_Z.getY_Cur() + rect_Z.getH();
 		int r1_Y2 = r1.getY_Cur() + r1.getH();
 		int r2_Y2 = r2.getY_Cur() + r2.getH();
