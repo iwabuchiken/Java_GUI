@@ -3426,6 +3426,8 @@ public class Methods {
 		
 		case LX1: return Methods._get_LineStates__LX1(rect_Z, rects);
 		case LY1: return Methods._get_LineStates__LY1(rect_Z, rects);
+		
+		case LX2: return Methods._get_LineStates__LX2(rect_Z, rects);
 						
 //		case LX2: return Methods._get_LineStates__LX2(rect_Z, rects);
 //		case LY2: return Methods._get_LineStates__LX2(rect_Z, rects);
@@ -3568,6 +3570,76 @@ public class Methods {
 		}
 		
 	}//_get_LineStates__LX1
+	
+	private static LineStates 
+	_get_LineStates__LX2
+	(Rect rect_Z, Rect[] rects) {
+		// TODO Auto-generated method stub
+		
+		String text, fname;
+		int line_Num;
+		
+		////////////////////////////////
+		
+		// get: rects whose y1 is equal to that of rect Z
+		
+		////////////////////////////////
+		List<Rect> list_Rects = new ArrayList<Rect>();
+		
+		int z_Y2 = rect_Z.getY_Cur() + rect_Z.getH();
+		
+		int r_Y2;
+		
+		for (Rect rect : rects) {
+			
+			r_Y2 = rect.getY_Cur() + rect.getH();
+			
+			if (r_Y2 == z_Y2) {
+				
+				list_Rects.add(rect);
+				
+			}
+			
+		}
+		
+//		//log
+//		text = String.format(Locale.JAPAN, "list_Rects.size => %d\n", list_Rects.size());
+//		
+//		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//		
+//		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//		
+//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+		
+		// dispatch
+		
+		////////////////////////////////
+		int numOf_Rects = list_Rects.size();
+		
+		//log
+		text = String.format(Locale.JAPAN, "numOf_Rects => %d\n", numOf_Rects);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		switch(numOf_Rects) {
+		
+		case 0: return CONS.Admin.LineStates.NONE;
+		case 1: return Methods._get_LineStates__LX2__Case_1(rect_Z, list_Rects.get(0));
+		case 2: return CONS.Admin.LineStates.UNKNOWN;
+//		case 2: return Methods._get_LineStates__LX1__Case_2(rect_Z, list_Rects);
+		case 3: return CONS.Admin.LineStates.MATCH;
+		
+		default: return CONS.Admin.LineStates.UNKNOWN;
+		
+		}
+		
+	}//_get_LineStates__LX2
 	
 	private static LineStates 
 	_get_LineStates__LX1__Case_2
@@ -3891,7 +3963,7 @@ public class Methods {
 			
 		} else {	// line(R, x1) => at the middle of LX1
 			
-			return CONS.Admin.LineStates.MIDDLE_Y;
+			return CONS.Admin.LineStates.MIDDLE_X;
 			
 		}
 		
@@ -3899,6 +3971,68 @@ public class Methods {
 		
 	}//_get_LineStates__LX1__Case_1
 
+	private static LineStates 
+	_get_LineStates__LX2__Case_1
+	(Rect rect_Z, Rect rect) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// width => same?
+		
+		////////////////////////////////
+		int z_W = rect_Z.getW();
+		int r_W = rect.getW();
+		
+		if (z_W == r_W) {
+			
+			return CONS.Admin.LineStates.MATCH;
+		}
+		
+//		} else {
+//			
+//			return CONS.Admin.LineStates.UNKNOWN;
+//			
+//		}
+		
+		////////////////////////////////
+		
+		// not same
+		
+		////////////////////////////////
+		int z_X1 = rect_Z.getX_Cur();
+		int r_X1 = rect.getX_Cur();
+		
+		int z_Y2 = rect_Z.getY_Cur() + rect_Z.getH();
+		int r_Y2 = rect.getY_Cur() + rect.getH();
+		
+		int z_X2 = rect_Z.getX_Cur() + rect_Z.getW();
+		int r_X2 = rect.getX_Cur() + rect.getW();
+		
+		Point p_ZLL = new Point(z_X1, z_Y2);
+		Point p_ZLR = new Point(z_X2, z_Y2);
+		
+		Point p_RLL = new Point(r_X1, r_Y2);
+		Point p_RLR = new Point(r_X2, r_Y2);
+		
+		if (Methods.isSame_Point(p_ZLL, p_RLL)) {	// Z_UL = R_UL
+			
+			return CONS.Admin.LineStates.LEFT;
+			
+		} else if (Methods.isSame_Point(p_ZLR, p_RLR)) {	// Z_UR = R_UR
+			
+			return CONS.Admin.LineStates.RIGHT;
+			
+		} else {	// line(R, x1) => at the middle of LX1
+			
+			return CONS.Admin.LineStates.MIDDLE_X;
+			
+		}
+		
+//		return CONS.Admin.LineStates.UNKNOWN;
+		
+	}//_get_LineStates__LX2__Case_1
+	
 	private static LineStates 
 	_get_LineStates__LY1__Case_1
 	(Rect rect_Z, Rect rect) {
@@ -3983,7 +4117,8 @@ public class Methods {
 			
 		} else {
 			
-			return CONS.Admin.LineStates.UNKNOWN;
+			return CONS.Admin.LineStates.MIDDLE_Y;
+//			return CONS.Admin.LineStates.UNKNOWN;
 			
 		}
 		

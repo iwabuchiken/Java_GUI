@@ -2627,10 +2627,12 @@ public class Rect_D11 {
 		
 		list_Lines.add(CONS.Admin.Lines.LX1);
 		list_Lines.add(CONS.Admin.Lines.LY1);
+		list_Lines.add(CONS.Admin.Lines.LX2);
 		
 		Lines line = null;
 		LineStates state = null;
 		
+		//REF http://stackoverflow.com/questions/683518/java-class-that-implements-map-and-keeps-insertion-order answered Mar 25 '09 at 21:23
 		Map<Lines, LineStates> map = new LinkedHashMap<Lines, LineStates>();
 		
 		for (int i = 0; i < list_Lines.size(); i++) {
