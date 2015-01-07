@@ -58,7 +58,7 @@ public class CONS {
 		public static enum LineStates {
 			
 			MIDDLE_X, MIDDLE_Y,
-			BOTH_X, BOTH_Y,
+			BOTH_Y, BOTH_X,
 			UPPER, LOWER,
 			LEFT, RIGHT,
 			NONE, MATCH, UNKNOWN,

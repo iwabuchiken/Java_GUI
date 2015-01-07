@@ -3660,12 +3660,12 @@ public class Methods {
 		if (Methods.isSame_Point(p_ZUL, p_BUL)
 				&& Methods.isSame_Point(p_ZUR, p_CUR)) {
 			
-			return CONS.Admin.LineStates.BOTH_Y;
+			return CONS.Admin.LineStates.BOTH_X;
 			
 		} else if (Methods.isSame_Point(p_ZUL, p_CUL)
 				&& Methods.isSame_Point(p_ZUR, p_BUR)) {
 			
-			return CONS.Admin.LineStates.BOTH_Y;
+			return CONS.Admin.LineStates.BOTH_X;
 			
 		} else if (Methods.isSame_Point(p_ZUL, p_BUL)
 				&& Methods.isSame_Point(p_BUR, p_CUL)) {
@@ -3731,95 +3731,97 @@ public class Methods {
 		if (z_H == sum_H) {
 			
 			return CONS.Admin.LineStates.MATCH;
-//		}
-		
-		} else {
-		 	
-			return CONS.Admin.LineStates.UNKNOWN;
-			
 		}
 		
-//		////////////////////////////////
-//		
-//		// Z.w > (r1.w + r2.w)
-//		
-//		////////////////////////////////
-//		////////////////////////////////
-//		
-//		// data
-//		
-//		////////////////////////////////
-//		Rect r1 = list_Rects.get(0);
-//		Rect r2 = list_Rects.get(1);
-//		
-//		// X1
-//		int z_X1 = rect_Z.getX_Cur();
-//		int r1_X1 = r1.getX_Cur();
-//		int r2_X1 = r2.getX_Cur();
-//		
-//		// X2
-//		int z_X2 = rect_Z.getX_Cur() + rect_Z.getW();
-//		int r1_X2 = r1.getX_Cur() + r1.getW();
-//		int r2_X2 = r2.getX_Cur() + r2.getW();
-//		
-//		// Y1
-//		int z_Y1 = rect_Z.getY_Cur();
-//		int r1_Y1 = r1.getY_Cur();
-//		int r2_Y1 = r2.getY_Cur();
-//		
-//		// Points
-//		// Z
-//		Point p_ZUL = new  Point(z_X1, z_Y1);
-//		Point p_ZUR = new  Point(z_X2, z_Y1);
-//		
-//		// B
-//		Point p_BUL = new  Point(r1_X1, r1_Y1);
-//		Point p_BUR = new  Point(r1_X2, r1_Y1);
-//		
-//		// C
-//		Point p_CUL = new  Point(r2_X1, r2_Y1);
-//		Point p_CUR = new  Point(r2_X2, r2_Y1);
-//		
-//		////////////////////////////////
-//		
-//		// judge
-//		
-//		////////////////////////////////
-//		if (Methods.isSame_Point(p_ZUL, p_BUL)
-//				&& Methods.isSame_Point(p_ZUR, p_CUR)) {
-//			
-//			return CONS.Admin.LineStates.BOTH_Y;
-//			
-//		} else if (Methods.isSame_Point(p_ZUL, p_CUL)
-//				&& Methods.isSame_Point(p_ZUR, p_BUR)) {
-//			
-//			return CONS.Admin.LineStates.BOTH_Y;
-//			
-//		} else if (Methods.isSame_Point(p_ZUL, p_BUL)
-//				&& Methods.isSame_Point(p_BUR, p_CUL)) {
-//			
-//			return CONS.Admin.LineStates.LEFT;
-//			
-//		} else if (Methods.isSame_Point(p_ZUL, p_CUL)
-//				&& Methods.isSame_Point(p_CUR, p_BUL)) {
-//			
-//			return CONS.Admin.LineStates.LEFT;
-//			
-//		} else if (Methods.isSame_Point(p_ZUR, p_CUR)
-//				&& Methods.isSame_Point(p_BUR, p_CUL)) {
-//			
-//			return CONS.Admin.LineStates.RIGHT;
-//			
-//		} else if (Methods.isSame_Point(p_ZUR, p_BUR)
-//				&& Methods.isSame_Point(p_CUR, p_BUL)) {
-//			
-//			return CONS.Admin.LineStates.RIGHT;
-//			
 //		} else {
-//			
+//		 	
 //			return CONS.Admin.LineStates.UNKNOWN;
 //			
 //		}
+		
+		////////////////////////////////
+		
+		// Z.w > (r1.w + r2.w)
+		
+		////////////////////////////////
+		////////////////////////////////
+		
+		// data
+		
+		////////////////////////////////
+		Rect r1 = list_Rects.get(0);
+		Rect r2 = list_Rects.get(1);
+		
+		// X1
+		int z_X1 = rect_Z.getX_Cur();
+		int r1_X1 = r1.getX_Cur();
+		int r2_X1 = r2.getX_Cur();
+		
+		// Y1
+		int z_Y1 = rect_Z.getY_Cur();
+		int r1_Y1 = r1.getY_Cur();
+		int r2_Y1 = r2.getY_Cur();
+		
+		// Y2
+		int z_Y2 = rect_Z.getY_Cur() + rect_Z.getH();
+		int r1_Y2 = r1.getY_Cur() + r1.getH();
+		int r2_Y2 = r2.getY_Cur() + r2.getH();
+		
+		// Points
+		// Z
+		Point p_ZUL = new  Point(z_X1, z_Y1);
+		Point p_ZLL = new  Point(z_X1, z_Y2);
+		
+		// R1
+		Point p_R1UL = new  Point(r1_X1, r1_Y1);
+		Point p_R1LL = new  Point(r1_X1, r1_Y2);
+//		Point p_BUR = new  Point(r1_X2, r1_Y1);
+		
+		// C
+		Point p_R2UL = new  Point(r2_X1, r2_Y1);
+		Point p_R2LL = new  Point(r2_X1, r2_Y2);
+//		Point p_CUR = new  Point(r2_X2, r2_Y1);
+		
+		////////////////////////////////
+		
+		// judge
+		
+		////////////////////////////////
+		if (Methods.isSame_Point(p_ZUL, p_R2UL)
+				&& Methods.isSame_Point(p_ZLL, p_R1LL)) {
+			
+			return CONS.Admin.LineStates.BOTH_Y;
+			
+		} else if (Methods.isSame_Point(p_ZUL, p_R1UL)
+				&& Methods.isSame_Point(p_ZLL, p_R2LL)) {
+			
+			return CONS.Admin.LineStates.BOTH_Y;
+			
+		} else if (Methods.isSame_Point(p_ZLL, p_R1LL)
+				&& Methods.isSame_Point(p_R1UL, p_R2LL)) {
+			
+			return CONS.Admin.LineStates.LOWER;
+			
+		} else if (Methods.isSame_Point(p_ZLL, p_R2LL)
+				&& Methods.isSame_Point(p_R2UL, p_R1LL)) {
+			
+			return CONS.Admin.LineStates.LOWER;
+			
+		} else if (Methods.isSame_Point(p_ZUL, p_R1UL)
+				&& Methods.isSame_Point(p_R1LL, p_R2UL)) {
+			
+			return CONS.Admin.LineStates.UPPER;
+			
+		} else if (Methods.isSame_Point(p_ZUL, p_R2UL)
+				&& Methods.isSame_Point(p_R2LL, p_R1UL)) {
+			
+			return CONS.Admin.LineStates.UPPER;
+			
+		} else {
+			
+			return CONS.Admin.LineStates.UNKNOWN;
+			
+		}
 		
 //		return CONS.Admin.LineStates.UNKNOWN;
 		

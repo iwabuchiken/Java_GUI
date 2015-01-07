@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -44,6 +46,8 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Group;
 //import org.eclipse.wb.swt.SWTResourceManager;
+
+
 
 
 
@@ -2612,55 +2616,113 @@ public class Rect_D11 {
 		////////////////////////////////
 		Rect rect_Z = Methods.get_Rect_Z(this.rect_A, this.rect_B, this.rect_C);
 
-		Lines line = CONS.Admin.Lines.LX1;
+//		Lines line = CONS.Admin.Lines.LX1;
 
 		////////////////////////////////
 
 		// get: states
 
 		////////////////////////////////
-		LineStates state = Methods.get_LineStates(
-								rect_Z, 
-								new Rect[]{rect_A, rect_B, rect_C},
+		List<Lines> list_Lines = new ArrayList<Lines>();
+		
+		list_Lines.add(CONS.Admin.Lines.LX1);
+		list_Lines.add(CONS.Admin.Lines.LY1);
+		
+		Lines line = null;
+		LineStates state = null;
+		
+		Map<Lines, LineStates> map = new LinkedHashMap<Lines, LineStates>();
+		
+		for (int i = 0; i < list_Lines.size(); i++) {
+
+			line = list_Lines.get(i);
+			
+			state = Methods.get_LineStates(
+					rect_Z, 
+					new Rect[]{rect_A, rect_B, rect_C},
 //								rect_A, rect_B, rect_C,
-								line);
-//		CONS.Admin.Lines.LX1);
+					line);
+
+			map.put(line, state);
+			
+//			//log
+//			String text, fname; int line_Num;
+//			
+//			text = String.format(Locale.JAPAN, "line = %s / state = %s\n", line.toString(), state.toString());
+//			
+//			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//			
+//			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//			
+//			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		}
 		
-		//log
-		String text, fname; int line_Num;
-		
-		text = String.format(Locale.JAPAN, "line = %s / state = %s\n", line.toString(), state.toString());
-		
-		fname = Thread.currentThread().getStackTrace()[1].getFileName();
-		
-		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-		
-		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		////////////////////////////////
+
+		// report
 
 		////////////////////////////////
+		Iterator<Lines> it = map.keySet().iterator();
 		
-		// get: states: LY1
+		Lines l = null;
 		
-		////////////////////////////////
-		line = CONS.Admin.Lines.LY1;
+		while (it.hasNext()) {
+			
+			l = (Lines) it.next();
+			
+			//log
+			String text, fname; int line_Num;
+			
+			text = String.format(Locale.JAPAN, 
+							"line => %s, state => %s\n", 
+							l.toString(), map.get(l).toString());
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		}//while (it.hasNext())
 		
-		state = Methods.get_LineStates(
-				rect_Z, 
-				new Rect[]{rect_A, rect_B, rect_C},
-//								rect_A, rect_B, rect_C,
-				line);
 //		CONS.Admin.Lines.LX1);
 		
-		//log
+//		//log
 //		String text, fname; int line_Num;
-		
-		text = String.format(Locale.JAPAN, "line = %s / state = %s\n", line.toString(), state.toString());
-		
-		fname = Thread.currentThread().getStackTrace()[1].getFileName();
-		
-		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-		
-		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+//		
+//		text = String.format(Locale.JAPAN, "line = %s / state = %s\n", line.toString(), state.toString());
+//		
+//		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//		
+//		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//		
+//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+//		////////////////////////////////
+//		
+//		// get: states: LY1
+//		
+//		////////////////////////////////
+//		line = CONS.Admin.Lines.LY1;
+//		
+//		state = Methods.get_LineStates(
+//				rect_Z, 
+//				new Rect[]{rect_A, rect_B, rect_C},
+////								rect_A, rect_B, rect_C,
+//				line);
+////		CONS.Admin.Lines.LX1);
+//		
+//		//log
+////		String text, fname; int line_Num;
+//		
+//		text = String.format(Locale.JAPAN, "line = %s / state = %s\n", line.toString(), state.toString());
+//		
+//		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//		
+//		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//		
+//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 		
 //		////////////////////////////////
 //
