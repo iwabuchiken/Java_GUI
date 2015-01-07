@@ -3428,7 +3428,8 @@ public class Methods {
 		case LY1: return Methods._get_LineStates__LY1(rect_Z, rects);
 		
 		case LX2: return Methods._get_LineStates__LX2(rect_Z, rects);
-						
+		case LY2: return Methods._get_LineStates__LY2(rect_Z, rects);
+					
 //		case LX2: return Methods._get_LineStates__LX2(rect_Z, rects);
 //		case LY2: return Methods._get_LineStates__LX2(rect_Z, rects);
 		
@@ -3506,6 +3507,78 @@ public class Methods {
 		
 	}//_get_LineStates__LY1
 
+	private static LineStates 
+	_get_LineStates__LY2
+	(Rect rect_Z, Rect[] rects) {
+		// TODO Auto-generated method stub
+		
+		String text, fname;
+		int line_Num;
+		
+		////////////////////////////////
+		
+		// get: rects whose y1 is equal to that of rect Z
+		
+		////////////////////////////////
+		List<Rect> list_Rects = new ArrayList<Rect>();
+		
+		int z_X2 = rect_Z.getX_Cur() + rect_Z.getW();
+		
+		int r_X2;
+		
+		for (Rect rect : rects) {
+			
+			r_X2 = rect.getX_Cur() + rect.getW();
+			
+			if (r_X2 == z_X2) {
+				
+				list_Rects.add(rect);
+				
+			}
+			
+		}
+		
+//		//log
+//		text = String.format(Locale.JAPAN, "list_Rects.size => %d\n", list_Rects.size());
+//		
+//		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//		
+//		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//		
+//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+		
+		// dispatch
+		
+		////////////////////////////////
+		int numOf_Rects = list_Rects.size();
+		
+		//log
+		text = String.format(Locale.JAPAN, "numOf_Rects => %d\n", numOf_Rects);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		switch(numOf_Rects) {
+		
+		case 0: return CONS.Admin.LineStates.NONE;
+		case 1: return Methods._get_LineStates__LY2__Case_1(rect_Z, list_Rects.get(0));
+//		case 1: return Methods._get_LineStates__LY1__Case_1(rect_Z, list_Rects.get(0));
+//		case 2: return CONS.Admin.LineStates.NONE;
+		case 2: return CONS.Admin.LineStates.UNKNOWN;
+//		case 2: return Methods._get_LineStates__LY1__Case_2(rect_Z, list_Rects);
+		case 3: return CONS.Admin.LineStates.MATCH;
+		
+		default: return CONS.Admin.LineStates.UNKNOWN;
+		
+		}
+		
+	}//_get_LineStates__LY2
+	
 	private static LineStates 
 	_get_LineStates__LX1
 	(Rect rect_Z, Rect[] rects) {
@@ -4259,6 +4332,113 @@ public class Methods {
 //		return CONS.Admin.LineStates.UNKNOWN;
 		
 	}//_get_LineStates__LY1__Case_1
+	
+	private static LineStates 
+	_get_LineStates__LY2__Case_1
+	(Rect rect_Z, Rect rect) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// width => same?
+		
+		///////////////////////////
+		int z_H = rect_Z.getH();
+		int r_H = rect.getH();
+		
+		//log
+		String text, fname; int line_Num;
+		
+		text = String.format(Locale.JAPAN, "rect => %s / z_H = %d, r_H = %d\n", rect.getRect_Name(), z_H, r_H);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		
+		if (z_H == r_H) {
+			
+			return CONS.Admin.LineStates.MATCH;
+		}
+		
+//		} else {
+//			
+//			return CONS.Admin.LineStates.UNKNOWN;
+//			
+//		}
+		
+		////////////////////////////////
+		
+		// not same
+		
+		////////////////////////////////
+		////////////////////////////////
+		
+		// data
+		
+		////////////////////////////////
+		Rect r1 = rect;
+		
+		// X2
+		int z_X2 = rect_Z.getX_Cur() + rect_Z.getW();
+		int r1_X2 = r1.getX_Cur() + r1.getW();
+		
+		// Y1
+		int z_Y1 = rect_Z.getY_Cur();
+		int r1_Y1 = r1.getY_Cur();
+		
+		// Y2
+		int z_Y2 = rect_Z.getY_Cur() + rect_Z.getH();
+		int r1_Y2 = r1.getY_Cur() + r1.getH();
+		
+		// Points
+		// Z
+		Point p_ZUR = new  Point(z_X2, z_Y1);
+		Point p_ZLR = new  Point(z_X2, z_Y2);
+		
+		// r1
+		Point p_RUR = new  Point(r1_X2, r1_Y1);
+		Point p_RLR = new  Point(r1_X2, r1_Y2);
+		
+		////////////////////////////////
+		
+		// judge
+		
+		////////////////////////////////
+		if (Methods.isSame_Point(p_ZUR, p_RUR)) {
+			
+			return CONS.Admin.LineStates.UPPER;
+			
+		} else if (Methods.isSame_Point(p_ZLR, p_RLR)) {
+			
+			return CONS.Admin.LineStates.LOWER;
+			
+		} else {
+			
+			return CONS.Admin.LineStates.MIDDLE_Y;
+//			return CONS.Admin.LineStates.UNKNOWN;
+			
+		}
+		
+//		if ((z_X1 == r_X1) && (z_Y1 == r_Y1)) {	// Z_UL = R_UL
+//			
+//			return CONS.Admin.LineStates.LEFT;
+//			
+//		} else if ((z_X2 == r_X2) && (z_Y1 == r_Y1)) {	// Z_UR = R_UR
+//			
+//			return CONS.Admin.LineStates.RIGHT;
+//			
+//		} else {	// line(R, x1) => at the middle of LX1
+//			
+//			return CONS.Admin.LineStates.MIDDLE_Y;
+//			
+//		}
+		
+//		return CONS.Admin.LineStates.UNKNOWN;
+		
+	}//_get_LineStates__LY2__Case_1
 	
 	/*******************************
 

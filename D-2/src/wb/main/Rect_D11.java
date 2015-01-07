@@ -2627,7 +2627,9 @@ public class Rect_D11 {
 		
 		list_Lines.add(CONS.Admin.Lines.LX1);
 		list_Lines.add(CONS.Admin.Lines.LY1);
+		
 		list_Lines.add(CONS.Admin.Lines.LX2);
+		list_Lines.add(CONS.Admin.Lines.LY2);
 		
 		Lines line = null;
 		LineStates state = null;
