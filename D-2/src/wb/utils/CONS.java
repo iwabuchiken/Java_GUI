@@ -59,7 +59,7 @@ public class CONS {
 			
 			MIDDLE_X, MIDDLE_Y,
 			BOTH_X, BOTH_Y,
-			UPPPER, LOWER,
+			UPPER, LOWER,
 			LEFT, RIGHT,
 			NONE, MATCH, UNKNOWN,
 			

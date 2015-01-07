@@ -2637,6 +2637,31 @@ public class Rect_D11 {
 		
 		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 
+		////////////////////////////////
+		
+		// get: states: LY1
+		
+		////////////////////////////////
+		line = CONS.Admin.Lines.LY1;
+		
+		state = Methods.get_LineStates(
+				rect_Z, 
+				new Rect[]{rect_A, rect_B, rect_C},
+//								rect_A, rect_B, rect_C,
+				line);
+//		CONS.Admin.Lines.LX1);
+		
+		//log
+//		String text, fname; int line_Num;
+		
+		text = String.format(Locale.JAPAN, "line = %s / state = %s\n", line.toString(), state.toString());
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
 //		////////////////////////////////
 //
 //		// build: hashmap

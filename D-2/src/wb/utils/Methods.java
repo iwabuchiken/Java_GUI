@@ -3381,9 +3381,12 @@ public class Methods {
 				});
 		
 		int y2 = Methods.largest(new int[]{
-						rect_A.getY_Cur() + rect_A.getW(), 
-						rect_B.getY_Cur() + rect_B.getW(), 
-						rect_C.getY_Cur() + rect_C.getW()
+						rect_A.getY_Cur() + rect_A.getH(), 
+						rect_B.getY_Cur() + rect_B.getH(), 
+						rect_C.getY_Cur() + rect_C.getH()
+//						rect_A.getY_Cur() + rect_A.getW(), 
+//						rect_B.getY_Cur() + rect_B.getW(), 
+//						rect_C.getY_Cur() + rect_C.getW()
 				});
 
 		int w = x2 - x1;
@@ -3422,7 +3425,11 @@ public class Methods {
 		switch(line) {
 		
 		case LX1: return Methods._get_LineStates__LX1(rect_Z, rects);
+		case LY1: return Methods._get_LineStates__LY1(rect_Z, rects);
 						
+//		case LX2: return Methods._get_LineStates__LX2(rect_Z, rects);
+//		case LY2: return Methods._get_LineStates__LX2(rect_Z, rects);
+		
 		default: return CONS.Admin.LineStates.NONE;
 			
 		}
@@ -3432,7 +3439,7 @@ public class Methods {
 	}//get_LineStatus
 
 	private static LineStates 
-	_get_LineStates__LX1
+	_get_LineStates__LY1
 	(Rect rect_Z, Rect[] rects) {
 		// TODO Auto-generated method stub
 
@@ -3443,6 +3450,72 @@ public class Methods {
 
 		// get: rects whose y1 is equal to that of rect Z
 
+		////////////////////////////////
+		List<Rect> list_Rects = new ArrayList<Rect>();
+		
+		int z_X1 = rect_Z.getX_Cur();
+		
+		for (Rect rect : rects) {
+			
+			if (rect.getX_Cur() == z_X1) {
+				
+				list_Rects.add(rect);
+				
+			}
+			
+		}
+		
+//		//log
+//		text = String.format(Locale.JAPAN, "list_Rects.size => %d\n", list_Rects.size());
+//		
+//		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+//		
+//		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+//		
+//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		////////////////////////////////
+
+		// dispatch
+
+		////////////////////////////////
+		int numOf_Rects = list_Rects.size();
+		
+		//log
+		text = String.format(Locale.JAPAN, "numOf_Rects => %d\n", numOf_Rects);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		switch(numOf_Rects) {
+		
+		case 0: return CONS.Admin.LineStates.NONE;
+		case 1: return Methods._get_LineStates__LY1__Case_1(rect_Z, list_Rects.get(0));
+		case 2: return CONS.Admin.LineStates.NONE;
+//		case 2: return Methods._get_LineStates__LX1__Case_2(rect_Z, list_Rects);
+		case 3: return CONS.Admin.LineStates.MATCH;
+		
+		default: return CONS.Admin.LineStates.UNKNOWN;
+		
+		}
+		
+	}//_get_LineStates__LY1
+
+	private static LineStates 
+	_get_LineStates__LX1
+	(Rect rect_Z, Rect[] rects) {
+		// TODO Auto-generated method stub
+		
+		String text, fname;
+		int line_Num;
+		
+		////////////////////////////////
+		
+		// get: rects whose y1 is equal to that of rect Z
+		
 		////////////////////////////////
 		List<Rect> list_Rects = new ArrayList<Rect>();
 		
@@ -3468,9 +3541,9 @@ public class Methods {
 		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 		
 		////////////////////////////////
-
+		
 		// dispatch
-
+		
 		////////////////////////////////
 		int numOf_Rects = list_Rects.size();
 		
@@ -3482,7 +3555,7 @@ public class Methods {
 		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
 		
 		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-
+		
 		switch(numOf_Rects) {
 		
 		case 0: return CONS.Admin.LineStates.NONE;
@@ -3495,7 +3568,7 @@ public class Methods {
 		}
 		
 	}//_get_LineStates__LX1
-
+	
 	private static LineStates 
 	_get_LineStates__LX1__Case_2
 	(Rect rect_Z, List<Rect> list_Rects) {
@@ -3695,6 +3768,112 @@ public class Methods {
 		
 	}//_get_LineStates__LX1__Case_1
 
+	private static LineStates 
+	_get_LineStates__LY1__Case_1
+	(Rect rect_Z, Rect rect) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// width => same?
+		
+		///////////////////////////
+		int z_H = rect_Z.getH();
+		int r_H = rect.getH();
+		
+		//log
+		String text, fname; int line_Num;
+		
+		text = String.format(Locale.JAPAN, "rect => %s / z_H = %d, r_H = %d\n", rect.getRect_Name(), z_H, r_H);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		
+		if (z_H == r_H) {
+			
+			return CONS.Admin.LineStates.MATCH;
+		}
+		
+//		} else {
+//			
+//			return CONS.Admin.LineStates.UNKNOWN;
+//			
+//		}
+		
+		////////////////////////////////
+		
+		// not same
+		
+		////////////////////////////////
+		////////////////////////////////
+
+		// data
+
+		////////////////////////////////
+		Rect r1 = rect;
+		
+		// X1
+		int z_X1 = rect_Z.getX_Cur();
+		int r1_X1 = r1.getX_Cur();
+		
+		// Y1
+		int z_Y1 = rect_Z.getY_Cur();
+		int r1_Y1 = r1.getY_Cur();
+		
+		// Y2
+		int z_Y2 = rect_Z.getY_Cur() + rect_Z.getH();
+		int r1_Y2 = r1.getY_Cur() + r1.getH();
+		
+		// Points
+		// Z
+		Point p_ZUL = new  Point(z_X1, z_Y1);
+		Point p_ZLL = new  Point(z_X1, z_Y2);
+		
+		// B
+		Point p_RUL = new  Point(r1_X1, r1_Y1);
+		Point p_RLL = new  Point(r1_X1, r1_Y2);
+
+		////////////////////////////////
+
+		// judge
+
+		////////////////////////////////
+		if (Methods.isSame_Point(p_ZUL, p_RUL)) {
+			
+			return CONS.Admin.LineStates.UPPER;
+			
+		} else if (Methods.isSame_Point(p_ZLL, p_RLL)) {
+			
+			return CONS.Admin.LineStates.LOWER;
+			
+		} else {
+			
+			return CONS.Admin.LineStates.UNKNOWN;
+			
+		}
+		
+//		if ((z_X1 == r_X1) && (z_Y1 == r_Y1)) {	// Z_UL = R_UL
+//			
+//			return CONS.Admin.LineStates.LEFT;
+//			
+//		} else if ((z_X2 == r_X2) && (z_Y1 == r_Y1)) {	// Z_UR = R_UR
+//			
+//			return CONS.Admin.LineStates.RIGHT;
+//			
+//		} else {	// line(R, x1) => at the middle of LX1
+//			
+//			return CONS.Admin.LineStates.MIDDLE_Y;
+//			
+//		}
+		
+//		return CONS.Admin.LineStates.UNKNOWN;
+		
+	}//_get_LineStates__LY1__Case_1
+	
 	/*******************************
 
 		@return
