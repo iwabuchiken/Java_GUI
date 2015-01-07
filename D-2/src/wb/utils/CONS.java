@@ -52,12 +52,13 @@ public class CONS {
 		
 		/*******************************
 
-			UPPER => the line is NOT occupied at the upper part with the rectangles
+			UPPER => the line IS occupied at the upper part with the rectangles
 
 		 *******************************/
 		public static enum LineStates {
 			
 			MIDDLE_X, MIDDLE_Y,
+			BOTH_X, BOTH_Y,
 			UPPPER, LOWER,
 			LEFT, RIGHT,
 			NONE, MATCH, UNKNOWN,

@@ -3533,15 +3533,111 @@ public class Methods {
 		}
 		
 //		} else {
-//			
+//		 	
 //			return CONS.Admin.LineStates.UNKNOWN;
 //			
 //		}
 		
-		return CONS.Admin.LineStates.UNKNOWN;
+		////////////////////////////////
+
+		// Z.w > (r1.w + r2.w)
+
+		////////////////////////////////
+		////////////////////////////////
+
+		// data
+
+		////////////////////////////////
+		Rect r1 = list_Rects.get(0);
+		Rect r2 = list_Rects.get(1);
+		
+		// X1
+		int z_X1 = rect_Z.getX_Cur();
+		int r1_X1 = r1.getX_Cur();
+		int r2_X1 = r2.getX_Cur();
+		
+		// X2
+		int z_X2 = rect_Z.getX_Cur() + rect_Z.getW();
+		int r1_X2 = r1.getX_Cur() + r1.getW();
+		int r2_X2 = r2.getX_Cur() + r2.getW();
+		
+		// Y1
+		int z_Y1 = rect_Z.getY_Cur();
+		int r1_Y1 = r1.getY_Cur();
+		int r2_Y1 = r2.getY_Cur();
+		
+		// Points
+		// Z
+		Point p_ZUL = new  Point(z_X1, z_Y1);
+		Point p_ZUR = new  Point(z_X2, z_Y1);
+		
+		// B
+		Point p_BUL = new  Point(r1_X1, r1_Y1);
+		Point p_BUR = new  Point(r1_X2, r1_Y1);
+		
+		// C
+		Point p_CUL = new  Point(r2_X1, r2_Y1);
+		Point p_CUR = new  Point(r2_X2, r2_Y1);
+
+		////////////////////////////////
+
+		// judge
+
+		////////////////////////////////
+		if (Methods.isSame_Point(p_ZUL, p_BUL)
+				&& Methods.isSame_Point(p_ZUR, p_CUR)) {
+			
+			return CONS.Admin.LineStates.BOTH_Y;
+			
+		} else if (Methods.isSame_Point(p_ZUL, p_CUL)
+				&& Methods.isSame_Point(p_ZUR, p_BUR)) {
+			
+			return CONS.Admin.LineStates.BOTH_Y;
+			
+		} else if (Methods.isSame_Point(p_ZUL, p_BUL)
+				&& Methods.isSame_Point(p_BUR, p_CUL)) {
+			
+			return CONS.Admin.LineStates.LEFT;
+			
+		} else if (Methods.isSame_Point(p_ZUL, p_CUL)
+				&& Methods.isSame_Point(p_CUR, p_BUL)) {
+			
+			return CONS.Admin.LineStates.LEFT;
+			
+		} else if (Methods.isSame_Point(p_ZUR, p_CUR)
+				&& Methods.isSame_Point(p_BUR, p_CUL)) {
+			
+			return CONS.Admin.LineStates.RIGHT;
+			
+		} else if (Methods.isSame_Point(p_ZUR, p_BUR)
+				&& Methods.isSame_Point(p_CUR, p_BUL)) {
+			
+			return CONS.Admin.LineStates.RIGHT;
+			
+		} else {
+			
+			return CONS.Admin.LineStates.UNKNOWN;
+			
+		}
+		
+//		return CONS.Admin.LineStates.UNKNOWN;
 		
 	}//_get_LineStates__LX1__Case_2
 
+	private static boolean 
+	isSame_Point(Point p1, Point p2) {
+	
+		if (p1.x == p2.x && (p1.y == p2.y)) {
+			
+			return true;
+			
+		} else {
+			
+			return false;
+			
+		}
+		
+	}//is_SamePoint(Point p1, Point p2)
 	
 	private static LineStates 
 	_get_LineStates__LX1__Case_1
@@ -3583,11 +3679,11 @@ public class Methods {
 		
 		if ((z_X1 == r_X1) && (z_Y1 == r_Y1)) {	// Z_UL = R_UL
 			
-			return CONS.Admin.LineStates.RIGHT;
+			return CONS.Admin.LineStates.LEFT;
 			
 		} else if ((z_X2 == r_X2) && (z_Y1 == r_Y1)) {	// Z_UR = R_UR
 
-			return CONS.Admin.LineStates.LEFT;
+			return CONS.Admin.LineStates.RIGHT;
 			
 		} else {	// line(R, x1) => at the middle of LX1
 			
