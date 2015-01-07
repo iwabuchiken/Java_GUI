@@ -3569,8 +3569,9 @@ public class Methods {
 		case 1: return Methods._get_LineStates__LY2__Case_1(rect_Z, list_Rects.get(0));
 //		case 1: return Methods._get_LineStates__LY1__Case_1(rect_Z, list_Rects.get(0));
 //		case 2: return CONS.Admin.LineStates.NONE;
-		case 2: return CONS.Admin.LineStates.UNKNOWN;
+//		case 2: return CONS.Admin.LineStates.UNKNOWN;
 //		case 2: return Methods._get_LineStates__LY1__Case_2(rect_Z, list_Rects);
+		case 2: return Methods._get_LineStates__LY2__Case_2(rect_Z, list_Rects);
 		case 3: return CONS.Admin.LineStates.MATCH;
 		
 		default: return CONS.Admin.LineStates.UNKNOWN;
@@ -4091,6 +4092,134 @@ public class Methods {
 //		return CONS.Admin.LineStates.UNKNOWN;
 		
 	}//_get_LineStates__LY1__Case_2
+	
+	private static LineStates 
+	_get_LineStates__LY2__Case_2
+	(Rect rect_Z, List<Rect> list_Rects) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// width => same?
+		
+		////////////////////////////////
+		int z_H = rect_Z.getH();
+		int r1_H = list_Rects.get(0).getH();
+		int r2_H = list_Rects.get(1).getH();
+		
+		//log
+		String text, fname; int line_Num;
+		
+		text = String.format(Locale.JAPAN, 
+				"r1 => %s / r2 => %s\n", 
+				list_Rects.get(0).getRect_Name(), 
+				list_Rects.get(1).getRect_Name());
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		
+		
+		int sum_H = r1_H + r2_H;
+		
+		if (z_H == sum_H) {
+			
+			return CONS.Admin.LineStates.MATCH;
+		}
+		
+//		} else {
+//		 	
+//			return CONS.Admin.LineStates.UNKNOWN;
+//			
+//		}
+		
+		////////////////////////////////
+		
+		// Z.w > (r1.w + r2.w)
+		
+		////////////////////////////////
+		////////////////////////////////
+		
+		// data
+		
+		////////////////////////////////
+		Rect r1 = list_Rects.get(0);
+		Rect r2 = list_Rects.get(1);
+		
+		// X1
+		int z_X2 = rect_Z.getX_Cur() + rect_Z.getW();
+		int r1_X2 = r1.getX_Cur() + r1.getW();
+		int r2_X2 = r2.getX_Cur() + r2.getW();
+		
+		// Y1
+		int z_Y1 = rect_Z.getY_Cur();
+		int r1_Y1 = r1.getY_Cur();
+		int r2_Y1 = r2.getY_Cur();
+		
+		// Y2
+		int z_Y2 = rect_Z.getY_Cur() + rect_Z.getH();
+		int r1_Y2 = r1.getY_Cur() + r1.getH();
+		int r2_Y2 = r2.getY_Cur() + r2.getH();
+		
+		// Points
+		// Z
+		Point p_ZUR = new  Point(z_X2, z_Y1);
+		Point p_ZLR = new  Point(z_X2, z_Y2);
+		
+		// R1
+		Point p_R1UR = new  Point(r1_X2, r1_Y1);
+		Point p_R1LR = new  Point(r1_X2, r1_Y2);
+		
+		// R2
+		Point p_R2UR = new  Point(r2_X2, r2_Y1);
+		Point p_R2LR = new  Point(r2_X2, r2_Y2);
+		
+		////////////////////////////////
+		
+		// judge
+		
+		////////////////////////////////
+		if (Methods.isSame_Point(p_ZUR, p_R2UR)
+				&& Methods.isSame_Point(p_ZLR, p_R1LR)) {
+			
+			return CONS.Admin.LineStates.BOTH_Y;
+			
+		} else if (Methods.isSame_Point(p_ZUR, p_R1UR)
+				&& Methods.isSame_Point(p_ZLR, p_R2LR)) {
+			
+			return CONS.Admin.LineStates.BOTH_Y;
+			
+		} else if (Methods.isSame_Point(p_ZLR, p_R1LR)
+				&& Methods.isSame_Point(p_R1UR, p_R2LR)) {
+			
+			return CONS.Admin.LineStates.LOWER;
+			
+		} else if (Methods.isSame_Point(p_ZLR, p_R2LR)
+				&& Methods.isSame_Point(p_R2UR, p_R1LR)) {
+			
+			return CONS.Admin.LineStates.LOWER;
+			
+		} else if (Methods.isSame_Point(p_ZUR, p_R1UR)
+				&& Methods.isSame_Point(p_R1LR, p_R2UR)) {
+			
+			return CONS.Admin.LineStates.UPPER;
+			
+		} else if (Methods.isSame_Point(p_ZUR, p_R2UR)
+				&& Methods.isSame_Point(p_R2LR, p_R1UR)) {
+			
+			return CONS.Admin.LineStates.UPPER;
+			
+		} else {
+			
+			return CONS.Admin.LineStates.UNKNOWN;
+			
+		}
+		
+//		return CONS.Admin.LineStates.UNKNOWN;
+		
+	}//_get_LineStates__LY2__Case_2
 	
 	
 	private static boolean 
