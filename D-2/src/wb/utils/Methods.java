@@ -3530,12 +3530,15 @@ public class Methods {
 		if (z_W == sum_W) {
 			
 			return CONS.Admin.LineStates.MATCH;
-			
-		} else {
-			
-			return CONS.Admin.LineStates.UNKNOWN;
-			
 		}
+		
+//		} else {
+//			
+//			return CONS.Admin.LineStates.UNKNOWN;
+//			
+//		}
+		
+		return CONS.Admin.LineStates.UNKNOWN;
 		
 	}//_get_LineStates__LX1__Case_2
 
@@ -3556,12 +3559,43 @@ public class Methods {
 		if (z_W == r_W) {
 			
 			return CONS.Admin.LineStates.MATCH;
+		}
+		
+//		} else {
+//			
+//			return CONS.Admin.LineStates.UNKNOWN;
+//			
+//		}
+		
+		////////////////////////////////
+
+		// not same
+
+		////////////////////////////////
+		int z_X1 = rect_Z.getX_Cur();
+		int r_X1 = rect.getX_Cur();
+		
+		int z_Y1 = rect_Z.getY_Cur();
+		int r_Y1 = rect.getY_Cur();
+		
+		int z_X2 = rect_Z.getX_Cur() + rect_Z.getW();
+		int r_X2 = rect.getX_Cur() + rect.getW();
+		
+		if ((z_X1 == r_X1) && (z_Y1 == r_Y1)) {	// Z_UL = R_UL
 			
-		} else {
+			return CONS.Admin.LineStates.RIGHT;
 			
-			return CONS.Admin.LineStates.UNKNOWN;
+		} else if ((z_X2 == r_X2) && (z_Y1 == r_Y1)) {	// Z_UR = R_UR
+
+			return CONS.Admin.LineStates.LEFT;
+			
+		} else {	// line(R, x1) => at the middle of LX1
+			
+			return CONS.Admin.LineStates.MIDDLE_Y;
 			
 		}
+		
+//		return CONS.Admin.LineStates.UNKNOWN;
 		
 	}//_get_LineStates__LX1__Case_1
 

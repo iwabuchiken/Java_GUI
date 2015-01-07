@@ -50,6 +50,11 @@ public class CONS {
 			C_UL, C_UR, C_LL, C_LR,
 		}
 		
+		/*******************************
+
+			UPPER => the line is NOT occupied at the upper part with the rectangles
+
+		 *******************************/
 		public static enum LineStates {
 			
 			MIDDLE_X, MIDDLE_Y,

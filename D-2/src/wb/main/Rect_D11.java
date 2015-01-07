@@ -2595,48 +2595,48 @@ public class Rect_D11 {
 	protected void 
 	detect_Residues() {
 		
+//		////////////////////////////////
+//
+//		// detect: corner types
+//
+//		////////////////////////////////
+//		Map<NodeNames, Object[]> corners_Map = 
+//							Methods.get_Map_AllNodes_XY_and_CornerTypes(
+//										CONS.Admin.list_NodeNames_C, 
+//										this.rect_A, this.rect_B, this.rect_C);
+		
 		////////////////////////////////
 
-		// detect: corner types
+		// build: rect Z
 
 		////////////////////////////////
-		Map<NodeNames, Object[]> corners_Map = 
-							Methods.get_Map_AllNodes_XY_and_CornerTypes(
-										CONS.Admin.list_NodeNames_C, 
-										this.rect_A, this.rect_B, this.rect_C);
+		Rect rect_Z = Methods.get_Rect_Z(this.rect_A, this.rect_B, this.rect_C);
+
+		Lines line = CONS.Admin.Lines.LX1;
+
+		////////////////////////////////
+
+		// get: states
+
+		////////////////////////////////
+		LineStates state = Methods.get_LineStates(
+								rect_Z, 
+								new Rect[]{rect_A, rect_B, rect_C},
+//								rect_A, rect_B, rect_C,
+								line);
+//		CONS.Admin.Lines.LX1);
 		
-//		////////////////////////////////
-//
-//		// build: rect Z
-//
-//		////////////////////////////////
-//		Rect rect_Z = Methods.get_Rect_Z(this.rect_A, this.rect_B, this.rect_C);
-//
-//		Lines line = CONS.Admin.Lines.LX1;
-//
-//		////////////////////////////////
-//
-//		// get: states
-//
-//		////////////////////////////////
-//		LineStates state = Methods.get_LineStates(
-//								rect_Z, 
-//								new Rect[]{rect_A, rect_B, rect_C},
-////								rect_A, rect_B, rect_C,
-//								line);
-////		CONS.Admin.Lines.LX1);
+		//log
+		String text, fname; int line_Num;
 		
-//		//log
-//		String text, fname; int line_Num;
-//		
-//		text = String.format(Locale.JAPAN, "line = %s / state = %s\n", line.toString(), state.toString());
-//		
-//		fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//		
-//		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//		
-//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-//
+		text = String.format(Locale.JAPAN, "line = %s / state = %s\n", line.toString(), state.toString());
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
 //		////////////////////////////////
 //
 //		// build: hashmap
