@@ -1822,6 +1822,91 @@ public class Rect_D11 {
 		this.update_Label__AreaData(x_smallest, y_smallest, w, h);
 		
 	}//draw_Periphery_XObjects
+
+	/*******************************
+		@param
+		1 => black<br>
+		2 => white<br>
+		default => burlywood2<br>
+	 *******************************/
+	void
+	draw_Background(int numOf_Residues) {
+		
+		int x_smallest = -1, y_smallest = -1, w = -1, h = -1;
+		int x_largest, y_largest;
+		
+		x_smallest = Methods.smallest(
+				new int[]{
+						this.rect_A.getX_Cur(), 
+						rect_B.getX_Cur(), 
+						this.rect_C.getX_Cur()
+				});
+		
+		y_smallest = Methods.smallest(new int[]{
+				this.rect_A.getY_Cur(), 
+				this.rect_B.getY_Cur(), 
+//						CONS.Views.rect_B_Y, 
+				this.rect_C.getY_Cur()
+		});
+		
+		x_largest = Methods.largest(
+				new int[]{
+						this.rect_A.getX_Cur() + this.rect_A.getW_Orig(), 
+						rect_B.getX_Cur() + this.rect_B.getW(), 
+						this.rect_C.getX_Cur() + this.rect_C.getW()
+				});
+		
+		y_largest = Methods.largest(
+				new int[]{
+						
+						this.rect_A.getY_Cur() + this.rect_A.getH_Orig(), 
+						rect_B.getY_Cur() + this.rect_B.getH(), 
+//						CONS.Views.rect_B_Y + CONS.Views.rect_B_H_cur, 
+						this.rect_C.getY_Cur() + this.rect_C.getH()
+						
+				});
+		
+		w = x_largest - x_smallest;
+		
+		h = y_largest - y_smallest;
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		//REF http://stackoverflow.com/questions/23876389/java-draw-line-with-swt-not-deleting-previous-lines asked May 26 at 19:12
+		GC gc = new GC(cv_1);
+
+		////////////////////////////////
+
+		// color
+
+		////////////////////////////////
+		Color col = null;
+		
+		switch(numOf_Residues) {
+		
+		case 1: col = black; break; 
+		case 2: col = white; break;
+		
+		default: col = this.burlywood2; break;
+		
+		}
+		
+		//REF http://stackoverflow.com/questions/50064/setting-colors-in-swt answered Sep 8 '08 at 16:49
+		gc.setBackground(col); 
+		
+		//REF http://www.java2s.com/Tutorial/Java/0300__SWT-2D-Graphics/DrawingPointsLinesandsetlinewidth.htm
+		gc.setLineWidth(CONS.Views.lineWidth_Rect);
+		
+		gc.fillRectangle(x_smallest, y_smallest, w, h);
+//		gc.drawRectangle(x_smallest, y_smallest, w, h);
+		
+		gc.dispose();
+		
+		
+	}//draw_Background
 	
 	private void 
 	update_Label__AreaData(int x, int y, int w, int h) {
@@ -2491,14 +2576,14 @@ public class Rect_D11 {
 				// detect: residues
 
 				////////////////////////////////
-				Rect_D11.this.detect_Residues();
+				int numOf_Residues = Rect_D11.this.detect_Residues();
 				
 				////////////////////////////////
 
 				// update: canvas
 
 				////////////////////////////////
-				Rect_D11.this.update_Canvas();
+				Rect_D11.this.update_Canvas(numOf_Residues);
 				
 				////////////////////////////////
 
@@ -2596,7 +2681,7 @@ public class Rect_D11 {
 
 	}//_init_Set_Listeners
 
-	protected void 
+	protected int 
 	detect_Residues() {
 		
 		////////////////////////////////
@@ -2687,6 +2772,13 @@ public class Rect_D11 {
 		
 		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 
+		////////////////////////////////
+
+		// return
+
+		////////////////////////////////
+		return numOf_Residues;
+		
 	}//detect_Residues
 
 	protected void 
@@ -4971,7 +5063,7 @@ public class Rect_D11 {
 	 
 	
 	private void 
-	update_Canvas() {
+	update_Canvas(int numOf_Residues) {
 		// TODO Auto-generated method stub
 		
 		////////////////////////////////
@@ -4980,6 +5072,20 @@ public class Rect_D11 {
 		
 		////////////////////////////////
 		this.clear_Canvas();
+		
+		this.draw_Background(numOf_Residues);
+		
+		//log
+		String text, fname; int line_Num;
+		
+		text = String.format(Locale.JAPAN, "draw_Background\n");
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
 		
 		this.draw_Rect__A();
 		this.draw_Rect__B();
@@ -5002,6 +5108,40 @@ public class Rect_D11 {
 		
 	}//update_Canvas
 
+	private void 
+	update_Canvas() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// draw
+		
+		////////////////////////////////
+		this.clear_Canvas();
+		
+		this.draw_Background(-1);
+		
+		this.draw_Rect__A();
+		this.draw_Rect__B();
+		this.draw_Rect__C();
+		
+		////////////////////////////////
+		
+		// draw: periphery
+		
+		////////////////////////////////
+		this.draw_Periphery_XObjects();
+//		this.draw_Periphery();
+		
+		////////////////////////////////
+		
+		// update: status label
+		
+		////////////////////////////////
+		update_Status_Label();
+		
+	}//update_Canvas
+	
 	private void 
 	_move_Right__B_LR(NodeNames node_Name, Orien orien) {
 		// TODO Auto-generated method stub
@@ -5946,6 +6086,7 @@ public class Rect_D11 {
 		Color col = display.getSystemColor(SWT.COLOR_BLUE);
 		
 		//REF http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Freference%2Fapi%2Forg%2Feclipse%2Fswt%2Fgraphics%2FColor.html
+//		Color col2 = red;
 		Color col2 = new Color(display, 210, 210, 210);
 		
 //		cv_1.setBackground(display.getSystemColor(new Color(200, 0, 0).get));;
