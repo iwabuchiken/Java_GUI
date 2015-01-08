@@ -2757,7 +2757,163 @@ public class Rect_D11 {
 	protected void 
 	exec_Get_SmallestResidue_Set() {
 		// TODO Auto-generated method stub
+
+		////////////////////////////////
+
+		// validate
+
+		////////////////////////////////
+		if (CONS.Admin.status_B > 15) {
+			
+			Rect_D11.lbl_Msg.setForeground(red);
+			Rect_D11.lbl_Msg.setText("No next B node");
+			Rect_D11.lbl_Msg.setForeground(black);
+			
+			return;
+			
+		}
+
+		////////////////////////////////
+
+		// vars
+
+		////////////////////////////////
+		List<DD> list_DD = new ArrayList<DD>();
 		
+		////////////////////////////////
+
+		// cycle
+
+		////////////////////////////////
+		int cycles = CONS.Admin.list_NodeNames_B.size() * 4;
+//		int cycles = CONS.Admin.list_NodeNames_B.size();
+		
+		for (int i = 0; i < cycles; i++) {
+
+			////////////////////////////////
+
+			// cycle
+
+			////////////////////////////////
+			list_DD.add(this._exec_Get_SmallestResidue_Set__Execute());
+//			this._exec_Get_SmallestResidue_Set__Execute();
+aa
+			////////////////////////////////
+			
+			// move: B
+			
+			////////////////////////////////
+			this._exec_Get_SmallestResidue_Set__Move_B();
+
+			////////////////////////////////
+			
+			// validate
+			
+			////////////////////////////////
+			if (CONS.Admin.status_B > 15) {
+			
+				Rect_D11.lbl_Msg.setForeground(red);
+				Rect_D11.lbl_Msg.setText("No next B node");
+				Rect_D11.lbl_Msg.setForeground(black);
+				
+				break;
+			
+			}
+			
+			//log
+			String text, fname; int line_Num;
+			
+			text = String.format(Locale.JAPAN, 
+							"cycle => %d done (statuc_B = %d)\n", 
+							i + 1, CONS.Admin.status_B);
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+			
+		}//for (int i = 0; i < cycles; i++)
+
+		////////////////////////////////
+
+		// report
+
+		////////////////////////////////
+		for (int j = 0; j < list_DD.size(); j++) {
+			
+			//log
+			String text, fname; int line_Num;
+			
+			text = String.format(Locale.JAPAN, 
+							"list_DD(%d) => smallest residue is %d\n", 
+							j, list_DD.get(j).getArea_Residues());
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		}
+		
+		////////////////////////////////
+
+		// report: smallest DD
+
+		////////////////////////////////
+		int smallest = list_DD.get(0).getArea_Residues();
+		
+		DD tmp_DD = null;
+		
+		int i_DD = 0;
+		
+		for (int j = 1; j < list_DD.size(); j++) {
+			
+			tmp_DD = list_DD.get(j);
+			
+			if (tmp_DD.getArea_Residues() < smallest) {
+				
+				smallest = tmp_DD.getArea_Residues();
+				
+				i_DD = j;
+				
+			}
+			
+		}
+		
+		//log
+		String text, fname; int line_Num;
+		
+		tmp_DD = list_DD.get(i_DD);
+		
+		Rect rect_B = tmp_DD.getB();
+		Rect rect_C = tmp_DD.getC();
+		
+		text = String.format(Locale.JAPAN, 
+					"smallest DD in the list_DD => index = %d "
+					+ "(rect_B: at = %s, orien = %s / "
+					+ "rect_C: at = %s, orien = %s)\n", 
+					i_DD, 
+					rect_B.getAttachedAt(), rect_B.getOrien(),
+					rect_C.getAttachedAt(), rect_C.getOrien()
+					
+				);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		//		smallest DD in the list_DD => index = 3 (rect_B: at = A_UL, orien = HV / rect_C: at = B_LR, orien = VH)
+				
+	}//exec_Get_SmallestResidue_Set
+
+	private DD 
+	_exec_Get_SmallestResidue_Set__Execute() {
+		// TODO Auto-generated method stub
 		////////////////////////////////
 
 		// jump: X times
@@ -2774,7 +2930,7 @@ public class Rect_D11 {
 			
 			this.bt_Selected_Jump(i + 1);
 //			this.bt_Selected_Jump(i);
-
+aa
 			list_DD.add(this.get_DiagramData());
 			
 		}
@@ -2844,8 +3000,62 @@ public class Rect_D11 {
 		//		smallest residue => 34000 (B: node = A_UL, orien = HV, status_B = 1 / C: node = A_LL, orien = VV
 		//		smallest residue => 9000 (B: node = A_UL, orien = HV, status_B = 1 / C: node = A_LL, orien = VV
 		//		smallest residue => 9000 (B: node = A_UL, orien = HV, status_B = 1 / C: node = B_UR, orien = VH
+	
+		////////////////////////////////
+
+		// return: DD
+
+		////////////////////////////////
+		return tmp_DD;
 		
-	}//exec_Get_SmallestResidue_Set
+	}//_exec_Get_SmallestResidue_Set__Execute
+
+	private void 
+	_exec_Get_SmallestResidue_Set__Move_B() {
+		// TODO Auto-generated method stub
+		
+		// update
+		CONS.Admin.status_B += 1;
+		
+		////////////////////////////////
+
+		// move: B
+
+		////////////////////////////////
+		this.move_B(CONS.Admin.status_B);
+
+		////////////////////////////////
+
+		// rebuild: node name list
+
+		////////////////////////////////
+		this.move_B__update_NodeNameList();
+		
+		////////////////////////////////
+
+		// update: rect C
+
+		////////////////////////////////
+//		Rect_D9.this.update_RectC();
+		CONS.Admin.status_C = 1;
+		
+		this.move_C(CONS.Admin.status_C);
+		
+		////////////////////////////////
+		
+		// update: display
+		
+		////////////////////////////////
+		this.update_Status_Label();
+		
+		////////////////////////////////
+						
+		// update: canvas
+		
+		////////////////////////////////
+		this.update_Canvas();
+		
+	}//_exec_Get_SmallestResidue_Set__Move_B
 
 	private DD 
 	get_DiagramData() {
@@ -6651,7 +6861,7 @@ public class Rect_D11 {
 	public void 
 	bt_Selected_Jump(int status) {
 		// TODO Auto-generated method stub
-
+aa
 		this.bt_Selected_Jump(String.valueOf(status));
 		
 	}//bt_Selected_Jump
