@@ -1847,7 +1847,7 @@ public class Methods {
 			String text, fname; int line_Num;
 			
 			text = String.format(Locale.JAPAN, 
-						"overwrap => edge to edge: C at %s, orien = %s\n", 
+						"overwrap => edge to edge: horizontal, from right: C at %s, orien = %s\n", 
 						rect_C.getAttachedAt(), rect_C.getOrien());
 			
 			fname = Thread.currentThread().getStackTrace()[1].getFileName();
@@ -1868,13 +1868,13 @@ public class Methods {
 		////////////////////////////////
 		if (rect_C.getH() == rect_NotAttached.getH()
 				&& C_UL.y == R1_UR.y
-				&& (C_UL.x < R1_UR.x) && (R1_UR.x < C_UR.x)) {
+				&& (C_UL.x < R1_UL.x) && (R1_UL.x < C_UR.x)) {
 			
 			//log
 			String text, fname; int line_Num;
 			
 			text = String.format(Locale.JAPAN, 
-					"overwrap => edge to edge: C at %s, orien = %s\n", 
+					"overwrap => edge to edge: horizontal, from right: C at %s, orien = %s\n", 
 					rect_C.getAttachedAt(), rect_C.getOrien());
 			
 			fname = Thread.currentThread().getStackTrace()[1].getFileName();
@@ -1893,6 +1893,26 @@ public class Methods {
 		// C at: overwrap => vertically, from the top
 		
 		////////////////////////////////
+		if (rect_C.getW() == rect_NotAttached.getW()
+				&& C_LL.x == R1_UL.x
+				&& (C_UL.y < R1_UL.y) && (R1_UL.y < C_LL.y)) {
+			
+			//log
+			String text, fname; int line_Num;
+			
+			text = String.format(Locale.JAPAN, 
+					"overwrap => edge to edge: vertical, from top: C at %s, orien = %s\n", 
+					rect_C.getAttachedAt(), rect_C.getOrien());
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			return true;
+			
+		}
 
 		////////////////////////////////
 		
@@ -1900,6 +1920,26 @@ public class Methods {
 		// C at: overwrap => vertically, from the bottom
 		
 		////////////////////////////////
+		if (rect_C.getW() == rect_NotAttached.getW()
+				&& C_UL.x == R1_LL.x
+				&& (C_UL.y < R1_LL.y) && (R1_LL.y < C_LL.y)) {
+			
+			//log
+			String text, fname; int line_Num;
+			
+			text = String.format(Locale.JAPAN, 
+					"overwrap => edge to edge: vertical, from top: C at %s, orien = %s\n", 
+					rect_C.getAttachedAt(), rect_C.getOrien());
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			return true;
+			
+		}
 		
 		////////////////////////////////
 
