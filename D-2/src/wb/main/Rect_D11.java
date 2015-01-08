@@ -2599,16 +2599,6 @@ public class Rect_D11 {
 	protected void 
 	detect_Residues() {
 		
-//		////////////////////////////////
-//
-//		// detect: corner types
-//
-//		////////////////////////////////
-//		Map<NodeNames, Object[]> corners_Map = 
-//							Methods.get_Map_AllNodes_XY_and_CornerTypes(
-//										CONS.Admin.list_NodeNames_C, 
-//										this.rect_A, this.rect_B, this.rect_C);
-		
 		////////////////////////////////
 
 		// build: rect Z
@@ -2649,17 +2639,6 @@ public class Rect_D11 {
 
 			map.put(line, state);
 			
-//			//log
-//			String text, fname; int line_Num;
-//			
-//			text = String.format(Locale.JAPAN, "line = %s / state = %s\n", line.toString(), state.toString());
-//			
-//			fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//			
-//			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//			
-//			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-
 		}
 		
 		////////////////////////////////
@@ -2690,67 +2669,24 @@ public class Rect_D11 {
 
 		}//while (it.hasNext())
 		
-//		CONS.Admin.Lines.LX1);
-		
-//		//log
-//		String text, fname; int line_Num;
-//		
-//		text = String.format(Locale.JAPAN, "line = %s / state = %s\n", line.toString(), state.toString());
-//		
-//		fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//		
-//		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//		
-//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		////////////////////////////////
 
-//		////////////////////////////////
-//		
-//		// get: states: LY1
-//		
-//		////////////////////////////////
-//		line = CONS.Admin.Lines.LY1;
-//		
-//		state = Methods.get_LineStates(
-//				rect_Z, 
-//				new Rect[]{rect_A, rect_B, rect_C},
-////								rect_A, rect_B, rect_C,
-//				line);
-////		CONS.Admin.Lines.LX1);
-//		
-//		//log
-////		String text, fname; int line_Num;
-//		
-//		text = String.format(Locale.JAPAN, "line = %s / state = %s\n", line.toString(), state.toString());
-//		
-//		fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//		
-//		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//		
-//		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+		// get: num of residues
+
+		////////////////////////////////
+		int numOf_Residues = Methods.get_NumOf_Residues(map);
+
+		//log
+		String text, fname; int line_Num;
+
+		text = String.format(Locale.JAPAN, "num of residues => %d\n", numOf_Residues);
 		
-//		////////////////////////////////
-//
-//		// build: hashmap
-//
-//		////////////////////////////////
-//		Map<Lines, LineStates> map = new HashMap<Lines, LineStates>();
-//		
-//		map.put(CONS.Admin.Lines.LX1, state);
-//		
-//		for (Lines l : map.keySet()) {
-//			
-//			//log
-//			text = String.format(Locale.JAPAN, "line %s => state is %s\n", l.toString(), map.get(l));
-//			
-//			fname = Thread.currentThread().getStackTrace()[1].getFileName();
-//			
-//			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
-//			
-//			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
-//
-//			
-//		}
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
 		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
 	}//detect_Residues
 
 	protected void 

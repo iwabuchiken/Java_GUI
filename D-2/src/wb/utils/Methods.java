@@ -5817,5 +5817,113 @@ public class Methods {
 		return null;
 		
 	}//get_XY_from_NodeName
+
+	public static int 
+	get_NumOf_Residues
+	(Map<Lines, LineStates> map) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// get: num of MATCHEs
+
+		////////////////////////////////
+		int numOf_Match;
+		
+		List<Integer> list_IndexOfMatches = new ArrayList<Integer>();
+		
+		LineStates state = null;
+
+		Lines line = null;
+		
+		Iterator it = map.keySet().iterator();
+		
+		int count = 0;
+		
+		while (it.hasNext()) {
+			
+			line = (Lines) it.next();
+			
+			state = map.get(line);
+			
+			//log
+			String text, fname; int line_Num;
+			
+			text = String.format(Locale.JAPAN, "state => %s\n", state.toString());
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+			if (state == CONS.Admin.LineStates.MATCH) {
+				
+				list_IndexOfMatches.add(count);
+				
+			}
+			
+			// count
+			count ++;
+			
+		}
+		
+		////////////////////////////////
+
+		// report
+
+		////////////////////////////////
+		for (int i = 0; i < list_IndexOfMatches.size(); i++) {
+			
+			//log
+			String text, fname; int line_Num;
+			
+			text = String.format(Locale.JAPAN, "index(MATCH) => %d\n", list_IndexOfMatches.get(i));
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+		}
+		
+		// MATCH => 0
+		if (list_IndexOfMatches.size() == 0) {
+			
+			//log
+			String text, fname; int line_Num;
+			
+			text = String.format(Locale.JAPAN, "MATCH => 0\n");
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		}
+		
+		////////////////////////////////
+
+		// return
+
+		////////////////////////////////
+		int numOf_Matches = list_IndexOfMatches.size();
+		
+		switch(numOf_Matches) {
+
+		case 0: return 2;
+		case 1: return 2;
+		case 2: return (Math.abs(list_IndexOfMatches.get(0) - list_IndexOfMatches.get(1)) == 1)
+							? 1 : 2;
+		case 3: return 1;
+		case 4: return 0;
+		
+		default: return -1;
+		
+		}//switch(numOf_Matches)
+		
+	}//get_NumOf_Residues
 	
 }//public class Methods
