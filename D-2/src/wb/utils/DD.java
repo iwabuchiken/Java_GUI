@@ -62,16 +62,16 @@ public class DD {
 		this.statuc_C = statuc_C;
 	}
 	public void setZ(Rect z) {
-		Z = z;
+		Z = new Rect(z);
 	}
 	public void setA(Rect a) {
-		A = a;
+		A = new Rect(a);
 	}
 	public void setB(Rect b) {
-		B = b;
+		B = new Rect(b);
 	}
 	public void setC(Rect c) {
-		C = c;
+		C = new Rect(c);
 	}
 	
 }//public class DD

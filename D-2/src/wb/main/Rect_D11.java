@@ -2545,17 +2545,17 @@ public class Rect_D11 {
 				}
 				
 				
-				// if status gets to 25 => keep the current status
-				if (CONS.Admin.status_C >= 24) {
-//					if (CONS.Admin.status_C >= 25) {
-					
-					CONS.Admin.status_C = tmp_status;	// restore the previous status
-					
-					Rect_D11.this.move_C(CONS.Admin.status_C);	// move back to the previous
-					
-					Rect_D11.lbl_Msg.setText("Skipped to the last");
-					
-				}
+//				// if status gets to 25 => keep the current status
+//				if (CONS.Admin.status_C >= 24) {
+////					if (CONS.Admin.status_C >= 25) {
+//					
+//					CONS.Admin.status_C = tmp_status;	// restore the previous status
+//					
+//					Rect_D11.this.move_C(CONS.Admin.status_C);	// move back to the previous
+//					
+//					Rect_D11.lbl_Msg.setText("Skipped to the last");
+//					
+//				}
 				
 				////////////////////////////////
 
@@ -2756,10 +2756,12 @@ public class Rect_D11 {
 			text = String.format(Locale.JAPAN, 
 					"smallest residue => %d "
 							+ "(B: node = %s, orien = %s, status_B = %d "
-							+ "/ C: node = %s, orien = %s\n, status_C = %d", 
+							+ "/ C: node = %s, orien = %s\n, status_C = %d)"
+							+ " ratio is => %f", 
 							tmp_DD.getArea_Residues(), 
 							tmp_DD.getB().getAttachedAt(), tmp_DD.getB().getOrien(), tmp_DD.getStatuc_B(),
-							tmp_DD.getC().getAttachedAt(), tmp_DD.getC().getOrien(), tmp_DD.getStatuc_C()
+							tmp_DD.getC().getAttachedAt(), tmp_DD.getC().getOrien(), tmp_DD.getStatuc_C(),
+							tmp_DD.getArea_Residues() / (float) tmp_DD.getArea_Total()
 					);
 			
 		}
@@ -2771,6 +2773,8 @@ public class Rect_D11 {
 		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
 
 		//		smallest residue => 34000 (B: node = A_UL, orien = HV, status_B = 1 / C: node = A_LL, orien = VV
+		//		smallest residue => 9000 (B: node = A_UL, orien = HV, status_B = 1 / C: node = A_LL, orien = VV
+		//		smallest residue => 9000 (B: node = A_UL, orien = HV, status_B = 1 / C: node = B_UR, orien = VH
 		
 	}//exec_Get_SmallestResidue_Set
 

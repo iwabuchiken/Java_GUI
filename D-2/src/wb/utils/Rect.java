@@ -29,6 +29,32 @@ public class Rect {
 		
 	}
 
+	public Rect(Rect rect) {
+		
+		this.x_Cur = rect.x_Cur;
+		
+		this.y_Cur = rect.y_Cur;
+		
+		this.w = rect.w;
+		
+		this.h = rect.h;
+		
+		this.w_Orig = rect.w_Orig;
+		
+		this.h_Orig = rect.h_Orig;
+		
+		this.rect_Name = rect.rect_Name;
+		
+		this.color = rect.color;
+		
+		this.attachedTo = rect.attachedTo;
+
+		this.attachedAt = rect.attachedAt;
+
+		this.orien = rect.orien;
+		
+	}
+	
 	public Orien getOrien() {
 		return orien;
 	}
