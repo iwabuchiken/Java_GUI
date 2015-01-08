@@ -1775,6 +1775,19 @@ public class Methods {
 			
 		}
 		
+		////////////////////////////////
+
+		// detect: overwrap from edge to edge
+
+		////////////////////////////////
+		boolean edge2edge = Methods.isOverwrap_Edge2Edge(rect_C, rect_NotAttached);
+		
+		if (edge2edge == true) {
+			
+			return true;
+			
+		}
+		
 //		return crossing;
 		return false;
 		
@@ -1783,6 +1796,119 @@ public class Methods {
 	////////////////////////////////
 
 	// caller => overWrap_V3()
+
+	private static boolean 
+	isOverwrap_Edge2Edge
+	(Rect rect_C, Rect rect_NotAttached) {
+
+		////////////////////////////////
+
+		// prep: vars
+
+		////////////////////////////////
+		int c_X1 = rect_C.getX_Cur();
+		int c_Y1 = rect_C.getY_Cur();
+		int c_X2 = rect_C.getX_Cur() + rect_C.getW();
+		int c_Y2 = rect_C.getY_Cur() + rect_C.getH();
+		
+		int r_X1 = rect_NotAttached.getX_Cur();
+		int r_Y1 = rect_NotAttached.getY_Cur();
+		int r_X2 = rect_NotAttached.getX_Cur() + rect_NotAttached.getW();
+		int r_Y2 = rect_NotAttached.getY_Cur() + rect_NotAttached.getH();
+		
+		// rect: not attached
+		Point R1_UL = new Point(r_X1, r_Y1);
+		Point R1_UR = new Point(r_X2, r_Y1);
+		Point R1_LL = new Point(r_X1, r_Y2);
+		Point R1_LR = new Point(r_X2, r_Y2);
+
+		// rect: C
+		Point C_UL = new Point(c_X1, c_Y1);
+		Point C_UR = new Point(c_X2, c_Y1);
+		Point C_LL = new Point(c_X1, c_Y2);
+		Point C_LR = new Point(c_X2, c_Y2);
+		
+		//////////////////////////////////////////////////////////////
+
+		// judge
+
+		////////////////////////////////
+		////////////////////////////////
+
+		// C at: UR of the attached rect
+		// C at: overwrap => horizontally, from the right
+
+		////////////////////////////////
+		if (rect_C.getH() == rect_NotAttached.getH()
+				&& C_UL.y == R1_UR.y
+				&& (C_UL.x < R1_UR.x) && (R1_UR.x < C_UR.x)) {
+			
+			//log
+			String text, fname; int line_Num;
+			
+			text = String.format(Locale.JAPAN, 
+						"overwrap => edge to edge: C at %s, orien = %s\n", 
+						rect_C.getAttachedAt(), rect_C.getOrien());
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+			return true;
+			
+		}
+
+		////////////////////////////////
+		
+		// 
+		// C at: overwrap => horizontally, from the left
+		
+		////////////////////////////////
+		if (rect_C.getH() == rect_NotAttached.getH()
+				&& C_UL.y == R1_UR.y
+				&& (C_UL.x < R1_UR.x) && (R1_UR.x < C_UR.x)) {
+			
+			//log
+			String text, fname; int line_Num;
+			
+			text = String.format(Locale.JAPAN, 
+					"overwrap => edge to edge: C at %s, orien = %s\n", 
+					rect_C.getAttachedAt(), rect_C.getOrien());
+			
+			fname = Thread.currentThread().getStackTrace()[1].getFileName();
+			
+			line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+			
+			System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+			
+			return true;
+			
+		}
+
+		////////////////////////////////
+		
+		// 
+		// C at: overwrap => vertically, from the top
+		
+		////////////////////////////////
+
+		////////////////////////////////
+		
+		// 
+		// C at: overwrap => vertically, from the bottom
+		
+		////////////////////////////////
+		
+		////////////////////////////////
+
+		// default
+
+		////////////////////////////////
+		return false;
+	}
+	
 
 	private static boolean 
 	isNodes_Within

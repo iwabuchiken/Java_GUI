@@ -837,6 +837,75 @@ public class Rect_D11 {
 	}//init_Vars
 
 	private void 
+	reset_List_NodeNames_C() {
+		// TODO Auto-generated method stub
+//		////////////////////////////////
+//
+//		// status
+//
+//		////////////////////////////////
+//		CONS.Admin.status = 1;
+//		CONS.Admin.status_C = 1;
+//		CONS.Admin.status_B = 1;
+//		
+//		CONS.Admin.orien_Current_C = CONS.Admin.Orien.HORI_VERTI;
+////		CONS.Admin.orien_Current = CONS.Admin.Orien.VERTICAL;
+//		
+//		CONS.Admin.node_Current = 1;
+//		
+		////////////////////////////////
+		
+		// node name list: C
+		
+		////////////////////////////////
+		if (this.rect_A.getY_Cur() < this.rect_B.getY_Cur()) {
+			
+			// node list
+			CONS.Admin.list_NodeNames_C = new ArrayList<NodeNames>();
+			
+			CONS.Admin.list_NodeNames_C.add(CONS.Admin.NodeNames.A_UL);
+			CONS.Admin.list_NodeNames_C.add(CONS.Admin.NodeNames.A_UR);
+			CONS.Admin.list_NodeNames_C.add(CONS.Admin.NodeNames.A_LR);
+			CONS.Admin.list_NodeNames_C.add(CONS.Admin.NodeNames.A_LL);
+			
+			CONS.Admin.list_NodeNames_C.add(CONS.Admin.NodeNames.B_UL);
+			CONS.Admin.list_NodeNames_C.add(CONS.Admin.NodeNames.B_UR);
+			CONS.Admin.list_NodeNames_C.add(CONS.Admin.NodeNames.B_LR);
+			CONS.Admin.list_NodeNames_C.add(CONS.Admin.NodeNames.B_LL);
+			
+		} else {
+			
+			// node list
+			CONS.Admin.list_NodeNames_C = new ArrayList<NodeNames>();
+			
+			CONS.Admin.list_NodeNames_C.add(CONS.Admin.NodeNames.B_UL);
+			CONS.Admin.list_NodeNames_C.add(CONS.Admin.NodeNames.B_UR);
+			CONS.Admin.list_NodeNames_C.add(CONS.Admin.NodeNames.B_LR);
+			CONS.Admin.list_NodeNames_C.add(CONS.Admin.NodeNames.B_LL);
+			
+			CONS.Admin.list_NodeNames_C.add(CONS.Admin.NodeNames.A_UL);
+			CONS.Admin.list_NodeNames_C.add(CONS.Admin.NodeNames.A_UR);
+			CONS.Admin.list_NodeNames_C.add(CONS.Admin.NodeNames.A_LR);
+			CONS.Admin.list_NodeNames_C.add(CONS.Admin.NodeNames.A_LL);
+			
+		}
+		
+		////////////////////////////////
+		
+		// node name list: B
+		
+		////////////////////////////////
+		// node list
+		CONS.Admin.list_NodeNames_B = new ArrayList<NodeNames>();
+		
+		CONS.Admin.list_NodeNames_B.add(CONS.Admin.NodeNames.A_UL);
+		CONS.Admin.list_NodeNames_B.add(CONS.Admin.NodeNames.A_UR);
+		CONS.Admin.list_NodeNames_B.add(CONS.Admin.NodeNames.A_LR);
+		CONS.Admin.list_NodeNames_B.add(CONS.Admin.NodeNames.A_LL);
+		
+	}//init_Vars
+	
+	private void 
 	draw_Initial() {
 		// TODO Auto-generated method stub
 		////////////////////////////////
@@ -3012,6 +3081,15 @@ public class Rect_D11 {
 		
 		this._move_Rect_C_RIGHT(name, CONS.Admin.orien_Current_C);
 //		this._move_Rect_C_RIGHT(CONS.Admin.NodeNames.B_UL, CONS.Admin.Orien.HORI_VERTI);
+		
+		////////////////////////////////
+
+		// update: node name list
+
+		////////////////////////////////
+		this.reset_List_NodeNames_C();
+		
+		this.update_NodeNameList();
 		
 		////////////////////////////////
 
