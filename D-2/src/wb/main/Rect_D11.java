@@ -56,12 +56,15 @@ import org.eclipse.swt.widgets.Group;
 
 
 
+
+
 import wb.utils.CONS;
 import wb.utils.CONS.Admin.CornerTypes;
 import wb.utils.CONS.Admin.LineStates;
 import wb.utils.CONS.Admin.Lines;
 import wb.utils.CONS.Admin.NodeNames;
 import wb.utils.CONS.Admin.Orien;
+import wb.utils.DD;
 import wb.utils.Methods;
 import wb.utils.Rect;
 
@@ -2076,7 +2079,8 @@ public class Rect_D11 {
 			public void 
 			widgetSelected(SelectionEvent e) {
 				
-				Rect_D11.this.exec_ReloadProperties();
+				Rect_D11.this.exec_Get_SmallestResidue_Set();
+//				Rect_D11.this.exec_ReloadProperties();
 
 //				print = new Run_Draw();
 //				
@@ -2681,6 +2685,151 @@ public class Rect_D11 {
 
 	}//_init_Set_Listeners
 
+	protected void 
+	exec_Get_SmallestResidue_Set() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// jump: X times
+
+		////////////////////////////////
+		int numOf_Residues;
+		
+		List<DD> list_DD = new ArrayList<DD>();
+
+		int size_NodeName_List = CONS.Admin.list_NodeNames_C.size();
+		
+		for (int i = 0; i < size_NodeName_List * 4; i++) {
+//			for (int i = 1; i < 4; i++) {
+			
+			this.bt_Selected_Jump(i + 1);
+//			this.bt_Selected_Jump(i);
+
+			list_DD.add(this.get_DiagramData());
+			
+		}
+
+		//log
+		String text, fname; int line_Num;
+		
+		text = String.format(Locale.JAPAN, "list_DD => %d\n", list_DD.size());
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		////////////////////////////////
+
+		// get: the smallest residue
+
+		////////////////////////////////
+		int tmp_Area_Residues = list_DD.get(0).getArea_Residues();
+//		int tmp_Area_Residues = -1;
+		
+		int index_DD = -1;
+		
+		for (int i = 0; i < list_DD.size(); i++) {
+			
+			if (tmp_Area_Residues > list_DD.get(i).getArea_Residues()) {
+//				if (tmp_Area_Residues < list_DD.get(i).getArea_Residues()) {
+				
+				tmp_Area_Residues = list_DD.get(i).getArea_Residues();
+				
+				index_DD = i;
+				
+			}
+			
+		}
+		
+		//log
+		DD tmp_DD = list_DD.get(index_DD);
+		
+		if (tmp_DD == null) {
+			
+			text = "tmp_DD => null";
+			
+		} else {
+			
+			text = String.format(Locale.JAPAN, 
+					"smallest residue => %d "
+							+ "(B: node = %s, orien = %s, status_B = %d "
+							+ "/ C: node = %s, orien = %s\n, status_C = %d", 
+							tmp_DD.getArea_Residues(), 
+							tmp_DD.getB().getAttachedAt(), tmp_DD.getB().getOrien(), tmp_DD.getStatuc_B(),
+							tmp_DD.getC().getAttachedAt(), tmp_DD.getC().getOrien(), tmp_DD.getStatuc_C()
+					);
+			
+		}
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		//		smallest residue => 34000 (B: node = A_UL, orien = HV, status_B = 1 / C: node = A_LL, orien = VV
+		
+	}//exec_Get_SmallestResidue_Set
+
+	private DD 
+	get_DiagramData() {
+		// TODO Auto-generated method stub
+		
+		DD dd = new DD();
+		
+		Rect rect_Z = Methods.get_Rect_Z(this.rect_A, this.rect_B, this.rect_C);
+
+		// set: rects
+		dd.setZ(rect_Z);
+		
+		dd.setA(this.rect_A);
+		dd.setB(this.rect_B);
+		dd.setC(this.rect_C);
+		
+		// status
+		dd.setStatus_B(CONS.Admin.status_B);
+		dd.setStatus_C(CONS.Admin.status_C);
+		
+		// areas
+		dd.setArea_Total(rect_Z.getW() * rect_Z.getH());
+
+		// residues
+		dd.setNumOf_Residues(this.detect_Residues());
+		
+		// area: residues
+		int area_Z = rect_Z.getW() * rect_Z.getH();
+		int area_A = this.rect_A.getW() * this.rect_A.getH();
+		int area_B = this.rect_B.getW() * this.rect_B.getH();
+		int area_C = this.rect_C.getW() * this.rect_C.getH();
+
+		dd.setArea_Residues(area_Z - (area_A + area_B + area_C));
+		
+		//log
+		String text, fname; int line_Num;
+		
+		text = String.format(Locale.JAPAN, 
+							"residue area => %d (total = %d, w = %d, h = %d)\n", 
+							dd.getArea_Residues(), dd.getArea_Total(), 
+							dd.getZ().getW(), dd.getZ().getH());
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		////////////////////////////////
+
+		// return
+
+		////////////////////////////////
+		return dd;
+		
+	}//get_DiagramData
+
 	protected int 
 	detect_Residues() {
 		
@@ -2831,21 +2980,6 @@ public class Rect_D11 {
 		
 		// C
 		this.bt_Selected_Jump(String.valueOf(CONS.Admin.status_C));
-//		this.bt_Selected_Jump(Rect_D6.this.txt_Jump.getText());
-		
-		
-//		this.clear_Canvas();
-//		
-//		this.draw_Rect__A();
-//		this.draw_Rect__B();
-//		this.draw_Rect__C();
-//		
-//		////////////////////////////////
-//		
-//		// draw: periphery
-//		
-//		////////////////////////////////
-//		this.draw_Periphery_XObjects();
 		
 	}//exec_ReloadProperties
 
@@ -5108,6 +5242,7 @@ public class Rect_D11 {
 		
 	}//update_Canvas
 
+//	private Object[] 
 	private void 
 	update_Canvas() {
 		// TODO Auto-generated method stub
@@ -5139,6 +5274,13 @@ public class Rect_D11 {
 		
 		////////////////////////////////
 		update_Status_Label();
+		
+//		////////////////////////////////
+//
+//		// disagram data
+//
+//		////////////////////////////////
+//		return this.get_DiagramData();
 		
 	}//update_Canvas
 	
@@ -6424,6 +6566,14 @@ public class Rect_D11 {
 		
 	}//bt_Selected_Jump
 
+	public void 
+	bt_Selected_Jump(int status) {
+		// TODO Auto-generated method stub
+
+		this.bt_Selected_Jump(String.valueOf(status));
+		
+	}//bt_Selected_Jump
+	
 	public void 
 	move_B(int status_B) {
 		// TODO Auto-generated method stub
