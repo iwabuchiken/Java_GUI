@@ -6091,5 +6091,38 @@ public class Methods {
 		}//switch(numOf_Matches)
 		
 	}//get_NumOf_Residues
+
+	public static boolean 
+	is_Overwrap(Rect_D11 rect_D11) {
+		// TODO Auto-generated method stub
+		
+		Object[] objs = Methods.get_NodeNameAndOrien_frmo_Status__B(CONS.Admin.status_B);
+		
+		rect_D11.getRect_B().setAttachedAt((NodeNames)objs[0]);
+		rect_D11.getRect_B().setOrien((Orien) objs[1]);
+		
+		boolean res = Methods.overWrap_V3(
+//				boolean res = Methods.overWrap_on_A(
+							rect_D11.getRect_A(), 
+							rect_D11.getRect_B(), 
+							rect_D11.getRect_C(), 
+//							Rect_D9.this.rect_A, 
+							CONS.Admin.status_C);
+		
+		//log
+		String text, fname; int line_Num;
+
+		text = String.format(Locale.JAPAN, "overwrap result => %s\n", res);
+		
+		fname = Thread.currentThread().getStackTrace()[1].getFileName();
+		
+		line_Num = Thread.currentThread().getStackTrace()[1].getLineNumber();
+		
+		System.out.format(Locale.JAPAN, "[%s:%d] %s", fname, line_Num, text);
+
+		return res;
+//		return false;
+		
+	}//is_Overwrap
 	
 }//public class Methods

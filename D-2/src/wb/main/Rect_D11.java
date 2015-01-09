@@ -2787,6 +2787,7 @@ public class Rect_D11 {
 		////////////////////////////////
 		int cycles = CONS.Admin.list_NodeNames_B.size() * 4;
 //		int cycles = CONS.Admin.list_NodeNames_B.size();
+//		int cycles = 1;
 		
 		for (int i = 0; i < cycles; i++) {
 
@@ -2797,7 +2798,7 @@ public class Rect_D11 {
 			////////////////////////////////
 			list_DD.add(this._exec_Get_SmallestResidue_Set__Execute());
 //			this._exec_Get_SmallestResidue_Set__Execute();
-aa
+
 			////////////////////////////////
 			
 			// move: B
@@ -2894,10 +2895,12 @@ aa
 		text = String.format(Locale.JAPAN, 
 					"smallest DD in the list_DD => index = %d "
 					+ "(rect_B: at = %s, orien = %s / "
-					+ "rect_C: at = %s, orien = %s)\n", 
+					+ "rect_C: at = %s, orien = %s)\n"
+					+ " ratio => %f", 
 					i_DD, 
 					rect_B.getAttachedAt(), rect_B.getOrien(),
-					rect_C.getAttachedAt(), rect_C.getOrien()
+					rect_C.getAttachedAt(), rect_C.getOrien(),
+					(tmp_DD.getArea_Residues() / (float)tmp_DD.getArea_Total())
 					
 				);
 		
@@ -2925,12 +2928,27 @@ aa
 
 		int size_NodeName_List = CONS.Admin.list_NodeNames_C.size();
 		
+		boolean overwrap = false;
+		
 		for (int i = 0; i < size_NodeName_List * 4; i++) {
 //			for (int i = 1; i < 4; i++) {
 			
 			this.bt_Selected_Jump(i + 1);
 //			this.bt_Selected_Jump(i);
-aa
+
+			////////////////////////////////
+
+			// skip?
+
+			////////////////////////////////
+			overwrap = Methods.is_Overwrap(this);
+			
+			if (overwrap == true) {
+				
+				continue;
+				
+			}
+			
 			list_DD.add(this.get_DiagramData());
 			
 		}
@@ -6861,7 +6879,7 @@ aa
 	public void 
 	bt_Selected_Jump(int status) {
 		// TODO Auto-generated method stub
-aa
+
 		this.bt_Selected_Jump(String.valueOf(status));
 		
 	}//bt_Selected_Jump
@@ -7143,6 +7161,10 @@ aa
 
 	public Rect getRect_B() {
 		return rect_B;
+	}
+	
+	public Rect getRect_C() {
+		return rect_C;
 	}
 }
 
