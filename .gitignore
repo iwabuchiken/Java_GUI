@@ -9,3 +9,4 @@ bin/
 bin/*
 *.ja
 libs/*
+JIM/*

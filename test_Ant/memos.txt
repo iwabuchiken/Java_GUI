@@ -1,0 +1,16 @@
+//REF https://ant.apache.org/manual/tutorial-HelloWorldWithAnt.html
+
+cd C:\WORKS\WS\Eclipse_Luna2\Java_GUI\test_Ant\build\classes
+javac -sourcepath src -d build\classes src\oata\HelloWorld.java
+java -cp build\classes oata.HelloWorld
+
+echo Main-Class: oata.HelloWorld>myManifest
+md build\jar
+jar cfm build\jar\HelloWorld.jar myManifest -C build\classes .
+java -jar build\jar\HelloWorld.jar
+
+ant -f mybuild.xml compile
+
+//
+pushd C:\WORKS\WS\Eclipse_Luna2\Java_GUI\D-2
+
